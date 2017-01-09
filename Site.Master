@@ -1,0 +1,155 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="PSO.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Procesos Simples Online</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+
+    <link href  ="PageImages/PSO.ico" rel="shortcut icon" type="image/x-icon" />
+
+     
+
+    <style>
+        a {
+            color: #79256E;
+        }
+
+            a:hover,
+            a:focus {
+                color: #B879AF;
+            }
+
+        input[type="submit"],
+        input[type = "button"] 
+        {
+            cursor: pointer;
+            background-color: transparent;
+            color: #79256E;
+            white-space: normal;
+            border-style: solid;
+            border-color: #616161;
+            border-width: 3px;
+            border-radius: 4px;
+        }
+
+        input[type=text],
+        input[type=password],
+        textarea {
+            width: 100%;
+        }
+
+        input[type="submit"]:hover,
+        input[type = "button"]:hover {
+            background-color: #F3F0F7;
+        }
+
+        td a {
+            text-decoration: underline;
+        }
+
+        div a{
+            text-decoration:none;
+        }
+
+        .calendars {
+            width: auto;
+        }
+    </style>
+
+</head>
+<body style="background-color:#E5E5E5">
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <table class ="table">
+
+            <tr>
+
+                <td style ="border-top-style:none; text-decoration:none">
+
+                    <asp:Panel Style="margin-left: 5%; display: inline-block; font-size: large; color: #79256E;"
+                        ID="dashboardLinkPnl" runat="server">
+
+                    </asp:Panel>
+
+                    <div style=" display: inline-block; margin-left: 20px">
+
+                        <asp:Image runat="server" ImageUrl="~/PageImages/PSO_horizontal.png" Width="200px" Height="50px" />
+
+                    </div>
+
+                </td>
+
+                <td style ="float:right; border-top-style:none; padding-right:20px; padding-top:20px; text-decoration:none">
+
+                    <div style="display: inline-block">
+
+                        <asp:HyperLink runat="server" ID="userLink" Text="User" NavigateUrl="~/Pages/Register.aspx"></asp:HyperLink>
+
+                    </div>
+
+                    <asp:Button ID="logoutBtn" BorderColor="#616161" BorderWidth="3" CssClass="btn" Text="Salir"
+                        Style="padding: 5px 10px;" UseSubmitBehavior ="false" OnClick="logoutBtn_Click"
+                         runat="server" ForeColor="#79256E" CausesValidation ="false" />
+
+                </td>
+
+            </tr>
+
+        </table>
+
+        <div>  
+            
+               
+
+                         
+
+            <div style ="background-color:#616161; text-align:center">
+
+                <asp:Label ForeColor ="#E5E5E5" Font-Size ="XX-Large" Font-Bold ="true" runat ="server"><%: Page.Title %></asp:Label>
+
+            </div>
+            
+        </div>
+
+        <div >
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <div style="color: #79256E; width: 100%; height: 50px; bottom: 0px; opacity: 1; position: fixed;">
+
+            <hr style="background-color: #616161; width: 100%; height: 3px" />
+
+        </div>
+
+    </form>
+</body>
+</html>

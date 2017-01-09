@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="pso-pr.com/TestingEnvironment" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\DevTop\\Documents\\Visual\ Studio\ 2015\\Projects\\PSO88\\PSO\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\DevTop\\Documents\\Visual\ Studio\ 2015\\Projects\\PSO88\\PSO\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="DefaultConnection_ConnectionString" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\DevTop\\Documents\\Visual\ Studio\ 2015\\Projects\\PSO88\\PSO\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="local-Web.config Connection String" description="" value="Data Source=DEVILAP\MSSQLSERVER2014;Initial Catalog=PSO;Integrated Security=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\DevTop\\Documents\\Visual\ Studio\ 2015\\Projects\\PSO88\\PSO\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='local']/@connectionString" />
+  </parameter>
+</parameters>
