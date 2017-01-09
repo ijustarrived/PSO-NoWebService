@@ -159,7 +159,8 @@ namespace PSO.Pages.Dashboard.Consultas
 
                 case 2: //ss
 
-                    where = string.Format("WHERE SeguroSocial = '{0}'", searchTxtBx.Text);
+                    where = string.Format("WHERE SeguroSocial = '{0}'", string.IsNullOrEmpty(searchTxtBx.Text) ? string.Empty 
+                        : Usuario.EncryptWord(searchTxtBx.Text.Replace("-", string.Empty)));
 
                     if (Rol.TiposRole.EXTERNO == user.Role.RoleType)
                         where = string.Format(@"{0} AND Nombre = '{1}' AND ApellidoMaterno = '{2}' 

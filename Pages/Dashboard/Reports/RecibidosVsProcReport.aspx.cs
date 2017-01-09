@@ -250,7 +250,7 @@ namespace PSO.Pages.Dashboard.Reports
                     e.Row.Cells[3].Text = ((int)span.TotalDays).ToString();
 
                     //Esta va pero para el demo no
-                    //e.Row.Cells[5].Text = string.Empty;
+                    e.Row.Cells[5].Text = string.Empty;
                 }
 
                 else
@@ -262,14 +262,14 @@ namespace PSO.Pages.Dashboard.Reports
 
                 #region Esto es solo para el demo
 
-                if (solicitud.FechaAsigProcesador.Date.Year != 9999)
-                {
-                    LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
+                //if (solicitud.FechaAsigProcesador.Date.Year != 9999)
+                //{
+                //    LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
 
-                    e.Row.Cells[5].Text = procesadores.ElementAt(Convert.ToInt32(e.Row.Cells[5].Text)).GetNombreCompleto();
+                //    e.Row.Cells[5].Text = procesadores.ElementAt(Convert.ToInt32(e.Row.Cells[5].Text)).GetNombreCompleto();
 
-                    e.Row.Cells[2].Text = "19/12/2016";
-                } 
+                //    e.Row.Cells[2].Text = "19/12/2016";
+                //} 
 
                 #endregion
             }     
