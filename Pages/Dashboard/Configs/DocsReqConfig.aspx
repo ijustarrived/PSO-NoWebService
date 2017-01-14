@@ -21,12 +21,20 @@
 
             <asp:TextBox runat="server" ID="docNameTxtBx"></asp:TextBox>
 
+            <div>
+
+                <asp:RequiredFieldValidator ControlToValidate ="docNameTxtBx" 
+                    ErrorMessage ="Documento debe de tener un nombre" Display ="Dynamic" 
+                    SetFocusOnError ="true" runat ="server" ForeColor ="#CC0000"></asp:RequiredFieldValidator>
+
+            </div>
+
         </div>
 
         <div style ="text-align:center; margin-top:20px">
 
             <asp:Button ID ="createDocReqBtn" OnClick ="createDocReqBtn_Click" BorderColor="#616161" CssClass="btn"
-                 BorderWidth="3" Text="Crear" runat="server" ForeColor="#79256E" Style="padding: 10px 15px;" />
+                 BorderWidth="3" Text="Crear" UseSubmitBehavior ="false" runat="server" ForeColor="#79256E" Style="padding: 10px 15px;" />
 
         </div>
 
@@ -68,11 +76,11 @@
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>
 
-            <asp:ButtonField CommandName ="Delete" Text ="Eliminar" />
-
             <asp:ButtonField CommandName ="Edit" Text ="Renombrar" />
 
             <asp:ButtonField CommandName ="Update"  Text ="Actualizar" />
+
+            <asp:ButtonField CommandName ="Delete" Text ="Eliminar" />        
 
         </Columns>
 

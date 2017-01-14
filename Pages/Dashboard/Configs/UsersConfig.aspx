@@ -52,7 +52,12 @@
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>
 
-            <asp:BoundField DataField="Celular" HeaderText="Tel. Celular">
+            <asp:BoundField DataField="Celular" HeaderText="Tel&eacute;fono Celular">
+                <HeaderStyle Font-Size="13pt" />
+                <ItemStyle Font-Size="12pt" />
+            </asp:BoundField>
+
+            <asp:BoundField DataField="Celular" HeaderText="Tipo de Usuario">
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>

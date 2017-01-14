@@ -21,6 +21,7 @@
     <table class="table" style ="width: 70%; margin-left: auto; margin-right: auto;">
 
         <tr>
+            <%-- Revisar --%>
 
             <td style ="border-top-width:0px; text-align:center">
 
@@ -34,7 +35,8 @@
 
                     <div style="margin-top: 20px;">
 
-                        <asp:Label runat="server" Text="Consulta de Coordinadores" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="Consulta de Solicitudes Pendientes 
+                            a Revisar por Coordinador" ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewConsuCoorChkBx" />
 
@@ -42,7 +44,8 @@
 
                     <div style="margin-top: 20px;">
 
-                        <asp:Label runat="server" Text="Consulta de Procesadores" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="Consulta de Solicitudes Pendientes
+                             a Trabajarse por un Procesador" ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewConsuProcChkBx" />
 
@@ -50,7 +53,8 @@
 
                     <div style="margin-top: 20px;">
 
-                        <asp:Label runat="server" Text="Consulta de Solicitudes" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="Consulta de Solicitudes 
+                            &#010; por Nombre, Seguro Social o Status" ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewConsuSolicitudesChkBx" />
 
@@ -58,7 +62,8 @@
 
                     <div style="margin-top: 20px;">
 
-                        <asp:Label runat="server" Text="Consulta de Pendiente Asignar Procesador" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="Consulta de Solicitudes
+                             Pendientes de Asignar a un Procesador" ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewConsuPenAsigChkBx" />
 
@@ -98,7 +103,8 @@
 
                     <div style="margin-top: 20px;">
 
-                        <asp:Label runat="server" Text="Reporte de Solicitudes Recibidas contra Procesadas" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="Reporte de Comparaci&oacute;n entre
+                             Solicitudes Recibidas y Procesadas" ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewReportReciVsProcChkBx" />
 
@@ -123,6 +129,8 @@
                 </div>
 
             </td>
+
+            <%-- Modificar --%>
 
             <td style ="border-top-width:0px; text-align:center">
 

@@ -158,7 +158,7 @@
                         <div>
 
                             <asp:RegularExpressionValidator runat="server" ID="passwordREV" SetFocusOnError="true" ForeColor="#CC0000"
-                                ErrorMessage="Minimo son tres caracters (a - z, 0 - 9)" Display="Dynamic"
+                                ErrorMessage="Minimo son tres caracters (a - z, 0 - 9)." Display="Dynamic"
                                 ValidationExpression="[a-zA-Z0-9]{3,}"
                                 ControlToValidate="passwordTxtBx"></asp:RegularExpressionValidator>
 
@@ -207,7 +207,7 @@
 
                     <div style="float: left;">
 
-                        <asp:Label runat="server" Text="Tel. Celular*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="Tel&eacute;fono Celular*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -249,7 +249,7 @@
 
                     <div style="float: left;">
 
-                        <asp:Label runat="server" Text="Fecha Nacimiento*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="Fecha de Nacimiento*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -299,7 +299,7 @@
 
                     <div>
 
-                        <asp:Label runat="server" Text="Tipo Usuario" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="Tipo de Usuario" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -405,7 +405,7 @@
 
             <td style ="text-align:center">
 
-                <asp:Label ForeColor ="#79256E" Font-Bold ="true" runat ="server" Text ="Los campos con ' * ', son requeridos"></asp:Label>
+                <asp:Label ForeColor ="#79256E" Font-Bold ="true" runat ="server" Text ="Los campos con ' * ', son requeridos."></asp:Label>
 
             </td>
 
@@ -504,7 +504,7 @@
 
                     <div style="float: left;">
 
-                        <asp:Label runat="server" Text="Telefono*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="Tel&eacute;fono*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -746,7 +746,7 @@
 
                     <div style="float: left;">
 
-                        <asp:Label runat="server" Text="Codigo Postal*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="C&oacute;digo Postal*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -777,7 +777,7 @@
 
                     <div style="float: left;">
 
-                        <asp:Label runat="server" Text="Codigo Postal*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="C&oacute;digo Postal*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 

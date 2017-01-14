@@ -15,21 +15,21 @@
         <div style ="display:inline-block">
 
             <asp:Button runat="server" CssClass ="dashBtns" ID="pendAsigProBtn" OnClick ="pendAsigProBtn_Click"
-                Text="Servicios Pendientes de Asignar a un Procesador" />
+                Text="Solicitudes Pendientes de Asignar a un Procesador" />
 
         </div>
 
         <div style ="display:inline-block">
 
             <asp:Button runat="server" CssClass ="dashBtns" ID="processBtn" OnClick ="processBtn_Click" 
-                Text="Solicitudes Pendiente a Trabajarse por un Procesador" />
+                Text="Solicitudes Pendientes a Trabajarse por un Procesador" />
 
         </div>
 
         <div style ="display:inline-block">
 
             <asp:Button runat="server" CssClass ="dashBtns" ID="servSSNomStatusBtn" OnClick ="servSSNomStatusBtn_Click" 
-                Text="Servicios Solicitados &#010; por Nombre, Seguro Social o Status" />
+                Text="Solicitudes &#010; por Nombre, Seguro Social o Status" />
 
         </div>   
 

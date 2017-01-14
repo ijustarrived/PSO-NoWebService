@@ -50,13 +50,13 @@ namespace PSO.Pages
                         Correo.GetBody(Correo.MailType.PASS_RECOVER).Replace("@PASS", Usuario.DecryptWord(user.Password)));
 
                     ClientScript.RegisterStartupScript(this.GetType(), "passSentAlert",
-                       "alert('Contraseña fue enviada por Correo Electrónico'); window.location = 'Login.aspx';", true);
+                       "alert('Contraseña fue enviada por Correo Electrónico.'); window.location = 'Login.aspx';", true);
                 }
 
                 else
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "wrongBdayAlert",
-                       "alert('Fecha nacimiento no coincide');", true);
+                       "alert('Fecha nacimiento no coincide.');", true);
                 }
             }
 

@@ -42,12 +42,12 @@ namespace PSO.Pages.Dashboard.Configs
 
             secondDashLink.Text = "Configuraci&oacute;n";
 
-            dashboardPnl.Controls.Add(secondDashLink); 
+            dashboardPnl.Controls.Add(secondDashLink);
             #endregion
 
             #endregion
 
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
 
@@ -59,7 +59,7 @@ namespace PSO.Pages.Dashboard.Configs
                     Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
                 }
 
-                
+
             }
 
             tipoUserDDL_SelectedIndexChanged(tipoUserDDL, EventArgs.Empty);
@@ -71,7 +71,7 @@ namespace PSO.Pages.Dashboard.Configs
 
         protected void tipoUserDDL_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch(((DropDownList)sender).SelectedIndex)
+            switch (((DropDownList)sender).SelectedIndex)
             {
                 case 0:
 
@@ -97,7 +97,13 @@ namespace PSO.Pages.Dashboard.Configs
 
                 e.Row.ToolTip = "Seleccionar para revisar";
 
+                LinkedList<Usuario> users = (LinkedList<Usuario>)userGV.DataSource;
+
+                e.Row.Cells[0].Text = users.ElementAt(e.Row.RowIndex).GetNombreCompleto();
+
                 e.Row.Cells[2].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[2].Text));
+
+                e.Row.Cells[4].Text = users.ElementAt(e.Row.RowIndex).Role.RoleType.ToString();
             }
         }
 

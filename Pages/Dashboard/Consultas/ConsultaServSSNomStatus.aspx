@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Title ="Servicios por Nombre, Seguro Social o Status" MasterPageFile ="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Language="C#" Title ="Solicitudes por Nombre, Seguro Social o Status" MasterPageFile ="~/Site.Master" AutoEventWireup="true"
      CodeBehind="ConsultaServSSNomStatus.aspx.cs" Inherits="PSO.Pages.Dashboard.Consultas.ConsultaServSSNomStatus" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
@@ -11,7 +11,7 @@
 
             var searchTxtBx = document.getElementById("<%= searchTxtBx.ClientID%>");
 
-            debugger;
+            searchTxtBx.value = "";
 
             if (filterDDL.selectedIndex == 3)
             {
@@ -32,6 +32,8 @@
                 statusDDL.style.display = "none";
 
                 searchTxtBx.style.display = "initial";
+
+                searchTxtBx.focus();
             }
         }
 
@@ -48,7 +50,7 @@
             <asp:ListItem>Pendiente a Trabajarse por Procesador</asp:ListItem>
             <asp:ListItem>Aprobada</asp:ListItem>
             <asp:ListItem>Denegada</asp:ListItem>
-            <asp:ListItem>Documentos Incompletos</asp:ListItem>
+            <asp:ListItem>Pendiente por Documentos Incompletos</asp:ListItem>
             <asp:ListItem>Inactivas</asp:ListItem> 
 
         </asp:DropDownList>
@@ -93,7 +95,7 @@
 
         <Columns>
 
-            <asp:BoundField DataField="NumeroSolicitud" HeaderText="N&uacute;mero Solicitud">
+            <asp:BoundField DataField="NumeroSolicitud" HeaderText="N&uacute;mero de Solicitud">
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>
@@ -103,7 +105,7 @@
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>
 
-            <asp:BoundField DataField="Nombre" HeaderText="Nombre Completo">
+            <asp:BoundField DataField="Nombre" HeaderText="Nombre del Solicitante">
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>
@@ -132,7 +134,7 @@
     </asp:GridView>
 
     <asp:SqlDataSource runat ="server" ID ="solicitudesSQLDS" SelectCommand ="SELECT NumeroSolicitud, Pueblo,
-         (Nombre + ' '+ ApellidoMaterno + ' ' + ApellidoPaterno) AS Nombre, Celular, SeguroSocial FROM Solicitudes @WHERE" 
+         (Nombre + ' '+ ApellidoPaterno + ' ' + ApellidoMaterno) AS Nombre, Celular, SeguroSocial FROM Solicitudes @WHERE" 
         ConnectionString ="<%$ ConnectionStrings:local %>" OnSelecting ="solicitudesSQLDS_Selecting"></asp:SqlDataSource>
 
     <div style="text-align: center; margin-bottom: 40px; margin-top:70px; padding-bottom: 100px">

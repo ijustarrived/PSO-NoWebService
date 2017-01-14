@@ -149,8 +149,8 @@ namespace PSO.Pages.Dashboard.Consultas
             {
                 case 1: // nombre
 
-                    where = string.Format(@"WHERE Nombre LIKE '%{0}%' OR ApellidoPaterno LIKE '%{0}%' 
-                        OR ApellidoMaterno LIKE '%{0}%'", searchTxtBx.Text);
+                    where = string.Format(@"WHERE CONCAT(Nombre, ' ', ApellidoPaterno, ' ', ApellidoMaterno) LIKE '%{0}%'",
+                       searchTxtBx.Text);
 
                     if (Rol.TiposRole.EXTERNO == user.Role.RoleType)
                         where = string.Format(@"{0} AND Email = '{1}'", where, user.Email);

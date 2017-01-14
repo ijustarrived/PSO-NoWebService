@@ -114,8 +114,13 @@ namespace PSO.Pages.Dashboard.Reports
 
             if (!string.IsNullOrEmpty(desdeTxtBx.Text) && !string.IsNullOrEmpty(hastaTxtBx.Text))
             {
-                where = string.Format(@"WHERE FechaTramitada BETWEEN CONVERT(date, '{0}') AND
-                    CONVERT(date, '{1}')", desdeTxtBx.Text, hastaTxtBx.Text);
+                desdeDetailTxtBx.Text = desdeTxtBx.Text;
+
+                hastaDetailTxtBx.Text = hastaTxtBx.Text;
+
+                where = string.Format(@"WHERE FechaTramitada >= CONVERT(datetime, '{0} 00:00:00.000') 
+                                                AND FechaTramitada < CONVERT(datetime, '{1} 23:59:59.997')",
+                                                desdeTxtBx.Text, hastaTxtBx.Text);
 
                 solicitudes = SolicitudRepo.GetSolicitudesByDateRange(
                     Convert.ToDateTime(desdeTxtBx.Text), Convert.ToDateTime(hastaTxtBx.Text));
@@ -143,8 +148,9 @@ namespace PSO.Pages.Dashboard.Reports
 
             if (!string.IsNullOrEmpty(desdeDetailTxtBx.Text) && !string.IsNullOrEmpty(hastaDetailTxtBx.Text))
             {
-                where = string.Format(@"WHERE (FechaTramitada BETWEEN CONVERT(date, '{0}') AND
-                    CONVERT(date, '{1}'))", desdeDetailTxtBx.Text, hastaDetailTxtBx.Text);
+                where = string.Format(@"WHERE FechaTramitada >= CONVERT(datetime, '{0} 00:00:00.000')
+                                                AND FechaTramitada < CONVERT(datetime, '{1} 23:59:59.997')",
+                                                desdeDetailTxtBx.Text, hastaDetailTxtBx.Text);
             }
 
             switch (filterDDL.SelectedIndex)

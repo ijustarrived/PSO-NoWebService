@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Title ="Solicitudes Pendiente a Trabajarse por un Procesador" MasterPageFile ="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Language="C#" Title ="Solicitudes Pendientes a Trabajarse por un Procesador" MasterPageFile ="~/Site.Master" AutoEventWireup="true"
      CodeBehind="ConsultaProcesador.aspx.cs" Inherits="PSO.Pages.Dashboard.Consultas.ConsultaProcesador" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
@@ -34,12 +34,12 @@
 
         <Columns>
 
-            <asp:BoundField DataField="NumeroSolicitud" HeaderText="N&uacute;mero Solicitud">
+            <asp:BoundField DataField="NumeroSolicitud" HeaderText="N&uacute;mero de Solicitud">
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>
 
-            <asp:BoundField DataField="Nombre" HeaderText="Nombre Completo">
+            <asp:BoundField DataField="Nombre" HeaderText="Nombre del Solicitante">
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>
@@ -54,7 +54,7 @@
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>
 
-             <asp:BoundField DataField="FechaAsigProcesador" HeaderText="Fecha Asignado">
+             <asp:BoundField DataField="FechaAsigProcesador" HeaderText="Fecha Asignada">
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>

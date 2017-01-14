@@ -61,8 +61,14 @@ namespace PSO.Pages.Dashboard.Reports
 
             #endregion
 
-            if(!IsPostBack)
-                ExecuteSearch();
+            ExecuteSearch();
+
+            if (!IsPostBack)
+            {
+                ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR);
+            }
+
+            rolDDL_SelectedIndexChanged(sender, EventArgs.Empty);
         }
 
         private void ExecuteSearch()
@@ -147,7 +153,7 @@ namespace PSO.Pages.Dashboard.Reports
 
         protected void searchBtn_Click(object sender, EventArgs e)
         {
-            ExecuteSearch();
+            //ExecuteSearch();
         }
 
         private LinkedList<_Solicitud> GetSolicitudesByStatusNDateRange(Rol.TiposRole role)
@@ -192,7 +198,94 @@ namespace PSO.Pages.Dashboard.Reports
 
         protected void rolDDL_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ExecuteSearch();
+            //ExecuteSearch();
+
+            if (rolDDL.SelectedIndex == 0)
+            {
+                detailsLbl.Text = "Detalle de Producción por Coordinador";
+
+                coorGV.Visible = true;
+
+                procGV.Visible = !coorGV.Visible;
+
+                ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR);
+
+                if (string.IsNullOrEmpty(desdeTxtBx.Text))
+                    coorGV.DataSource = SolicitudRepo.GetSolicitudesByRole(Rol.TiposRole.COORDINADOR);
+
+                else if (!string.IsNullOrEmpty(desdeTxtBx.Text) && !string.IsNullOrEmpty(hastaTxtBx.Text))
+                    coorGV.DataSource = SolicitudRepo.GetSolicitudesByRoleNDateRange(Rol.TiposRole.COORDINADOR,
+                        Convert.ToDateTime(desdeTxtBx.Text), Convert.ToDateTime(hastaTxtBx.Text));
+
+                else if (!string.IsNullOrEmpty(desdeTxtBx.Text) && string.IsNullOrEmpty(hastaTxtBx.Text))
+                    coorGV.DataSource = SolicitudRepo.GetSolicitudesByRoleNDateRange(Rol.TiposRole.COORDINADOR,
+                        Convert.ToDateTime(desdeTxtBx.Text), Convert.ToDateTime(DateTime.Now));
+
+                coorGV.DataBind();
+            }
+
+            else
+            {
+                detailsLbl.Text = "Detalle de Producción por Procesador";
+
+                coorGV.Visible = false;
+
+                procGV.Visible = !coorGV.Visible;
+
+                ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
+
+                if (string.IsNullOrEmpty(desdeTxtBx.Text))
+                    procGV.DataSource = SolicitudRepo.GetSolicitudesByRole(Rol.TiposRole.PROCESADOR);
+
+                else if (!string.IsNullOrEmpty(desdeTxtBx.Text) && !string.IsNullOrEmpty(hastaTxtBx.Text))
+                    procGV.DataSource = SolicitudRepo.GetSolicitudesByRoleNDateRange(Rol.TiposRole.PROCESADOR,
+                        Convert.ToDateTime(desdeTxtBx.Text), Convert.ToDateTime(hastaTxtBx.Text));
+
+                else if (!string.IsNullOrEmpty(desdeTxtBx.Text) && string.IsNullOrEmpty(hastaTxtBx.Text))
+                    procGV.DataSource = SolicitudRepo.GetSolicitudesByRoleNDateRange(Rol.TiposRole.PROCESADOR,
+                        Convert.ToDateTime(desdeTxtBx.Text), Convert.ToDateTime(DateTime.Now));
+
+                procGV.DataBind();
+            }
+
+
+        }
+
+        protected void coorGV_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkedList<Usuario> users = (LinkedList<Usuario>)ViewState["users"];
+
+                e.Row.Cells[0].Text = users.ElementAt(Convert.ToInt32(e.Row.Cells[0].Text)).GetNombreCompleto();
+            }
+        }
+
+        protected void procGV_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkedList<Usuario> users = (LinkedList<Usuario>)ViewState["users"];
+
+                e.Row.Cells[0].Text = users.ElementAt(Convert.ToInt32(e.Row.Cells[0].Text)).GetNombreCompleto();
+
+                DateTime fechaTrabajo = Convert.ToDateTime(e.Row.Cells[3].Text),
+                fechaTramite = Convert.ToDateTime(e.Row.Cells[2].Text);
+            }
+        }
+
+        protected void procGV_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            procGV.PageIndex = e.NewPageIndex;
+
+            procGV.DataBind();
+        }
+
+        protected void coorGV_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            coorGV.PageIndex = e.NewPageIndex;
+
+            coorGV.DataBind();
         }
     }
 }

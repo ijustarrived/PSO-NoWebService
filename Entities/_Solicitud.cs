@@ -107,6 +107,15 @@ namespace PSO.Entities
             FechaNacimiento = DateTime.MaxValue;
 
             FechaNacimientoCo = DateTime.MaxValue;
+
+            Duration = string.Empty;
+        }
+
+        //Only used in production report cause I was lazy
+        public string Duration
+        {
+            get;
+            set;
         }
 
         public int ID

@@ -291,13 +291,13 @@
 
                 <td style="text-align: right; border-top-style: none; padding-right:20% ">
 
-                    <asp:Label runat="server" Text="Número Solicitud:" ID="numSolicitudLbl"></asp:Label>
+                    <asp:Label runat="server" Text="Número de Solicitud:" ID="numSolicitudLbl"></asp:Label>
 
                 </td>
 
                 <td style="padding-left:10%; border-top-style: none">
 
-                    <asp:Label runat="server" Text="Fecha Solicitud:" ID="fechaSolicitudLbl"></asp:Label>
+                    <asp:Label runat="server" Text="Fecha de Solicitud:" ID="fechaSolicitudLbl"></asp:Label>
 
                 </td>
 
@@ -315,7 +315,7 @@
 
                 <td style="padding-left:10%; border-top-style: none">
 
-                    <asp:Label runat="server" Text="Fecha Revisado:" ID="fechaRevisadoLbl"></asp:Label>
+                    <asp:Label runat="server" Text="Fecha Revisada:" ID="fechaRevisadoLbl"></asp:Label>
 
                 </td>
 
@@ -358,7 +358,7 @@
 
                 <td style="border-top-style: none; padding-left: 10%;">
 
-                    <asp:Label runat="server" Text="Fecha Asignado:" ID="fechaAsignadoLbl"></asp:Label>
+                    <asp:Label runat="server" Text="Fecha Asignada:" ID="fechaAsignadoLbl"></asp:Label>
 
                 </td>
 
@@ -368,7 +368,7 @@
 
             <td style="text-align: right; padding-right:20%; border-top-style: none">
 
-                <asp:Label Text ="Status Trabajo" runat ="server"></asp:Label>
+                <asp:Label Text ="Status" runat ="server"></asp:Label>
 
                 <asp:DropDownList ID ="statusDDL" runat ="server">
                     
@@ -382,7 +382,7 @@
 
             <td style="border-top-style: none; padding-left:10%">
 
-                <asp:Label runat="server" Text="Fecha Trabajado:" ID="fechaTrabajoLbl"></asp:Label>
+                <asp:Label runat="server" Text="Fecha Trabajada:" ID="fechaTrabajoLbl"></asp:Label>
 
             </td>
 
@@ -401,7 +401,7 @@
 
     <div style ="text-align:center; margin-top:40px">
 
-        <asp:Label ForeColor ="#79256E" Font-Bold ="true" runat ="server" Text ="Los campos con ' * ', son requeridos"></asp:Label>
+        <asp:Label ForeColor ="#79256E" Font-Bold ="true" runat ="server" Text ="Los campos con ' * ', son requeridos."></asp:Label>
 
     </div>
 
@@ -591,7 +591,7 @@
 
                         </script>
 
-                        <asp:Label runat="server" Text="Fecha Nacimiento*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="Fecha de Nacimiento*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -604,10 +604,14 @@
                     <div>
 
                         <asp:RegularExpressionValidator runat ="server" ControlToValidate ="bdayTxtBx" Display ="Dynamic" SetFocusOnError ="true" 
-                            ErrorMessage ="Incorrecto. Formato valido es MM/DD/YYYY"
-                             ValidationExpression ="^((0?[13578]|10|12)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|
-                            ([8901])(\d{1}))|(0?[2469]|11)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\/)((19)([2-9])(\d{1})
-                            |(20)([01])(\d{1})|([8901])(\d{1})))$" ForeColor ="#CC0000">
+                            ErrorMessage ="Inv&aacute;lida. Formato v&aacute;lido es MM/DD/YYYY."
+                             ValidationExpression ="^((0?[13578]|10|12)(\/)(([1-9])|(0[1-9]) |
+                             ([12])([0-9]?)|(3[01]?))(\/)((19)([0-9])(\d{1}) |(20)([01])(\d{1})|([8901])(\d{1})) 
+                            |(0?[2469]|11)(\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(\/)((19)([0-9])(\d{1})|
+                             (20)([01])(\d{1})|([8901])(\d{1})))$"
+
+                           
+                             ForeColor ="#CC0000">
 
                         </asp:RegularExpressionValidator>
 
@@ -634,7 +638,7 @@
 
                     <div style=" ">
 
-                        <asp:Label runat="server" Text="Licencia Conducir*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="Licencia de Conducir*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -2061,7 +2065,7 @@
 
                         </script>
 
-                        <asp:Label runat="server" Text="Fecha Nacimiento" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="Fecha de Nacimiento" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -2074,11 +2078,12 @@
                     <div>
 
                         <asp:RegularExpressionValidator runat ="server" ControlToValidate ="bdayCoTxtBx" Display ="Dynamic" SetFocusOnError ="true" 
-                            ErrorMessage ="Incorrecto. Formato valido es MM/DD/YYYY"
-                             ValidationExpression ="^((0?[13578]|10|12)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)
-                            |(3[01]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|
-                            ([8901])(\d{1}))|(0?[2469]|11)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\/)((19)([2-9])(\d{1})
-                            |(20)([01])(\d{1})|([8901])(\d{1})))$" ForeColor ="#CC0000">
+                            ErrorMessage ="Inv&aacute;lida. Formato v&aacute;lido es MM/DD/YYYY."
+                             ValidationExpression ="^((0?[13578]|10|12)(\/)(([1-9])|(0[1-9]) |
+                             ([12])([0-9]?)|(3[01]?))(\/)((19)([0-9])(\d{1}) |(20)([01])(\d{1})|([8901])(\d{1})) 
+                            |(0?[2469]|11)(\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(\/)((19)([0-9])(\d{1})|
+                             (20)([01])(\d{1})|([8901])(\d{1})))$"
+                             ForeColor ="#CC0000">
 
                         </asp:RegularExpressionValidator>
 
@@ -2098,7 +2103,7 @@
 
                     <div style=" ">
 
-                        <asp:Label runat="server" Text="Licencia Conducir" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="Licencia de Conducir" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -2507,7 +2512,7 @@
                  BorderWidth ="3px" Font-Bold ="true" 
                 ForeColor="#79256E">Favor asegurarse su solicitud est&aacute; completa y correcta,
                              antes de guardarla.<br />       Una vez la guarde, todo cambio ser&aacute;
-                 a trav&eacute;s del coordinador, que se asigne a trabajar la misma     </asp:Label>
+                 a trav&eacute;s del coordinador, que se asigne a trabajar la misma.    </asp:Label>
 
         </div>
 

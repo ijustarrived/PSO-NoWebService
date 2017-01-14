@@ -52,6 +52,28 @@
 
     </div>
 
+    <div style="text-align:center; margin-bottom:10px">
+
+        <asp:RegularExpressionValidator runat="server" ControlToValidate="desdeTxtBx" Display="Dynamic" SetFocusOnError="true"
+            ErrorMessage ="Inv&aacute;lida. Formato v&aacute;lido es MM/DD/YYYY."
+                             ValidationExpression ="^((0?[13578]|10|12)(\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(\/)((19)([0-9])(\d{1}) |(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(\/)((19)([0-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$"
+            ForeColor="#CC0000">
+
+        </asp:RegularExpressionValidator>
+
+    </div>
+
+    <div style="text-align:center; margin-bottom:10px">
+
+        <asp:RegularExpressionValidator runat="server" ControlToValidate="hastaTxtBx" Display="Dynamic" SetFocusOnError="true"
+           ErrorMessage ="Inv&aacute;lida. Formato v&aacute;lido es MM/DD/YYYY."
+                             ValidationExpression ="^((0?[13578]|10|12)(\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(\/)((19)([0-9])(\d{1}) |(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(\/)((19)([0-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$"
+            ForeColor="#CC0000">
+
+        </asp:RegularExpressionValidator>
+
+    </div>
+
     <div style="margin-top: 20px; text-align: center; margin-bottom: 20px">
 
         <asp:Button Style="padding: 10px 15px;" ID="searchBtn" runat="server" OnClick ="searchBtn_Click" Text="Buscar" />
@@ -109,6 +131,132 @@
         <asp:Label ForeColor="#79256E" runat="server" ID="totalAvisosLbl"></asp:Label>
 
     </div>
+
+    <div style="background-color: #616161; margin-top: 40px; text-align:center">
+
+            <asp:Label ForeColor="#E5E5E5" ID ="detailsLbl" Font-Size="X-Large" Font-Bold="true" runat="server">
+                Detalle de Producci&oacute;n por Coordinador
+
+            </asp:Label>
+
+        </div>
+
+    <asp:GridView runat="server" AutoGenerateColumns="false" AllowPaging="True" ForeColor="#79256E" BackColor="#F3F0F7"
+        CellPadding="2" GridLines="None" CssClass="table" ShowHeaderWhenEmpty="true" ID="coorGV"
+        Style="margin-top: 40px; width: 95%; margin-left: auto; margin-right: auto"
+        OnPageIndexChanging ="coorGV_PageIndexChanging" OnRowDataBound ="coorGV_RowDataBound">
+
+        <AlternatingRowStyle BackColor="#E5E5E5" />
+
+        <EmptyDataTemplate>
+
+            <div style="text-align: center">
+
+                <asp:Label ForeColor="#79256E" runat="server">No hay data disponible</asp:Label>
+
+            </div>
+
+        </EmptyDataTemplate>
+
+        <Columns>
+
+             <asp:BoundField DataField="CoordinadorID" HeaderText="Coordinador">
+                <HeaderStyle Font-Size="13pt" />
+                <ItemStyle Font-Size="12pt" />
+            </asp:BoundField>
+
+            <asp:BoundField DataField="NumeroSolicitud" HeaderText="N&uacute;mero de Solicitud">
+                <HeaderStyle Font-Size="13pt" />
+                <ItemStyle Font-Size="12pt" />
+            </asp:BoundField>
+
+            <asp:BoundField DataField="FechaTramitada" HeaderText="Fecha Recibida">
+                <HeaderStyle Font-Size="13pt" />
+                <ItemStyle Font-Size="12pt" />
+            </asp:BoundField>
+
+            <asp:BoundField DataField="FechaRevision" HeaderText="Fecha Revisada">
+                <HeaderStyle Font-Size="13pt" />
+                <ItemStyle Font-Size="12pt" />
+            </asp:BoundField>
+
+            <asp:BoundField DataField="Duration" HeaderText="D&iacute;as Transcuridos">
+                <HeaderStyle Font-Size="13pt" />
+                <ItemStyle Font-Size="12pt" />
+            </asp:BoundField>           
+
+            
+
+        </Columns>
+
+        <FooterStyle BackColor="#616161" />
+
+        <HeaderStyle BackColor="#616161" ForeColor="#E5E5E5" Font-Bold="True" />
+
+        <PagerStyle BackColor="#616161" Font-Size="Large" ForeColor="#E5E5E5" Font-Bold="true" />
+
+        <SelectedRowStyle BackColor="#79256E" ForeColor="#F3F0F7" />
+
+    </asp:GridView>
+
+    <asp:GridView runat="server" AutoGenerateColumns="false" AllowPaging="True" ForeColor="#79256E" BackColor="#F3F0F7"
+        CellPadding="2" GridLines="None" CssClass="table" ShowHeaderWhenEmpty="true" ID="procGV"
+        Style="margin-top: 40px; width: 95%; margin-left: auto; margin-right: auto"
+        OnRowDataBound ="procGV_RowDataBound" 
+        OnPageIndexChanging ="procGV_PageIndexChanging" Visible ="false">
+
+        <AlternatingRowStyle BackColor="#E5E5E5" />
+
+        <EmptyDataTemplate>
+
+            <div style="text-align: center">
+
+                <asp:Label ForeColor="#79256E" runat="server">No hay data disponible</asp:Label>
+
+            </div>
+
+        </EmptyDataTemplate>
+
+        <Columns>
+
+            <asp:BoundField DataField="ProcesadorID" HeaderText="Procesador">
+                <HeaderStyle Font-Size="13pt" />
+                <ItemStyle Font-Size="12pt" />
+            </asp:BoundField>
+
+            <asp:BoundField DataField="NumeroSolicitud" HeaderText="N&uacute;mero de Solicitud">
+                <HeaderStyle Font-Size="13pt" />
+                <ItemStyle Font-Size="12pt" />
+            </asp:BoundField>
+
+            <asp:BoundField DataField="FechaTramitada" HeaderText="Fecha Recibida">
+                <HeaderStyle Font-Size="13pt" />
+                <ItemStyle Font-Size="12pt" />
+            </asp:BoundField>
+
+            <asp:BoundField DataField="FechaTrabajado" HeaderText="Fecha Completada">
+                <HeaderStyle Font-Size="13pt" />
+                <ItemStyle Font-Size="12pt" />
+            </asp:BoundField>
+
+            <asp:BoundField DataField="Duration" HeaderText="D&iacute;as Transcuridos">
+                <HeaderStyle Font-Size="13pt" />
+                <ItemStyle Font-Size="12pt" />
+            </asp:BoundField>           
+
+            
+
+        </Columns>
+
+        <FooterStyle BackColor="#616161" />
+
+        <HeaderStyle BackColor="#616161" ForeColor="#E5E5E5" Font-Bold="True" />
+
+        <PagerStyle BackColor="#616161" Font-Size="Large" ForeColor="#E5E5E5" Font-Bold="true" />
+
+        <SelectedRowStyle BackColor="#79256E" ForeColor="#F3F0F7" />
+
+    </asp:GridView>
 
     <div style="text-align: center; margin-bottom: 40px; margin-top: 70px; padding-bottom: 100px">
 

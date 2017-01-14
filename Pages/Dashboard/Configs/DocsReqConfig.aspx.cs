@@ -63,7 +63,7 @@ namespace PSO.Pages.Dashboard.Configs
                         Response.Redirect("~/Pages/Login.aspx", true);
 
                     Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
-                } 
+                }
 
                 #endregion
 
@@ -71,11 +71,11 @@ namespace PSO.Pages.Dashboard.Configs
 
                 if (!Request.Browser.Browser.Equals("InternetExplorer") && !Request.Browser.Browser.Equals("Safari"))
                 {
-                    ViewState["deleteCell"] = 2;
+                    ViewState["editCell"] = 2;
 
-                    ViewState["editCell"] = 3;
+                    ViewState["updateCell"] = 3;
 
-                    ViewState["updateCell"] = 4;
+                    ViewState["deleteCell"] = 4;
                 }
 
                 //Add one to cells cause select link is added, on the 1st cell, when gv.AutoGenerateSelectButton = true on IE and safari
@@ -83,11 +83,11 @@ namespace PSO.Pages.Dashboard.Configs
                 {
                     docsGV.AutoGenerateSelectButton = true;
 
-                    ViewState["deleteCell"] = 3;
+                    ViewState["editCell"] = 3;
 
-                    ViewState["editCell"] = 4;
+                    ViewState["updateCell"] = 4;
 
-                    ViewState["updateCell"] = 5;
+                    ViewState["deleteCell"] = 5;
                 }
             }
         }
@@ -98,7 +98,7 @@ namespace PSO.Pages.Dashboard.Configs
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "INSERT INTO TitulosDocumentos (Nombre) VALUES (@Nombre)";                    
+                    cmd.CommandText = "INSERT INTO TitulosDocumentos (Nombre) VALUES (@Nombre)";
 
                     cmd.Parameters.AddWithValue("@Nombre", docNameTxtBx.Text.Trim());
 
@@ -125,7 +125,7 @@ namespace PSO.Pages.Dashboard.Configs
         protected void docsGV_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
-            {     
+            {
                 int deleteCell = Convert.ToInt32(ViewState["deleteCell"]),
                     updateCell = Convert.ToInt32(ViewState["updateCell"]),
                     editCell = Convert.ToInt32(ViewState["editCell"]);
@@ -174,7 +174,7 @@ namespace PSO.Pages.Dashboard.Configs
                 #endregion
             }
 
-            else if(e.Row.RowType == DataControlRowType.Header)
+            else if (e.Row.RowType == DataControlRowType.Header)
             {
                 int updateCell = Convert.ToInt32(ViewState["updateCell"]),
                     editCell = Convert.ToInt32(ViewState["editCell"]);

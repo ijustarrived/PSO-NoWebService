@@ -184,23 +184,28 @@ namespace PSO.Pages.Dashboard
                     {
                         case _Solicitud.Statuses.PEND_REVISAR:
 
+                            string[] _split = { };
+
                             if (user.Role.RoleType != Rol.TiposRole.COORDINADOR)
                                 ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
                                     string.Format("WaitingAnswerAlert('{0}');", "Esperar revision de coordinador"), true);
 
-                            coorRow.Visible = true;
+                            else
+                            {
+                                coorRow.Visible = true;
 
-                            coorDDL.SelectedValue = user.GetNombreCompleto();
+                                coorDDL.SelectedValue = user.GetNombreCompleto();
 
-                            coorDDL.Enabled = false;
+                                coorDDL.Enabled = false;
 
-                            asigCommentRFV.Enabled = true;
+                                asigCommentRFV.Enabled = true;
 
-                            string[] _split = fechaRevisadoLbl.Text.Split(':');
+                                _split = fechaRevisadoLbl.Text.Split(':');
 
-                            fechaRevisadoLbl.Text = string.Format("{0} : {1}", _split[0], DateTime.Now.ToShortDateString());
+                                fechaRevisadoLbl.Text = string.Format("{0} : {1}", _split[0], DateTime.Now.ToShortDateString());
 
-                            asigCommentDiv.Visible = true;
+                                asigCommentDiv.Visible = true;
+                            }
 
                             break;
 
@@ -210,22 +215,25 @@ namespace PSO.Pages.Dashboard
                                 ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
                                     string.Format("WaitingAnswerAlert('{0}');", "Esperar a que se asigne un procesador"), true);
 
-                            asigRow.Visible = true;
-
-                            #region Set procesadores ddl
-
-                            LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Usuario.TiposUsuarios.PROCESADOR);
-
-                            for (int i = 0; i < procesadores.Count; i++)
+                            else
                             {
-                                procesadoresDDL.Items.Add(procesadores.ElementAt(i).GetNombreCompleto());
+                                asigRow.Visible = true;
+
+                                #region Set procesadores ddl
+
+                                LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Usuario.TiposUsuarios.PROCESADOR);
+
+                                for (int i = 0; i < procesadores.Count; i++)
+                                {
+                                    procesadoresDDL.Items.Add(procesadores.ElementAt(i).GetNombreCompleto());
+                                }
+
+                                #endregion
+
+                                _split = fechaAsignadoLbl.Text.Split(':');
+
+                                fechaAsignadoLbl.Text = string.Format("{0} : {1}", _split[0], DateTime.Now.ToShortDateString());
                             }
-
-                            #endregion
-
-                            _split = fechaAsignadoLbl.Text.Split(':');
-
-                            fechaAsignadoLbl.Text = string.Format("{0} : {1}", _split[0], DateTime.Now.ToShortDateString());
 
                             break;
 
@@ -235,13 +243,16 @@ namespace PSO.Pages.Dashboard
                                 ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
                                     string.Format("WaitingAnswerAlert('{0}');", "Esperar a que sea trabajado por procesador"), true);
 
-                            trabajadoRow.Visible = true;
+                            else
+                            {
+                                trabajadoRow.Visible = true;
 
-                            trabajoCommentDiv.Visible = trabajadoRow.Visible;
+                                trabajoCommentDiv.Visible = trabajadoRow.Visible;
 
-                            _split = fechaTrabajoLbl.Text.Split(':');
+                                _split = fechaTrabajoLbl.Text.Split(':');
 
-                            fechaTrabajoLbl.Text = string.Format("{0} : {1}", _split[0], DateTime.Now.ToShortDateString());
+                                fechaTrabajoLbl.Text = string.Format("{0} : {1}", _split[0], DateTime.Now.ToShortDateString());
+                            }
 
                             break;
 
@@ -720,7 +731,7 @@ asegurar que se encuentren actualizados')".Replace("\r\n", " "), true);
 
                     #endregion
 
-                    #region Referencias
+                    #region Referencias and num solicitud
 
                     //Since numSolicitud is the same one as the id I'm assigning it after the id is created
                     solicitud.NumeroSolicitud = SolicitudRepo.GetLastNumSolicitudByEmail(solicitud.Email);
@@ -736,7 +747,7 @@ asegurar que se encuentren actualizados')".Replace("\r\n", " "), true);
                     solicitud.ID = Convert.ToInt32(solicitud.NumeroSolicitud);
 
                     solicitud.NumeroSolicitud = string.Format("{0}{1}{2}-{3}", DateTime.Now.Date.Year,
-                                DateTime.Now.Date.Month, DateTime.Now.Date.Day, solicitud.NumeroSolicitud.PadLeft(3, '0'));
+                                DateTime.Now.Date.Month.ToString("00"), DateTime.Now.Date.Day.ToString("00"), solicitud.NumeroSolicitud.PadLeft(3, '0'));
 
                     excep = SolicitudRepo.Update(solicitud);
 

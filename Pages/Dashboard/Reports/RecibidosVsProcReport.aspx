@@ -28,7 +28,10 @@
 
         </script>
 
-        <asp:TextBox runat="server" Style="width: initial; margin-right: 20px;" ID="desdeTxtBx" placeholder="Desde"></asp:TextBox>
+        <asp:TextBox runat="server" Style="width: initial; margin-right: 20px;" ID="desdeTxtBx"
+             placeholder="Desde"></asp:TextBox>
+
+        
 
         <script>
 
@@ -41,6 +44,28 @@
         </script>
 
         <asp:TextBox runat="server" Style="width: initial" ID="hastaTxtBx" placeholder="Hasta"></asp:TextBox>
+
+        <div style="margin-bottom: 10px;">
+
+            <asp:RegularExpressionValidator runat="server" ControlToValidate="desdeTxtBx" Display="Dynamic" SetFocusOnError="true"
+                ErrorMessage ="Fecha desde es inv&aacute;lida. Formato v&aacute;lido es MM/DD/YYYY."
+                             ValidationExpression ="^((0?[13578]|10|12)(\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(\/)((19)([0-9])(\d{1}) |(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(\/)((19)([0-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$"
+                ForeColor="#CC0000">
+
+            </asp:RegularExpressionValidator>
+
+        </div>
+
+        <div>
+
+            <asp:RegularExpressionValidator runat="server" ControlToValidate="hastaTxtBx" Display="Dynamic" SetFocusOnError="true"
+                ErrorMessage ="Fecha hasta es inv&aacute;lida. Formato v&aacute;lido es MM/DD/YYYY."
+                            ValidationExpression ="^((0?[13578]|10|12)(\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(\/)((19)([0-9])(\d{1}) |(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(\/)((19)([0-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$"
+                ForeColor="#CC0000">
+
+            </asp:RegularExpressionValidator>
+
+        </div>
 
     </div>
 
@@ -60,10 +85,10 @@
 
                     <Points>
 
-                        <asp:DataPoint Color="0, 192, 0" Font="Microsoft Sans Serif, 15pt" LabelForeColor="MediumOrchid" AxisLabel="Recibidos" />
+                        <asp:DataPoint Color="0, 192, 0" Font="Microsoft Sans Serif, 15pt" LabelForeColor="MediumOrchid" AxisLabel="Recibidas" />
 
                         <asp:DataPoint Color="#888800" Font="Microsoft Sans Serif, 15pt" LabelForeColor="MediumOrchid"
-                            AxisLabel="Procesados" />
+                            AxisLabel="Procesadas" />
 
                     </Points>
 
@@ -94,7 +119,8 @@
 
         <div style="background-color: #616161; margin-top: 40px">
 
-            <asp:Label ForeColor="#E5E5E5" Font-Size="X-Large" Font-Bold="true" runat="server">Listado de Solicitudes</asp:Label>
+            <asp:Label ForeColor="#E5E5E5" Font-Size="X-Large" Font-Bold="true" runat="server">Detalle del Comparativo
+                 entre Solicitudes Recibidas y Procesadas</asp:Label>
 
         </div>
 
@@ -120,7 +146,10 @@
 
             </script>
 
-            <asp:TextBox runat="server" Style="width: initial; margin-right: 20px;" ID="desdeDetailTxtBx" placeholder="Desde"></asp:TextBox>
+            <asp:TextBox runat="server" Style="width: initial; margin-right: 20px;" ID="desdeDetailTxtBx"
+                 placeholder="Desde"></asp:TextBox>
+
+            
 
             <script>
 
@@ -133,6 +162,28 @@
             </script>
 
             <asp:TextBox runat="server" Style="width: initial" ID="hastaDetailTxtBx" placeholder="Hasta"></asp:TextBox>
+
+            <div style="margin-bottom: 10px;">
+
+                <asp:RegularExpressionValidator runat="server" ControlToValidate="desdeDetailTxtBx" Display="Dynamic" SetFocusOnError="true"
+                    ErrorMessage ="Fecha desde es inv&aacute;lida. Formato v&aacute;lido es MM/DD/YYYY."
+                             ValidationExpression ="^((0?[13578]|10|12)(\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(\/)((19)([0-9])(\d{1}) |(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(\/)((19)([0-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$"
+                    ForeColor="#CC0000">
+
+                </asp:RegularExpressionValidator>
+
+            </div>
+
+            <div>
+
+            <asp:RegularExpressionValidator runat="server" ControlToValidate="hastaDetailTxtBx" Display="Dynamic" SetFocusOnError="true"
+                ErrorMessage ="Fecha hasta es inv&aacute;lida. Formato v&aacute;lido es MM/DD/YYYY."
+                             ValidationExpression ="^((0?[13578]|10|12)(\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(\/)((19)([0-9])(\d{1}) |(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(\/)((19)([0-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$"
+                ForeColor="#CC0000">
+
+            </asp:RegularExpressionValidator>
+
+        </div>
 
         </div>
 
@@ -206,22 +257,22 @@
 
         <Columns>
 
-            <asp:BoundField DataField="NumeroSolicitud" HeaderText="N&uacute;mero Solicitud">
+            <asp:BoundField DataField="NumeroSolicitud" HeaderText="N&uacute;mero de Solicitud">
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>
 
-            <asp:BoundField DataField="FechaTramitada" HeaderText="Fecha Recibido">
+            <asp:BoundField DataField="FechaTramitada" HeaderText="Fecha Recibida">
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>
 
-            <asp:BoundField DataField="FechaTrabajado" HeaderText="Fecha Completado">
+            <asp:BoundField DataField="FechaTrabajado" HeaderText="Fecha Completada">
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>
 
-            <asp:BoundField DataField="Duration" HeaderText="Dias Transcuridos">
+            <asp:BoundField DataField="Duration" HeaderText="D&iacute;as Transcuridos">
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>

@@ -71,6 +71,7 @@ namespace PSO.Pages.Dashboard.Reports
                             pendAsigCount = SolicitudRepo.GetSolicitudesByStatus((int)_Solicitud.Statuses.PEND_ASIGNAR).Count,
                             pendTrabajarCount = SolicitudRepo.GetSolicitudesByStatus((int)_Solicitud.Statuses.PEND_TRABAJAR).Count,
                             docIncompleteCount = SolicitudRepo.GetSolicitudesByStatus((int)_Solicitud.Statuses.PEND_DOCS).Count,
+                            inactivasCount = SolicitudRepo.GetSolicitudesByStatus((int)_Solicitud.Statuses.INACTIVO).Count,
                             totalSolicitudes = aprovadosCount + denegadasCount + docIncompleteCount + pendAsigCount + 
                             pendCoorCount + pendTrabajarCount;
 
@@ -78,13 +79,14 @@ namespace PSO.Pages.Dashboard.Reports
 
                 totalAvisosLbl.Text = string.Format("Total de Solicitudes Recibidas: {0}", totalSolicitudes);
 
-                SetChartData(aprovadosCount, pendCoorCount, pendAsigCount, pendTrabajarCount, docIncompleteCount, denegadasCount);
+                SetChartData(aprovadosCount, pendCoorCount, pendAsigCount, pendTrabajarCount, docIncompleteCount
+                    , denegadasCount, inactivasCount);
             }
 
         }
 
         private void SetChartData(int aprobadasCount, int pendientesCount, int asigInspectorCount, int procesosInpeccionCount
-            , int docsIncompletosCount, int denegadasCount)
+            , int docsIncompletosCount, int denegadasCount, int inactivasCount)
         {
             #region pend revisar
 
@@ -148,6 +150,17 @@ namespace PSO.Pages.Dashboard.Reports
                 Chart1.Series[0].Points[5].SetValueY(denegadasCount);
 
                 Chart1.Series[0].Points[5].Label = denegadasCount.ToString();
+            }
+
+            #endregion
+
+            #region Inactivas
+
+            if (denegadasCount > 0)
+            {
+                Chart1.Series[0].Points[6].SetValueY(inactivasCount);
+
+                Chart1.Series[0].Points[6].Label = inactivasCount.ToString();
             }
 
             #endregion

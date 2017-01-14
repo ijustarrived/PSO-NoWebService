@@ -33,37 +33,22 @@
                              LegendText ="Pendientes de Revisar por Coordinador"/>
 
                         <asp:DataPoint Color="#0000a6" Font="Microsoft Sans Serif, 15pt" LabelForeColor="White"
-                              LegendText ="Documentos Incompletos" />
+                              LegendText ="Pendientes por Documentos Incompletos" />
 
                         <asp:DataPoint Color="#d5d500" Font="Microsoft Sans Serif, 15pt" LabelForeColor="White"
                               LegendText ="Pendientes de Asignar un Procesador"/>
 
                         <asp:DataPoint Color="#13dafd" Font="Microsoft Sans Serif, 15pt" LabelForeColor="White"
-                             LegendText ="Pendiente a Trabajarse por Procesador"/>
+                             LegendText ="Pendientes a Trabajarse por Procesador"/>
 
                         <asp:DataPoint Color="0, 192, 0" Font="Microsoft Sans Serif, 15pt" LabelForeColor="White"
-                             LegendText ="Aprobados"/>
+                             LegendText ="Aprobadas"/>
 
                         <asp:DataPoint Color="192, 0, 0" Font="Microsoft Sans Serif, 15pt" LabelForeColor="White"
-                             LegendText ="Denegados" />
+                             LegendText ="Denegadas" />
 
-                        <%--<asp:DataPoint Color="#888800" Font="Microsoft Sans Serif, 15pt" LabelForeColor="MediumOrchid"
-                            AxisLabel="Pendientes de Revisar por Coordinador" />
-
-                        <asp:DataPoint Color="#0000a6" Font="Microsoft Sans Serif, 15pt" LabelForeColor="MediumOrchid" 
-                            AxisLabel="Documentos Incompletos" />
-
-                        <asp:DataPoint Color="#d5d500" Font="Microsoft Sans Serif, 15pt" LabelForeColor="MediumOrchid"
-                            AxisLabel="Pendientes de Asignar un Procesador" />
-
-                        <asp:DataPoint Color="#13dafd" Font="Microsoft Sans Serif, 15pt" LabelForeColor="MediumOrchid"
-                            AxisLabel="Pendiente a Trabajarse por Procesador" />
-
-                        <asp:DataPoint Color="0, 192, 0" Font="Microsoft Sans Serif, 15pt" LabelForeColor="MediumOrchid" 
-                            AxisLabel="Aprobados" />
-
-                        <asp:DataPoint Color="192, 0, 0" Font="Microsoft Sans Serif, 15pt" LabelForeColor="MediumOrchid"
-                             AxisLabel="Denegados" />--%>
+                        <asp:DataPoint Color="#616161" Font="Microsoft Sans Serif, 15pt" LabelForeColor="White"
+                             LegendText ="Inactivas" />
 
                     </Points>
 

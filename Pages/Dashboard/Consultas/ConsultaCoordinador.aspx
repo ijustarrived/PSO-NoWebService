@@ -23,12 +23,12 @@
 
         <Columns>
 
-            <asp:BoundField DataField="NumeroSolicitud" HeaderText="N&uacute;mero Solicitud">
+            <asp:BoundField DataField="NumeroSolicitud" HeaderText="N&uacute;mero de Solicitud">
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>
 
-            <asp:BoundField DataField="Nombre" HeaderText="Nombre Completo">
+            <asp:BoundField DataField="Nombre" HeaderText="Nombre del Solicitante">
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>
@@ -44,7 +44,7 @@
             </asp:BoundField>
 
 
-            <asp:BoundField DataField="FechaTramitada" HeaderText="Fecha Recibido">
+            <asp:BoundField DataField="FechaTramitada" HeaderText="Fecha Recibida">
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Title ="Servicios Pendientes de Asignar a un Procesador" MasterPageFile ="~/Site.Master"
+﻿<%@ Page Language="C#" Title ="Solicitudes Pendientes de Asignar a un Procesador" MasterPageFile ="~/Site.Master"
      AutoEventWireup="true" CodeBehind="ConsultaPendAsigPro.aspx.cs" Inherits="PSO.Pages.Dashboard.Consultas.ConsultaPendAsigPro" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
@@ -22,12 +22,12 @@
 
         <Columns>
 
-            <asp:BoundField DataField="NumeroSolicitud" HeaderText="N&uacute;mero Solicitud">
+            <asp:BoundField DataField="NumeroSolicitud" HeaderText="N&uacute;mero de Solicitud">
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>
 
-            <asp:BoundField DataField="Nombre" HeaderText="Nombre Completo">
+            <asp:BoundField DataField="Nombre" HeaderText="Nombre del Solicitante">
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>

@@ -429,25 +429,37 @@ namespace PSO.Repositorios
             
             using (SqlConnection conn = DB.GetLocalConnection())
             {
-                using (SqlCommand cmd = new SqlCommand(@"SELECT * FROM Solicitudes @WHERE", conn))
+                using (SqlCommand cmd = new SqlCommand(@"SELECT *, DATEDIFF(day, FechaTramitada, @FECHA) AS Duration 
+                                                            FROM Solicitudes @WHERE ORDER BY @ROLE NumeroSolicitud",
+                                                            conn))
                 {
-                    string where = string.Empty;
+                    string where = string.Empty,
+                        rol =  string.Empty,
+                        fecha = string.Empty;
 
-                    switch(role)
+                    switch (role)
                     {
                         case Rol.TiposRole.COORDINADOR:
 
                             where = "WHERE FechaRevision != Convert(datetime, '12/31/9999 23:59:59.997')";
+
+                            rol = "CoordinadorID,";
+
+                            fecha = "FechaRevision";
 
                             break;
 
                         case Rol.TiposRole.PROCESADOR:
 
                             //Esto va pero para el demo no
-                            //where = "WHERE FechaTrabajado != Convert(datetime, '12/31/9999 23:59:59.997')";
+                            where = "WHERE FechaTrabajado != Convert(datetime, '12/31/9999 23:59:59.997')";
+
+                            rol = "ProcesadorID,";
+
+                            fecha = "FechaTrabajado";
 
                             //Esto es solo para el demo
-                            where = "WHERE Status = 4 OR Status = 5";
+                            //where = "WHERE Status = 4 OR Status = 5";
 
                             break;
 
@@ -455,22 +467,129 @@ namespace PSO.Repositorios
 
                             where = "WHERE FechaAsigProcesador != Convert(datetime, '12/31/9999 23:59:59.997')";
 
+                            fecha = "FechaAsigProcesador";
+
                             break;
 
                         case Rol.TiposRole.EXTERNO:
 
                             where = "WHERE FechaTramitada != Convert(datetime, '12/31/9999 23:59:59.997')";
 
+                            fecha = "GETDATE()";
+
                             break;
                     }
 
-                    cmd.CommandText = cmd.CommandText.Replace("@WHERE", where);
+                    cmd.CommandText = cmd.CommandText.Replace("@WHERE", where).Replace("@FECHA", fecha).Replace("@ROLE", rol);
+
+                    //cmd.CommandText = cmd.CommandText.Replace("@FECHA", fecha);
 
                     conn.Open();
 
                     cmd.ExecuteNonQuery();
 
-                    solicitudes = BuildSolicitudes(cmd);
+                    #region Read query
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        int col = 0;
+
+                        solicitudes.AddLast(new _Solicitud()
+                        {
+                            ID = reader.GetInt32(col++),
+
+                            Status = _Solicitud.GetStatus(reader.GetInt32(col++)),
+
+                            NumeroSolicitud = reader.GetString(col++),
+
+                            FechaTramitada = reader.GetDateTime(col++),
+
+                            CoordinadorID = reader.GetInt32(col++),
+
+                            FechaRevision = reader.GetDateTime(col++),
+
+                            ProcesadorId = reader.GetInt32(col++),
+
+                            FechaAsigProcesador = reader.GetDateTime(col++),
+
+                            ComentarioProcesador = reader.GetString(col++),
+
+                            TrabajadorId = reader.GetInt32(col++),
+
+                            FechaTrabajado = reader.GetDateTime(col++),
+
+                            ComentarioTrabajo = reader.GetString(col++),
+
+                            Nombre = reader.GetString(col++),
+
+                            SeguroSocial = reader.GetString(col++),
+
+                            Email = reader.GetString(col++),
+
+                            ApellidoPaterno = reader.GetString(col++),
+
+                            ApellidoMaterno = reader.GetString(col++),
+
+                            FechaNacimiento = reader.GetDateTime(col++),
+
+                            Telefono = reader.GetString(col++),
+
+                            LicenciaConducir = reader.GetString(col++),
+
+                            Celular = reader.GetString(col++),
+
+                            Dirrecion = reader.GetString(col++),
+
+                            Pueblo = Convert.ToInt32(reader.GetString(col++)),
+
+                            CodigoPostal = reader.GetString(col++),
+
+                            DirrecionPostal = reader.GetString(col++),
+
+                            PuebloPostal = Convert.ToInt32(reader.GetString(col++)),
+
+                            CodigoPostalPostal = reader.GetString(col++),
+
+                            NombreCo = reader.GetString(col++),
+
+                            SeguroSocialCo = reader.GetString(col++),
+
+                            EmailCo = reader.GetString(col++),
+
+                            ApellidoPaternoCo = reader.GetString(col++),
+
+                            ApellidoMaternoCo = reader.GetString(col++),
+
+                            FechaNacimientoCo = reader.GetDateTime(col++),
+
+                            TelefonoCo = reader.GetString(col++),
+
+                            LicenciaConducirCo = reader.GetString(col++),
+
+                            CelularCo = reader.GetString(col++),
+
+                            DirrecionCo = reader.GetString(col++),
+
+                            PuebloCo = Convert.ToInt32(reader.GetString(col++)),
+
+                            CodigoPostalCo = reader.GetString(col++),
+
+                            DirrecionPostalCo = reader.GetString(col++),
+
+                            PuebloPostalCo = Convert.ToInt32(reader.GetString(col++)),
+
+                            CodigoPostalPostalCo = reader.GetString(col++),
+
+                            FechaDocIncompleto = reader.GetDateTime(col++),
+
+                            Duration = reader.GetInt32(col++).ToString()
+                        });
+                    }
+                    #endregion
+
+                    //solicitudes = BuildSolicitudes(cmd);
                 }
             }
 
@@ -479,54 +598,192 @@ namespace PSO.Repositorios
 
         public static LinkedList<_Solicitud> GetSolicitudesByRoleNDateRange(Rol.TiposRole role, DateTime desde, DateTime hasta)
         {
+            hasta = hasta.AddHours(23);
+
+            hasta = hasta.AddMinutes(59);
+
+            hasta = hasta.AddSeconds(59);
+
+            hasta = hasta.AddMilliseconds(997);
+
             LinkedList<_Solicitud> solicitudes = new LinkedList<_Solicitud>();
 
             //using (SqlConnection conn = sql.GetConnection())
             using (SqlConnection conn = DB.GetLocalConnection())
             {
-                using (SqlCommand cmd = new SqlCommand(@"SELECT * FROM Solicitudes WHERE FechaTramitada 
-                                            BETWEEN @DESDE AND @HASTA @AND", conn))
+                using (SqlCommand cmd = new SqlCommand(@"SELECT *, DATEDIFF(day, FechaTramitada, @date) AS Duration 
+                                            FROM Solicitudes WHERE @FECHA >= @DESDE AND @FECHA < @HASTA @AND
+                                            ORDER BY @ROLE NumeroSolicitud", conn))
                 {
                     cmd.Parameters.AddWithValue("DESDE", desde);
 
                     cmd.Parameters.AddWithValue("HASTA", hasta);
 
-                    string and = string.Empty;
+                    string and = string.Empty,
+                        fecha = string.Empty,
+                         rol = string.Empty,
+                        fecha2 = string.Empty;
 
                     switch (role)
                     {
                         case Rol.TiposRole.COORDINADOR:
 
-                            and = "AND FechaRevision != Convert(datetime, '12/31/9999 23:59:59.997')";
+                            //and = "AND FechaRevision != Convert(datetime, '12/31/9999 23:59:59.997')";
+
+                            fecha = "FechaRevision";
+
+                            rol = "CoordinadorID,";
+
+                            fecha2 = fecha;
 
                             break;
 
                         case Rol.TiposRole.PROCESADOR:
 
-                            and = "AND FechaTrabajado != Convert(datetime, '12/31/9999 23:59:59.997')";
+                            //and = "AND FechaTrabajado != Convert(datetime, '12/31/9999 23:59:59.997')";
+
+                            fecha = "FechaTrabajado";
+
+                            rol = "ProcesadorID,";
+
+                            fecha2 = fecha;
 
                             break;
 
                         case Rol.TiposRole.SUPERVISOR:
 
-                            and = "AND FechaAsigProcesador != Convert(datetime, '12/31/9999 23:59:59.997')";
+                            //and = "AND FechaAsigProcesador != Convert(datetime, '12/31/9999 23:59:59.997')";
+
+                            fecha = "FechaAsigProcesador";
+
+                            fecha2 = fecha;
 
                             break;
 
                         case Rol.TiposRole.EXTERNO:
 
-                            and = "AND FechaTramitada != Convert(datetime, '12/31/9999 23:59:59.997')";
+                            //and = "AND FechaTramitada != Convert(datetime, '12/31/9999 23:59:59.997')";
+
+                            fecha = "FechaTramitada";
+
+                            fecha2 = "GETDATE()";
 
                             break;
                     }
 
-                    cmd.CommandText = cmd.CommandText.Replace("@AND", and);
+                    cmd.CommandText = cmd.CommandText.Replace("@AND", and).Replace("@FECHA", fecha).Replace(
+                                                      "@ROLE", rol).Replace("@date", fecha2);
+
+                    //cmd.CommandText = cmd.CommandText.Replace("@AND", and);
+
+                    //cmd.CommandText = cmd.CommandText.Replace("@FECHA", fecha).Replace("@date", fecha2);
 
                     conn.Open();
 
                     cmd.ExecuteNonQuery();
 
-                    solicitudes = BuildSolicitudes(cmd);
+                    #region Read query
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        int col = 0;
+
+                        solicitudes.AddLast(new _Solicitud()
+                        {
+                            ID = reader.GetInt32(col++),
+
+                            Status = _Solicitud.GetStatus(reader.GetInt32(col++)),
+
+                            NumeroSolicitud = reader.GetString(col++),
+
+                            FechaTramitada = reader.GetDateTime(col++),
+
+                            CoordinadorID = reader.GetInt32(col++),
+
+                            FechaRevision = reader.GetDateTime(col++),
+
+                            ProcesadorId = reader.GetInt32(col++),
+
+                            FechaAsigProcesador = reader.GetDateTime(col++),
+
+                            ComentarioProcesador = reader.GetString(col++),
+
+                            TrabajadorId = reader.GetInt32(col++),
+
+                            FechaTrabajado = reader.GetDateTime(col++),
+
+                            ComentarioTrabajo = reader.GetString(col++),
+
+                            Nombre = reader.GetString(col++),
+
+                            SeguroSocial = reader.GetString(col++),
+
+                            Email = reader.GetString(col++),
+
+                            ApellidoPaterno = reader.GetString(col++),
+
+                            ApellidoMaterno = reader.GetString(col++),
+
+                            FechaNacimiento = reader.GetDateTime(col++),
+
+                            Telefono = reader.GetString(col++),
+
+                            LicenciaConducir = reader.GetString(col++),
+
+                            Celular = reader.GetString(col++),
+
+                            Dirrecion = reader.GetString(col++),
+
+                            Pueblo = Convert.ToInt32(reader.GetString(col++)),
+
+                            CodigoPostal = reader.GetString(col++),
+
+                            DirrecionPostal = reader.GetString(col++),
+
+                            PuebloPostal = Convert.ToInt32(reader.GetString(col++)),
+
+                            CodigoPostalPostal = reader.GetString(col++),
+
+                            NombreCo = reader.GetString(col++),
+
+                            SeguroSocialCo = reader.GetString(col++),
+
+                            EmailCo = reader.GetString(col++),
+
+                            ApellidoPaternoCo = reader.GetString(col++),
+
+                            ApellidoMaternoCo = reader.GetString(col++),
+
+                            FechaNacimientoCo = reader.GetDateTime(col++),
+
+                            TelefonoCo = reader.GetString(col++),
+
+                            LicenciaConducirCo = reader.GetString(col++),
+
+                            CelularCo = reader.GetString(col++),
+
+                            DirrecionCo = reader.GetString(col++),
+
+                            PuebloCo = Convert.ToInt32(reader.GetString(col++)),
+
+                            CodigoPostalCo = reader.GetString(col++),
+
+                            DirrecionPostalCo = reader.GetString(col++),
+
+                            PuebloPostalCo = Convert.ToInt32(reader.GetString(col++)),
+
+                            CodigoPostalPostalCo = reader.GetString(col++),
+
+                            FechaDocIncompleto = reader.GetDateTime(col++),
+
+                            Duration = reader.GetInt32(col++).ToString()
+                        });
+                    }
+                    #endregion
+
+                    //solicitudes = BuildSolicitudes(cmd);
                 }
             }
 
@@ -539,13 +796,21 @@ namespace PSO.Repositorios
         /// <returns>Solicitudes with ID as the only variable initiated</returns>
         public static LinkedList<_Solicitud> GetSolicitudesByDateRange(DateTime desde, DateTime hasta)
         {
+            hasta = hasta.AddHours(23);
+
+            hasta = hasta.AddMinutes(59);
+
+            hasta = hasta.AddSeconds(59);
+
+            hasta = hasta.AddMilliseconds(997);
+
             LinkedList<_Solicitud> solicitudes = new LinkedList<_Solicitud>();
 
             //using (SqlConnection conn = sql.GetConnection())
             using (SqlConnection conn = DB.GetLocalConnection())
             {
                 using (SqlCommand cmd = new SqlCommand(@"SELECT * FROM Solicitudes WHERE FechaTramitada 
-                                            BETWEEN @DESDE AND @HASTA", conn))
+                                            >= @DESDE AND FechaTramitada < @HASTA", conn))
                 {
                     cmd.Parameters.AddWithValue("DESDE", desde);
 
@@ -570,7 +835,7 @@ namespace PSO.Repositorios
             using (SqlConnection conn = DB.GetLocalConnection())
             {
                 using (SqlCommand cmd = new SqlCommand(@"SELECT * FROM Solicitudes WHERE FechaTramitada 
-                                            BETWEEN @DESDE AND @HASTA AND Status = @Status", conn))
+                                            >= @DESDE AND FechaTramitada < @HASTA AND Status = @Status", conn))
                 {
                     cmd.Parameters.AddWithValue("DESDE", desde);
 
