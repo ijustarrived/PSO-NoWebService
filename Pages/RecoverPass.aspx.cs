@@ -25,7 +25,7 @@ namespace PSO.Pages
             if (string.IsNullOrEmpty(user.Email))
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "wrongEmailAlert",
-                   "alert('Correo Electrónico no existe');", true);
+                   "alert('Correo Electrónico no existe.');", true);
             }
 
             else
@@ -50,7 +50,7 @@ namespace PSO.Pages
                         Correo.GetBody(Correo.MailType.PASS_RECOVER).Replace("@PASS", Usuario.DecryptWord(user.Password)));
 
                     ClientScript.RegisterStartupScript(this.GetType(), "passSentAlert",
-                       "alert('Contraseña fue enviada por Correo Electrónico.'); window.location = 'Login.aspx';", true);
+                       "alert('Su contraseña le fue enviada por Correo Electrónico.'); window.location = 'Login.aspx';", true);
                 }
 
                 else

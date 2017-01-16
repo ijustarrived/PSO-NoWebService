@@ -27,7 +27,7 @@
 
                 <div style="background-color: #616161; padding-left: 7%; margin-top: 40px">
 
-                    <asp:Label ForeColor="#E5E5E5" Font-Size="X-Large" Font-Bold="true" runat="server">Revisar</asp:Label>
+                    <asp:Label ForeColor="#E5E5E5" Font-Size="X-Large" Font-Bold="true" runat="server">Consultar</asp:Label>
 
                 </div>
 

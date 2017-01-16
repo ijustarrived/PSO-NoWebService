@@ -54,6 +54,11 @@
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>
 
+            <asp:BoundField DataField="ProcesadorID" HeaderText="Procesador">
+                <HeaderStyle Font-Size="13pt" />
+                <ItemStyle Font-Size="12pt" />
+            </asp:BoundField>
+
              <asp:BoundField DataField="FechaAsigProcesador" HeaderText="Fecha Asignada">
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
@@ -71,7 +76,7 @@
 
     </asp:GridView>
 
-    <asp:SqlDataSource runat ="server" ID ="solicitudesSQLDS" SelectCommand ="SELECT NumeroSolicitud, Pueblo,
+    <asp:SqlDataSource runat ="server" ID ="solicitudesSQLDS" SelectCommand ="SELECT ProcesadorID, NumeroSolicitud, Pueblo,
          (Nombre + ' '+ ApellidoMaterno + ' ' + ApellidoPaterno) AS Nombre, Celular, FechaAsigProcesador
         FROM Solicitudes WHERE Status = 3 @AND" 
         ConnectionString ="<%$ ConnectionStrings:local %>" OnSelecting ="solicitudesSQLDS_Selecting"></asp:SqlDataSource>

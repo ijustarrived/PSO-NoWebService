@@ -277,7 +277,7 @@
 
     <div style="text-align: center; margin-top: 20px" runat ="server" id ="statusDiv" visible ="false">
 
-        <asp:Label runat="server" Text="Status" Font-Size="X-Large" ForeColor="#79256E"></asp:Label>
+        <asp:Label runat="server" Text="Status - " Font-Size="X-Large" ForeColor="#79256E"></asp:Label>
 
         <asp:Label runat="server" Font-Size="X-Large" ID="statusTxtLbl" Text="Tipo"></asp:Label>
 
@@ -401,7 +401,7 @@
 
     <div style ="text-align:center; margin-top:40px">
 
-        <asp:Label ForeColor ="#79256E" Font-Bold ="true" runat ="server" Text ="Los campos con ' * ', son requeridos."></asp:Label>
+        <asp:Label ForeColor ="#79256E" Font-Bold ="true" runat ="server" Text ="Los campos con ' * ' son requeridos."></asp:Label>
 
     </div>
 
@@ -2506,7 +2506,7 @@
                  BorderWidth ="3px" Font-Bold ="true" 
                 ForeColor="#79256E">Favor asegurarse su solicitud est&aacute; completa y correcta,
                              antes de guardarla.<br />       Una vez la guarde, todo cambio ser&aacute;
-                 a trav&eacute;s del coordinador, que se asigne a trabajar la misma.    </asp:Label>
+                 a trav&eacute;s del coordinador que se asigne a trabajar la misma.    </asp:Label>
 
         </div>
 

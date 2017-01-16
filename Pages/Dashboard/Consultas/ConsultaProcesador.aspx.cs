@@ -61,7 +61,7 @@ namespace PSO.Pages.Dashboard.Consultas
 
             #endregion
 
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
 
@@ -89,7 +89,9 @@ namespace PSO.Pages.Dashboard.Consultas
 
                 e.Row.Cells[3].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[3].Text));
 
-                e.Row.Cells[4].Text = e.Row.Cells[4].Text.Split(' ')[0];
+                e.Row.Cells[4].Text = filterDDL.Items[Convert.ToInt32(e.Row.Cells[4].Text) + 1].Text;
+
+                e.Row.Cells[5].Text = e.Row.Cells[5].Text.Split(' ')[0];
             }
         }
 

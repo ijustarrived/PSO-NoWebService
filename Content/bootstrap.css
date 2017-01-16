@@ -240,7 +240,7 @@ table {
     content: " (" attr(href) ")";
   }
   abbr[title]:after {
-    content: " (" attr(title) ")";
+    content: none !important;
   }
   .ir a:after,
   a[href^="javascript:"]:after,

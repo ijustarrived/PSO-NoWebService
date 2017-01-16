@@ -8,21 +8,21 @@
         <div style ="display:inline-block">
 
             <asp:Button runat="server" CssClass ="dashBtns" ID="CoordinadorBtn" OnClick ="CoordinadorBtn_Click" 
-                Text="Solicitudes Pendientes a Revisar por Coordinador" />
+                Text="Solicitudes Pendientes de Revisarse por Coordinador" />
 
         </div>
 
         <div style ="display:inline-block">
 
             <asp:Button runat="server" CssClass ="dashBtns" ID="pendAsigProBtn" OnClick ="pendAsigProBtn_Click"
-                Text="Solicitudes Pendientes de Asignar a un Procesador" />
+                Text="Solicitudes Pendientes de Asignarse a un Procesador" />
 
         </div>
 
         <div style ="display:inline-block">
 
             <asp:Button runat="server" CssClass ="dashBtns" ID="processBtn" OnClick ="processBtn_Click" 
-                Text="Solicitudes Pendientes a Trabajarse por un Procesador" />
+                Text="Solicitudes Pendientes de Trabajarse por un Procesador" />
 
         </div>
 

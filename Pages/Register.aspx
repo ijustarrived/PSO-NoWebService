@@ -405,7 +405,7 @@
 
             <td style ="text-align:center">
 
-                <asp:Label ForeColor ="#79256E" Font-Bold ="true" runat ="server" Text ="Los campos con ' * ', son requeridos."></asp:Label>
+                <asp:Label ForeColor ="#79256E" Font-Bold ="true" runat ="server" Text ="Los campos con ' * ' son requeridos."></asp:Label>
 
             </td>
 

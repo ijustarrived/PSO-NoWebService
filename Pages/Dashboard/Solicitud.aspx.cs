@@ -188,7 +188,7 @@ namespace PSO.Pages.Dashboard
 
                             if (user.Role.RoleType != Rol.TiposRole.COORDINADOR)
                                 ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
-                                    string.Format("WaitingAnswerAlert('{0}');", "Esperar revision de coordinador"), true);
+                                    string.Format("WaitingAnswerAlert('{0}');", "Esperar po la revision de de coordinador."), true);
 
                             else
                             {
@@ -213,7 +213,7 @@ namespace PSO.Pages.Dashboard
 
                             if (user.Role.RoleType != Rol.TiposRole.SUPERVISOR)
                                 ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
-                                    string.Format("WaitingAnswerAlert('{0}');", "Esperar a que se asigne un procesador"), true);
+                                    string.Format("WaitingAnswerAlert('{0}');", "Esperar a que se asigne un procesador."), true);
 
                             else
                             {
@@ -241,7 +241,7 @@ namespace PSO.Pages.Dashboard
 
                             if (user.Role.RoleType != Rol.TiposRole.PROCESADOR)
                                 ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
-                                    string.Format("WaitingAnswerAlert('{0}');", "Esperar a que sea trabajado por procesador"), true);
+                                    string.Format("WaitingAnswerAlert('{0}');", "Esperar a que sea trabajado por procesador."), true);
 
                             else
                             {
@@ -260,11 +260,11 @@ namespace PSO.Pages.Dashboard
 
                             if (user.Role.RoleType != Rol.TiposRole.EXTERNO)
                                 ScriptManager.RegisterStartupScript(this, GetType(), "ProcMustWaitAlert",
-                                    string.Format("WaitingAnswerAlert('{0}');", "Esperar por documentos del solicitante"), true);
+                                    string.Format("WaitingAnswerAlert('{0}');", "Esperar por documentos del solicitante."), true);
 
                             ScriptManager.RegisterStartupScript(this, GetType(), "uploadAlert",
                                     @"alert('Debe subir todos los documentos, nuevamente, para
-asegurar que se encuentren actualizados')".Replace("\r\n", " "), true);
+asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
                             coorDDL.Enabled = false;
 

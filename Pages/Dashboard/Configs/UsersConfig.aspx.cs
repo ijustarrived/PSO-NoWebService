@@ -58,15 +58,9 @@ namespace PSO.Pages.Dashboard.Configs
 
                     Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
                 }
-
-
             }
 
             tipoUserDDL_SelectedIndexChanged(tipoUserDDL, EventArgs.Empty);
-
-            //userGV.DataSource = UserRepo.GetUsersByRole((int)Usuario.TiposUsuarios.EXTERNO);
-
-            //userGV.DataBind();
         }
 
         protected void tipoUserDDL_SelectedIndexChanged(object sender, EventArgs e)
@@ -99,7 +93,13 @@ namespace PSO.Pages.Dashboard.Configs
 
                 LinkedList<Usuario> users = (LinkedList<Usuario>)userGV.DataSource;
 
-                e.Row.Cells[0].Text = users.ElementAt(e.Row.RowIndex).GetNombreCompleto();
+                /*
+                 * Si cada page tiene 10 items max. Si al page num * 10 Voy a tener los mimos items que etan en el page,
+                pero la lista
+                */
+                int index = userGV.PageIndex * 10 + e.Row.RowIndex;
+
+                e.Row.Cells[0].Text = users.ElementAt(index).GetNombreCompleto();
 
                 e.Row.Cells[2].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[2].Text));
 
