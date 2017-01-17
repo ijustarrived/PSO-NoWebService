@@ -189,7 +189,7 @@
 
                     //Double check if 1st and 2nd sets are numeric cause doesn't check when working on the last set
                     if (!isNaN(result) || wordSplit[i] === '-' || wordSplit[i] === '*'
-                        || wordSplit[i].includes("-"))
+                        || wordSplit[i].indexOf('-') > -1)
                     {
                         word.value = word.value + wordSplit[i];
                     }                    
@@ -263,7 +263,7 @@
                     }
 
                     if (!isNaN(result) || wordSplit[i] === '-' || wordSplit[i] === '*'
-                        || wordSplit[i].includes("-"))
+                        || wordSplit[i].indexOf('-') > -1)
                     {
                         word.value = word.value + wordSplit[i];
                     }
