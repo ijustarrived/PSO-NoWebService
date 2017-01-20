@@ -166,9 +166,14 @@ namespace PSO.Pages.Dashboard.Reports
                 //Proc
                 case 2:
 
+                    //where = string.Format(@"{0} @AND (ProcesadorID = {1}) 
+                    //                            AND (FechaAsigProcesador <> CONVERT(datetime, '12/31/9999 23:59:59.997'))", 
+                    //                            where, searchDDL.SelectedIndex);
+
+                    // + 1 cause search ddl starts in 1 and procesador ddl, in solicitud, starts in 0
                     where = string.Format(@"{0} @AND (ProcesadorID = {1}) 
-                                                AND (FechaAsigProcesador <> CONVERT(datetime, '12/31/9999 23:59:59.997'))", 
-                                                where, searchDDL.SelectedIndex);
+                                                AND (FechaAsigProcesador <> CONVERT(datetime, '12/31/9999 23:59:59.997'))",
+                                                where, searchDDL.SelectedIndex + 1);
 
                     break;
             }
@@ -263,7 +268,9 @@ namespace PSO.Pages.Dashboard.Reports
                 {
                     LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
 
-                    e.Row.Cells[5].Text = procesadores.ElementAt(Convert.ToInt32(e.Row.Cells[5].Text)).GetNombreCompleto();
+                    //e.Row.Cells[5].Text = procesadores.ElementAt(Convert.ToInt32(e.Row.Cells[5].Text)).GetNombreCompleto();
+
+                    e.Row.Cells[5].Text = procesadores.ElementAt(Convert.ToInt32(e.Row.Cells[5].Text) - 1).GetNombreCompleto();
                 }
 
                 #region Esto es solo para el demo

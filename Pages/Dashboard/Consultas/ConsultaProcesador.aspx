@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Title ="Solicitudes Pendientes a Trabajarse por un Procesador" MasterPageFile ="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Language="C#" Title ="Solicitudes Pendientes de Trabajarse por un Procesador" MasterPageFile ="~/Site.Master" AutoEventWireup="true"
      CodeBehind="ConsultaProcesador.aspx.cs" Inherits="PSO.Pages.Dashboard.Consultas.ConsultaProcesador" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">

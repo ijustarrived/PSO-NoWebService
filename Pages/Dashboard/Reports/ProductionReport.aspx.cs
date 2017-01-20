@@ -108,7 +108,7 @@ namespace PSO.Pages.Dashboard.Reports
                 {
                     if (rolIndex == 1)
                     {
-                        if (solicitudes.ElementAt(i2).ProcesadorId == i)
+                        if ((solicitudes.ElementAt(i2).ProcesadorId - 1) == i)
                         {
                             employeeSolicitudesCount++;
                         }
@@ -267,7 +267,10 @@ namespace PSO.Pages.Dashboard.Reports
             {
                 LinkedList<Usuario> users = (LinkedList<Usuario>)ViewState["users"];
 
-                e.Row.Cells[0].Text = users.ElementAt(Convert.ToInt32(e.Row.Cells[0].Text)).GetNombreCompleto();
+                //e.Row.Cells[0].Text = users.ElementAt(Convert.ToInt32(e.Row.Cells[0].Text)).GetNombreCompleto();
+
+                e.Row.Cells[0].Text = users.ElementAt(Convert.ToInt32(e.Row.Cells[0].Text) - 1).GetNombreCompleto();
+
 
                 DateTime fechaTrabajo = Convert.ToDateTime(e.Row.Cells[3].Text),
                 fechaTramite = Convert.ToDateTime(e.Row.Cells[2].Text);

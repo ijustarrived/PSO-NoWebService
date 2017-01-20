@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Title ="Solicitudes Pendientes a Revisar por Coordinador" 
+﻿<%@ Page Language="C#" AutoEventWireup="true" Title ="Solicitudes Pendientes de Revisarse por Coordinador" 
     MasterPageFile ="~/Site.Master"
      CodeBehind="ConsultaCoordinador.aspx.cs" Inherits="PSO.Pages.Dashboard.Consultas.ConsultaCoordinador" %>
 

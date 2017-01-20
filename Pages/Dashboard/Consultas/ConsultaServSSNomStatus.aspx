@@ -45,13 +45,13 @@
 
         <asp:DropDownList ID ="statusDDL" runat ="server" style ="display:none">
 
-            <asp:ListItem>Pendiente a Revisar por Coordinador</asp:ListItem>
-            <asp:ListItem>Pendiente de Asignar Procesador</asp:ListItem>
-            <asp:ListItem>Pendiente a Trabajarse por Procesador</asp:ListItem>
+            <asp:ListItem>Pendiente de Revisarse por un Coordinador</asp:ListItem>
+            <asp:ListItem>Pendiente de Asignarse a un Procesador</asp:ListItem>
+            <asp:ListItem>Pendiente de Trabajarse por un Procesador</asp:ListItem>
             <asp:ListItem>Aprobada</asp:ListItem>
             <asp:ListItem>Denegada</asp:ListItem>
             <asp:ListItem>Pendiente por Documentos Incompletos</asp:ListItem>
-            <asp:ListItem>Inactivas</asp:ListItem> 
+            <asp:ListItem>Inactiva</asp:ListItem>  
 
         </asp:DropDownList>
 

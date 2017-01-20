@@ -22,7 +22,7 @@ namespace PSO.Pages.Dashboard.Consultas
                     Response.Redirect("~/Pages/Login.aspx", true);
 
                 Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
-            } 
+            }
 
             #endregion
 
@@ -95,7 +95,7 @@ namespace PSO.Pages.Dashboard.Consultas
                     statusDDL.Attributes["style"] = "display:none;";
 
                     break;
-            } 
+            }
 
             #endregion
         }
@@ -113,7 +113,9 @@ namespace PSO.Pages.Dashboard.Consultas
 
                 e.Row.ToolTip = "Seleccionar para revisar";
 
-                e.Row.Cells[4].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[4].Text));
+                //e.Row.Cells[4].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[4].Text));
+
+                e.Row.Cells[4].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[4].Text) - 1);
 
                 if (!e.Row.Cells[1].Text.Contains("-"))
                 {
@@ -128,7 +130,7 @@ namespace PSO.Pages.Dashboard.Consultas
                             ssnWithDashes += "-";
                     }
 
-                    e.Row.Cells[1].Text = ssnWithDashes; 
+                    e.Row.Cells[1].Text = ssnWithDashes;
                 }
             }
         }
@@ -150,7 +152,7 @@ namespace PSO.Pages.Dashboard.Consultas
                 case 1: // nombre
 
                     where = string.Format(@"WHERE CONCAT(Nombre, ' ', ApellidoPaterno, ' ', ApellidoMaterno) LIKE '%{0}%'",
-                       searchTxtBx.Text);
+                        searchTxtBx.Text);
 
                     if (Rol.TiposRole.EXTERNO == user.Role.RoleType)
                         where = string.Format(@"{0} AND Email = '{1}'", where, user.Email);
@@ -159,7 +161,7 @@ namespace PSO.Pages.Dashboard.Consultas
 
                 case 2: //ss
 
-                    where = string.Format("WHERE SeguroSocial = '{0}'", string.IsNullOrEmpty(searchTxtBx.Text) ? string.Empty 
+                    where = string.Format("WHERE SeguroSocial = '{0}'", string.IsNullOrEmpty(searchTxtBx.Text) ? string.Empty
                         : Usuario.EncryptWord(searchTxtBx.Text.Replace("-", string.Empty)));
 
                     if (Rol.TiposRole.EXTERNO == user.Role.RoleType)

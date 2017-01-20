@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Title ="Solicitudes Pendientes de Asignar a un Procesador" MasterPageFile ="~/Site.Master"
+﻿<%@ Page Language="C#" Title ="Solicitudes Pendientes de Asignarse a un Procesador" MasterPageFile ="~/Site.Master"
      AutoEventWireup="true" CodeBehind="ConsultaPendAsigPro.aspx.cs" Inherits="PSO.Pages.Dashboard.Consultas.ConsultaPendAsigPro" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">

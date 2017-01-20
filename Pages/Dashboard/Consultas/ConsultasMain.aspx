@@ -8,7 +8,7 @@
         <div style ="display:inline-block">
 
             <asp:Button runat="server" CssClass ="dashBtns" ID="CoordinadorBtn" OnClick ="CoordinadorBtn_Click" 
-                Text="Solicitudes Pendientes de Revisarse por Coordinador" />
+                Text="Solicitudes Pendientes de Revisarse por un Coordinador" />
 
         </div>
 

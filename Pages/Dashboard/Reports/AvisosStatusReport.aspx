@@ -30,16 +30,16 @@
                     <Points>
 
                         <asp:DataPoint Color="#888800" Font="Microsoft Sans Serif, 15pt" LabelForeColor="White" 
-                             LegendText ="Pendientes de Revisar por Coordinador"/>
+                             LegendText ="Pendientes de Revisarse por un Coordinador"/>
 
                         <asp:DataPoint Color="#0000a6" Font="Microsoft Sans Serif, 15pt" LabelForeColor="White"
                               LegendText ="Pendientes por Documentos Incompletos" />
 
                         <asp:DataPoint Color="#d5d500" Font="Microsoft Sans Serif, 15pt" LabelForeColor="White"
-                              LegendText ="Pendientes de Asignar un Procesador"/>
+                              LegendText ="Pendientes de Asignarse un Procesador"/>
 
                         <asp:DataPoint Color="#13dafd" Font="Microsoft Sans Serif, 15pt" LabelForeColor="White"
-                             LegendText ="Pendientes a Trabajarse por Procesador"/>
+                             LegendText ="Pendientes de Trabajarse por un Procesador"/>
 
                         <asp:DataPoint Color="0, 192, 0" Font="Microsoft Sans Serif, 15pt" LabelForeColor="White"
                              LegendText ="Aprobadas"/>

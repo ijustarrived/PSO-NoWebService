@@ -87,9 +87,11 @@ namespace PSO.Pages.Dashboard.Consultas
 
                 e.Row.ToolTip = "Seleccionar para revisar";
 
-                e.Row.Cells[3].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[3].Text));
+                //e.Row.Cells[3].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[3].Text));
 
-                e.Row.Cells[4].Text = filterDDL.Items[Convert.ToInt32(e.Row.Cells[4].Text) + 1].Text;
+                e.Row.Cells[3].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[3].Text) - 1);
+
+                e.Row.Cells[4].Text = filterDDL.Items[Convert.ToInt32(e.Row.Cells[4].Text)].Text;
 
                 e.Row.Cells[5].Text = e.Row.Cells[5].Text.Split(' ')[0];
             }
@@ -111,7 +113,8 @@ namespace PSO.Pages.Dashboard.Consultas
             string and = string.Empty;
 
             if (filterDDL.SelectedIndex != 0)  // -1 cause 0 here is default but 0 on solicitud is a procesador
-                and = string.Format("AND ProcesadorID = {0}", (filterDDL.SelectedIndex - 1));
+                //and = string.Format("AND ProcesadorID = {0}", (filterDDL.SelectedIndex - 1));
+                and = string.Format("AND ProcesadorID = {0}", filterDDL.SelectedIndex);
 
             e.Command.CommandText = e.Command.CommandText.Replace("@AND", and);
 

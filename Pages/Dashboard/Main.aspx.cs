@@ -89,7 +89,8 @@ namespace PSO.Pages.Dashboard
 
         protected void logoutBtn_Click(object sender, EventArgs e)
         {
-            Session.Remove("UserObj");
+            if (Session["UserObj"] != null)
+                Session.Remove("UserObj");
 
             Response.Redirect("~/Pages/Login.aspx", true);
         }

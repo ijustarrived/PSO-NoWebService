@@ -327,7 +327,7 @@
 
     <div style="width: 70%; margin-left: auto; margin-right: auto; text-align: center" runat="server" visible="false" id="asigCommentDiv">
 
-        <asp:Label ForeColor="#79256E" ID ="asigLbl" Text="Comentarios*" runat="server"></asp:Label>
+        <asp:Label ForeColor="#79256E" ID ="asigLbl" Text="Comentarios" runat="server"></asp:Label>
 
         <asp:TextBox ID="asigComment" runat="server" TextMode="MultiLine"></asp:TextBox>
 
@@ -348,11 +348,21 @@
 
                 <td style="text-align: right; border-top-style: none; padding-right:20%">
 
-                    <asp:Label runat="server" Text="Asignado a" ID="Label3"></asp:Label>
+                    <asp:Label runat="server" Text="Asignado a*" ID="Label3"></asp:Label>
 
                     <asp:DropDownList runat="server" ID="procesadoresDDL">
 
+                        <asp:ListItem>Seleccionar</asp:ListItem>
+
                     </asp:DropDownList>
+
+                    <div>
+
+                        <asp:RequiredFieldValidator runat ="server" ControlToValidate ="procesadoresDDL" Display ="Dynamic" 
+                            ErrorMessage ="Requerido" InitialValue ="Seleccionar" ForeColor ="#CC0000" 
+                            SetFocusOnError ="true"></asp:RequiredFieldValidator>
+
+                    </div>
 
                 </td>
 
@@ -368,14 +378,24 @@
 
             <td style="text-align: right; padding-right:20%; border-top-style: none">
 
-                <asp:Label Text ="Status" runat ="server"></asp:Label>
+                <asp:Label Text ="Status*" runat ="server"></asp:Label>
 
                 <asp:DropDownList ID ="statusDDL" runat ="server">
+
+                    <asp:ListItem>Seleccionar</asp:ListItem>
                     
-                    <asp:ListItem>DENEGADA</asp:ListItem>
-                    <asp:ListItem>APROBADA</asp:ListItem>
+                    <asp:ListItem>Denegada</asp:ListItem>
+                    <asp:ListItem>Aprovada</asp:ListItem>
 
                 </asp:DropDownList>
+
+                <div>
+
+                        <asp:RequiredFieldValidator runat ="server" ControlToValidate ="statusDDL" Display ="Dynamic" 
+                            ErrorMessage ="Requerido" InitialValue ="Seleccionar" ForeColor ="#CC0000" 
+                            SetFocusOnError ="true"></asp:RequiredFieldValidator>
+
+                    </div>
 
                 <%--<asp:Label runat="server" Text="Trabajado en Sistema de Préstamos: Sí" ID="trabajoSistemaLbl"></asp:Label>--%>
             </td>
@@ -776,6 +796,8 @@
 
                         <asp:DropDownList ID="puebloDDL" runat="server">
 
+                            <asp:ListItem>Seleccionar</asp:ListItem>
+
                             <asp:ListItem>Adjuntas</asp:ListItem>
                             <asp:ListItem>Aguada</asp:ListItem>
                             <asp:ListItem>Aguadilla</asp:ListItem>
@@ -856,6 +878,14 @@
                             <asp:ListItem>Yauco</asp:ListItem>
 
                         </asp:DropDownList>
+
+                    </div>
+
+                    <div>
+
+                        <asp:RequiredFieldValidator runat ="server" ControlToValidate ="puebloDDL" Display ="Dynamic" 
+                            ErrorMessage ="Requerido" InitialValue ="Seleccionar" ForeColor ="#CC0000" 
+                            SetFocusOnError ="true"></asp:RequiredFieldValidator>
 
                     </div>
 
@@ -935,6 +965,8 @@
 
                         <asp:DropDownList ID ="puebloPostalDDL" runat ="server">
 
+                            <asp:ListItem>Seleccionar</asp:ListItem>
+
                             <asp:ListItem>Adjuntas</asp:ListItem>
                             <asp:ListItem>Aguada</asp:ListItem>
                             <asp:ListItem>Aguadilla</asp:ListItem>
@@ -1015,6 +1047,14 @@
                             <asp:ListItem>Yauco</asp:ListItem>
 
                         </asp:DropDownList>
+
+                    </div>
+
+                     <div>
+
+                        <asp:RequiredFieldValidator runat ="server" ControlToValidate ="puebloPostalDDL" Display ="Dynamic" 
+                            ErrorMessage ="Requerido" InitialValue ="Seleccionar" ForeColor ="#CC0000" 
+                            SetFocusOnError ="true"></asp:RequiredFieldValidator>
 
                     </div>
 
@@ -1114,6 +1154,8 @@
 
                         <asp:DropDownList runat ="server" ID ="parentescoRefDDL">
 
+                            <asp:ListItem>Seleccionar</asp:ListItem>
+
                             <asp:ListItem>Padre</asp:ListItem>
 
                             <asp:ListItem>Madre</asp:ListItem>
@@ -1132,7 +1174,16 @@
 
                         </asp:DropDownList>
 
+
                         <%--<asp:TextBox runat="server"   ID="parentescoRefTxtBx"></asp:TextBox>--%>
+
+                    </div>
+
+                    <div>
+
+                        <asp:RequiredFieldValidator runat ="server" ControlToValidate ="parentescoRefDDL" Display ="Dynamic" 
+                            ErrorMessage ="Requerido" InitialValue ="Seleccionar" ForeColor ="#CC0000" 
+                            SetFocusOnError ="true"></asp:RequiredFieldValidator>
 
                     </div>
 
@@ -1228,6 +1279,8 @@
 
                         <asp:DropDownList runat ="server" ID ="puebloRefDDL">
 
+                            <asp:ListItem>Seleccionar</asp:ListItem>
+
                             <asp:ListItem>Adjuntas</asp:ListItem>
                             <asp:ListItem>Aguada</asp:ListItem>
                             <asp:ListItem>Aguadilla</asp:ListItem>
@@ -1308,6 +1361,14 @@
                             <asp:ListItem>Yauco</asp:ListItem>
 
                         </asp:DropDownList>
+
+                    </div>
+
+                    <div>
+
+                        <asp:RequiredFieldValidator runat ="server" ControlToValidate ="puebloRefDDL" Display ="Dynamic" 
+                            ErrorMessage ="Requerido" InitialValue ="Seleccionar" ForeColor ="#CC0000" 
+                            SetFocusOnError ="true"></asp:RequiredFieldValidator>
 
                     </div>
 
@@ -1395,6 +1456,8 @@
 
                         <asp:DropDownList runat ="server" ID ="parentescoDDL">
 
+                            <asp:ListItem>Seleccionar</asp:ListItem>
+
                             <asp:ListItem>Padre</asp:ListItem>
 
                             <asp:ListItem>Madre</asp:ListItem>
@@ -1414,6 +1477,14 @@
                         </asp:DropDownList>
 
                         <%--<asp:TextBox runat="server"   ID="parentescoTxtBx"></asp:TextBox>--%>
+
+                    </div>
+
+                    <div>
+
+                        <asp:RequiredFieldValidator runat ="server" ControlToValidate ="parentescoDDL" Display ="Dynamic" 
+                            ErrorMessage ="Requerido" InitialValue ="Seleccionar" ForeColor ="#CC0000" 
+                            SetFocusOnError ="true"></asp:RequiredFieldValidator>
 
                     </div>
 
@@ -1509,6 +1580,8 @@
 
                         <asp:DropDownList runat ="server" ID ="puebloRef2DDL">
 
+                            <asp:ListItem>Seleccionar</asp:ListItem>
+
                             <asp:ListItem>Adjuntas</asp:ListItem>
                             <asp:ListItem>Aguada</asp:ListItem>
                             <asp:ListItem>Aguadilla</asp:ListItem>
@@ -1589,6 +1662,14 @@
                             <asp:ListItem>Yauco</asp:ListItem>
 
                         </asp:DropDownList>
+
+                    </div>
+
+                    <div>
+
+                        <asp:RequiredFieldValidator runat ="server" ControlToValidate ="puebloRef2DDL" Display ="Dynamic" 
+                            ErrorMessage ="Requerido" InitialValue ="Seleccionar" ForeColor ="#CC0000" 
+                            SetFocusOnError ="true"></asp:RequiredFieldValidator>
 
                     </div>
 
@@ -1676,6 +1757,8 @@
 
                         <asp:DropDownList runat ="server" ID ="parentescoRef3DDL">
 
+                            <asp:ListItem>Seleccionar</asp:ListItem>
+
                             <asp:ListItem>Padre</asp:ListItem>
 
                             <asp:ListItem>Madre</asp:ListItem>
@@ -1695,6 +1778,14 @@
                         </asp:DropDownList>
 
                         <%--<asp:TextBox runat="server"   ID="parentescoRef3TxtBx"></asp:TextBox>--%>
+
+                    </div>
+
+                    <div>
+
+                        <asp:RequiredFieldValidator runat ="server" ControlToValidate ="parentescoRef3DDL" Display ="Dynamic" 
+                            ErrorMessage ="Requerido" InitialValue ="Seleccionar" ForeColor ="#CC0000" 
+                            SetFocusOnError ="true"></asp:RequiredFieldValidator>
 
                     </div>
 
@@ -1790,6 +1881,8 @@
 
                         <asp:DropDownList runat ="server" ID ="puebloRef3DDL">
 
+                            <asp:ListItem>Seleccionar</asp:ListItem>
+
                             <asp:ListItem>Adjuntas</asp:ListItem>
                             <asp:ListItem>Aguada</asp:ListItem>
                             <asp:ListItem>Aguadilla</asp:ListItem>
@@ -1870,6 +1963,14 @@
                             <asp:ListItem>Yauco</asp:ListItem>
 
                         </asp:DropDownList>
+
+                    </div>
+
+                    <div>
+
+                        <asp:RequiredFieldValidator runat ="server" ControlToValidate ="puebloRef3DDL" Display ="Dynamic" 
+                            ErrorMessage ="Requerido" InitialValue ="Seleccionar" ForeColor ="#CC0000" 
+                            SetFocusOnError ="true"></asp:RequiredFieldValidator>
 
                     </div>
 
@@ -2209,6 +2310,8 @@
 
                         <asp:DropDownList ID ="puebloCoDDL" runat ="server">
 
+                            <asp:ListItem>Seleccionar</asp:ListItem>
+
                             <asp:ListItem>Adjuntas</asp:ListItem>
                             <asp:ListItem>Aguada</asp:ListItem>
                             <asp:ListItem>Aguadilla</asp:ListItem>
@@ -2353,6 +2456,8 @@
                     <div>
 
                         <asp:DropDownList ID ="puebloCoPostalDDL" runat ="server">
+
+                            <asp:ListItem>Seleccionar</asp:ListItem>
 
                             <asp:ListItem>Adjuntas</asp:ListItem>
                             <asp:ListItem>Aguada</asp:ListItem>

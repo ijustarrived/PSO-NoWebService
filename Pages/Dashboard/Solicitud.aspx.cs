@@ -160,7 +160,15 @@ namespace PSO.Pages.Dashboard
 
                         //trabajoSistemaLbl.Text = string.Format("{0} : {1}", split[0], "Sí");
 
-                        statusDDL.SelectedValue = solicitud.Status.ToString();
+                        int trabajoStatusIndex = 0;
+
+                        if (solicitud.Status == _Solicitud.Statuses.DENEGADA)
+                            trabajoStatusIndex = 1;
+
+                        else
+                            trabajoStatusIndex = 2;
+
+                        statusDDL.SelectedIndex = trabajoStatusIndex;
 
                         statusDDL.Enabled = false;
 
@@ -188,7 +196,7 @@ namespace PSO.Pages.Dashboard
 
                             if (user.Role.RoleType != Rol.TiposRole.COORDINADOR)
                                 ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
-                                    string.Format("WaitingAnswerAlert('{0}');", "Esperar po la revision de de coordinador."), true);
+                                    string.Format("WaitingAnswerAlert('{0}');", "Esperar por la revisión de un coordinador."), true);
 
                             else
                             {
@@ -198,7 +206,7 @@ namespace PSO.Pages.Dashboard
 
                                 coorDDL.Enabled = false;
 
-                                asigCommentRFV.Enabled = true;
+                                //asigCommentRFV.Enabled = true;
 
                                 _split = fechaRevisadoLbl.Text.Split(':');
 
@@ -227,6 +235,8 @@ namespace PSO.Pages.Dashboard
                                 {
                                     procesadoresDDL.Items.Add(procesadores.ElementAt(i).GetNombreCompleto());
                                 }
+
+                                procesadoresDDL.SelectedIndex = 0;
 
                                 #endregion
 
@@ -1010,7 +1020,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
                         switch(statusDDL.SelectedIndex)
                         {
                             //Denegada
-                            case 0:
+                            case 1:
 
                                 solicitud.Status = _Solicitud.Statuses.DENEGADA;
 
@@ -1019,7 +1029,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
                                 break;
 
                                 //Aprovada
-                            default:
+                            case 2:
 
                                 solicitud.Status = _Solicitud.Statuses.APROBADA;
 
@@ -1483,6 +1493,8 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
                 DropDownList statusDDL = new DropDownList();
 
+                statusDDL.Items.Add("Seleccionar");
+
                 statusDDL.Items.Add("Incompleto");
 
                 statusDDL.Items.Add("Completo");
@@ -1497,25 +1509,25 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
                 docAsociadosStatuses.AddLast(statusDDL);
 
-                //RequiredFieldValidator statusRFV = new RequiredFieldValidator();
+                RequiredFieldValidator statusRFV = new RequiredFieldValidator();
 
-                //statusRFV.InitialValue = "Seleccionar";
+                statusRFV.InitialValue = "Seleccionar";
 
-                //statusRFV.ForeColor = Color.Tomato;
+                statusRFV.ForeColor = Color.Tomato;
 
-                //statusRFV.ControlToValidate = statusDDL.ID;
+                statusRFV.ControlToValidate = statusDDL.ID;
 
-                //statusRFV.ErrorMessage = "Requerido";
+                statusRFV.ErrorMessage = "Requerido";
 
-                //statusRFV.Display = ValidatorDisplay.Dynamic;
+                statusRFV.Display = ValidatorDisplay.Dynamic;
 
-                //docAsociadosValidators.AddLast(statusRFV);
+                docAsociadosValidators.AddLast(statusRFV);
 
                 htmlCell.Controls.Add(statusLbl);
 
                 htmlCell.Controls.Add(statusDDL);
 
-                //htmlCell.Controls.Add(statusRFV);
+                htmlCell.Controls.Add(statusRFV);
 
                 literals.AddLast(new LiteralControl());
 
@@ -1611,7 +1623,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
             for (int i = 0; i < docAsociadosStatuses.Count; i++)
             {
-                if (docAsociadosStatuses.ElementAt(i).SelectedIndex == 0)
+                if (docAsociadosStatuses.ElementAt(i).SelectedIndex == 1)
                 {
                     asigLbl.Text = string.Format("{0}*", asigLbl.Text);
 
