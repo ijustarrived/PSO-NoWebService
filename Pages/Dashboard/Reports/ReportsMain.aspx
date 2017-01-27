@@ -12,12 +12,12 @@
 
         </div>
 
-        <div style ="display:inline-block">
+        <%--<div style ="display:inline-block">
 
             <asp:Button runat="server" CssClass ="dashBtns" ID="AvisosRecibidosStatusBtn" OnClick ="AvisosRecibidosStatusBtn_Click"
                 Text="Solicitudes Recibidas por Status" />
 
-        </div> 
+        </div> --%>
 
         <div style ="display:inline-block">
 

@@ -93,13 +93,13 @@
 
                     </div>
 
-                    <div style="margin-top: 20px;">
+                    <%--<div style="margin-top: 20px;">
 
                         <asp:Label runat="server" Text="Reporte de Solicitudes por Status" ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewReportAvisoStatusChkBx" />
 
-                    </div>
+                    </div>--%>
 
                     <div style="margin-top: 20px;">
 
@@ -124,7 +124,15 @@
 
                         <asp:CheckBox runat="server" ID="viewSolicitudChkBx" />
 
-                    </div>                    
+                    </div>  
+                    
+                    <div style="margin-top: 20px;">
+
+                        <asp:Label runat="server" Text="Dashboard" ForeColor="#79256E"></asp:Label>
+
+                        <asp:CheckBox runat="server" ID="viewReportAvisoStatusChkBx" />
+
+                    </div>                  
 
                 </div>
 

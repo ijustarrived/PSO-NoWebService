@@ -111,12 +111,18 @@
             </asp:ContentPlaceHolder>
         </div>
 
-        <div style="color: #79256E; width: 100%; height: 50px; bottom: 0px; opacity: 1; position: fixed;">
+        <%--<div style="color: #79256E; width: 100%; height: 50px; bottom: 0px; opacity: 1; position: fixed;">
+
+            <hr style="background-color: #616161; width: 100%; height: 3px" />
+
+        </div>--%>
+
+    </form>
+
+    <div style="color: #79256E; width: 100%; height: 50px; bottom: 0px; opacity: 1; position: fixed;">
 
             <hr style="background-color: #616161; width: 100%; height: 3px" />
 
         </div>
-
-    </form>
 </body>
 </html>

@@ -385,7 +385,7 @@
                     <asp:ListItem>Seleccionar</asp:ListItem>
                     
                     <asp:ListItem>Denegada</asp:ListItem>
-                    <asp:ListItem>Aprovada</asp:ListItem>
+                    <asp:ListItem>Aprobada</asp:ListItem>
 
                 </asp:DropDownList>
 
@@ -2617,6 +2617,9 @@
 
         <asp:Button ID="saveBtn" BorderColor="#616161" BorderWidth="3" CssClass="btn" Text="Guardar"
             Style="margin-right: 20px; padding: 10px 15px;" runat="server" OnClick="saveBtn_Click" ForeColor="#79256E" />
+
+        <asp:Button ID="tempSaveBtn" BorderColor="#616161" BorderWidth="3" OnClick ="tempSaveBtn_Click" CssClass="btn" Text="Guardar Temporero"
+            Style="margin-right: 20px; padding: 10px 15px;" runat="server" CausesValidation ="false" ForeColor="#79256E" Visible ="false" />
 
         <input type="button" onclick="javascript: window.print();"
             style="border-style: solid; vertical-align: middle; border-color: #616161; 

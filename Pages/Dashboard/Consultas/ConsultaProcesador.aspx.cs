@@ -89,6 +89,7 @@ namespace PSO.Pages.Dashboard.Consultas
 
                 //e.Row.Cells[3].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[3].Text));
 
+                // -1 cause pueblo ddl, in solicitud, starts in 0 and db starts in 1
                 e.Row.Cells[3].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[3].Text) - 1);
 
                 e.Row.Cells[4].Text = filterDDL.Items[Convert.ToInt32(e.Row.Cells[4].Text)].Text;

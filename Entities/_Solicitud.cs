@@ -426,14 +426,14 @@ namespace PSO.Entities
             {
                 case Statuses.PEND_ASIGNAR:
 
-                    txtAndColor.Add("Pendiente de Asignar a un Procesador"
+                    txtAndColor.Add("Pendiente de Asignarse a un Procesador"
                         , ColorTranslator.FromHtml("#CFCF38"));
 
                     break;
 
                 case Statuses.PEND_REVISAR:
 
-                    txtAndColor.Add("Pendiente a Revisar por Coordinador de Servicios"
+                    txtAndColor.Add("Pendiente a Revisarse por un Coordinador de Servicios"
                         , ColorTranslator.FromHtml("#CFCF38"));
 
                     break;

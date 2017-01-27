@@ -423,10 +423,10 @@ namespace PSO.Repositorios
             return solicitudes;
         }
 
-        public static LinkedList<_Solicitud> GetSolicitudesByRole(Rol.TiposRole role)
+        public static LinkedList<_Solicitud> GetSolicitudesCompletadasByRole(Rol.TiposRole role)
         {
             LinkedList<_Solicitud> solicitudes = new LinkedList<_Solicitud>();
-            
+
             using (SqlConnection conn = DB.GetLocalConnection())
             {
                 using (SqlCommand cmd = new SqlCommand(@"SELECT *, DATEDIFF(day, FechaTramitada, @FECHA) AS Duration 
@@ -434,7 +434,7 @@ namespace PSO.Repositorios
                                                             conn))
                 {
                     string where = string.Empty,
-                        rol =  string.Empty,
+                        rol = string.Empty,
                         fecha = string.Empty;
 
                     switch (role)
@@ -827,6 +827,147 @@ namespace PSO.Repositorios
             return solicitudes;
         }
 
+        public static LinkedList<_Solicitud> GetSolicitudesByYear(int year)
+        {
+            LinkedList<_Solicitud> solicitudes = new LinkedList<_Solicitud>();
+
+            //using (SqlConnection conn = sql.GetConnection())
+            using (SqlConnection conn = DB.GetLocalConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand(@"SELECT * FROM Solicitudes WHERE YEAR(FechaTramitada)
+                                            = @YEAR", conn))
+                {
+                    cmd.Parameters.AddWithValue("YEAR", year);
+
+                    conn.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    solicitudes = BuildSolicitudes(cmd);
+                }
+            }
+
+            return solicitudes;
+        }
+
+        public static LinkedList<_Solicitud> GetSolicitudesCompletadasByYearNRol(int year, Rol.TiposRole role)
+        {
+            LinkedList<_Solicitud> solicitudes = new LinkedList<_Solicitud>();
+
+            //using (SqlConnection conn = sql.GetConnection())
+            using (SqlConnection conn = DB.GetLocalConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand(@"SELECT * FROM Solicitudes WHERE YEAR(@DATE)
+                                            = @YEAR", conn))
+                {
+                    cmd.Parameters.AddWithValue("YEAR", year);
+
+                    string date = string.Empty;
+
+                    switch (role)
+                    {
+                        case Rol.TiposRole.COORDINADOR:
+
+                            date = "FechaRevision";
+
+                            break;
+
+                        case Rol.TiposRole.PROCESADOR:
+
+                            //Esto va pero para el demo no
+                            date = "FechaTrabajado";
+
+                            //Esto es solo para el demo
+                            //where = "WHERE Status = 4 OR Status = 5";
+
+                            break;
+
+                        case Rol.TiposRole.SUPERVISOR:
+
+                            date = "FechaAsigProcesador";
+
+                            break;
+
+                        case Rol.TiposRole.EXTERNO:
+
+                            date = "FechaTramitada";
+
+                            break;
+                    }
+
+                    cmd.CommandText = cmd.CommandText.Replace("@DATE", date);
+
+                    conn.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    solicitudes = BuildSolicitudes(cmd);
+                }
+            }
+
+            return solicitudes;
+        }
+
+        public static LinkedList<_Solicitud> GetSolicitudesCompletadasByMonthYearNRol(int year, int month, Rol.TiposRole role)
+        {
+            LinkedList<_Solicitud> solicitudes = new LinkedList<_Solicitud>();
+
+            //using (SqlConnection conn = sql.GetConnection())
+            using (SqlConnection conn = DB.GetLocalConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand(@"SELECT * FROM Solicitudes WHERE YEAR(@DATE)
+                                            = @YEAR AND MONTH(@DATE) = @MONTH", conn))
+                {
+                    cmd.Parameters.AddWithValue("YEAR", year);
+
+                    cmd.Parameters.AddWithValue("MONTH", month);
+
+                    string date = string.Empty;
+
+                    switch (role)
+                    {
+                        case Rol.TiposRole.COORDINADOR:
+
+                            date = "FechaRevision";
+
+                            break;
+
+                        case Rol.TiposRole.PROCESADOR:
+
+                            //Esto va pero para el demo no
+                            date = "FechaTrabajado";
+
+                            //Esto es solo para el demo
+                            //where = "WHERE Status = 4 OR Status = 5";
+
+                            break;
+
+                        case Rol.TiposRole.SUPERVISOR:
+
+                            date = "FechaAsigProcesador";
+
+                            break;
+
+                        case Rol.TiposRole.EXTERNO:
+
+                            date = "FechaTramitada";
+
+                            break;
+                    }
+
+                    cmd.CommandText = cmd.CommandText.Replace("@DATE", date);
+
+                    conn.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    solicitudes = BuildSolicitudes(cmd);
+                }
+            }
+
+            return solicitudes;
+        }
+
         public static LinkedList<_Solicitud> GetSolicitudesByDateRangeNStatus(DateTime desde, DateTime hasta, int statusId)
         {
             LinkedList<_Solicitud> solicitudes = new LinkedList<_Solicitud>();
@@ -1088,7 +1229,7 @@ namespace PSO.Repositorios
                 {
                     int col = 0;
 
-                    numSolicitud = reader.GetInt32(col++).ToString();                    
+                    numSolicitud = reader.GetInt32(col++).ToString();
                 }
                 #endregion
             }

@@ -59,7 +59,7 @@ namespace PSO.Pages.Dashboard.Reports
                         Response.Redirect("~/Pages/Login.aspx", true);
 
                     Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
-                } 
+                }
 
                 #endregion
             }
@@ -105,8 +105,7 @@ namespace PSO.Pages.Dashboard.Reports
 
         protected void solicitudesSQLDS_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
-            LinkedList<_Solicitud> solicitudes = new LinkedList<_Solicitud>(),
-                solicitudesProcesadas = new LinkedList<_Solicitud>();
+            LinkedList<_Solicitud> solicitudes = new LinkedList<_Solicitud>();
 
             string where = string.Empty;
 
@@ -131,15 +130,6 @@ namespace PSO.Pages.Dashboard.Reports
                 solicitudes = SolicitudRepo.GetSolicitudes();
             }
 
-            for (int i = 0; i < solicitudes.Count; i++)
-            {
-                if (solicitudes.ElementAt(i).Status == _Solicitud.Statuses.APROBADA 
-                    || solicitudes.ElementAt(i).Status == _Solicitud.Statuses.DENEGADA)
-                {
-                    solicitudesProcesadas.AddLast(solicitudes.ElementAt(i));
-                }
-            }
-
             #endregion
 
             #region Query for GV only
@@ -159,7 +149,7 @@ namespace PSO.Pages.Dashboard.Reports
                 case 1:
 
                     where = string.Format("{0} @AND CoordinadorID = {1} AND FechaRevision <> CONVERT(datetime, '12/31/9999 23:59:59.997')",
-                        where, searchDDL.SelectedIndex);
+                        where, searchDDL.SelectedIndex - 1); // - 1 cause el ddl del coor empieza del 1 y el del db empieza en el 0
 
                     break;
 
@@ -170,10 +160,10 @@ namespace PSO.Pages.Dashboard.Reports
                     //                            AND (FechaAsigProcesador <> CONVERT(datetime, '12/31/9999 23:59:59.997'))", 
                     //                            where, searchDDL.SelectedIndex);
 
-                    // + 1 cause search ddl starts in 1 and procesador ddl, in solicitud, starts in 0
                     where = string.Format(@"{0} @AND (ProcesadorID = {1}) 
                                                 AND (FechaAsigProcesador <> CONVERT(datetime, '12/31/9999 23:59:59.997'))",
-                                                where, searchDDL.SelectedIndex + 1);
+                                               where, (searchDDL.SelectedIndex - 1));
+
 
                     break;
             }
@@ -182,21 +172,21 @@ namespace PSO.Pages.Dashboard.Reports
 
             #region Status DLL
 
-            switch(statusSearchDDL.SelectedIndex)
+            switch (statusSearchDDL.SelectedIndex)
             {
                 //Pending
                 case 1:
 
                     int statusId = 0;
 
-                    if(filterDDL.SelectedIndex > 1)
-                        statusId = (int)_Solicitud.Statuses.PEND_TRABAJAR;   
+                    if (filterDDL.SelectedIndex > 1)
+                        statusId = (int)_Solicitud.Statuses.PEND_TRABAJAR;
 
                     where = string.Format("{0} AND Status = {1} ", where, statusId);
 
                     break;
 
-                    //Worked
+                //Worked
                 case 2:
 
                     if (filterDDL.SelectedIndex > 1)
@@ -219,11 +209,9 @@ namespace PSO.Pages.Dashboard.Reports
 
             ViewState["SolicitudCount"] = solicitudes.Count;
 
-            ViewState["ProcesadasCount"] = solicitudesProcesadas.Count;
-
             #region Change this to a real getter
 
-            SetChartData(solicitudes.Count, solicitudesProcesadas.Count);
+            SetChartData(solicitudes.Count, 10);
 
             //SetChartData(solicitudes.Count, fakeProcesadasSolicitudes.Count); 
 
@@ -235,7 +223,7 @@ namespace PSO.Pages.Dashboard.Reports
         protected void recievedGV_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
-            {     
+            {
                 _Solicitud solicitud = SolicitudRepo.GetSolicitudByNumSolicitud(e.Row.Cells[0].Text);
 
                 if (solicitud.FechaRevision.Date.Year == 9999)
@@ -270,6 +258,7 @@ namespace PSO.Pages.Dashboard.Reports
 
                     //e.Row.Cells[5].Text = procesadores.ElementAt(Convert.ToInt32(e.Row.Cells[5].Text)).GetNombreCompleto();
 
+                    // -1 cause procesador ddl, in solicitud, starts in 0 and db starts in 1
                     e.Row.Cells[5].Text = procesadores.ElementAt(Convert.ToInt32(e.Row.Cells[5].Text) - 1).GetNombreCompleto();
                 }
 
@@ -285,7 +274,7 @@ namespace PSO.Pages.Dashboard.Reports
                 //} 
 
                 #endregion
-            }     
+            }
         }
 
         protected void searchRolBtn_Click(object sender, EventArgs e)
@@ -327,6 +316,8 @@ namespace PSO.Pages.Dashboard.Reports
 
                     searchDDL.Items.Clear();
 
+                    searchDDL.Items.Add("Seleccionar");
+
                     for (int i = 0; i < coordinadores.Count; i++)
                     {
                         searchDDL.Items.Add(coordinadores.ElementAt(i).GetNombreCompleto());
@@ -351,10 +342,12 @@ namespace PSO.Pages.Dashboard.Reports
 
                     #endregion
 
-                    break;                   
+                    break;
             }
 
-            SetChartData((int)ViewState["SolicitudCount"], (int)ViewState["ProcesadasCount"]);
+            //searchDDL.SelectedIndex = 0;
+
+            SetChartData((int)ViewState["SolicitudCount"], 10);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace PSO.Pages.Dashboard
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 var dashboardPnl = (Panel)Master.FindControl("dashboardLinkPnl");
 
@@ -35,6 +35,11 @@ namespace PSO.Pages.Dashboard
                     solicitudImgBtn.Visible = false;
                 }
 
+                if (!user.Role.ViewRepAvisosStatus)
+                {
+                    dashBtn.Visible = false;
+                }
+
                 if (!user.Role.ViewConsuCoor && !user.Role.ViewConsuPendAsig
                             && !user.Role.ViewConsuProc && !user.Role.ViewConsuSolicitud)
                 {
@@ -46,10 +51,15 @@ namespace PSO.Pages.Dashboard
                     configImgBtn.Visible = false;
                 }
 
-                if (!user.Role.ViewRepAvisosStatus && !user.Role.ViewRepRecVsPen)
+                if (!user.Role.ViewRepProduc && !user.Role.ViewRepRecVsPen)
                 {
                     reportImgBtn.Visible = false;
-                } 
+                }
+
+                //if (!user.Role.ViewRepAvisosStatus && !user.Role.ViewRepRecVsPen)
+                //{
+                //    reportImgBtn.Visible = false;
+                //} 
 
                 #endregion
             }
@@ -64,7 +74,7 @@ namespace PSO.Pages.Dashboard
         {
             Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
 
-            if(user.Role.RoleType == Rol.TiposRole.EXTERNO)
+            if (user.Role.RoleType == Rol.TiposRole.EXTERNO)
                 Response.Redirect("~/Pages/Dashboard/Consultas/ConsultaServSSNomStatus.aspx", true);
 
             Response.Redirect("~/Pages/Dashboard/Consultas/ConsultasMain.aspx", true);
@@ -84,7 +94,7 @@ namespace PSO.Pages.Dashboard
         {
             Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
 
-            Response.Redirect(string.Format( "~/Pages/Register.aspx?Email={0}", user.Email), true);
+            Response.Redirect(string.Format("~/Pages/Register.aspx?Email={0}", user.Email), true);
         }
 
         protected void logoutBtn_Click(object sender, EventArgs e)
@@ -93,6 +103,11 @@ namespace PSO.Pages.Dashboard
                 Session.Remove("UserObj");
 
             Response.Redirect("~/Pages/Login.aspx", true);
+        }
+
+        protected void dashBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Pages/Dashboard/DashBrds/DashMain.aspx", true);
         }
     }
 }

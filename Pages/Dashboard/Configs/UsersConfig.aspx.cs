@@ -103,6 +103,7 @@ namespace PSO.Pages.Dashboard.Configs
 
                 //e.Row.Cells[2].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[2].Text));
 
+                // -1 cause pueblo ddl, in solicitud, starts in 0 and db starts in 1
                 e.Row.Cells[2].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[2].Text) - 1);
 
                 e.Row.Cells[4].Text = users.ElementAt(e.Row.RowIndex).Role.RoleType.ToString();

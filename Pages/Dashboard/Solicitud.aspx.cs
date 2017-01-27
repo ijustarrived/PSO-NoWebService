@@ -160,27 +160,43 @@ namespace PSO.Pages.Dashboard
 
                         //trabajoSistemaLbl.Text = string.Format("{0} : {1}", split[0], "Sí");
 
+                        tempSaveBtn.Visible = true;
+
                         int trabajoStatusIndex = 0;
 
                         if (solicitud.Status == _Solicitud.Statuses.DENEGADA)
                             trabajoStatusIndex = 1;
 
-                        else
+                        else if (solicitud.Status == _Solicitud.Statuses.APROBADA)
                             trabajoStatusIndex = 2;
 
-                        statusDDL.SelectedIndex = trabajoStatusIndex;
+                        //Sino es 0 means que no fue un temp save
+                        if(trabajoStatusIndex != 0)
+                        {
+                            //statusDDL.SelectedIndex = trabajoStatusIndex;
 
-                        statusDDL.Enabled = false;
+                            statusDDL.Enabled = false;
+
+                            //split = fechaTrabajoLbl.Text.Split(':');
+
+                            //fechaTrabajoLbl.Text = string.Format("{0} : {1}", split[0], solicitud.FechaTrabajado.ToShortDateString());
+
+                            trabajoCommentDiv.Visible = true;
+
+                            //trabajoComment.Text = solicitud.ComentarioTrabajo;
+
+                            trabajoComment.Enabled = false;
+
+                            tempSaveBtn.Visible = false;
+                        }
+
+                        statusDDL.SelectedIndex = trabajoStatusIndex;
 
                         split = fechaTrabajoLbl.Text.Split(':');
 
                         fechaTrabajoLbl.Text = string.Format("{0} : {1}", split[0], solicitud.FechaTrabajado.ToShortDateString());
 
-                        trabajoCommentDiv.Visible = true;
-
                         trabajoComment.Text = solicitud.ComentarioTrabajo;
-
-                        trabajoComment.Enabled = false;
                     }
                     #endregion
 
@@ -196,7 +212,8 @@ namespace PSO.Pages.Dashboard
 
                             if (user.Role.RoleType != Rol.TiposRole.COORDINADOR)
                                 ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
-                                    string.Format("WaitingAnswerAlert('{0}');", "Esperar por la revisión de un coordinador."), true);
+                                    string.Format("WaitingAnswerAlert('{0}');",
+                                    "Debe esperar por la revisión de un coordinador."), true);
 
                             else
                             {
@@ -221,7 +238,7 @@ namespace PSO.Pages.Dashboard
 
                             if (user.Role.RoleType != Rol.TiposRole.SUPERVISOR)
                                 ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
-                                    string.Format("WaitingAnswerAlert('{0}');", "Esperar a que se asigne un procesador."), true);
+                                    string.Format("WaitingAnswerAlert('{0}');", "Debe esperar por la revisión de un supervisor."), true);
 
                             else
                             {
@@ -251,13 +268,15 @@ namespace PSO.Pages.Dashboard
 
                             if (user.Role.RoleType != Rol.TiposRole.PROCESADOR)
                                 ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
-                                    string.Format("WaitingAnswerAlert('{0}');", "Esperar a que sea trabajado por procesador."), true);
+                                    string.Format("WaitingAnswerAlert('{0}');", "Debe esperar por la revisión de un procesador."), true);
 
                             else
                             {
                                 trabajadoRow.Visible = true;
 
                                 trabajoCommentDiv.Visible = trabajadoRow.Visible;
+
+                                tempSaveBtn.Visible = true;
 
                                 _split = fechaTrabajoLbl.Text.Split(':');
 
@@ -270,7 +289,7 @@ namespace PSO.Pages.Dashboard
 
                             if (user.Role.RoleType != Rol.TiposRole.EXTERNO)
                                 ScriptManager.RegisterStartupScript(this, GetType(), "ProcMustWaitAlert",
-                                    string.Format("WaitingAnswerAlert('{0}');", "Esperar por documentos del solicitante."), true);
+                                    string.Format("WaitingAnswerAlert('{0}');", "Debe esperar por documentos del solicitante."), true);
 
                             ScriptManager.RegisterStartupScript(this, GetType(), "uploadAlert",
                                     @"alert('Debe subir todos los documentos, nuevamente, para
@@ -1637,6 +1656,235 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
                     asigCommentRFV.Enabled = false;
                 }
             }
+        }
+
+        protected void tempSaveBtn_Click(object sender, EventArgs e)
+        {
+            Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
+
+            #region Instantiate solicitud
+
+            _Solicitud solicitud = new _Solicitud()
+            {
+                FechaTramitada = DateTime.Now,
+
+                Nombre = nameTxtBx.Text,
+
+                //Join both encrypted sets and decrypted sets and encrypt for db
+                SeguroSocial = Usuario.EncryptWord(string.Format("{0}{1}", encryptedSSNPartHF.Value,
+                 ssTxtBx.Text.Replace("*", string.Empty).Replace("-", string.Empty))),
+
+                Email = emailTxtBx.Text,
+
+                ApellidoMaterno = maternoTxtBx.Text,
+
+                ApellidoPaterno = paternoTxtBx.Text,
+
+                FechaNacimiento = Convert.ToDateTime(bdayTxtBx.Text),
+
+                Telefono = telResiTxtBx.Text,
+
+                LicenciaConducir = Usuario.EncryptWord(decryptedDriversHF.Value),
+
+                Celular = celTxtBx.Text,
+
+                Dirrecion = dirTxtBx.Text,
+
+                Pueblo = puebloDDL.SelectedIndex,
+
+                CodigoPostal = codigoTxtBx.Text,
+
+                DirrecionPostal = dirPostalTxtBx.Text,
+
+                PuebloPostal = puebloPostalDDL.SelectedIndex,
+
+                CodigoPostalPostal = codigoPostalPosTxtBx.Text,
+
+                NombreCo = nombreCoTxtBx.Text,
+
+                //Encrypt only if not empty
+                SeguroSocialCo = string.IsNullOrEmpty(ssCoTxtBx.Text) ? string.Empty
+                : Usuario.EncryptWord(string.Format("{0}{1}", ssEncryptedPartCoHF.Value,
+                ssCoTxtBx.Text.Replace("*", string.Empty).Replace("-", string.Empty))),
+
+                EmailCo = emailCoTxtBx.Text,
+
+                ApellidoMaternoCo = maternoCoTxtBx.Text,
+
+                ApellidoPaternoCo = paternoCoTxtBx.Text,
+
+                FechaNacimientoCo = string.IsNullOrEmpty(bdayCoTxtBx.Text) ? DateTime.MaxValue
+                : Convert.ToDateTime(bdayCoTxtBx.Text),
+
+                TelefonoCo = telCoTxtBx.Text,
+
+                //Encrypt only if not empty
+                LicenciaConducirCo = string.IsNullOrEmpty(driversCoTxtBx.Text) ? string.Empty
+                : Usuario.EncryptWord(decryptedDriversCoHF.Value),
+
+                CelularCo = celCoTextBx.Text,
+
+                DirrecionCo = dirCoTxtBx.Text,
+
+                PuebloCo = puebloCoDDL.SelectedIndex,
+
+                CodigoPostalCo = codigoCoTxtBx.Text,
+
+                DirrecionPostalCo = dirCoPostalTxtbx.Text,
+
+                PuebloPostalCo = puebloCoPostalDDL.SelectedIndex,
+
+                CodigoPostalPostalCo = codigoCoPostalTxtBx.Text,
+            };
+
+            #endregion
+
+            #region Instantiate referencias
+
+            LinkedList<ReferenciaDisponible> referencias = new LinkedList<ReferenciaDisponible>();
+
+            referencias.AddLast(new ReferenciaDisponible()
+            {
+                CodigoPostal = codigoRefTxtBx.Text,
+
+                Direccion = dirRefTxtBx.Text,
+
+                Nombre = cercanoTxt.Text,
+
+                Parentesco = parentescoRefDDL.SelectedValue,
+
+                Pueblo = puebloRefDDL.SelectedIndex,
+
+                Telefono = telFamTxtBx.Text
+            });
+
+            referencias.AddLast(new ReferenciaDisponible()
+            {
+                CodigoPostal = codigoRef2TxtBx.Text,
+
+                Direccion = dirRef2TxtBx.Text,
+
+                Nombre = cercano2TxtBx.Text,
+
+                Parentesco = parentescoDDL.SelectedValue,
+
+                Pueblo = puebloRef2DDL.SelectedIndex,
+
+                Telefono = telFam2TxtBx.Text
+            });
+
+            referencias.AddLast(new ReferenciaDisponible()
+            {
+                CodigoPostal = codigoRef3TxtBx.Text,
+
+                Direccion = dirRef3TxtBx.Text,
+
+                Nombre = cercanoRef3TxtBx.Text,
+
+                Parentesco = parentescoRef3DDL.SelectedValue,
+
+                Pueblo = puebloRef3DDL.SelectedIndex,
+
+                Telefono = telFamRef3TxtBx.Text
+            });
+
+            #endregion
+
+            string numSolicitud = Request.QueryString["numSolicitud"] == null ? string.Empty
+                    : (string)Request.QueryString["numSolicitud"];
+
+            #region Edit                
+
+            #region Set header info on solicitud obj from previous solicitud obj
+
+            _Solicitud solicitudExistente = SolicitudRepo.GetSolicitudByNumSolicitud(numSolicitud);
+
+            solicitud.Status = solicitudExistente.Status;
+
+            solicitud.CoordinadorID = solicitudExistente.CoordinadorID;
+
+            solicitud.FechaRevision = solicitudExistente.FechaRevision;
+
+            solicitud.ComentarioProcesador = solicitudExistente.ComentarioProcesador;
+
+            solicitud.ProcesadorId = solicitudExistente.ProcesadorId;
+
+            solicitud.FechaAsigProcesador = solicitudExistente.FechaAsigProcesador;
+
+            solicitud.FechaTrabajado = solicitudExistente.FechaTrabajado;
+
+            #endregion
+
+            #region Update solicitud and doc obj according to status, also setup email
+
+            switch (solicitud.Status)
+            {
+                case _Solicitud.Statuses.PEND_TRABAJAR:
+
+                    solicitud.FechaTrabajado = Convert.ToDateTime(fechaTrabajoLbl.Text.Split(':')[1]);
+
+                    solicitud.ComentarioTrabajo = trabajoComment.Text;
+
+                    //Send notification that solicitud service is ready to be consumed
+
+                    break;
+            }
+
+            #endregion
+
+            try
+            {
+                #region Solicitud
+
+                solicitud.NumeroSolicitud = numSolicitud;
+
+                solicitud.ID = Convert.ToInt32(numSolicitud.Split('-')[1]);
+
+                Exception excep = SolicitudRepo.Update(solicitud);
+
+                if (excep != null)
+                {
+                    throw new Exception(string.Format("No se pudo actualizar la solicitud. Error Actualizar Solicitud: {0}",
+                            excep.Message.Replace("'", string.Empty)));
+                }
+
+                #endregion
+
+                #region Referencias
+
+                LinkedList<ReferenciaDisponible> referenciasExistentes =
+                    ReferenciasDisponiblesRepo.GetReferenciasByNumSolicitud(solicitud.ID.ToString());
+
+                for (int i = 0; i < referencias.Count; i++)
+                {
+                    referencias.ElementAt(i).ID = referenciasExistentes.ElementAt(i).ID;
+                }
+
+                string _error = ReferenciasDisponiblesRepo.Update(referencias);
+
+                if (!string.IsNullOrEmpty(_error))
+                {
+                    //ScriptManager.RegisterClientScriptBlock(this, GetType(), "referenciasUpdateAlert",
+                    //        string.Format("alert('No se pudo actualizar la solicitud. Error Actualizar Referencias: {0}');",
+                    //        _error.Replace("'", string.Empty)), true);
+
+                    throw new Exception(string.Format("No se pudo actualizar la solicitud. Error Actualizar Referencias: {0}",
+                            _error.Replace("'", string.Empty)));
+                }
+
+                #endregion
+            }
+
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "solicitudCreateAlert",
+                    string.Format("alert('{0}');", ex.Message.Replace("\r\n", " ")), true);
+            }
+
+            //Response.Redirect("Main.aspx", true);
+
+            #endregion
+
         }
     }
 }

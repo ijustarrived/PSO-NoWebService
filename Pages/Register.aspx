@@ -540,13 +540,15 @@
 
                     <div>
 
-                        <asp:Label runat="server" Text="Pueblo" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="Pueblo*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
                     <div>
 
                         <asp:DropDownList runat="server" ID="puebloPostalDDL">
+
+                            <asp:ListItem>Seleccionar</asp:ListItem>
 
                             <asp:ListItem>Adjuntas</asp:ListItem>
                             <asp:ListItem>Aguada</asp:ListItem>
@@ -628,6 +630,14 @@
                             <asp:ListItem>Yauco</asp:ListItem>
 
                         </asp:DropDownList>
+
+                    </div>
+
+                    <div>
+
+                        <asp:RequiredFieldValidator runat ="server" ControlToValidate ="puebloPostalDDL" Display ="Dynamic" 
+                            ErrorMessage ="Requerido" InitialValue ="Seleccionar" ForeColor ="#CC0000" 
+                            SetFocusOnError ="true"></asp:RequiredFieldValidator>
 
                     </div>
 
@@ -645,13 +655,15 @@
 
                     <div>
 
-                        <asp:Label runat="server" Text="Pueblo" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" Text="Pueblo*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
                     <div>
 
                         <asp:DropDownList runat="server" ID="puebloResiDDL">
+
+                            <asp:ListItem>Seleccionar</asp:ListItem>
 
                             <asp:ListItem>Adjuntas</asp:ListItem>
                             <asp:ListItem>Aguada</asp:ListItem>
@@ -733,6 +745,14 @@
                             <asp:ListItem>Yauco</asp:ListItem>
 
                         </asp:DropDownList>
+
+                    </div>
+
+                    <div>
+
+                        <asp:RequiredFieldValidator runat ="server" ControlToValidate ="puebloResiDDL" Display ="Dynamic" 
+                            ErrorMessage ="Requerido" InitialValue ="Seleccionar" ForeColor ="#CC0000" 
+                            SetFocusOnError ="true"></asp:RequiredFieldValidator>
 
                     </div>
 

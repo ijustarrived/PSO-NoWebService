@@ -108,6 +108,7 @@ namespace PSO.Pages.Dashboard.Reports
                 {
                     if (rolIndex == 1)
                     {
+                        // -1 cause procesador ddl, in solicitud, starts at 0 and in db starts in 1
                         if ((solicitudes.ElementAt(i2).ProcesadorId - 1) == i)
                         {
                             employeeSolicitudesCount++;
@@ -147,7 +148,7 @@ namespace PSO.Pages.Dashboard.Reports
 
                 point.Color = Color.FromKnownColor((KnownColor)colors.GetValue(colorIndex.Next(0, colors.Length - 1)));
 
-                productionChrt.Series[0].Points.Add(point);                
+                productionChrt.Series[0].Points.Add(point);
             }
         }
 
@@ -161,7 +162,7 @@ namespace PSO.Pages.Dashboard.Reports
             LinkedList<_Solicitud> solicitudes = new LinkedList<_Solicitud>();
 
             if (string.IsNullOrEmpty(desdeTxtBx.Text))
-                solicitudes = SolicitudRepo.GetSolicitudesByRole(role);
+                solicitudes = SolicitudRepo.GetSolicitudesCompletadasByRole(role);
 
             else if (!string.IsNullOrEmpty(desdeTxtBx.Text) && !string.IsNullOrEmpty(hastaTxtBx.Text))
                 solicitudes = SolicitudRepo.GetSolicitudesByRoleNDateRange(role, Convert.ToDateTime(desdeTxtBx.Text),
@@ -211,7 +212,7 @@ namespace PSO.Pages.Dashboard.Reports
                 ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR);
 
                 if (string.IsNullOrEmpty(desdeTxtBx.Text))
-                    coorGV.DataSource = SolicitudRepo.GetSolicitudesByRole(Rol.TiposRole.COORDINADOR);
+                    coorGV.DataSource = SolicitudRepo.GetSolicitudesCompletadasByRole(Rol.TiposRole.COORDINADOR);
 
                 else if (!string.IsNullOrEmpty(desdeTxtBx.Text) && !string.IsNullOrEmpty(hastaTxtBx.Text))
                     coorGV.DataSource = SolicitudRepo.GetSolicitudesByRoleNDateRange(Rol.TiposRole.COORDINADOR,
@@ -235,7 +236,7 @@ namespace PSO.Pages.Dashboard.Reports
                 ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
 
                 if (string.IsNullOrEmpty(desdeTxtBx.Text))
-                    procGV.DataSource = SolicitudRepo.GetSolicitudesByRole(Rol.TiposRole.PROCESADOR);
+                    procGV.DataSource = SolicitudRepo.GetSolicitudesCompletadasByRole(Rol.TiposRole.PROCESADOR);
 
                 else if (!string.IsNullOrEmpty(desdeTxtBx.Text) && !string.IsNullOrEmpty(hastaTxtBx.Text))
                     procGV.DataSource = SolicitudRepo.GetSolicitudesByRoleNDateRange(Rol.TiposRole.PROCESADOR,
@@ -290,5 +291,6 @@ namespace PSO.Pages.Dashboard.Reports
 
             coorGV.DataBind();
         }
+
     }
 }

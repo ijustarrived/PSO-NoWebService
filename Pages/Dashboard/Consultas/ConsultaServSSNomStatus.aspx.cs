@@ -115,6 +115,7 @@ namespace PSO.Pages.Dashboard.Consultas
 
                 //e.Row.Cells[4].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[4].Text));
 
+                // -1 cause pueblo ddl, in solicitud, starts in 0 and db starts in 1
                 e.Row.Cells[4].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[4].Text) - 1);
 
                 if (!e.Row.Cells[1].Text.Contains("-"))

@@ -34,6 +34,15 @@
 
         <div style ="display:inline-block">
 
+            <asp:Button runat="server" CssClass ="dashBtns" ID="dashBtn" OnClick ="dashBtn_Click" Text="Dashboard" />
+
+            <%--<asp:ImageButton runat ="server" style ="padding:0px" CssClass ="dashBtns" ID ="ImageButton1" OnClick ="logoutBtn_Click"
+                ImageUrl ="~/PageImages/WithText/Salir_wtext.png" />--%>
+
+        </div> 
+
+        <div style ="display:inline-block">
+
             <%--<asp:Button runat="server" CssClass ="dashBtns" ID="configBtn" OnClick ="configBtn_Click" Text="Configuraciones" />--%>
 
             <asp:ImageButton runat ="server" style ="padding:0px" CssClass ="dashBtns" ID ="configImgBtn" OnClick ="configBtn_Click" 
@@ -58,6 +67,8 @@
                 ImageUrl ="~/PageImages/WithText/Salir_wtext.png" />
 
         </div> 
+
+        
 
     </div>
 

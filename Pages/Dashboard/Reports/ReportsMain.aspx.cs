@@ -13,7 +13,7 @@ namespace PSO.Pages.Dashboard.Reports
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 #region Breadcrumb setup
 
@@ -38,12 +38,17 @@ namespace PSO.Pages.Dashboard.Reports
 
                 #region Verify role access
 
-                if (!user.Role.ViewRepAvisosStatus && !user.Role.ViewRepRecVsPen && !user.Role.ViewRepProduc)
+                //if (!user.Role.ViewRepAvisosStatus && !user.Role.ViewRepRecVsPen && !user.Role.ViewRepProduc)
+                //{
+                //    Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
+                //}
+
+                if (!user.Role.ViewRepRecVsPen && !user.Role.ViewRepProduc)
                 {
                     Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
                 }
 
-                AvisosRecibidosStatusBtn.Visible = user.Role.ViewRepAvisosStatus;
+                //AvisosRecibidosStatusBtn.Visible = user.Role.ViewRepAvisosStatus;
 
                 RecibidosVsProcessBtn.Visible = user.Role.ViewRepRecVsPen;
 
