@@ -979,7 +979,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
                         //Check doc status
                         for (int i = 0; i < docAsociadosStatuses.Count; i++)
                         {
-                            if (docAsociadosStatuses.ElementAt(i).SelectedIndex == 0)
+                            if (docAsociadosStatuses.ElementAt(i).SelectedIndex == 1)
                             {
                                 IsIncomplete = true;
 
@@ -1881,7 +1881,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
                     string.Format("alert('{0}');", ex.Message.Replace("\r\n", " ")), true);
             }
 
-            //Response.Redirect("Main.aspx", true);
+            Response.Redirect("Main.aspx", true);
 
             #endregion
 

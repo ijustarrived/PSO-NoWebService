@@ -433,14 +433,14 @@ namespace PSO.Entities
 
                 case Statuses.PEND_REVISAR:
 
-                    txtAndColor.Add("Pendiente a Revisarse por un Coordinador de Servicios"
+                    txtAndColor.Add("Pendiente de Revisarse por un Coordinador"
                         , ColorTranslator.FromHtml("#CFCF38"));
 
                     break;
 
                 case Statuses.PEND_TRABAJAR:
 
-                    txtAndColor.Add("Pendiente a Trabajarse por un Procesador de Servicios"
+                    txtAndColor.Add("Pendiente de Trabajarse por un Procesador"
                         , ColorTranslator.FromHtml("#CFCF38"));
 
                     break;

@@ -199,7 +199,7 @@
                               LegendText ="Pendientes por Documentos Incompletos" />
 
                         <asp:DataPoint Color="#d5d500" Font="Microsoft Sans Serif, 15pt" LabelForeColor="White"
-                              LegendText ="Pendientes de Asignarse un Procesador"/>
+                              LegendText ="Pendientes de Asignarse a un Procesador"/>
 
                         <asp:DataPoint Color="#13dafd" Font="Microsoft Sans Serif, 15pt" LabelForeColor="White"
                              LegendText ="Pendientes de Trabajarse por un Procesador"/>

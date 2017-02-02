@@ -170,6 +170,7 @@
     <Content Include="PageImages\PSO.ico" />
     <Content Include="PageImages\WithText\configuracion_wtext.png" />
     <Content Include="PageImages\WithText\Consultas_wtext.png" />
+    <Content Include="PageImages\WithText\dashboard.png" />
     <Content Include="PageImages\WithText\Perfil_wtext.png" />
     <Content Include="PageImages\WithText\Reportes_wtext.png" />
     <Content Include="PageImages\WithText\salir_wtext.png" />

@@ -37,7 +37,7 @@ namespace PSO.Pages.Dashboard
 
                 if (!user.Role.ViewRepAvisosStatus)
                 {
-                    dashBtn.Visible = false;
+                    dashImgBtn.Visible = false;
                 }
 
                 if (!user.Role.ViewConsuCoor && !user.Role.ViewConsuPendAsig

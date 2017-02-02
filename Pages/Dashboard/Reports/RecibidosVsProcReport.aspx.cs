@@ -156,13 +156,13 @@ namespace PSO.Pages.Dashboard.Reports
                 //Proc
                 case 2:
 
-                    //where = string.Format(@"{0} @AND (ProcesadorID = {1}) 
-                    //                            AND (FechaAsigProcesador <> CONVERT(datetime, '12/31/9999 23:59:59.997'))", 
-                    //                            where, searchDDL.SelectedIndex);
-
                     where = string.Format(@"{0} @AND (ProcesadorID = {1}) 
                                                 AND (FechaAsigProcesador <> CONVERT(datetime, '12/31/9999 23:59:59.997'))",
-                                               where, (searchDDL.SelectedIndex - 1));
+                                                where, searchDDL.SelectedIndex);
+
+                    //where = string.Format(@"{0} @AND (ProcesadorID = {1}) 
+                    //                            AND (FechaAsigProcesador <> CONVERT(datetime, '12/31/9999 23:59:59.997'))",
+                    //                           where, (searchDDL.SelectedIndex - 1));
 
 
                     break;
@@ -334,6 +334,8 @@ namespace PSO.Pages.Dashboard.Reports
                     LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
 
                     searchDDL.Items.Clear();
+
+                    searchDDL.Items.Add("Seleccionar");
 
                     for (int i = 0; i < procesadores.Count; i++)
                     {

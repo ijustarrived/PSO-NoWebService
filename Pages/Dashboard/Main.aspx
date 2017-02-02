@@ -10,7 +10,7 @@
             <%--<asp:Button runat="server" CssClass ="dashBtns" ID="solicitudBtn" OnClick ="solicitudBtn_Click" Text="Solicitud de Servicio" />--%>
 
             <asp:ImageButton runat ="server" style ="padding:0px" CssClass ="dashBtns" ID ="solicitudImgBtn" OnClick ="solicitudBtn_Click"
-                ImageUrl ="~/PageImages/WithText/Solicitud_wtext.png" />
+                ImageUrl ="~/PageImages/WithText/Solicitud_wtext.png" AlternateText ="Solicitud de Servicios" />
 
         </div>
 
@@ -19,7 +19,7 @@
             <%--<asp:Button runat="server" CssClass ="dashBtns" ID="consultaBtn" OnClick ="consultaBtn_Click" Text="Consultas" />--%>
 
             <asp:ImageButton runat ="server" style ="padding:0px" CssClass ="dashBtns" ID ="consultaImgBtn" OnClick ="consultaBtn_Click"
-                ImageUrl = "~/PageImages/WithText/Consultas_wtext.png" />
+                ImageUrl = "~/PageImages/WithText/Consultas_wtext.png" AlternateText ="Consultas" />
 
         </div>
 
@@ -28,16 +28,16 @@
             <%--<asp:Button runat="server" CssClass ="dashBtns" ID="reportBtn" OnClick ="reportBtn_Click" Text="Reportes" />--%>
 
             <asp:ImageButton runat ="server" style ="padding:0px" CssClass ="dashBtns" ID ="reportImgBtn" OnClick ="reportBtn_Click" 
-                ImageUrl ="~/PageImages/WithText/Reportes_wtext.png" />
+                ImageUrl ="~/PageImages/WithText/Reportes_wtext.png" AlternateText ="Reportes" />
 
         </div>
 
         <div style ="display:inline-block">
 
-            <asp:Button runat="server" CssClass ="dashBtns" ID="dashBtn" OnClick ="dashBtn_Click" Text="Dashboard" />
+            <%--<asp:Button runat="server" CssClass ="dashBtns" ID="dashBtn" OnClick ="dashBtn_Click" Text="Dashboard" />--%>
 
-            <%--<asp:ImageButton runat ="server" style ="padding:0px" CssClass ="dashBtns" ID ="ImageButton1" OnClick ="logoutBtn_Click"
-                ImageUrl ="~/PageImages/WithText/Salir_wtext.png" />--%>
+            <asp:ImageButton runat ="server" style ="padding:0px" CssClass ="dashBtns" ID ="dashImgBtn" OnClick ="dashBtn_Click"
+                ImageUrl ="~/PageImages/WithText/dashboard.png" AlternateText ="Dashboard" />
 
         </div> 
 
@@ -46,7 +46,7 @@
             <%--<asp:Button runat="server" CssClass ="dashBtns" ID="configBtn" OnClick ="configBtn_Click" Text="Configuraciones" />--%>
 
             <asp:ImageButton runat ="server" style ="padding:0px" CssClass ="dashBtns" ID ="configImgBtn" OnClick ="configBtn_Click" 
-                ImageUrl ="~/PageImages/WithText/configuracion_wtext.png" />
+                ImageUrl ="~/PageImages/WithText/configuracion_wtext.png" AlternateText ="Configuración" />
 
         </div>  
         
@@ -55,7 +55,7 @@
             <%--<asp:Button runat="server" CssClass ="dashBtns" ID="accountBtn" OnClick ="accountBtn_Click" Text="Perfil" />--%>
 
             <asp:ImageButton runat ="server" style ="padding:0px" CssClass ="dashBtns" ID ="accountImgBtn" OnClick ="accountBtn_Click"
-                ImageUrl ="~/PageImages/WithText/Perfil_wtext.png" />
+                ImageUrl ="~/PageImages/WithText/Perfil_wtext.png" AlternateText ="Perfil" />
 
         </div>  
 
