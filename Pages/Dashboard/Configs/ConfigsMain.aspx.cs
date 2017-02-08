@@ -1,6 +1,7 @@
 ﻿using PSO.Entities;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,7 +14,44 @@ namespace PSO.Pages.Dashboard.Configs
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            #region Verify role access
+
+            Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
+
+            if (!user.Role.ViewConfigDocReq && !user.Role.ViewConfigUser
+                && !user.Role.ViewConfigRole && !user.Role.EditCustomizationPage)
+            {
+                if (string.IsNullOrEmpty(user.Email))
+                    Response.Redirect("~/Pages/Login.aspx", true);
+
+                Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
+            }
+
+            docsReqBtn.Visible = user.Role.ViewConfigDocReq;
+
+            usersBtn.Visible = user.Role.ViewConfigUser;
+
+            rolesBtn.Visible = user.Role.ViewConfigRole;
+
+            customizePagesBtn.Visible = user.Role.EditCustomizationPage;
+
+            #endregion
+
+            #region Set cosmetics
+
+            Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+            customizePagesBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            docsReqBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            rolesBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            usersBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            #endregion
+
+            if (!IsPostBack)
             {
                 #region Breadcrumb setup
 
@@ -25,34 +63,15 @@ namespace PSO.Pages.Dashboard.Configs
 
                 mainDashLink.ID = "mainDashLink";
 
+                mainDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
                 mainDashLink.NavigateUrl = "~/Pages/Dashboard/Main.aspx";
 
                 mainDashLink.Text = "Inicio";
 
                 dashboardPnl.Controls.Add(mainDashLink);
 
-                #endregion
-
-                #region Verify role access
-
-                Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
-
-                if (!user.Role.ViewConfigDocReq && !user.Role.ViewConfigUser
-                    && !user.Role.ViewConfigRole)
-                {
-                    if (string.IsNullOrEmpty(user.Email))
-                        Response.Redirect("~/Pages/Login.aspx", true);
-
-                    Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
-                }
-
-                docsReqBtn.Visible = user.Role.ViewConfigDocReq;
-
-                usersBtn.Visible = user.Role.ViewConfigUser;
-
-                rolesBtn.Visible = user.Role.ViewConfigRole;
-
-                #endregion
+                #endregion                
             }
         }
 
@@ -69,6 +88,11 @@ namespace PSO.Pages.Dashboard.Configs
         protected void usersBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Pages/Dashboard/Configs/UsersConfig.aspx", true);
+        }
+
+        protected void customizePagesBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Pages/Dashboard/Configs/CustomizeAllPages.aspx", true);
         }
     }
 }

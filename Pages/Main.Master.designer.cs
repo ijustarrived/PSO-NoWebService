@@ -40,6 +40,24 @@ namespace PSO.Pages {
         protected global::System.Web.UI.WebControls.Panel dashboardLinkPnl;
         
         /// <summary>
+        /// sistemLogoImg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image sistemLogoImg;
+        
+        /// <summary>
+        /// pageTitleLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label pageTitleLbl;
+        
+        /// <summary>
         /// MainContent2 control.
         /// </summary>
         /// <remarks>

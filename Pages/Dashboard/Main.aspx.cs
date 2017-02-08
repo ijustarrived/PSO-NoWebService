@@ -46,7 +46,8 @@ namespace PSO.Pages.Dashboard
                     consultaImgBtn.Visible = false;
                 }
 
-                if (!user.Role.ViewConfigDocReq && !user.Role.ViewConfigRole && !user.Role.ViewConfigUser)
+                if (!user.Role.ViewConfigDocReq && !user.Role.ViewConfigRole
+                    && !user.Role.ViewConfigUser && !user.Role.EditCustomizationPage)
                 {
                     configImgBtn.Visible = false;
                 }

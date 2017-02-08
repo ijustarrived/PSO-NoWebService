@@ -13,6 +13,15 @@ namespace PSO.Pages {
     public partial class Login {
         
         /// <summary>
+        /// emailLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label emailLbl;
+        
+        /// <summary>
         /// emailTxtBx control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace PSO.Pages {
         protected global::System.Web.UI.WebControls.TextBox emailTxtBx;
         
         /// <summary>
+        /// passLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label passLbl;
+        
+        /// <summary>
         /// passwordTxtBx control.
         /// </summary>
         /// <remarks>
@@ -29,6 +47,15 @@ namespace PSO.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox passwordTxtBx;
+        
+        /// <summary>
+        /// recoverPassLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink recoverPassLink;
         
         /// <summary>
         /// loginBtn control.

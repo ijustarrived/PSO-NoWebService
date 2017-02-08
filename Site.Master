@@ -101,7 +101,8 @@
 
                     <div style=" display: inline-block; margin-left: 20px">
 
-                        <asp:Image runat="server" ImageUrl="~/PageImages/PSO_horizontal.png" Width="200px" Height="50px" />
+                        <asp:Image runat="server" ID ="logoImg" 
+                            ImageUrl="~/PageImages/PSO_horizontal.png" Width="40%" Height="5%" />
 
                     </div>
 
@@ -125,13 +126,9 @@
 
         </table>
 
-        <div>  
-            
-               
+        <div>                                     
 
-                         
-
-            <div style ="background-color:#616161; text-align:center">
+            <div style ="background-color:#616161; text-align:center" runat ="server" id ="pageTitleDiv">
 
                 <asp:Label ForeColor ="#E5E5E5" Font-Size ="XX-Large" Font-Bold ="true" runat ="server"><%: Page.Title %></asp:Label>
 

@@ -22,6 +22,15 @@ namespace PSO {
         protected global::System.Web.UI.WebControls.Panel dashboardLinkPnl;
         
         /// <summary>
+        /// logoImg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image logoImg;
+        
+        /// <summary>
         /// userLink control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace PSO {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button logoutBtn;
+        
+        /// <summary>
+        /// pageTitleDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pageTitleDiv;
         
         /// <summary>
         /// MainContent control.

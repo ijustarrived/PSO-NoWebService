@@ -2,6 +2,7 @@
 using PSO.Repositorios;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,6 +15,23 @@ namespace PSO.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            #region Set cosmetics
+
+            Cosmetic cosmetic = Session["Cosmetic"] == null ? CosmeticsRepo.GetPageCosmetics()
+                 : (Cosmetic)Session["Cosmetic"];
+
+            emailLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            passLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            loginBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            registerBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            recoverPassLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            #endregion
+
             SetFocus(emailTxtBx);
 
             if (!IsPostBack)
@@ -35,15 +53,15 @@ namespace PSO.Pages
                 user = UserRepo.GetUsersByRole((int)Rol.TiposRole.ADMINISTRADOR).ElementAt(0);
 
                 passwordTxtBx.Text = Usuario.DecryptWord(user.Password);
-            } 
+            }
 
             #endregion
 
-            if(!string.IsNullOrEmpty(user.Email))
+            if (!string.IsNullOrEmpty(user.Email))
             {
                 string encryptedPass = Usuario.EncryptWord(passwordTxtBx.Text);
 
-                if(!user.Password.Equals(encryptedPass))
+                if (!user.Password.Equals(encryptedPass))
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "wrongPassAlert",
                     "alert('Contraseña incorrecta');", true);
@@ -61,7 +79,7 @@ namespace PSO.Pages
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "wrongEmailAlert",
                    "alert('Correo Electrónico no existe');", true);
-            }            
+            }
         }
 
         protected void registerBtn_Click(object sender, EventArgs e)

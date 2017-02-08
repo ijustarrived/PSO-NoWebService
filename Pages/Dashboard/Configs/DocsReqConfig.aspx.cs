@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,6 +16,44 @@ namespace PSO.Pages.Dashboard.Configs
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            #region Verify role permission
+
+            Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
+
+            #region Verify role permission
+
+            if (!user.Role.ViewConfigDocReq)
+            {
+                if (string.IsNullOrEmpty(user.Email))
+                    Response.Redirect("~/Pages/Login.aspx", true);
+
+                Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
+            }
+
+            #endregion
+
+            #endregion
+
+            Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+            agregraDocLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            nombreDocLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            createDocReqBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            docsGV.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            docsGV.FooterStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            docsGV.HeaderStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            docsGV.PagerStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "InvokeChangeClinetSideColors",
+                                    string.Format("ChangeClinetSideColors('{0}', '{1}');",
+                                    cosmetic.LabelForeColor, cosmetic.TitleBackColor), true);
+
             #region Breadcrumb config
 
             var dashboardPnl = (Panel)Master.FindControl("dashboardLinkPnl");
@@ -28,47 +67,39 @@ namespace PSO.Pages.Dashboard.Configs
             Label secondDashlbl = new Label();
 
             #region 1st link
+
             mainDashLink.NavigateUrl = "~/Pages/Dashboard/Main.aspx";
+
+            mainDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
             mainDashLink.Text = "Inicio";
 
             dashboardPnl.Controls.Add(mainDashLink);
+
             #endregion
 
             #region 2nd link
+
             secondDashlbl.Text = " > ";
+
+            secondDashlbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
             dashboardPnl.Controls.Add(secondDashlbl);
 
             secondDashLink.NavigateUrl = "~/Pages/Dashboard/Configs/ConfigsMain.aspx";
 
+            secondDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
             secondDashLink.Text = "Configuraci&oacute;n";
 
             dashboardPnl.Controls.Add(secondDashLink);
+
             #endregion
 
             #endregion
 
             if (!IsPostBack)
             {
-                #region Verify role permission
-
-                Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
-
-                #region Verify role permission
-
-                if (!user.Role.ViewConfigDocReq)
-                {
-                    if (string.IsNullOrEmpty(user.Email))
-                        Response.Redirect("~/Pages/Login.aspx", true);
-
-                    Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
-                }
-
-                #endregion
-
-                #endregion
-
                 if (!Request.Browser.Browser.Equals("InternetExplorer") && !Request.Browser.Browser.Equals("Safari"))
                 {
                     ViewState["editCell"] = 2;
@@ -126,6 +157,8 @@ namespace PSO.Pages.Dashboard.Configs
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
                 int deleteCell = Convert.ToInt32(ViewState["deleteCell"]),
                     updateCell = Convert.ToInt32(ViewState["updateCell"]),
                     editCell = Convert.ToInt32(ViewState["editCell"]);
@@ -156,6 +189,12 @@ namespace PSO.Pages.Dashboard.Configs
 
                         updateBtn = (ButtonField)docsGV.Columns[Math.Abs(updateCell - 1)];
                     }
+
+                    delBtn.ControlStyle.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+                    editBtn.ControlStyle.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+                    updateBtn.ControlStyle.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
                     if (!Request.Browser.Browser.Equals("Chrome"))
                     {

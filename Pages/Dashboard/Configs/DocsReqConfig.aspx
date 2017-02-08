@@ -3,17 +3,30 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
 
+    <script>
+
+        function ChangeClinetSideColors(lblColor, titleColor)
+        {
+            
+
+            $('#printBtn').css({ 'color': lblColor });
+        }
+
+    </script>
+
     <div style ="text-align:center; margin-top:20px">
 
-            <asp:Label runat="server" Font-Size ="X-Large" Text="Agregar un Documento Requerido" ForeColor="#79256E"></asp:Label>
+            <asp:Label runat="server" ID="agregraDocLbl" Font-Size ="X-Large"
+                 Text="Agregar un Documento Requerido" ForeColor="#79256E"></asp:Label>
 
         </div>
 
-    <div class="container" style="width: 310px; margin-left: auto; margin-right: auto; margin-bottom: 20px; margin-top:20px">
+    <div class="container" 
+        style="width: 310px; margin-left: auto; margin-right: auto; margin-bottom: 20px; margin-top:20px">
 
         <div style="float: left;">
 
-            <asp:Label runat="server" Text="Nombre del Documento" ForeColor="#79256E"></asp:Label>
+            <asp:Label runat="server" ID="nombreDocLbl" Text="Nombre del Documento" ForeColor="#79256E"></asp:Label>
 
         </div>
 
@@ -34,7 +47,8 @@
         <div style ="text-align:center; margin-top:20px">
 
             <asp:Button ID ="createDocReqBtn" OnClick ="createDocReqBtn_Click" BorderColor="#616161" CssClass="btn"
-                 BorderWidth="3" Text="Crear" UseSubmitBehavior ="false" runat="server" ForeColor="#79256E" Style="padding: 10px 15px;" />
+                 BorderWidth="3" Text="Crear" UseSubmitBehavior ="false" runat="server" 
+                ForeColor="#79256E" Style="padding: 10px 15px;" />
 
         </div>
 
@@ -47,7 +61,8 @@
         </div>
 
 
-    <asp:GridView runat ="server" ID ="docsGV" DataSourceID ="docsSQLDS" style ="margin-top:40px; width:95%; margin-left:auto; margin-right:auto" 
+    <asp:GridView runat ="server" ID ="docsGV" DataSourceID ="docsSQLDS" 
+        style ="margin-top:40px; width:95%; margin-left:auto; margin-right:auto" 
         AllowPaging="True" ForeColor="#79256E" BackColor="#F3F0F7" CellPadding="2" GridLines="None" CssClass="table" 
         ShowHeaderWhenEmpty="true" AutoGenerateColumns="false" OnRowDataBound ="docsGV_RowDataBound"
           DataKeyNames="ID" >
@@ -117,10 +132,7 @@
 
         <input type="button" onclick="javascript:window.print();" 
             style="border-style: solid; border-color: #616161; border-width: 3px; padding: 10px 15px;"
-            value="Imprimir"  />
-
-        <%--<asp:Button BorderColor="#616161" CssClass="btn" BorderWidth="3" Text="Imprimir"
-            runat="server" OnClientClick="javascript:window.print();" ForeColor="#79256E" Style="padding: 10px 15px;" />--%>
+            value="Imprimir" id ="printBtn" />
     </div>
 
     </asp:Content>

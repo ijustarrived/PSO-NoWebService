@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using PSO.Entities;
+using PSO.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +71,16 @@ namespace PSO.Pages
         protected void Page_Load(object sender, EventArgs e)
         {
             Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
+
+            Cosmetic cosmetic = Session["Cosmetic"] == null ? CosmeticsRepo.GetPageCosmetics()
+                 : (Cosmetic)Session["Cosmetic"];
+
+            sistemLogoImg.ImageUrl = cosmetic.LogoPath;
+
+            pageTitleLbl.ForeColor = System.Drawing.ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            if (Session["Cosmetic"] == null)
+                Session["Cosmetic"] = cosmetic;
 
             #region Avoid Unauthenticated login
 

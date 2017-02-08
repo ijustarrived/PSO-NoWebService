@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Web.UI;
 using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
 
@@ -13,6 +14,8 @@ namespace PSO.Pages.Dashboard.Reports
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            #region Verify role permission
+
             Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
 
             if (!user.Role.ViewRepProduc)
@@ -22,6 +25,52 @@ namespace PSO.Pages.Dashboard.Reports
 
                 Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
             }
+
+            #endregion
+
+            #region Set cosmetics
+
+            Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+            Page.Title = cosmetic.ReportProduccionTitle;
+
+            detallesTitleDiv.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            searchBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            periodoFechaLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            totalAvisosLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            #region Set coor gv colors
+
+            coorGV.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            coorGV.FooterStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            coorGV.PagerStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            coorGV.HeaderStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            #endregion
+
+            #region Set proc gv colors
+
+            procGV.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            procGV.FooterStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            procGV.PagerStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            procGV.HeaderStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            #endregion
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "InvokeChangeClinetSideColors",
+                                   string.Format("ChangeClinetSideColors('{0}', '{1}');",
+                                   cosmetic.LabelForeColor, cosmetic.TitleBackColor), true);
+
+            #endregion
 
             #region Breadcrumb config
 
@@ -41,6 +90,8 @@ namespace PSO.Pages.Dashboard.Reports
 
             mainDashLink.Text = "Inicio";
 
+            mainDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
             dashboardPnl.Controls.Add(mainDashLink);
 
             #endregion
@@ -49,11 +100,15 @@ namespace PSO.Pages.Dashboard.Reports
 
             secondDashlbl.Text = " > ";
 
+            secondDashlbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
             dashboardPnl.Controls.Add(secondDashlbl);
 
             secondDashLink.NavigateUrl = "~/Pages/Dashboard/Reports/ReportsMain.aspx";
 
             secondDashLink.Text = "Reportes";
+
+            secondDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
             dashboardPnl.Controls.Add(secondDashLink);
 
@@ -260,6 +315,14 @@ namespace PSO.Pages.Dashboard.Reports
 
                 e.Row.Cells[0].Text = users.ElementAt(Convert.ToInt32(e.Row.Cells[0].Text)).GetNombreCompleto();
             }
+
+            else if (e.Row.RowType == DataControlRowType.EmptyDataRow)
+            {
+                Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+                ((Label)e.Row.Controls[0].Controls[0].FindControl("emptyLbl")).ForeColor
+                    = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+            }
         }
 
         protected void procGV_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -268,13 +331,19 @@ namespace PSO.Pages.Dashboard.Reports
             {
                 LinkedList<Usuario> users = (LinkedList<Usuario>)ViewState["users"];
 
-                //e.Row.Cells[0].Text = users.ElementAt(Convert.ToInt32(e.Row.Cells[0].Text)).GetNombreCompleto();
-
                 e.Row.Cells[0].Text = users.ElementAt(Convert.ToInt32(e.Row.Cells[0].Text) - 1).GetNombreCompleto();
 
 
                 DateTime fechaTrabajo = Convert.ToDateTime(e.Row.Cells[3].Text),
                 fechaTramite = Convert.ToDateTime(e.Row.Cells[2].Text);
+            }
+
+            else if (e.Row.RowType == DataControlRowType.EmptyDataRow)
+            {
+                Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+                ((Label)e.Row.Controls[0].Controls[0].FindControl("emptyLbl")).ForeColor
+                    = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
             }
         }
 

@@ -22,6 +22,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl statusDiv;
         
         /// <summary>
+        /// statusLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label statusLbl;
+        
+        /// <summary>
         /// statusTxtLbl control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label statusTxtLbl;
+        
+        /// <summary>
+        /// numSolicitudTbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTable numSolicitudTbl;
         
         /// <summary>
         /// userRow control.
@@ -130,6 +148,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator asigCommentRFV;
         
         /// <summary>
+        /// procTbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTable procTbl;
+        
+        /// <summary>
         /// asigRow control.
         /// </summary>
         /// <remarks>
@@ -202,6 +229,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl trabajoCommentDiv;
         
         /// <summary>
+        /// trabajoCommentLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label trabajoCommentLbl;
+        
+        /// <summary>
         /// trabajoComment control.
         /// </summary>
         /// <remarks>
@@ -209,6 +245,33 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox trabajoComment;
+        
+        /// <summary>
+        /// campoReqLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label campoReqLbl;
+        
+        /// <summary>
+        /// solicitanteTitleDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl solicitanteTitleDiv;
+        
+        /// <summary>
+        /// nombreLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nombreLbl;
         
         /// <summary>
         /// nameTxtBx control.
@@ -220,6 +283,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox nameTxtBx;
         
         /// <summary>
+        /// patLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label patLbl;
+        
+        /// <summary>
         /// paternoTxtBx control.
         /// </summary>
         /// <remarks>
@@ -229,6 +301,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox paternoTxtBx;
         
         /// <summary>
+        /// matLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label matLbl;
+        
+        /// <summary>
         /// maternoTxtBx control.
         /// </summary>
         /// <remarks>
@@ -236,6 +317,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox maternoTxtBx;
+        
+        /// <summary>
+        /// sSLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label sSLbl;
         
         /// <summary>
         /// encryptedSSNPartHF control.
@@ -256,6 +346,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox ssTxtBx;
         
         /// <summary>
+        /// emailLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label emailLbl;
+        
+        /// <summary>
         /// emailTxtBx control.
         /// </summary>
         /// <remarks>
@@ -265,6 +364,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox emailTxtBx;
         
         /// <summary>
+        /// bDayLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label bDayLbl;
+        
+        /// <summary>
         /// bdayTxtBx control.
         /// </summary>
         /// <remarks>
@@ -272,6 +380,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox bdayTxtBx;
+        
+        /// <summary>
+        /// driversLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label driversLbl;
         
         /// <summary>
         /// decryptedDriversHF control.
@@ -292,6 +409,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox driversTxtBx;
         
         /// <summary>
+        /// celLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label celLbl;
+        
+        /// <summary>
         /// celTxtBx control.
         /// </summary>
         /// <remarks>
@@ -299,6 +425,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox celTxtBx;
+        
+        /// <summary>
+        /// telResLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label telResLbl;
         
         /// <summary>
         /// telResiTxtBx control.
@@ -310,6 +445,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox telResiTxtBx;
         
         /// <summary>
+        /// dirResLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label dirResLbl;
+        
+        /// <summary>
         /// dirTxtBx control.
         /// </summary>
         /// <remarks>
@@ -317,6 +461,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox dirTxtBx;
+        
+        /// <summary>
+        /// puebloLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label puebloLbl;
         
         /// <summary>
         /// puebloDDL control.
@@ -328,6 +481,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.DropDownList puebloDDL;
         
         /// <summary>
+        /// codigoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label codigoLbl;
+        
+        /// <summary>
         /// codigoTxtBx control.
         /// </summary>
         /// <remarks>
@@ -335,6 +497,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox codigoTxtBx;
+        
+        /// <summary>
+        /// dirPosLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label dirPosLbl;
         
         /// <summary>
         /// dirPostalTxtBx control.
@@ -346,6 +517,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox dirPostalTxtBx;
         
         /// <summary>
+        /// puebloPosLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label puebloPosLbl;
+        
+        /// <summary>
         /// puebloPostalDDL control.
         /// </summary>
         /// <remarks>
@@ -353,6 +533,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList puebloPostalDDL;
+        
+        /// <summary>
+        /// codigoPosLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label codigoPosLbl;
         
         /// <summary>
         /// codigoPostalPosTxtBx control.
@@ -364,6 +553,33 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox codigoPostalPosTxtBx;
         
         /// <summary>
+        /// refTitleDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl refTitleDiv;
+        
+        /// <summary>
+        /// nombreRefLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nombreRefLbl;
+        
+        /// <summary>
+        /// nombreRefPt2Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nombreRefPt2Lbl;
+        
+        /// <summary>
         /// cercanoTxt control.
         /// </summary>
         /// <remarks>
@@ -371,6 +587,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox cercanoTxt;
+        
+        /// <summary>
+        /// parentescoRefLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label parentescoRefLbl;
         
         /// <summary>
         /// parentescoRefDDL control.
@@ -382,6 +607,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.DropDownList parentescoRefDDL;
         
         /// <summary>
+        /// telFamRefLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label telFamRefLbl;
+        
+        /// <summary>
         /// telFamTxtBx control.
         /// </summary>
         /// <remarks>
@@ -389,6 +623,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox telFamTxtBx;
+        
+        /// <summary>
+        /// dirRefLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label dirRefLbl;
         
         /// <summary>
         /// dirRefTxtBx control.
@@ -400,6 +643,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox dirRefTxtBx;
         
         /// <summary>
+        /// puebloRefLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label puebloRefLbl;
+        
+        /// <summary>
         /// puebloRefDDL control.
         /// </summary>
         /// <remarks>
@@ -407,6 +659,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList puebloRefDDL;
+        
+        /// <summary>
+        /// codigoRefLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label codigoRefLbl;
         
         /// <summary>
         /// codigoRefTxtBx control.
@@ -418,6 +679,24 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox codigoRefTxtBx;
         
         /// <summary>
+        /// nombreRef2Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nombreRef2Lbl;
+        
+        /// <summary>
+        /// nombreRef2Pt2Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nombreRef2Pt2Lbl;
+        
+        /// <summary>
         /// cercano2TxtBx control.
         /// </summary>
         /// <remarks>
@@ -425,6 +704,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox cercano2TxtBx;
+        
+        /// <summary>
+        /// parentescoRef2Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label parentescoRef2Lbl;
         
         /// <summary>
         /// parentescoDDL control.
@@ -436,6 +724,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.DropDownList parentescoDDL;
         
         /// <summary>
+        /// telRef2Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label telRef2Lbl;
+        
+        /// <summary>
         /// telFam2TxtBx control.
         /// </summary>
         /// <remarks>
@@ -443,6 +740,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox telFam2TxtBx;
+        
+        /// <summary>
+        /// dirRef2Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label dirRef2Lbl;
         
         /// <summary>
         /// dirRef2TxtBx control.
@@ -454,6 +760,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox dirRef2TxtBx;
         
         /// <summary>
+        /// puebloRef2Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label puebloRef2Lbl;
+        
+        /// <summary>
         /// puebloRef2DDL control.
         /// </summary>
         /// <remarks>
@@ -461,6 +776,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList puebloRef2DDL;
+        
+        /// <summary>
+        /// codigoRef2Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label codigoRef2Lbl;
         
         /// <summary>
         /// codigoRef2TxtBx control.
@@ -472,6 +796,24 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox codigoRef2TxtBx;
         
         /// <summary>
+        /// nombreRef3Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nombreRef3Lbl;
+        
+        /// <summary>
+        /// nombreRef3Pt3Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nombreRef3Pt3Lbl;
+        
+        /// <summary>
         /// cercanoRef3TxtBx control.
         /// </summary>
         /// <remarks>
@@ -479,6 +821,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox cercanoRef3TxtBx;
+        
+        /// <summary>
+        /// parentescoRef3Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label parentescoRef3Lbl;
         
         /// <summary>
         /// parentescoRef3DDL control.
@@ -490,6 +841,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.DropDownList parentescoRef3DDL;
         
         /// <summary>
+        /// telRef3Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label telRef3Lbl;
+        
+        /// <summary>
         /// telFamRef3TxtBx control.
         /// </summary>
         /// <remarks>
@@ -497,6 +857,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox telFamRef3TxtBx;
+        
+        /// <summary>
+        /// dirRef3Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label dirRef3Lbl;
         
         /// <summary>
         /// dirRef3TxtBx control.
@@ -508,6 +877,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox dirRef3TxtBx;
         
         /// <summary>
+        /// puebloRef3Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label puebloRef3Lbl;
+        
+        /// <summary>
         /// puebloRef3DDL control.
         /// </summary>
         /// <remarks>
@@ -515,6 +893,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList puebloRef3DDL;
+        
+        /// <summary>
+        /// codigoRef3Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label codigoRef3Lbl;
         
         /// <summary>
         /// codigoRef3TxtBx control.
@@ -526,6 +913,24 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox codigoRef3TxtBx;
         
         /// <summary>
+        /// coTitleDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl coTitleDiv;
+        
+        /// <summary>
+        /// nombreCoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nombreCoLbl;
+        
+        /// <summary>
         /// nombreCoTxtBx control.
         /// </summary>
         /// <remarks>
@@ -533,6 +938,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox nombreCoTxtBx;
+        
+        /// <summary>
+        /// patCoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label patCoLbl;
         
         /// <summary>
         /// paternoCoTxtBx control.
@@ -544,6 +958,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox paternoCoTxtBx;
         
         /// <summary>
+        /// matCoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label matCoLbl;
+        
+        /// <summary>
         /// maternoCoTxtBx control.
         /// </summary>
         /// <remarks>
@@ -551,6 +974,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox maternoCoTxtBx;
+        
+        /// <summary>
+        /// sSCoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label sSCoLbl;
         
         /// <summary>
         /// ssEncryptedPartCoHF control.
@@ -571,6 +1003,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox ssCoTxtBx;
         
         /// <summary>
+        /// emailCoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label emailCoLbl;
+        
+        /// <summary>
         /// emailCoTxtBx control.
         /// </summary>
         /// <remarks>
@@ -580,6 +1021,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox emailCoTxtBx;
         
         /// <summary>
+        /// bDayCoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label bDayCoLbl;
+        
+        /// <summary>
         /// bdayCoTxtBx control.
         /// </summary>
         /// <remarks>
@@ -587,6 +1037,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox bdayCoTxtBx;
+        
+        /// <summary>
+        /// driversCoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label driversCoLbl;
         
         /// <summary>
         /// decryptedDriversCoHF control.
@@ -607,6 +1066,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox driversCoTxtBx;
         
         /// <summary>
+        /// celCoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label celCoLbl;
+        
+        /// <summary>
         /// celCoTextBx control.
         /// </summary>
         /// <remarks>
@@ -614,6 +1082,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox celCoTextBx;
+        
+        /// <summary>
+        /// telCoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label telCoLbl;
         
         /// <summary>
         /// telCoTxtBx control.
@@ -625,6 +1102,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox telCoTxtBx;
         
         /// <summary>
+        /// dirCoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label dirCoLbl;
+        
+        /// <summary>
         /// dirCoTxtBx control.
         /// </summary>
         /// <remarks>
@@ -632,6 +1118,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox dirCoTxtBx;
+        
+        /// <summary>
+        /// puebloCoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label puebloCoLbl;
         
         /// <summary>
         /// puebloCoDDL control.
@@ -643,6 +1138,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.DropDownList puebloCoDDL;
         
         /// <summary>
+        /// codigoCoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label codigoCoLbl;
+        
+        /// <summary>
         /// codigoCoTxtBx control.
         /// </summary>
         /// <remarks>
@@ -650,6 +1154,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox codigoCoTxtBx;
+        
+        /// <summary>
+        /// dirPosCoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label dirPosCoLbl;
         
         /// <summary>
         /// dirCoPostalTxtbx control.
@@ -661,6 +1174,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.TextBox dirCoPostalTxtbx;
         
         /// <summary>
+        /// puebloPosCoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label puebloPosCoLbl;
+        
+        /// <summary>
         /// puebloCoPostalDDL control.
         /// </summary>
         /// <remarks>
@@ -670,6 +1192,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.WebControls.DropDownList puebloCoPostalDDL;
         
         /// <summary>
+        /// codigoPosCoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label codigoPosCoLbl;
+        
+        /// <summary>
         /// codigoCoPostalTxtBx control.
         /// </summary>
         /// <remarks>
@@ -677,6 +1208,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox codigoCoPostalTxtBx;
+        
+        /// <summary>
+        /// docReqTitleDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl docReqTitleDiv;
         
         /// <summary>
         /// docReqDiv control.
@@ -697,6 +1237,15 @@ namespace PSO.Pages.Dashboard {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl docRecievedParentDiv;
         
         /// <summary>
+        /// docRecTitleDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl docRecTitleDiv;
+        
+        /// <summary>
         /// docsAsociadosTableTag control.
         /// </summary>
         /// <remarks>
@@ -704,6 +1253,15 @@ namespace PSO.Pages.Dashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTable docsAsociadosTableTag;
+        
+        /// <summary>
+        /// asegurarseLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label asegurarseLbl;
         
         /// <summary>
         /// tempSaveBtn control.

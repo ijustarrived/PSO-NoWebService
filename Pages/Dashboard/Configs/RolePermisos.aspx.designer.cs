@@ -22,6 +22,24 @@ namespace PSO.Pages.Dashboard.Configs {
         protected global::System.Web.UI.WebControls.Label roleLbl;
         
         /// <summary>
+        /// consultaTitleDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl consultaTitleDiv;
+        
+        /// <summary>
+        /// consultaCoorLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label consultaCoorLbl;
+        
+        /// <summary>
         /// viewConsuCoorChkBx control.
         /// </summary>
         /// <remarks>
@@ -29,6 +47,15 @@ namespace PSO.Pages.Dashboard.Configs {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox viewConsuCoorChkBx;
+        
+        /// <summary>
+        /// consultaProLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label consultaProLbl;
         
         /// <summary>
         /// viewConsuProcChkBx control.
@@ -40,6 +67,15 @@ namespace PSO.Pages.Dashboard.Configs {
         protected global::System.Web.UI.WebControls.CheckBox viewConsuProcChkBx;
         
         /// <summary>
+        /// consultaSolicitudLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label consultaSolicitudLbl;
+        
+        /// <summary>
         /// viewConsuSolicitudesChkBx control.
         /// </summary>
         /// <remarks>
@@ -47,6 +83,15 @@ namespace PSO.Pages.Dashboard.Configs {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox viewConsuSolicitudesChkBx;
+        
+        /// <summary>
+        /// consultaSupLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label consultaSupLbl;
         
         /// <summary>
         /// viewConsuPenAsigChkBx control.
@@ -58,6 +103,15 @@ namespace PSO.Pages.Dashboard.Configs {
         protected global::System.Web.UI.WebControls.CheckBox viewConsuPenAsigChkBx;
         
         /// <summary>
+        /// configRoleLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label configRoleLbl;
+        
+        /// <summary>
         /// viewConfigRoleChkBx control.
         /// </summary>
         /// <remarks>
@@ -65,6 +119,15 @@ namespace PSO.Pages.Dashboard.Configs {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox viewConfigRoleChkBx;
+        
+        /// <summary>
+        /// configUserLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label configUserLbl;
         
         /// <summary>
         /// viewConfigUserChkBx control.
@@ -76,6 +139,15 @@ namespace PSO.Pages.Dashboard.Configs {
         protected global::System.Web.UI.WebControls.CheckBox viewConfigUserChkBx;
         
         /// <summary>
+        /// consultaDocLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label consultaDocLbl;
+        
+        /// <summary>
         /// viewConfigDocReqChkBx control.
         /// </summary>
         /// <remarks>
@@ -83,6 +155,15 @@ namespace PSO.Pages.Dashboard.Configs {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox viewConfigDocReqChkBx;
+        
+        /// <summary>
+        /// reportComparacionLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label reportComparacionLbl;
         
         /// <summary>
         /// viewReportReciVsProcChkBx control.
@@ -94,6 +175,15 @@ namespace PSO.Pages.Dashboard.Configs {
         protected global::System.Web.UI.WebControls.CheckBox viewReportReciVsProcChkBx;
         
         /// <summary>
+        /// reportProductionLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label reportProductionLbl;
+        
+        /// <summary>
         /// viewReportProdu control.
         /// </summary>
         /// <remarks>
@@ -101,6 +191,15 @@ namespace PSO.Pages.Dashboard.Configs {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox viewReportProdu;
+        
+        /// <summary>
+        /// solicitudLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label solicitudLbl;
         
         /// <summary>
         /// viewSolicitudChkBx control.
@@ -112,6 +211,15 @@ namespace PSO.Pages.Dashboard.Configs {
         protected global::System.Web.UI.WebControls.CheckBox viewSolicitudChkBx;
         
         /// <summary>
+        /// dashBrLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label dashBrLbl;
+        
+        /// <summary>
         /// viewReportAvisoStatusChkBx control.
         /// </summary>
         /// <remarks>
@@ -121,31 +229,31 @@ namespace PSO.Pages.Dashboard.Configs {
         protected global::System.Web.UI.WebControls.CheckBox viewReportAvisoStatusChkBx;
         
         /// <summary>
-        /// editRoleChkBx control.
+        /// modificarTitleDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox editRoleChkBx;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modificarTitleDiv;
         
         /// <summary>
-        /// editUsersChkBx control.
+        /// CustomizeLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox editUsersChkBx;
+        protected global::System.Web.UI.WebControls.Label CustomizeLbl;
         
         /// <summary>
-        /// editDocReqChkBx control.
+        /// customizePagesChkBx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox editDocReqChkBx;
+        protected global::System.Web.UI.WebControls.CheckBox customizePagesChkBx;
         
         /// <summary>
         /// saveBtn control.

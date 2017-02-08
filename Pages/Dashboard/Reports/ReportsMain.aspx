@@ -12,13 +12,6 @@
 
         </div>
 
-        <%--<div style ="display:inline-block">
-
-            <asp:Button runat="server" CssClass ="dashBtns" ID="AvisosRecibidosStatusBtn" OnClick ="AvisosRecibidosStatusBtn_Click"
-                Text="Solicitudes Recibidas por Status" />
-
-        </div> --%>
-
         <div style ="display:inline-block">
 
             <asp:Button runat="server" CssClass ="dashBtns" ID="productionBtn" OnClick ="productionBtn_Click"

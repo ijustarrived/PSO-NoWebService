@@ -6,13 +6,22 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
 
+    <script>
+
+        function ChangeClinetSideColors(lblColor, titleColor)
+        {           
+            $('#printBtn').css({ 'color': lblColor });
+        }
+
+    </script>
+
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.js"></script>
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 
     <div style="text-align: center; margin-top: 20px; margin-bottom: 20px">
 
-        <asp:Label runat="server" Text="Periodo de Fechas - Solicitudes Recibidas" ForeColor="#79256E"></asp:Label>
+        <asp:Label runat="server" ID ="periodoFechaLbl" Text="Periodo de Fechas - Solicitudes Recibidas" ForeColor="#79256E"></asp:Label>
 
     </div>
 
@@ -117,7 +126,7 @@
 
         </asp:Chart>
 
-        <div style="background-color: #616161; margin-top: 40px">
+        <div runat ="server" id ="detallesTitleDiv" style="background-color: #616161; margin-top: 40px">
 
             <asp:Label ForeColor="#E5E5E5" Font-Size="X-Large" Font-Bold="true" runat="server">Detalle del Comparativo
                  entre Solicitudes Recibidas y Procesadas</asp:Label>
@@ -130,7 +139,8 @@
 
         <div style="text-align: center; margin-top: 20px; margin-bottom: 20px">
 
-            <asp:Label runat="server" Text="Periodo de Fechas - Solicitudes Recibidas" ForeColor="#79256E"></asp:Label>
+            <asp:Label runat="server" ID ="periodoFechasDetalleLbl" 
+                Text="Periodo de Fechas - Solicitudes Recibidas" ForeColor="#79256E"></asp:Label>
 
         </div>
 
@@ -189,7 +199,7 @@
 
         <div style="text-align: center; margin-top: 20px; margin-bottom: 20px">
 
-            <asp:Label runat="server" Text="Empleados por Rol" ForeColor="#79256E"></asp:Label>
+            <asp:Label runat="server" ID ="empleadoLbl" Text="Empleados por Rol" ForeColor="#79256E"></asp:Label>
 
         </div>
 
@@ -216,7 +226,7 @@
 
         <div style="text-align: center; margin-top: 20px; margin-bottom: 20px" runat ="server" id ="statusDiv" visible ="false">
 
-            <asp:Label runat="server" Text="Status por Rol" ForeColor="#79256E"></asp:Label>
+            <asp:Label runat="server" ID ="statusLbl" Text="Status por Rol" ForeColor="#79256E"></asp:Label>
 
             <div style="text-align: center; margin-top: 10px">
 
@@ -253,7 +263,7 @@
 
             <div style="text-align: center">
 
-                <asp:Label ForeColor="#79256E" runat="server">No hay data disponible</asp:Label>
+                <asp:Label ForeColor="#79256E" ID ="emptyLbl" runat="server">No hay data disponible</asp:Label>
 
             </div>
 
@@ -311,7 +321,7 @@
 
         <input type="button" onclick="javascript: window.print();"
             style="border-style: solid; border-color: #616161; border-width: 3px; padding: 10px 15px;"
-            value="Imprimir" />
+            value="Imprimir" id ="printBtn" />
 
     </div>
 

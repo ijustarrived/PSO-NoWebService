@@ -3,6 +3,15 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
 
+    <script>
+
+        function ChangeClinetSideColors(lblColor, titleColor)
+        {           
+            $('#printBtn').css({ 'color': lblColor });
+        }
+
+    </script>
+
     <div style ="text-align:center; margin-top:40px">
 
         <asp:DropDownList ID ="filterDDL" runat ="server" AutoPostBack ="true" 
@@ -26,7 +35,7 @@
 
             <div style="text-align: center">
 
-                <asp:Label ForeColor="#79256E" runat="server">No hay data disponible</asp:Label>
+                <asp:Label ForeColor="#79256E" ID ="emptyLbl" runat="server">No hay data disponible</asp:Label>
 
             </div>
 
@@ -85,10 +94,7 @@
 
         <input type="button" onclick="javascript:window.print();" 
             style="border-style: solid; border-color: #616161; border-width: 3px; padding: 10px 15px;"
-            value="Imprimir"  />
-
-        <%--<asp:Button BorderColor="#616161" CssClass="btn" BorderWidth="3" Text="Imprimir"
-            runat="server" OnClientClick="javascript:window.print();" ForeColor="#79256E" Style="padding: 10px 15px;" />--%>
+            value="Imprimir" id ="printBtn" />
 
     </div>
 

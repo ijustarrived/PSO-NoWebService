@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Drawing;
 
 namespace PSO.Pages.Dashboard.Configs
 {
@@ -12,40 +13,6 @@ namespace PSO.Pages.Dashboard.Configs
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            #region Breadcrumb config
-
-            var dashboardPnl = (Panel)Master.FindControl("dashboardLinkPnl");
-
-            //Clear so that it can hold a new instance of links
-            dashboardPnl.Controls.Clear();
-
-            HyperLink mainDashLink = new HyperLink(),
-                secondDashLink = new HyperLink();                
-
-            Label secondDashlbl = new Label();
-
-            #region 1st link
-            mainDashLink.NavigateUrl = "~/Pages/Dashboard/Main.aspx";
-
-            mainDashLink.Text = "Inicio";
-
-            dashboardPnl.Controls.Add(mainDashLink);
-            #endregion
-
-            #region 2nd link
-            secondDashlbl.Text = " > ";
-
-            dashboardPnl.Controls.Add(secondDashlbl);
-
-            secondDashLink.NavigateUrl = "~/Pages/Dashboard/Configs/ConfigsMain.aspx";
-
-            secondDashLink.Text = "Configuraci&oacute;n";
-
-            dashboardPnl.Controls.Add(secondDashLink);
-            #endregion
-
-            #endregion
-
             Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
 
             #region Verify role permission
@@ -56,7 +23,69 @@ namespace PSO.Pages.Dashboard.Configs
                     Response.Redirect("~/Pages/Login.aspx", true);
 
                 Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
-            } 
+            }
+
+            #endregion
+
+            #region Set cosmetics
+
+            Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+            roleGV.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            roleGV.FooterStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            roleGV.PagerStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            roleGV.HeaderStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "InvokeChangeClinetSideColors",
+                                   string.Format("ChangeClinetSideColors('{0}', '{1}');",
+                                   cosmetic.LabelForeColor, cosmetic.TitleBackColor), true);
+
+            #endregion
+
+            #region Breadcrumb config
+
+            var dashboardPnl = (Panel)Master.FindControl("dashboardLinkPnl");
+
+            //Clear so that it can hold a new instance of links
+            dashboardPnl.Controls.Clear();
+
+            HyperLink mainDashLink = new HyperLink(),
+                secondDashLink = new HyperLink();
+
+            Label secondDashlbl = new Label();
+
+            #region 1st link
+
+            mainDashLink.NavigateUrl = "~/Pages/Dashboard/Main.aspx";
+
+            mainDashLink.Text = "Inicio";
+
+            mainDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            dashboardPnl.Controls.Add(mainDashLink);
+
+            #endregion
+
+            #region 2nd link
+
+            secondDashlbl.Text = " > ";
+
+            secondDashlbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            secondDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            dashboardPnl.Controls.Add(secondDashlbl);
+
+            secondDashLink.NavigateUrl = "~/Pages/Dashboard/Configs/ConfigsMain.aspx";
+
+            secondDashLink.Text = "Configuraci&oacute;n";
+
+            dashboardPnl.Controls.Add(secondDashLink);
+
+            #endregion
 
             #endregion
 
@@ -72,7 +101,7 @@ namespace PSO.Pages.Dashboard.Configs
 
             roles.AddLast(new Rol(Rol.TiposRole.PROCESADOR));
 
-            roles.AddLast(new Rol(Rol.TiposRole.SUPERVISOR)); 
+            roles.AddLast(new Rol(Rol.TiposRole.SUPERVISOR));
 
             #endregion
 

@@ -13,6 +13,15 @@ namespace PSO.Pages.Dashboard.Reports {
     public partial class RecibidosVsProcReport {
         
         /// <summary>
+        /// periodoFechaLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label periodoFechaLbl;
+        
+        /// <summary>
         /// desdeTxtBx control.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,24 @@ namespace PSO.Pages.Dashboard.Reports {
         protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
         
         /// <summary>
+        /// detallesTitleDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl detallesTitleDiv;
+        
+        /// <summary>
+        /// periodoFechasDetalleLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label periodoFechasDetalleLbl;
+        
+        /// <summary>
         /// desdeDetailTxtBx control.
         /// </summary>
         /// <remarks>
@@ -74,6 +101,15 @@ namespace PSO.Pages.Dashboard.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox hastaDetailTxtBx;
+        
+        /// <summary>
+        /// empleadoLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label empleadoLbl;
         
         /// <summary>
         /// searchDDL control.
@@ -101,6 +137,15 @@ namespace PSO.Pages.Dashboard.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl statusDiv;
+        
+        /// <summary>
+        /// statusLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label statusLbl;
         
         /// <summary>
         /// statusSearchDDL control.

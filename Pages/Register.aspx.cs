@@ -3,6 +3,7 @@ using PSO.Repositorios;
 using PSO.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,12 +16,60 @@ namespace PSO.Pages
     public partial class Register : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {     
+        {
+            #region Set Cosmetics
+
+            Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+            PosLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            dirLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            apeMatLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            emaiLlbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            apePatLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            bdayLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            campoReqLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            celLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            codigoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            codigoPosLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            dirPosLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            nombreLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            passLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            puebloLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            puebloPosLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            residencialLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            telLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            tipoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            saveBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "InvokeChangeClinetSideColors",
+                                    string.Format("ChangeClinetSideColors('{0}', '{1}');",
+                                    cosmetic.LabelForeColor, cosmetic.TitleBackColor), true);
+
+            #endregion
+
             if (!IsPostBack)
             {
                 Usuario userProfile = new Usuario(), // Selected profile
-                    loggedUser = Session["UserObj"] == null ? new Usuario() 
-                    : (Usuario)Session["UserObj"];
+                    loggedUser = Session["UserObj"] == null ? new Usuario()
+                    : (Usuario)Session["UserObj"]; //Session user
 
                 if (Request.QueryString["Email"] != null)
                 {
@@ -29,12 +78,12 @@ namespace PSO.Pages
                     //Redirect if he isn't admin and if this profile isn't his
                     if (!loggedUser.Email.Equals(userProfile.Email) && loggedUser.Role.RoleType != Rol.TiposRole.ADMINISTRADOR)
                     {
-                        if(string.IsNullOrEmpty(loggedUser.Email))
+                        if (string.IsNullOrEmpty(loggedUser.Email))
                             Response.Redirect("Register.aspx", true);
 
                         else
                             Response.Redirect("Main.aspx", true);
-                    }                    
+                    }
                 }
 
                 else
@@ -43,6 +92,7 @@ namespace PSO.Pages
                 if (!string.IsNullOrEmpty(userProfile.Email))
                 {
                     #region Breadcrumb Config
+
                     var dashboardPnl = (Panel)Master.FindControl("dashboardLinkPnl");
 
                     dashboardPnl.Controls.Clear();
@@ -51,11 +101,14 @@ namespace PSO.Pages
 
                     mainDashLink.ID = "mainDashLink";
 
+                    mainDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
                     mainDashLink.NavigateUrl = "~/Pages/Dashboard/Main.aspx";
 
                     mainDashLink.Text = "Inicio";
 
                     dashboardPnl.Controls.Add(mainDashLink);
+
                     #endregion
 
                     if (loggedUser.Role.RoleType == Rol.TiposRole.ADMINISTRADOR)
@@ -92,7 +145,7 @@ namespace PSO.Pages
 
                     bdayTxtBx.Text = userProfile.FechaNacimiento.ToShortDateString();
 
-                    licenseTxtBx.Text = userProfile.LicenciaConducir;
+                    //licenseTxtBx.Text = userProfile.LicenciaConducir;
 
                     nameTxtBx.Text = userProfile.Nombre;
 
@@ -100,11 +153,11 @@ namespace PSO.Pages
 
                     puebloResiDDL.SelectedIndex = userProfile.Pueblo;
 
-                    sSTxtBx.Text = userProfile.SeguroSocial;
+                    //sSTxtBx.Text = userProfile.SeguroSocial;
 
                     telResTxtBx.Text = userProfile.Tel;
 
-                    tipoUsuarioDDL.SelectedIndex = (int)userProfile.Role.RoleType;  
+                    tipoUsuarioDDL.SelectedIndex = (int)userProfile.Role.RoleType;
 
                     #endregion
 
@@ -114,11 +167,11 @@ namespace PSO.Pages
 
             else
             {
-                if(Session["registerError"] != null && !string.IsNullOrEmpty((string)Session["registerError"]))
+                if (Session["registerError"] != null && !string.IsNullOrEmpty((string)Session["registerError"]))
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, GetType(), string.Format( "registerError-{0}{1}{2}", 
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), string.Format("registerError-{0}{1}{2}",
                         DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second),
-                                    string.Format( "alert('{0}');", ((string)Session["registerError"]).Replace("\r\n", " ")), true);
+                                    string.Format("alert('{0}');", ((string)Session["registerError"]).Replace("\r\n", " ")), true);
 
                     Session["registerError"] = string.Empty;
                 }
@@ -151,7 +204,7 @@ namespace PSO.Pages
 
                 FechaNacimiento = Convert.ToDateTime(bdayTxtBx.Text),
 
-                LicenciaConducir = licenseTxtBx.Text,
+                //LicenciaConducir = licenseTxtBx.Text,
 
                 Nombre = nameTxtBx.Text,
 
@@ -162,39 +215,12 @@ namespace PSO.Pages
 
                 PuebloPost = puebloPostalDDL.SelectedIndex,
 
-                SeguroSocial = sSTxtBx.Text,
+                //SeguroSocial = sSTxtBx.Text,
 
                 Tel = telResTxtBx.Text,
 
                 Role = RoleRepo.GetRoleByType(tipoUsuarioDDL.SelectedIndex)
             };
-
-            //switch (tipoUsuarioDDL.SelectedIndex)
-            //{
-            //    case (int)Rol.TiposRole.EXTERNO:
-
-            //        userProfile.Role.RoleType = Rol.TiposRole.EXTERNO;
-
-            //        break;
-
-            //    case (int)Rol.TiposRole.ADMINISTRADOR:
-
-            //        userProfile.Role.RoleType = Rol.TiposRole.ADMINISTRADOR;
-
-            //        break;
-
-            //    case (int)Rol.TiposRole.COORDINADOR:
-
-            //        userProfile.Role.RoleType = Rol.TiposRole.COORDINADOR;
-
-            //        break;
-
-            //    default:
-
-            //        userProfile.Role.RoleType = Rol.TiposRole.PROCESADOR;
-
-            //        break;
-            //}
 
             #endregion
 
@@ -307,8 +333,6 @@ namespace PSO.Pages
             Directory.CreateDirectory(Server.MapPath(string.Format("{0}/{1}",
                 DocReq.GetPathDocs(), email)));
         }
-
-
 
         private void SendThreadedEmail(Usuario _to, string subj, string body)
         {

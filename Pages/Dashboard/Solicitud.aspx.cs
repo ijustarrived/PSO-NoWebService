@@ -20,7 +20,176 @@ namespace PSO.Pages.Dashboard
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            #region Verify role permission
+
+            Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
+
+            if (!user.Role.ViewSolicitud)
+            {
+                if (string.IsNullOrEmpty(user.Email))
+                    Response.Redirect("~/Pages/Login.aspx", true);
+
+                Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
+            }
+
+            #endregion
+
+            #region Set cosmetics
+
+            Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+            Page.Title = cosmetic.SolicitudTitle;
+
+            #region Set lbl color
+
+            saveBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            asigLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            trabajoCommentLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            tempSaveBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            asegurarseLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            bDayCoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            bDayLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            campoReqLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            celCoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            celLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            codigoCoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            codigoCoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            codigoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            codigoPosCoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            codigoPosLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            codigoRef2Lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            codigoRef3Lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            codigoRefLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            coordinadorLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            dirCoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            dirPosCoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            dirPosLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            dirRef2Lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            dirRef3Lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            dirRefLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            dirResLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            driversCoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            driversLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            emailCoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            emailLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            matCoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            matLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            nombreCoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            nombreLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            nombreRef2Lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            nombreRef2Pt2Lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            nombreRef3Lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            nombreRef3Pt3Lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            nombreRefLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            nombreRefPt2Lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            parentescoRef2Lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            parentescoRef3Lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            parentescoRefLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            patCoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            patLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            puebloCoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            puebloLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            puebloPosCoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            puebloPosLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            puebloRef2Lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            puebloRef3Lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            puebloRefLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            sSCoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            sSLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            statusLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            telCoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            telFamRefLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            telRef2Lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            telRef3Lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            telResLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            numSolicitudTbl.Style.Add("color", cosmetic.LabelForeColor);
+
+            procTbl.Style.Add("color", cosmetic.LabelForeColor);
+
+            #endregion
+
+            #region Set title div backcolor
+
+            coTitleDiv.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            docRecTitleDiv.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            docReqTitleDiv.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            refTitleDiv.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            solicitanteTitleDiv.Style.Add("background-color", cosmetic.TitleBackColor); 
+
+            #endregion
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "InvokeChangeClinetSideColors",
+                                   string.Format("ChangeClinetSideColors('{0}', '{1}');",
+                                   cosmetic.LabelForeColor, cosmetic.TitleBackColor), true); 
+
+            #endregion
+
             #region Breadcrumb Config
+
             var dashboardPnl = (Panel)Master.FindControl("dashboardLinkPnl");
 
             dashboardPnl.Controls.Clear();
@@ -33,18 +202,11 @@ namespace PSO.Pages.Dashboard
 
             mainDashLink.Text = "Inicio";
 
+            mainDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
             dashboardPnl.Controls.Add(mainDashLink);
+
             #endregion
-
-            Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
-
-            if (!user.Role.ViewSolicitud)
-            {
-                if (string.IsNullOrEmpty(user.Email))
-                    Response.Redirect("~/Pages/Login.aspx", true);
-
-                Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
-            }
 
             string numSolicitud = Request.QueryString["numSolicitud"] == null ? string.Empty
                     : (string)Request.QueryString["numSolicitud"];
@@ -1288,7 +1450,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
             _Solicitud solicitud = SolicitudRepo.GetSolicitudByNumSolicitud(numSolicitud);
 
-            //LinkedList<RequiredFieldValidator> _validators = new LinkedList<RequiredFieldValidator>();
+            Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
 
             for (int i = 0; i < docsRequeridos.Count; i++)
             {
@@ -1304,7 +1466,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
                 lbl.Text = docsRequeridos.ElementAt(i).Nombre;
 
-                lbl.ForeColor = ColorTranslator.FromHtml("#79256E");
+                lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
                 #endregion
 
@@ -1394,6 +1556,8 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
             LiteralControl uploadLit1 = new LiteralControl(); //Holds opening and closing divs for title, img and ddl
 
+            Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
             for (int i = 0; i < docs.Count; i++)
             {
                 #region Title
@@ -1415,7 +1579,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
                 lbl.Text = docs.ElementAt(i).Nombre.Replace("_", " ");
 
-                lbl.ForeColor = ColorTranslator.FromHtml("#79256E");
+                lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
                 htmlCell.Controls.Add(lbl);
 
@@ -1500,15 +1664,13 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
                 htmlCell.Controls.Add(literals.ElementAt(literals.Count - 1));
 
-                //docsAsociadosTableTag.Controls.Add(literals.ElementAt(literals.Count - 1));
-
                 uploadLit1.Text += "<div>";
 
                 Label statusLbl = new Label();
 
                 statusLbl.Text = "Status*";
 
-                statusLbl.ForeColor = ColorTranslator.FromHtml("#79256E");
+                statusLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
                 DropDownList statusDDL = new DropDownList();
 

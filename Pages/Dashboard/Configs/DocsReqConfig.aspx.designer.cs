@@ -13,6 +13,24 @@ namespace PSO.Pages.Dashboard.Configs {
     public partial class DocsReqConfig {
         
         /// <summary>
+        /// agregraDocLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label agregraDocLbl;
+        
+        /// <summary>
+        /// nombreDocLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nombreDocLbl;
+        
+        /// <summary>
         /// docNameTxtBx control.
         /// </summary>
         /// <remarks>

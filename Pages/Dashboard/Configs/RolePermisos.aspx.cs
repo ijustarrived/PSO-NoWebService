@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Drawing;
 
 namespace PSO.Pages.Dashboard.Configs
 {
@@ -27,6 +28,66 @@ namespace PSO.Pages.Dashboard.Configs
 
             #endregion
 
+            #region Set Cosmetics
+
+            Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+            consultaTitleDiv.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            modificarTitleDiv.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            #region Set lbl color and text
+
+            saveBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            configRoleLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            configUserLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            consultaCoorLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            consultaCoorLbl.Text = cosmetic.ConsultaCoorTitle;
+
+            consultaDocLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            consultaProLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            consultaProLbl.Text = cosmetic.ConsultaProcTitle;
+
+            consultaSolicitudLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            consultaSolicitudLbl.Text = cosmetic.ConsultaSolicitudTitle;
+
+            consultaSupLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            consultaSupLbl.Text = cosmetic.ConsultaSuperTitle;
+
+            CustomizeLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            dashBrLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            reportComparacionLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            reportComparacionLbl.Text = cosmetic.ReportComparacionTitle;
+
+            reportProductionLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            reportProductionLbl.Text = cosmetic.ReportProduccionTitle;
+
+            roleLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            solicitudLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            solicitudLbl.Text = cosmetic.SolicitudTitle;
+
+            #endregion
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "InvokeChangeClinetSideColors",
+                                   string.Format("ChangeClinetSideColors('{0}', '{1}');",
+                                   cosmetic.LabelForeColor, cosmetic.TitleBackColor), true);
+
+            #endregion
+
             #region Breadcrumb config
 
             var dashboardPnl = (Panel)Master.FindControl("dashboardLinkPnl");
@@ -42,15 +103,24 @@ namespace PSO.Pages.Dashboard.Configs
                 thirdDashlbl = new Label();
 
             #region 1st link
+
             mainDashLink.NavigateUrl = "~/Pages/Dashboard/Main.aspx";
 
             mainDashLink.Text = "Inicio";
 
+            mainDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
             dashboardPnl.Controls.Add(mainDashLink);
+
             #endregion
 
             #region 2nd link
+
             secondDashlbl.Text = " > ";
+
+            secondDashlbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            secondDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
             dashboardPnl.Controls.Add(secondDashlbl);
 
@@ -59,10 +129,16 @@ namespace PSO.Pages.Dashboard.Configs
             secondDashLink.Text = "Configuraci&oacute;n";
 
             dashboardPnl.Controls.Add(secondDashLink);
+
             #endregion
 
             #region 3rd link
+
             thirdDashlbl.Text = " > ";
+
+            thirdDashlbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            thirdDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
             dashboardPnl.Controls.Add(thirdDashlbl);
 
@@ -71,6 +147,7 @@ namespace PSO.Pages.Dashboard.Configs
             thirdDashLink.Text = "Roles";
 
             dashboardPnl.Controls.Add(thirdDashLink);
+
             #endregion
 
             #endregion                      
@@ -105,13 +182,15 @@ namespace PSO.Pages.Dashboard.Configs
 
                     viewSolicitudChkBx.Checked = role.ViewSolicitud;
 
-                    editDocReqChkBx.Checked = role.EditDocReq;
+                    //editDocReqChkBx.Checked = role.EditDocReq;
 
-                    editRoleChkBx.Checked = role.EditRoles;
+                    //editRoleChkBx.Checked = role.EditRoles;
 
-                    editUsersChkBx.Checked = role.EditUsers;
+                    //editUsersChkBx.Checked = role.EditUsers;
 
                     viewReportProdu.Checked = role.ViewRepProduc;
+
+                    customizePagesChkBx.Checked = role.EditCustomizationPage;
 
                     #endregion
                 }
@@ -131,11 +210,11 @@ namespace PSO.Pages.Dashboard.Configs
             {
                 RoleType = Rol.GetRoleType(Convert.ToInt32(Request.QueryString["RoleID"])),
 
-                EditDocReq = editDocReqChkBx.Checked,
+                //EditDocReq = editDocReqChkBx.Checked,
 
-                EditRoles = editRoleChkBx.Checked,
+                //EditRoles = editRoleChkBx.Checked,
 
-                EditUsers = editUsersChkBx.Checked,
+                //EditUsers = editUsersChkBx.Checked,
 
                 ViewConfigDocReq = viewConfigDocReqChkBx.Checked,
 
@@ -157,7 +236,9 @@ namespace PSO.Pages.Dashboard.Configs
 
                 ViewSolicitud = viewSolicitudChkBx.Checked,
 
-                ViewRepProduc = viewReportProdu.Checked
+                ViewRepProduc = viewReportProdu.Checked,
+
+                EditCustomizationPage = customizePagesChkBx.Checked
             };
 
             #endregion
@@ -181,7 +262,7 @@ namespace PSO.Pages.Dashboard.Configs
                 Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
 
                 if (role.RoleType == user.Role.RoleType)
-                    user.Role = role; 
+                    user.Role = role;
 
                 #endregion
             }
@@ -190,11 +271,11 @@ namespace PSO.Pages.Dashboard.Configs
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "roleEditAlert",
                         string.Format("alert('{0}');", ex.Message.Replace("\r\n", " ")), true);
-            } 
+            }
 
             #endregion
 
-            Response.Redirect("RolesConfig.aspx", true);            
+            Response.Redirect("RolesConfig.aspx", true);
         }
     }
 }

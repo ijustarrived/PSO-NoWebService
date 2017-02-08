@@ -3,9 +3,18 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
 
+    <script>
+
+        function ChangeClinetSideColors(lblColor, titleColor)
+        {           
+            $('#printBtn').css({ 'color': lblColor });
+        }
+
+    </script>
+
     <div style ="margin-top:20px; text-align:center">
 
-        <asp:Label ForeColor ="#79256E" runat ="server">Tipo de Usuario</asp:Label>
+        <asp:Label ID ="tipoUserLbl" ForeColor ="#79256E" runat ="server">Tipo de Usuario</asp:Label>
 
         <asp:DropDownList runat ="server" ID ="tipoUserDDL" AutoPostBack ="true" OnSelectedIndexChanged ="tipoUserDDL_SelectedIndexChanged">
 
@@ -72,16 +81,11 @@
 
         <SelectedRowStyle BackColor="#79256E" ForeColor="#F3F0F7" /></asp:GridView>
 
-    <%--<asp:SqlDataSource runat ="server" ID ="userSQLDS"></asp:SqlDataSource>--%>
-
     <div style="text-align: center; margin-bottom: 40px; margin-top:70px; padding-bottom: 100px">
 
         <input type="button" onclick="javascript:window.print();" 
             style="border-style: solid; border-color: #616161; border-width: 3px; padding: 10px 15px;"
-            value="Imprimir"  />
-
-        <%--<asp:Button BorderColor="#616161" CssClass="btn" BorderWidth="3" Text="Imprimir"
-            runat="server" OnClientClick="javascript:window.print();" ForeColor="#79256E" Style="padding: 10px 15px;" />--%>
+            value="Imprimir" id ="printBtn" />
 
     </div>
 

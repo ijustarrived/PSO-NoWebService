@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using PSO.Entities;
+using PSO.Repositorios;
 
 namespace PSO
 {
@@ -72,11 +73,25 @@ namespace PSO
         {
             Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
 
+            Cosmetic cosmetic = Session["Cosmetic"] == null ? CosmeticsRepo.GetPageCosmetics()
+                : (Cosmetic)Session["Cosmetic"];
+
+            logoutBtn.ForeColor = System.Drawing.ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            userLink.ForeColor = System.Drawing.ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            pageTitleDiv.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            logoImg.ImageUrl = cosmetic.LogoPath;
+
             //Avoid Unauthenticated login
             if (string.IsNullOrEmpty(user.Email))
                 Response.Redirect("~/Pages/Login.aspx", true);
 
             userLink.Text = user.Email;
+
+            if (Session["Cosmetic"] == null)
+                Session["Cosmetic"] = cosmetic;
 
             #region Email Thread Excpetion alert
 

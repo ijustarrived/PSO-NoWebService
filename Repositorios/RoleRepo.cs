@@ -30,7 +30,8 @@ namespace PSO.Repositorios
                                                                     EditRoles = @EditRoles,
                                                                     EditUsers = @EditUsers,
                                                                     ViewSolicitud = @ViewSolicitud,
-                                                                    ViewRepProduction = @ViewRepProduction
+                                                                    ViewRepProduction = @ViewRepProduction,
+                                                                    EditCustomizationPage = @EditCustomizationPage
                                                                     WHERE RoleType = @RoleType;", conn);
 
                 #endregion
@@ -66,6 +67,8 @@ namespace PSO.Repositorios
                 cmd.Parameters.AddWithValue("@EditRoles", role.EditRoles);
 
                 cmd.Parameters.AddWithValue("@EditUsers", role.EditUsers);
+
+                cmd.Parameters.AddWithValue("@EditCustomizationPage", role.EditCustomizationPage);
 
                 conn.Open();
 
@@ -146,7 +149,9 @@ namespace PSO.Repositorios
 
                         ViewSolicitud = reader.GetBoolean(col++),
 
-                        ViewRepProduc = reader.GetBoolean(col++)
+                        ViewRepProduc = reader.GetBoolean(col++),
+
+                        EditCustomizationPage = reader.GetBoolean(col++)
                     };
 
                     role.Nombre = role.RoleType.ToString();

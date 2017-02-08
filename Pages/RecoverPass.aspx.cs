@@ -3,6 +3,7 @@ using PSO.Repositorios;
 using PSO.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -15,7 +16,19 @@ namespace PSO.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            #region Set Cosmetics
 
+            Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+            bdayLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            emailLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            bdayBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            recoverBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            #endregion
         }
 
         protected void bdayBtn_Click(object sender, EventArgs e)
@@ -50,7 +63,7 @@ namespace PSO.Pages
                         Correo.GetBody(Correo.MailType.PASS_RECOVER).Replace("@PASS", Usuario.DecryptWord(user.Password)));
 
                     ClientScript.RegisterStartupScript(this.GetType(), "passSentAlert",
-                       "alert('Su contraseña le fue enviada por Correo Electrónico.'); window.location = 'Login.aspx';", true);
+                       "alert('Su contraseña le fue enviada por Correo Electrónico'); window.location = 'Login.aspx';", true);
                 }
 
                 else
@@ -60,7 +73,7 @@ namespace PSO.Pages
                 }
             }
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "registerCreateAlert",
                                     string.Format("alert('No se pudo recuperar contraseña. Error: {0}');",
@@ -93,9 +106,9 @@ namespace PSO.Pages
             {
                 Task.Factory.StartNew(() =>
                 {
-                try
-                {
-                    exMail = mail.SendEmail(mail.ComposeEmail(to, subj, body));
+                    try
+                    {
+                        exMail = mail.SendEmail(mail.ComposeEmail(to, subj, body));
 
                         if (exMail != null)
                         {

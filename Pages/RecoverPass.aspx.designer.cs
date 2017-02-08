@@ -13,6 +13,15 @@ namespace PSO.Pages {
     public partial class RecoverPass {
         
         /// <summary>
+        /// emailLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label emailLbl;
+        
+        /// <summary>
         /// emailTxtBx control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace PSO.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox emailTxtBx;
+        
+        /// <summary>
+        /// asigCommentRFV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator asigCommentRFV;
         
         /// <summary>
         /// bdayBtn control.
@@ -40,6 +58,15 @@ namespace PSO.Pages {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ssDiv;
         
         /// <summary>
+        /// bdayLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label bdayLbl;
+        
+        /// <summary>
         /// ssTxtBx control.
         /// </summary>
         /// <remarks>
@@ -47,6 +74,15 @@ namespace PSO.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ssTxtBx;
+        
+        /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
         /// recoverBtn control.

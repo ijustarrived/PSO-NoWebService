@@ -2,6 +2,7 @@
 using PSO.Repositorios;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -27,6 +28,26 @@ namespace PSO.Pages.Dashboard.Consultas
 
             #endregion
 
+            #region Set cosmetics
+
+            Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+            Page.Title = cosmetic.ConsultaProcTitle;
+
+            solicitudesGV.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            solicitudesGV.FooterStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            solicitudesGV.PagerStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            solicitudesGV.HeaderStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "InvokeChangeClinetSideColors",
+                                   string.Format("ChangeClinetSideColors('{0}', '{1}');",
+                                   cosmetic.LabelForeColor, cosmetic.TitleBackColor), true);
+
+            #endregion
+
             #region Breadcrumb config
 
             var dashboardPnl = (Panel)Master.FindControl("dashboardLinkPnl");
@@ -40,23 +61,33 @@ namespace PSO.Pages.Dashboard.Consultas
             Label secondDashlbl = new Label();
 
             #region 1st link
+
             mainDashLink.NavigateUrl = "~/Pages/Dashboard/Main.aspx";
+
+            mainDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
             mainDashLink.Text = "Inicio";
 
             dashboardPnl.Controls.Add(mainDashLink);
+
             #endregion
 
             #region 2nd link
+
             secondDashlbl.Text = " > ";
+
+            secondDashlbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
             dashboardPnl.Controls.Add(secondDashlbl);
 
             secondDashLink.NavigateUrl = "~/Pages/Dashboard/Consultas/ConsultasMain.aspx";
 
+            secondDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
             secondDashLink.Text = "Consultas";
 
             dashboardPnl.Controls.Add(secondDashLink);
+
             #endregion
 
             #endregion
@@ -87,14 +118,20 @@ namespace PSO.Pages.Dashboard.Consultas
 
                 e.Row.ToolTip = "Seleccionar para revisar";
 
-                //e.Row.Cells[3].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[3].Text));
-
                 // -1 cause pueblo ddl, in solicitud, starts in 0 and db starts in 1
                 e.Row.Cells[3].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[3].Text) - 1);
 
                 e.Row.Cells[4].Text = filterDDL.Items[Convert.ToInt32(e.Row.Cells[4].Text)].Text;
 
                 e.Row.Cells[5].Text = e.Row.Cells[5].Text.Split(' ')[0];
+            }
+
+            else if (e.Row.RowType == DataControlRowType.EmptyDataRow)
+            {
+                Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+                ((Label)e.Row.Controls[0].Controls[0].FindControl("emptyLbl")).ForeColor
+                    = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
             }
         }
 

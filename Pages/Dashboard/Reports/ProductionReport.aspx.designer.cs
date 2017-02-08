@@ -13,6 +13,15 @@ namespace PSO.Pages.Dashboard.Reports {
     public partial class ProductionReport {
         
         /// <summary>
+        /// periodoFechaLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label periodoFechaLbl;
+        
+        /// <summary>
         /// desdeTxtBx control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace PSO.Pages.Dashboard.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label totalAvisosLbl;
+        
+        /// <summary>
+        /// detallesTitleDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl detallesTitleDiv;
         
         /// <summary>
         /// detailsLbl control.

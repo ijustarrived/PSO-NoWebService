@@ -218,7 +218,7 @@ namespace PSO.Repositorios
         public static Usuario GetUserByEmail(string email)
         {
             Usuario user = new Usuario();
-            
+
             using (SqlConnection conn = DB.GetLocalConnection())
             {
                 SqlCommand cmd = new SqlCommand(@"SELECT * FROM Usuarios WHERE Email = @Email", conn);
@@ -238,7 +238,7 @@ namespace PSO.Repositorios
         public static Usuario GetUserByID(int id)
         {
             Usuario user = new Usuario();
-            
+
             using (SqlConnection conn = DB.GetLocalConnection())
             {
                 SqlCommand cmd = new SqlCommand(@"SELECT * FROM Usuarios WHERE ID = @ID", conn);
@@ -344,33 +344,6 @@ namespace PSO.Repositorios
 
                 user.Role = RoleRepo.GetRoleByType((int)user.Role.RoleType);
 
-                //switch (reader.GetInt32(col++))
-                //{
-                //    case (int)Rol.TiposRole.EXTERNO:
-
-                //        user.Role.RoleType = Rol.TiposRole.EXTERNO;
-
-                //        break;
-
-                //    case (int)Rol.TiposRole.ADMINISTRADOR:
-
-                //        user.Role.RoleType = Rol.TiposRole.ADMINISTRADOR;
-
-                //        break;
-
-                //    case (int)Rol.TiposRole.COORDINADOR:
-
-                //        user.Role.RoleType = Rol.TiposRole.COORDINADOR;
-
-                //        break;
-
-                //    default:
-
-                //        user.Role.RoleType = Rol.TiposRole.PROCESADOR;
-
-                //        break;
-                //}
-
                 user.Email = reader.GetString(col++);
 
                 user.Activo = reader.GetBoolean(col++);
@@ -430,33 +403,6 @@ namespace PSO.Repositorios
 
                 //Get whole role obj afterwards
                 user.Role = RoleRepo.GetRoleByType((int)user.Role.RoleType);
-
-                //switch (reader.GetInt32(col++))
-                //{
-                //    case (int)Rol.TiposRole.EXTERNO:
-
-                //        user.Role.RoleType = Rol.TiposRole.EXTERNO;
-
-                //        break;
-
-                //    case (int)Rol.TiposRole.ADMINISTRADOR:
-
-                //        user.Role.RoleType = Rol.TiposRole.ADMINISTRADOR;
-
-                //        break;
-
-                //    case (int)Rol.TiposRole.COORDINADOR:
-
-                //        user.Role.RoleType = Rol.TiposRole.COORDINADOR;
-
-                //        break;
-
-                //    default:
-
-                //        user.Role.RoleType = Rol.TiposRole.PROCESADOR;
-
-                //        break;
-                //}
 
                 user.Email = reader.GetString(col++);
 

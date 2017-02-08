@@ -42,6 +42,8 @@ namespace PSO.Entities
 
             EditUsers = false;
 
+            EditCustomizationPage = false;
+
             ViewRepProduc = false;
         }
 
@@ -219,6 +221,13 @@ namespace PSO.Entities
         }
 
         public bool EditDocReq
+        {
+            get;
+
+            set;
+        }
+
+        public bool EditCustomizationPage
         {
             get;
 

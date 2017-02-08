@@ -16,8 +16,6 @@
 
             var dirPost = document.getElementById("<%= dirPostalTxtBx.ClientID%>");
 
-            debugger;
-
             dirPost.value = dirRes.value;
 
             var codigoRes = document.getElementById("<%= codigoResiTxtBx.ClientID%>");
@@ -31,6 +29,11 @@
             var puebloPost = document.getElementById("<%= puebloPostalDDL.ClientID%>");
 
             puebloPost.value = puebloRes.value;
+        }
+
+        function ChangeClinetSideColors(lblColor, titleColor)
+        {
+            $('#printBtn').css({ 'color': lblColor });
         }
 
     </script>
@@ -47,7 +50,7 @@
 
                     <div style="float: left;">
 
-                        <asp:Label runat="server" Text="Nombre*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="nombreLbl" Text="Nombre*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -74,7 +77,8 @@
 
                     <div style="float: left;">
 
-                        <asp:Label runat="server" Text="Correo Electr&oacute;nico*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="emaiLlbl" Text="Correo Electr&oacute;nico*"
+                             ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -86,7 +90,8 @@
 
                     <div>
 
-                        <asp:RegularExpressionValidator runat ="server" ControlToValidate ="emailTxtBx" Display ="Dynamic" SetFocusOnError ="true" 
+                        <asp:RegularExpressionValidator runat ="server" ControlToValidate ="emailTxtBx"
+                             Display ="Dynamic" SetFocusOnError ="true" 
                             ErrorMessage ="Incorrecto"
                              ValidationExpression ="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor ="#CC0000">
 
@@ -111,13 +116,13 @@
 
                     <div style="float: left;">
 
-                        <asp:Label runat="server" Text="Apellido Paterno*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="apePatLbl" Text="Apellido Paterno*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="apellidoPatTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" AutoCompleteType ="Disabled" ID="apellidoPatTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -140,24 +145,19 @@
 
                     <div style="float: left;">
 
-                        <asp:Label runat="server" Text="Contraseña*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="passLbl" Text="Contraseña*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
                     <div>
 
-                        <asp:TextBox runat="server" TextMode="Password" ID="passwordTxtBx"></asp:TextBox>
-
-                        <%--<div style ="margin-top:10px">
-
-                            <asp:Button ID="changePassBtn" BorderColor="#616161" BorderWidth="3" Text="Cambiar Contraseña"
-                                            Style="padding: 10px 15px;" runat="server" OnClick="saveBtn_Click" ForeColor="#79256E" />
-
-                        </div>--%>
+                        <asp:TextBox runat="server" TextMode="Password" AutoCompleteType ="Disabled" 
+                            ID="passwordTxtBx"></asp:TextBox>
 
                         <div>
 
-                            <asp:RegularExpressionValidator runat="server" ID="passwordREV" SetFocusOnError="true" ForeColor="#CC0000"
+                            <asp:RegularExpressionValidator runat="server" ID="passwordREV" 
+                                SetFocusOnError="true" ForeColor="#CC0000"
                                 ErrorMessage="Minimo son tres caracters (a - z, 0 - 9)." Display="Dynamic"
                                 ValidationExpression="[a-zA-Z0-9]{3,}"
                                 ControlToValidate="passwordTxtBx"></asp:RegularExpressionValidator>
@@ -180,7 +180,7 @@
 
                     <div style="float: left;">
 
-                        <asp:Label runat="server" Text="Apellido Materno*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="apeMatLbl" Text="Apellido Materno*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -207,7 +207,7 @@
 
                     <div style="float: left;">
 
-                        <asp:Label runat="server" Text="Tel&eacute;fono Celular*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="celLbl" Text="Tel&eacute;fono Celular*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -249,7 +249,7 @@
 
                     <div style="float: left;">
 
-                        <asp:Label runat="server" Text="Fecha de Nacimiento*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="bdayLbl" Text="Fecha de Nacimiento*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -265,19 +265,6 @@
                         </script>
 
                         <asp:TextBox runat="server" placeholder ="MM/DD/YYYY" ID="bdayTxtBx"></asp:TextBox>
-
-                    </div>
-
-                    <div>
-
-                        <%--<asp:RegularExpressionValidator runat ="server" ControlToValidate ="bdayTxtBx" Display ="Dynamic" SetFocusOnError ="true" 
-                            ErrorMessage ="Invalido. Formato valido es MM/DD/YYYY"
-                             ValidationExpression ="^((0?[13578]|10|12)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)
-                            |(3[01]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|
-                            ([8901])(\d{1}))|(0?[2469]|11)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\/)((19)([2-9])(\d{1})
-                            |(20)([01])(\d{1})|([8901])(\d{1})))$" ForeColor ="#CC0000">
-
-                        </asp:RegularExpressionValidator>--%>
 
                     </div>
 
@@ -299,7 +286,7 @@
 
                     <div>
 
-                        <asp:Label runat="server" Text="Tipo de Usuario" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="tipoLbl" Text="Tipo de Usuario" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -323,30 +310,6 @@
 
                 </div>
 
-                <div style="width: 60%; margin-right: auto; margin-left: auto; margin-bottom: 20px;
-                 display:none">
-
-                    <div style="float: left;">
-
-                        <asp:Label runat="server" Text="Licencia Conducir*" ForeColor="#79256E"></asp:Label>
-
-                    </div>
-
-                    <div>
-
-                        <asp:TextBox runat="server" ID="licenseTxtBx"></asp:TextBox>
-
-                    </div>
-
-                    <div>
-
-                        <%--<asp:RequiredFieldValidator runat ="server" ControlToValidate ="licenseTxtBx" Display ="Dynamic" 
-                            ErrorMessage ="Requerido" ForeColor ="#CC0000" SetFocusOnError ="true"></asp:RequiredFieldValidator>--%>
-
-                    </div>
-
-                </div>
-
             </td>
 
         </tr>
@@ -355,40 +318,6 @@
 
             <td style="vertical-align: bottom; border-top-style: none; border-bottom-color: #616161; 
             border-bottom-style: solid; border-bottom-width: 3px; padding-bottom: 40px;">
-
-                <div style="width: 60%; margin-left: auto; margin-right: auto; margin-bottom: 20px;
-                 display:none">
-
-                    <div style="float: left;">
-
-                        <asp:Label runat="server" Text="Seguro Social*" ForeColor="#79256E"></asp:Label>
-
-                    </div>
-
-                    <div>
-
-                        <%--<script>
-
-                            $(function () {
-                                $("#<% = sSTxtBx.ClientID%>").mask("999-99-9999");
-                            });
-
-                        </script>--%>
-
-                        <%--<asp:HiddenField ID ="encryptedSSNPartHF" runat ="server" />--%>
-
-                        <asp:TextBox runat="server" ID="sSTxtBx" MaxLength ="11" onkeyup ="EncryptKey(this);"></asp:TextBox>
-
-                    </div>
-
-                    <div>
-
-                        <%--<asp:RequiredFieldValidator runat ="server" ControlToValidate ="sSTxtBx" Display ="Dynamic" 
-                            ErrorMessage ="Requerido" ForeColor ="#CC0000" SetFocusOnError ="true"></asp:RequiredFieldValidator>--%>
-
-                    </div>
-
-                </div>
 
             </td>
 
@@ -405,7 +334,8 @@
 
             <td style ="text-align:center">
 
-                <asp:Label ForeColor ="#79256E" Font-Bold ="true" runat ="server" Text ="Los campos con ' * ' son requeridos."></asp:Label>
+                <asp:Label ForeColor ="#79256E" ID ="campoReqLbl" Font-Bold ="true" runat ="server" 
+                    Text ="Los campos con ' * ' son requeridos."></asp:Label>
 
             </td>
 
@@ -421,24 +351,25 @@
 
             <td style="border-top-style: none; vertical-align: bottom;">
 
-                <div style="width: 60%; margin-left: auto; margin-right: auto; margin-bottom: 20px">
+                <div style="width:60%; margin-left: auto; margin-right: auto; margin-bottom: 20px">
 
                     <div style="float: left;">
 
-                        <div style="text-align: center; margin-bottom: 20px">
+                        <div style="text-align: center; margin-bottom:20px">
 
                             <input type="button" onclick="CopyResToPost();" style="border-style: solid; 
                                 border-color: #616161; border-width: 3px; padding: 10px 15px;"
-                                value="Copiar Informaci&oacute;n Residencial a Postal" />
+                                value="Copiar Informaci&oacute;n Residencial a Postal" id ="printBtn" />
                         </div>
 
                         <div style="margin-bottom: 20px">
 
-                            <asp:Label runat="server" Font-Bold="true" Font-Size="X-Large" Text="Residencial"></asp:Label>
+                            <asp:Label runat="server" ID ="residencialLbl" Font-Bold="true" 
+                                Font-Size="X-Large" Text="Residencial"></asp:Label>
 
                         </div>
 
-                        <asp:Label runat="server" Text="Direcci&oacute;n*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="dirLbl" Text="Direcci&oacute;n*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -463,17 +394,18 @@
 
             <td style="vertical-align: bottom; border-top-style: none;">
 
-                <div style="width: 60%; margin-right: auto; margin-left: auto; margin-bottom: 20px">
+                <div style="width:60%; margin-right: auto; margin-left: auto; margin-bottom: 20px">
 
                     <div style="float: left;">
 
                         <div style="margin-bottom: 20px">
 
-                            <asp:Label runat="server" Font-Bold="true" Font-Size="X-Large" Text="Postal"></asp:Label>
+                            <asp:Label runat="server" ID ="PosLbl" Font-Bold="true" 
+                                Font-Size="X-Large" Text="Postal"></asp:Label>
 
                         </div>
 
-                        <asp:Label runat="server" Text="Direcci&oacute;n*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="dirPosLbl" Text="Direcci&oacute;n*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -500,11 +432,11 @@
 
             <td style="border-top-style: none; vertical-align: bottom;">
 
-                <div style="width: 60%; margin-left: auto; margin-right: auto; margin-bottom: 20px">
+                <div style="width:60%; margin-left: auto; margin-right: auto; margin-bottom: 20px">
 
                     <div style="float: left;">
 
-                        <asp:Label runat="server" Text="Tel&eacute;fono*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="telLbl" Text="Tel&eacute;fono*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -536,11 +468,11 @@
 
             <td style="border-top-style: none; vertical-align: bottom;">
 
-                <div style="margin-right: auto; margin-bottom: 20px; width: 60%; margin-left: auto;">
+                <div style="margin-right:auto; margin-bottom: 20px; width: 60%; margin-left: auto;">
 
                     <div>
 
-                        <asp:Label runat="server" Text="Pueblo*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="puebloLbl" Text="Pueblo*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -651,11 +583,11 @@
 
             <td style="border-top-style: none; vertical-align: bottom;">
 
-                <div style="margin-left: auto; margin-right: auto; margin-bottom: 20px; width: 60%;">
+                <div style="margin-left:auto; margin-right: auto; margin-bottom: 20px; width: 60%;">
 
                     <div>
 
-                        <asp:Label runat="server" Text="Pueblo*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="puebloPosLbl" Text="Pueblo*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -663,7 +595,7 @@
 
                         <asp:DropDownList runat="server" ID="puebloResiDDL">
 
-                            <asp:ListItem>Seleccionar</asp:ListItem>
+                            <asp:ListItem> Seleccionar </asp:ListItem>
 
                             <asp:ListItem>Adjuntas</asp:ListItem>
                             <asp:ListItem>Aguada</asp:ListItem>
@@ -762,11 +694,11 @@
 
             <td style="border-top-style: none; vertical-align: bottom;">
 
-                <div style="width: 60%; margin-right: auto; margin-left: auto; margin-bottom: 20px">
+                <div style="width:60%; margin-right: auto; margin-left: auto; margin-bottom: 20px">
 
                     <div style="float: left;">
 
-                        <asp:Label runat="server" Text="C&oacute;digo Postal*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="codigoLbl" Text="C&oacute;digo Postal*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -793,11 +725,11 @@
 
             <td style="border-top-style: none; vertical-align: bottom;">
 
-                <div style="width: 60%; margin-left: auto; margin-right: auto; margin-bottom: 20px">
+                <div style="width:60%; margin-left: auto; margin-right: auto; margin-bottom: 20px">
 
                     <div style="float: left;">
 
-                        <asp:Label runat="server" Text="C&oacute;digo Postal*" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="codigoPosLbl" Text="C&oacute;digo Postal*" ForeColor="#79256E"></asp:Label>
 
                     </div>
 
@@ -817,12 +749,6 @@
                 </div>
 
             </td>
-
-            <%--<td style="border-top-style:none;  vertical-align:bottom;">
-
-                
-
-            </td>--%>
         </tr>
 
     </table>

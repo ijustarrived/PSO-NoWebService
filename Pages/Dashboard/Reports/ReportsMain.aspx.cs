@@ -1,6 +1,7 @@
 ﻿using PSO.Entities;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,6 +16,35 @@ namespace PSO.Pages.Dashboard.Reports
         {
             if (!IsPostBack)
             {
+                Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
+
+                #region Verify role access
+
+                if (!user.Role.ViewRepRecVsPen && !user.Role.ViewRepProduc)
+                {
+                    Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
+                }
+
+                RecibidosVsProcessBtn.Visible = user.Role.ViewRepRecVsPen;
+
+                productionBtn.Visible = user.Role.ViewRepProduc;
+
+                #endregion
+
+                #region Set Cosmetics
+
+                Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+                productionBtn.Text = cosmetic.ReportProduccionTitle;
+
+                productionBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+                RecibidosVsProcessBtn.Text = cosmetic.ReportComparacionTitle;
+
+                RecibidosVsProcessBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+                #endregion
+
                 #region Breadcrumb setup
 
                 var dashboardPnl = (Panel)Master.FindControl("dashboardLinkPnl");
@@ -32,35 +62,10 @@ namespace PSO.Pages.Dashboard.Reports
 
                 dashboardPnl.Controls.Add(mainDashLink);
 
-                #endregion
-
-                Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
-
-                #region Verify role access
-
-                //if (!user.Role.ViewRepAvisosStatus && !user.Role.ViewRepRecVsPen && !user.Role.ViewRepProduc)
-                //{
-                //    Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
-                //}
-
-                if (!user.Role.ViewRepRecVsPen && !user.Role.ViewRepProduc)
-                {
-                    Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
-                }
-
-                //AvisosRecibidosStatusBtn.Visible = user.Role.ViewRepAvisosStatus;
-
-                RecibidosVsProcessBtn.Visible = user.Role.ViewRepRecVsPen;
-
-                productionBtn.Visible = user.Role.ViewRepProduc;
+                mainDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
                 #endregion
             }
-        }
-
-        protected void AvisosRecibidosStatusBtn_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Pages/Dashboard/Reports/AvisosStatusReport.aspx", true);
         }
 
         protected void RecibidosVsProcessBtn_Click(object sender, EventArgs e)

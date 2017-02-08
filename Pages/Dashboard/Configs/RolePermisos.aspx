@@ -12,6 +12,15 @@
 
     </style>
 
+    <script>
+
+        function ChangeClinetSideColors(lblColor, titleColor)
+        {    
+            $('#printBtn').css({ 'color': lblColor });
+        }
+
+    </script>
+
     <div style="text-align:center; margin-top:20px">
 
         <asp:Label ForeColor="#79256E" Font-Size="X-Large" Font-Bold="true" ID ="roleLbl" runat="server"></asp:Label>
@@ -25,9 +34,10 @@
 
             <td style ="border-top-width:0px; text-align:center">
 
-                <div style="background-color: #616161; padding-left: 7%; margin-top: 40px">
+                <div runat ="server" id ="consultaTitleDiv" style="background-color: #616161; padding-left: 7%; margin-top: 40px">
 
-                    <asp:Label ForeColor="#E5E5E5" Font-Size="X-Large" Font-Bold="true" runat="server">Consultar</asp:Label>
+                    <asp:Label ForeColor="#E5E5E5" Font-Size="X-Large"
+                        Font-Bold="true" runat="server">Consultar</asp:Label>
 
                 </div>
 
@@ -35,7 +45,7 @@
 
                     <div style="margin-top: 20px;">
 
-                        <asp:Label runat="server" Text="Consulta de Solicitudes Pendientes 
+                        <asp:Label runat="server" ID ="consultaCoorLbl" Text="Consulta de Solicitudes Pendientes 
                             a Revisar por Coordinador" ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewConsuCoorChkBx" />
@@ -44,7 +54,7 @@
 
                     <div style="margin-top: 20px;">
 
-                        <asp:Label runat="server" Text="Consulta de Solicitudes Pendientes
+                        <asp:Label runat="server" ID ="consultaProLbl" Text="Consulta de Solicitudes Pendientes
                              a Trabajarse por un Procesador" ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewConsuProcChkBx" />
@@ -53,7 +63,7 @@
 
                     <div style="margin-top: 20px;">
 
-                        <asp:Label runat="server" Text="Consulta de Solicitudes 
+                        <asp:Label runat="server" ID ="consultaSolicitudLbl" Text="Consulta de Solicitudes 
                             &#010; por Nombre, Seguro Social o Status" ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewConsuSolicitudesChkBx" />
@@ -62,7 +72,7 @@
 
                     <div style="margin-top: 20px;">
 
-                        <asp:Label runat="server" Text="Consulta de Solicitudes
+                        <asp:Label runat="server" ID ="consultaSupLbl" Text="Consulta de Solicitudes
                              Pendientes de Asignar a un Procesador" ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewConsuPenAsigChkBx" />
@@ -71,7 +81,8 @@
 
                     <div style="margin-top: 20px;">
 
-                        <asp:Label runat="server" Text="Configuraci&oacute;n de Roles" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="configRoleLbl" Text="Configuraci&oacute;n de Roles"
+                             ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewConfigRoleChkBx" />
 
@@ -79,7 +90,8 @@
 
                     <div style="margin-top: 20px;">
 
-                        <asp:Label runat="server" Text="Configuraci&oacute;n de Usuarios" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="configUserLbl" Text="Configuraci&oacute;n de Usuarios"
+                             ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewConfigUserChkBx" />
 
@@ -87,7 +99,8 @@
 
                     <div style="margin-top: 20px;">
 
-                        <asp:Label runat="server" Text="Configuraci&oacute;n de Documentos Requeridos" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="consultaDocLbl" 
+                            Text="Configuraci&oacute;n de Documentos Requeridos" ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewConfigDocReqChkBx" />
 
@@ -103,7 +116,7 @@
 
                     <div style="margin-top: 20px;">
 
-                        <asp:Label runat="server" Text="Reporte de Comparaci&oacute;n entre
+                        <asp:Label runat="server" ID ="reportComparacionLbl" Text="Reporte de Comparaci&oacute;n entre
                              Solicitudes Recibidas y Procesadas" ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewReportReciVsProcChkBx" />
@@ -112,7 +125,8 @@
 
                     <div style="margin-top: 20px;">
 
-                        <asp:Label runat="server" Text="Reporte de Producción por Rol" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="reportProductionLbl" Text="Reporte de Producción por Rol"
+                             ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewReportProdu" />
 
@@ -120,7 +134,7 @@
 
                     <div style="margin-top: 20px;">
 
-                        <asp:Label runat="server" Text="Solicitud Servicios" ForeColor="#79256E"></asp:Label>
+                        <asp:Label ID ="solicitudLbl" runat="server" Text="Solicitud Servicios" ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewSolicitudChkBx" />
 
@@ -128,7 +142,7 @@
                     
                     <div style="margin-top: 20px;">
 
-                        <asp:Label runat="server" Text="Dashboard" ForeColor="#79256E"></asp:Label>
+                        <asp:Label runat="server" ID ="dashBrLbl" Text="Dashboard" ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewReportAvisoStatusChkBx" />
 
@@ -142,15 +156,16 @@
 
             <td style ="border-top-width:0px; text-align:center">
 
-                <div style="background-color: #616161; padding-left: 7%; margin-top: 40px">
+                <div runat ="server" id ="modificarTitleDiv" style="background-color: #616161; padding-left: 7%; margin-top: 40px">
 
-                    <asp:Label ForeColor="#E5E5E5" Font-Size="X-Large" Font-Bold="true" runat="server">Modificar</asp:Label>
+                    <asp:Label ForeColor="#E5E5E5" Font-Size="X-Large"
+                         Font-Bold="true" runat="server">Modificar</asp:Label>
 
                 </div>
 
                 <div>
 
-                    <div style="margin-top: 20px;">
+                    <%--<div style="margin-top: 20px;">
 
                         <asp:Label runat="server" Text="Roles" ForeColor="#79256E"></asp:Label>
 
@@ -172,6 +187,14 @@
 
                         <asp:CheckBox runat="server" ID="editDocReqChkBx" />
 
+                    </div>--%>
+
+                    <div style="margin-top: 20px;">
+
+                        <asp:Label runat="server" ID ="CustomizeLbl" Text="Personalizar Sistema" ForeColor="#79256E"></asp:Label>
+
+                        <asp:CheckBox runat="server" ID="customizePagesChkBx" />
+
                     </div>
 
                 </div>
@@ -189,7 +212,7 @@
 
         <input type="button" onclick="javascript:window.print();" 
             style="border-style: solid; border-color: #616161; border-width: 3px; padding: 10px 15px;"
-            value="Imprimir"  />
+            value="Imprimir" id ="printBtn" />
 
     </div>
 

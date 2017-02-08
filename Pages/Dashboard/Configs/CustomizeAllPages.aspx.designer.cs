@@ -7,325 +7,298 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PSO.Pages {
+namespace PSO.Pages.Dashboard.Configs {
     
     
-    public partial class Register {
+    public partial class CustomizeAllPages {
         
         /// <summary>
-        /// nombreLbl control.
+        /// versionesLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label nombreLbl;
+        protected global::System.Web.UI.WebControls.Label versionesLbl;
         
         /// <summary>
-        /// nameTxtBx control.
+        /// colorVersionsDDL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nameTxtBx;
+        protected global::System.Web.UI.WebControls.DropDownList colorVersionsDDL;
         
         /// <summary>
-        /// emaiLlbl control.
+        /// logoTitleDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label emaiLlbl;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl logoTitleDiv;
         
         /// <summary>
-        /// emailTxtBx control.
+        /// logoImg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox emailTxtBx;
+        protected global::System.Web.UI.WebControls.Image logoImg;
         
         /// <summary>
-        /// apePatLbl control.
+        /// logoLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label apePatLbl;
+        protected global::System.Web.UI.WebControls.Label logoLbl;
         
         /// <summary>
-        /// apellidoPatTxtBx control.
+        /// logoFileUp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox apellidoPatTxtBx;
+        protected global::System.Web.UI.WebControls.FileUpload logoFileUp;
         
         /// <summary>
-        /// passLbl control.
+        /// colorTitleDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label passLbl;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl colorTitleDiv;
         
         /// <summary>
-        /// passwordTxtBx control.
+        /// textoLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox passwordTxtBx;
+        protected global::System.Web.UI.WebControls.Label textoLbl;
         
         /// <summary>
-        /// passwordREV control.
+        /// tituloLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator passwordREV;
+        protected global::System.Web.UI.WebControls.Label tituloLbl;
         
         /// <summary>
-        /// apeMatLbl control.
+        /// labelForeColorBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label apeMatLbl;
+        protected global::System.Web.UI.WebControls.Button labelForeColorBtn;
         
         /// <summary>
-        /// apellidoMatTxtBx control.
+        /// linkLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox apellidoMatTxtBx;
+        protected global::System.Web.UI.WebControls.Label linkLbl;
         
         /// <summary>
-        /// celLbl control.
+        /// linkForeColorBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label celLbl;
+        protected global::System.Web.UI.WebControls.Button linkForeColorBtn;
         
         /// <summary>
-        /// celTxtBx control.
+        /// fondoLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox celTxtBx;
+        protected global::System.Web.UI.WebControls.Label fondoLbl;
         
         /// <summary>
-        /// bdayLbl control.
+        /// titleColorLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label bdayLbl;
+        protected global::System.Web.UI.WebControls.Label titleColorLbl;
         
         /// <summary>
-        /// bdayTxtBx control.
+        /// titleBackColorBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox bdayTxtBx;
+        protected global::System.Web.UI.WebControls.Button titleBackColorBtn;
         
         /// <summary>
-        /// tipoUserDiv control.
+        /// TituloTitleDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tipoUserDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TituloTitleDiv;
         
         /// <summary>
-        /// tipoLbl control.
+        /// consultaLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label tipoLbl;
+        protected global::System.Web.UI.WebControls.Label consultaLbl;
         
         /// <summary>
-        /// tipoUsuarioDDL control.
+        /// consultaCoorTitleTxtBx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList tipoUsuarioDDL;
+        protected global::System.Web.UI.WebControls.TextBox consultaCoorTitleTxtBx;
         
         /// <summary>
-        /// campoReqLbl control.
+        /// consultaProcTitleTxtBx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label campoReqLbl;
+        protected global::System.Web.UI.WebControls.TextBox consultaProcTitleTxtBx;
         
         /// <summary>
-        /// residencialLbl control.
+        /// consultaSolicitudTitleTxtBx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label residencialLbl;
+        protected global::System.Web.UI.WebControls.TextBox consultaSolicitudTitleTxtBx;
         
         /// <summary>
-        /// dirLbl control.
+        /// consultaSuperTitleTxtBx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label dirLbl;
+        protected global::System.Web.UI.WebControls.TextBox consultaSuperTitleTxtBx;
         
         /// <summary>
-        /// dirResTxtBx control.
+        /// reportLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox dirResTxtBx;
+        protected global::System.Web.UI.WebControls.Label reportLbl;
         
         /// <summary>
-        /// PosLbl control.
+        /// reportComparacionTitleTxtBx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PosLbl;
+        protected global::System.Web.UI.WebControls.TextBox reportComparacionTitleTxtBx;
         
         /// <summary>
-        /// dirPosLbl control.
+        /// reportProduccionTitleTxtBx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label dirPosLbl;
+        protected global::System.Web.UI.WebControls.TextBox reportProduccionTitleTxtBx;
         
         /// <summary>
-        /// dirPostalTxtBx control.
+        /// dashboardLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox dirPostalTxtBx;
+        protected global::System.Web.UI.WebControls.Label dashboardLbl;
         
         /// <summary>
-        /// telLbl control.
+        /// historyRecibidasTitleTxtBx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label telLbl;
+        protected global::System.Web.UI.WebControls.TextBox historyRecibidasTitleTxtBx;
         
         /// <summary>
-        /// telResTxtBx control.
+        /// historyCompletadasTitleTxtBx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox telResTxtBx;
+        protected global::System.Web.UI.WebControls.TextBox historyCompletadasTitleTxtBx;
         
         /// <summary>
-        /// puebloLbl control.
+        /// solicitudesStatusTitleTxtBx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label puebloLbl;
+        protected global::System.Web.UI.WebControls.TextBox solicitudesStatusTitleTxtBx;
         
         /// <summary>
-        /// puebloPostalDDL control.
+        /// indicadoresProductividadTitleTxtBx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList puebloPostalDDL;
+        protected global::System.Web.UI.WebControls.TextBox indicadoresProductividadTitleTxtBx;
         
         /// <summary>
-        /// puebloPosLbl control.
+        /// completadasMesDiasTitleTxtBx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label puebloPosLbl;
+        protected global::System.Web.UI.WebControls.TextBox completadasMesDiasTitleTxtBx;
         
         /// <summary>
-        /// puebloResiDDL control.
+        /// miscLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList puebloResiDDL;
+        protected global::System.Web.UI.WebControls.Label miscLbl;
         
         /// <summary>
-        /// codigoLbl control.
+        /// solicitudTitleTxtBx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label codigoLbl;
-        
-        /// <summary>
-        /// codigoPostalTxtBx control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox codigoPostalTxtBx;
-        
-        /// <summary>
-        /// codigoPosLbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label codigoPosLbl;
-        
-        /// <summary>
-        /// codigoResiTxtBx control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox codigoResiTxtBx;
+        protected global::System.Web.UI.WebControls.TextBox solicitudTitleTxtBx;
         
         /// <summary>
         /// saveBtn control.

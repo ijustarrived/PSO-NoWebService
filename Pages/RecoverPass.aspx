@@ -13,13 +13,21 @@
 
         <div style="float: left;">
 
-            <asp:Label runat="server" Text="Correo Electr&oacute;nico" ForeColor="#79256E"></asp:Label>
+            <asp:Label runat="server" ID ="emailLbl" Text="Correo Electr&oacute;nico*" ForeColor="#79256E"></asp:Label>
 
         </div>
 
         <div>
 
             <asp:TextBox runat="server" ID="emailTxtBx"></asp:TextBox>
+
+        </div>
+
+        <div>
+
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="emailTxtBx" Display="Dynamic"
+                ErrorMessage="Requerido" ForeColor="#CC0000"
+                SetFocusOnError="true" ID ="asigCommentRFV"></asp:RequiredFieldValidator>
 
         </div>
 
@@ -37,7 +45,7 @@
 
         <div style="float: left;">
 
-            <asp:Label runat="server" Text="Fecha de Nacimiento" ForeColor="#79256E"></asp:Label>
+            <asp:Label runat="server" ID ="bdayLbl" Text="Fecha de Nacimiento*" ForeColor="#79256E"></asp:Label>
 
         </div>
 
@@ -53,6 +61,14 @@
                         </script>
 
             <asp:TextBox runat="server" ID="ssTxtBx"></asp:TextBox>
+
+        </div>
+
+        <div>
+
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="ssTxtBx" Display="Dynamic"
+                ErrorMessage="Requerido" ForeColor="#CC0000" 
+                SetFocusOnError="true" ID ="RequiredFieldValidator1"></asp:RequiredFieldValidator>
 
         </div>
 

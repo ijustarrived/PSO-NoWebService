@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Drawing;
 
 namespace PSO.Pages.Dashboard.Reports
 {
@@ -13,6 +14,64 @@ namespace PSO.Pages.Dashboard.Reports
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            #region Verify role permission
+
+            Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
+
+            if (!user.Role.ViewRepRecVsPen)
+            {
+                if (string.IsNullOrEmpty(user.Email))
+                    Response.Redirect("~/Pages/Login.aspx", true);
+
+                Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
+            }
+
+            #endregion
+
+            #region Set cosmetics
+
+            Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+            Page.Title = cosmetic.ReportComparacionTitle;
+
+            detallesTitleDiv.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            #region Set lbl colors
+
+            searchBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            searchRolBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            empleadoLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            periodoFechaLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            periodoFechasDetalleLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            statusLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            recievedGV.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            #endregion
+
+            #region Set gv colors
+
+            recievedGV.EmptyDataRowStyle.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            recievedGV.FooterStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            recievedGV.PagerStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            recievedGV.HeaderStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            #endregion
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "InvokeChangeClinetSideColors",
+                                   string.Format("ChangeClinetSideColors('{0}', '{1}');",
+                                   cosmetic.LabelForeColor, cosmetic.TitleBackColor), true);
+
+            #endregion
+
             #region Breadcrumb config
 
             var dashboardPnl = (Panel)Master.FindControl("dashboardLinkPnl");
@@ -26,15 +85,22 @@ namespace PSO.Pages.Dashboard.Reports
             Label secondDashlbl = new Label();
 
             #region 1st link
+
             mainDashLink.NavigateUrl = "~/Pages/Dashboard/Main.aspx";
 
             mainDashLink.Text = "Inicio";
 
+            mainDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
             dashboardPnl.Controls.Add(mainDashLink);
+
             #endregion
 
             #region 2nd link
+
             secondDashlbl.Text = " > ";
+
+            secondDashlbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
             dashboardPnl.Controls.Add(secondDashlbl);
 
@@ -42,27 +108,13 @@ namespace PSO.Pages.Dashboard.Reports
 
             secondDashLink.Text = "Reportes";
 
+            secondDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
             dashboardPnl.Controls.Add(secondDashLink);
-            #endregion
 
             #endregion
 
-            if (!IsPostBack)
-            {
-                #region Verify role permission
-
-                Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
-
-                if (!user.Role.ViewRepRecVsPen)
-                {
-                    if (string.IsNullOrEmpty(user.Email))
-                        Response.Redirect("~/Pages/Login.aspx", true);
-
-                    Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
-                }
-
-                #endregion
-            }
+            #endregion
         }
 
         protected void searchBtn_Click(object sender, EventArgs e)
@@ -274,6 +326,14 @@ namespace PSO.Pages.Dashboard.Reports
                 //} 
 
                 #endregion
+            }
+
+            else if (e.Row.RowType == DataControlRowType.EmptyDataRow)
+            {
+                Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+                ((Label)e.Row.Controls[0].Controls[0].FindControl("emptyLbl")).ForeColor
+                    = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
             }
         }
 

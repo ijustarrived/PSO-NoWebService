@@ -3,20 +3,11 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent2" runat="server">
 
-    <%--<script>
-
-        $(function ()
-        {
-            $("<%= emailTxtBx.ClientID%>").focus();
-        });
-
-    </script>--%>
-
     <div style="width: 310px; margin-left: auto; margin-right: auto; margin-top: 70px; margin-bottom: 60px" class="container">
 
         <div style="float: left;">
 
-            <asp:Label runat="server" Text="Correo Electr&oacute;nico" ForeColor="#79256E"></asp:Label>
+            <asp:Label runat="server" ID ="emailLbl" Text="Correo Electr&oacute;nico" ForeColor="#79256E"></asp:Label>
 
         </div>
 
@@ -32,7 +23,7 @@
 
         <div style="float: left;">
 
-            <asp:Label runat="server" Text="Contraseña" ForeColor="#79256E"></asp:Label>
+            <asp:Label runat="server" ID ="passLbl" Text="Contraseña" ForeColor="#79256E"></asp:Label>
 
         </div>
 
@@ -46,14 +37,12 @@
 
     <div class="container" style="text-align: center; margin-bottom: 70px">
 
-        <asp:HyperLink runat="server" Text="Recuperar Contraseña" NavigateUrl ="~/Pages/RecoverPass.aspx" 
+        <asp:HyperLink runat="server" ID ="recoverPassLink" Text="Recuperar Contraseña" NavigateUrl ="~/Pages/RecoverPass.aspx" 
             ForeColor="#79256E"></asp:HyperLink>
 
     </div>
 
     <div style="text-align: center; margin-bottom: 40px; padding-bottom: 100px">
-
-
 
         <asp:Button ID="loginBtn" BorderColor="#616161" BorderWidth="3" CssClass="btn" Text="Ingresar"
             Style="margin-right: 20px; padding: 10px 15px;" runat="server" OnClick="loginBtn_Click" ForeColor="#79256E" />

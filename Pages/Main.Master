@@ -96,13 +96,15 @@
 
         <div style="text-align: center; margin-top: 50px;">
 
-            <asp:Image runat="server" AlternateText="PSO logo" CssClass="img-responsive" ImageUrl="~/PageImages/PSO_horizontal.png" />
+            <asp:Image runat="server" AlternateText="PSO logo" ID ="sistemLogoImg" CssClass="img-responsive" 
+                ImageUrl="~/PageImages/PSO_horizontal.png" />
 
         </div>
 
         <div style="margin-top: 40px; text-align: center">
 
-            <asp:Label ForeColor="#79256E" Font-Size="XX-Large" Font-Bold="true" runat="server"><%=Page.Title %></asp:Label>
+            <asp:Label ForeColor="#79256E" ID ="pageTitleLbl" Font-Size="XX-Large"
+                 Font-Bold="true" runat="server"><%=Page.Title %></asp:Label>
 
         </div>
 

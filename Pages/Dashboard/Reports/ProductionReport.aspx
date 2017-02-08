@@ -6,13 +6,22 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
 
+    <script>
+
+        function ChangeClinetSideColors(lblColor, titleColor)
+        {           
+            $('#printBtn').css({ 'color': lblColor });
+        }
+
+    </script>
+
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.js"></script>
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 
     <div style="text-align: center; margin-top: 20px; margin-bottom: 20px">
 
-        <asp:Label runat="server" Text="Periodo de Fechas" ForeColor="#79256E"></asp:Label>
+        <asp:Label runat="server" Text="Periodo de Fechas" ID ="periodoFechaLbl" ForeColor="#79256E"></asp:Label>
 
     </div>
 
@@ -30,6 +39,8 @@
 
         <asp:TextBox runat="server" Style="width: initial; margin-right: 20px;" ID="desdeTxtBx" placeholder="Desde"></asp:TextBox>
 
+        
+
         <script>
 
             $(
@@ -42,13 +53,15 @@
 
           <asp:TextBox runat="server" Style="width: initial" ID="hastaTxtBx" placeholder="Hasta"></asp:TextBox>
 
+        
+
         <asp:DropDownList runat ="server" ID ="rolDDL" AutoPostBack ="true" OnSelectedIndexChanged ="rolDDL_SelectedIndexChanged">
 
             <asp:ListItem>Coordinadores</asp:ListItem>
 
             <asp:ListItem>Procesadores</asp:ListItem>
 
-        </asp:DropDownList>
+        </asp:DropDownList>       
 
     </div>
 
@@ -66,7 +79,7 @@
     <div style="text-align:center; margin-bottom:10px">
 
         <asp:RegularExpressionValidator runat="server" ControlToValidate="hastaTxtBx" Display="Dynamic" SetFocusOnError="true"
-           ErrorMessage ="Inv&aacute;lida. Formato v&aacute;lido es MM/DD/YYYY."
+            ErrorMessage ="Inv&aacute;lida. Formato v&aacute;lido es MM/DD/YYYY."
                              ValidationExpression ="^((0?[13578]|10|12)(\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(\/)((19)([0-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(\/)((19)([0-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$"
             ForeColor="#CC0000">
 
@@ -132,7 +145,8 @@
 
     </div>
 
-    <div style="background-color: #616161; margin-top: 40px; text-align:center">
+    <div runat ="server" id ="detallesTitleDiv" 
+        style="background-color: #616161; margin-top: 40px; text-align:center">
 
             <asp:Label ForeColor="#E5E5E5" ID ="detailsLbl" Font-Size="X-Large" Font-Bold="true" runat="server">
                 Detalle de Producci&oacute;n por Coordinador
@@ -152,7 +166,7 @@
 
             <div style="text-align: center">
 
-                <asp:Label ForeColor="#79256E" runat="server">No hay data disponible</asp:Label>
+                <asp:Label ForeColor="#79256E" ID ="emptyLbl" runat="server">No hay data disponible</asp:Label>
 
             </div>
 
@@ -211,7 +225,7 @@
 
             <div style="text-align: center">
 
-                <asp:Label ForeColor="#79256E" runat="server">No hay data disponible</asp:Label>
+                <asp:Label ForeColor="#79256E" ID ="emptyLbl" runat="server">No hay data disponible</asp:Label>
 
             </div>
 
@@ -262,7 +276,7 @@
 
         <input type="button" onclick="javascript: window.print();"
             style="border-style: solid; border-color: #616161; border-width: 3px; padding: 10px 15px;"
-            value="Imprimir" />
+            value="Imprimir" id ="printBtn" />
 
     </div>
 

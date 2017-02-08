@@ -12,6 +12,15 @@
 
     </style>
 
+    <script>
+
+        function ChangeClinetSideColors(lblColor, titleColor)
+        {
+            $('#printBtn').css({ 'color': lblColor });
+        }
+
+    </script>
+
     <asp:GridView runat ="server" ID ="roleGV" AllowPaging="True" ForeColor="#79256E" BackColor="#F3F0F7"
          CellPadding="2" GridLines="None" CssClass="table" ShowHeaderWhenEmpty="true" AutoGenerateColumns="false"
          style ="margin-top:40px; width:35%; margin-left:auto; margin-right:auto" 
@@ -59,10 +68,7 @@
 
         <input type="button" onclick="javascript:window.print();" 
             style="border-style: solid; border-color: #616161; border-width: 3px; padding: 10px 15px;"
-            value="Imprimir"  />
-
-        <%--<asp:Button BorderColor="#616161" CssClass="btn" BorderWidth="3" Text="Imprimir"
-            runat="server" OnClientClick="javascript:window.print();" ForeColor="#79256E" Style="padding: 10px 15px;" />--%>
+            value="Imprimir" id ="printBtn" />
 
     </div>
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Drawing;
 
 namespace PSO.Pages.Dashboard.Configs
 {
@@ -13,6 +14,40 @@ namespace PSO.Pages.Dashboard.Configs
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            #region Verify role permission
+
+            Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
+
+            if (!user.Role.ViewConfigUser)
+            {
+                if (string.IsNullOrEmpty(user.Email))
+                    Response.Redirect("~/Pages/Login.aspx", true);
+
+                Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
+            }
+
+            #endregion
+
+            #region Set cosmetics
+
+            Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+            tipoUserLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            userGV.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            userGV.FooterStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            userGV.PagerStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            userGV.HeaderStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "InvokeChangeClinetSideColors",
+                                   string.Format("ChangeClinetSideColors('{0}', '{1}');",
+                                   cosmetic.LabelForeColor, cosmetic.TitleBackColor), true);
+
+            #endregion
+
             #region Breadcrumb config
 
             var dashboardPnl = (Panel)Master.FindControl("dashboardLinkPnl");
@@ -26,39 +61,36 @@ namespace PSO.Pages.Dashboard.Configs
             Label secondDashlbl = new Label();
 
             #region 1st link
+
             mainDashLink.NavigateUrl = "~/Pages/Dashboard/Main.aspx";
 
             mainDashLink.Text = "Inicio";
 
+            mainDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
             dashboardPnl.Controls.Add(mainDashLink);
+
             #endregion
 
             #region 2nd link
+
             secondDashlbl.Text = " > ";
+
+            secondDashlbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
             dashboardPnl.Controls.Add(secondDashlbl);
 
             secondDashLink.NavigateUrl = "~/Pages/Dashboard/Configs/ConfigsMain.aspx";
 
+            secondDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
             secondDashLink.Text = "Configuraci&oacute;n";
 
             dashboardPnl.Controls.Add(secondDashLink);
-            #endregion
 
             #endregion
 
-            if (!IsPostBack)
-            {
-                Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
-
-                if (!user.Role.ViewConfigUser)
-                {
-                    if (string.IsNullOrEmpty(user.Email))
-                        Response.Redirect("~/Pages/Login.aspx", true);
-
-                    Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
-                }
-            }
+            #endregion
 
             tipoUserDDL_SelectedIndexChanged(tipoUserDDL, EventArgs.Empty);
         }
