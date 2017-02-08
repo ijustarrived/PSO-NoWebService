@@ -2,6 +2,7 @@
 using PSO.Repositorios;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -28,6 +29,184 @@ namespace PSO.Pages.Dashboard.DashBrds
 
             #endregion
 
+            #region Set Cosmetics
+
+            Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+
+            #region Set titles
+
+            #region Set section title color
+
+            historialCompletadasTitleDiv.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            historialRecibidasTitleDiv.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            indicadoresProductividadTitleDiv.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            randoDiasTitleDiv.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            solicitudesStatusTitleDiv.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            #endregion
+
+            #region Table headers
+
+            abrTitleTh.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            agoTitleTh.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            dicTitleTh.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            eneTitleTh.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            febTitleTh.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            fillerTitleTh.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            julTitleTh.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            junTitleTh.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            marTitleTh.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            mayTitleTh.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            novTitleTh.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            octTitleTh.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            sepTitleTh.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            metaTitleTh.Style.Add("background-color", cosmetic.TitleBackColor);
+
+            #endregion
+
+            #region Set text
+
+            historialCompletadasTitleLbl.Text = cosmetic.HistoryCompletadasTitle;
+
+            historialRecibidasTitleLbl.Text = cosmetic.HistoryRecibidasTitle;
+
+            indicadorProductividadTitleLbl.Text = cosmetic.IndicadoresProductividadTitle;
+
+            SolicitudStatusTitleLbl.Text = cosmetic.SolicitudesStatusTitle;
+
+            #endregion
+
+            #endregion
+
+            #region Set lbls
+
+            totalAvisosLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "InvokeChangeClinetSideColors",
+                                    string.Format("ChangeClinetSideColors('{0}', '{1}');",
+                                    cosmetic.LabelForeColor, cosmetic.TitleBackColor), true);
+
+            #region Meta
+
+            coorMetaLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            proMetaLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            supMetaLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            #endregion
+
+            #region Coor th 
+
+            coorMarLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            coorMayLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            coorAbrLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            coorAgoLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            coorDicLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            coorEneLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            coorFebLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            coorJulLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            coorJunLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            coorLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            coorNovLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            coorOctLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            coorSepLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            #endregion
+
+            #region Proc th
+
+            proAbrLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            proAgoLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            proDicLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            proEneLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            proFebLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            proJulLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            proJunLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            proLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            proMarLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            proMayLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            proNovLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            proOctLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            proSepLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            #endregion
+
+            #region Sup th
+
+            supAbrLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            supAgoLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            supDicLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            supEneLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            supFebLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            supJulLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            supJunLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            supLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            supMarLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            supMayLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            supNovLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            supOctLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            supSepLblTh.Style.Add("color", cosmetic.LabelForeColor);
+
+            #endregion
+
+            #endregion
+
+            #endregion
+
             #region Breadcrumb setup
 
             var dashboardPnl = (Panel)Master.FindControl("dashboardLinkPnl");
@@ -44,6 +223,8 @@ namespace PSO.Pages.Dashboard.DashBrds
 
             dashboardPnl.Controls.Add(mainDashLink);
 
+            mainDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
             #endregion
 
             LinkedList<_Solicitud> solicitudesByYear = SolicitudRepo.GetSolicitudesByYear(DateTime.Now.Year),
@@ -58,8 +239,6 @@ namespace PSO.Pages.Dashboard.DashBrds
             SetByYearChartData(solicitudesByYearNRol, historialCompletadasChrt);
 
             SetDayChartData(solicitudesByYearMonthNRol);
-
-
 
             #region Define and Init counters
 
@@ -87,9 +266,11 @@ namespace PSO.Pages.Dashboard.DashBrds
             SetTableData(solicitudesSup, Rol.TiposRole.SUPERVISOR);
         }
 
-        private void SetPieChartData(int aprobadasCount, int pendientesCount, int asigInspectorCount, int procesosInpeccionCount
-           , int docsIncompletosCount, int denegadasCount, int inactivasCount)
+        private void SetPieChartData(int aprobadasCount, int pendientesCount, int asigInspectorCount,
+            int procesosInpeccionCount, int docsIncompletosCount, int denegadasCount, int inactivasCount)
         {
+            //Chart1.Series[0]["BarLabelStyle"] = "Right";
+
             #region pend revisar
 
             if (pendientesCount > 0)
@@ -97,6 +278,9 @@ namespace PSO.Pages.Dashboard.DashBrds
                 Chart1.Series[0].Points[0].SetValueY(pendientesCount);
 
                 Chart1.Series[0].Points[0].Label = pendientesCount.ToString();
+
+                Chart1.Series[0].Points[0].ToolTip = string.Format("{0} : {1}", Chart1.Series[0].Points[0].LegendText,
+                    pendientesCount);
             }
 
             #endregion
@@ -108,6 +292,9 @@ namespace PSO.Pages.Dashboard.DashBrds
                 Chart1.Series[0].Points[1].SetValueY(docsIncompletosCount);
 
                 Chart1.Series[0].Points[1].Label = docsIncompletosCount.ToString();
+
+                Chart1.Series[0].Points[1].ToolTip = string.Format("{0} : {1}", Chart1.Series[0].Points[1].LegendText,
+                    docsIncompletosCount);
             }
 
             #endregion
@@ -119,6 +306,9 @@ namespace PSO.Pages.Dashboard.DashBrds
                 Chart1.Series[0].Points[2].Label = asigInspectorCount.ToString();
 
                 Chart1.Series[0].Points[2].SetValueY(asigInspectorCount);
+
+                Chart1.Series[0].Points[2].ToolTip = string.Format("{0} : {1}", Chart1.Series[0].Points[2].LegendText,
+                    asigInspectorCount);
             }
 
             #endregion
@@ -130,6 +320,9 @@ namespace PSO.Pages.Dashboard.DashBrds
                 Chart1.Series[0].Points[3].Label = procesosInpeccionCount.ToString();
 
                 Chart1.Series[0].Points[3].SetValueY(procesosInpeccionCount);
+
+                Chart1.Series[0].Points[3].ToolTip = string.Format("{0} : {1}", Chart1.Series[0].Points[3].LegendText,
+                    procesosInpeccionCount);
             }
 
             #endregion
@@ -141,6 +334,9 @@ namespace PSO.Pages.Dashboard.DashBrds
                 Chart1.Series[0].Points[4].SetValueY(aprobadasCount);
 
                 Chart1.Series[0].Points[4].Label = aprobadasCount.ToString();
+
+                Chart1.Series[0].Points[4].ToolTip = string.Format("{0} : {1}", Chart1.Series[0].Points[4].LegendText,
+                    aprobadasCount);
             }
 
             #endregion
@@ -152,17 +348,23 @@ namespace PSO.Pages.Dashboard.DashBrds
                 Chart1.Series[0].Points[5].SetValueY(denegadasCount);
 
                 Chart1.Series[0].Points[5].Label = denegadasCount.ToString();
+
+                Chart1.Series[0].Points[5].ToolTip = string.Format("{0} : {1}", Chart1.Series[0].Points[5].LegendText,
+                    denegadasCount);
             }
 
             #endregion
 
             #region Inactivas
 
-            if (denegadasCount > 0)
+            if (inactivasCount > 0)
             {
                 Chart1.Series[0].Points[6].SetValueY(inactivasCount);
 
                 Chart1.Series[0].Points[6].Label = inactivasCount.ToString();
+
+                Chart1.Series[0].Points[6].ToolTip = string.Format("{0} : {1}", Chart1.Series[0].Points[6].LegendText,
+                    inactivasCount);
             }
 
             #endregion

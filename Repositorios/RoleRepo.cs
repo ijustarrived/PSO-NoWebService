@@ -103,7 +103,7 @@ namespace PSO.Repositorios
 
             using (SqlConnection conn = DB.GetLocalConnection())
             {
-                SqlCommand cmd = new SqlCommand(@"SELECT * FROM Roles WHERE RoleType = @RoleType", conn);
+                SqlCommand cmd = new SqlCommand(@"SELECT TOP 1 * FROM Roles WHERE RoleType = @RoleType", conn);
 
                 cmd.Parameters.AddWithValue("RoleType", roleId);
 

@@ -226,58 +226,70 @@ namespace PSO.Pages
 
             Usuario loggedUser = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
 
+            #region Create/Edit
+            if (string.IsNullOrEmpty(loggedUser.Email))
             {
-                #region Create/Edit
-                if (string.IsNullOrEmpty(loggedUser.Email))
+                #region Create
+
+                Usuario existingUser = UserRepo.GetUserByEmail(userProfile.Email);
+
+                if (!existingUser.Email.Equals(userProfile.Email))
                 {
-                    #region Create
+                    Exception excep = UserRepo.Create(userProfile);
 
-                    Usuario existingUser = UserRepo.GetUserByEmail(userProfile.Email);
-
-                    if (!existingUser.Email.Equals(userProfile.Email))
+                    try
                     {
-                        Exception excep = UserRepo.Create(userProfile);
-
-                        try
+                        if (excep != null)
                         {
-                            if (excep != null)
-                            {
-                                //ScriptManager.RegisterClientScriptBlock(this, GetType(), "registerCreateAlert",
-                                //    string.Format("alert('No se pudo crear el usuario. Error: {0}');",
-                                //    excep.Message.Replace("'", string.Empty)), true);
+                            //ScriptManager.RegisterClientScriptBlock(this, GetType(), "registerCreateAlert",
+                            //    string.Format("alert('No se pudo crear el usuario. Error: {0}');",
+                            //    excep.Message.Replace("'", string.Empty)), true);
 
-                                throw new Exception(string.Format("No se pudo crear el usuario. Error: {0}",
-                                    excep.Message.Replace("'", string.Empty)));
-                            }
-
-                            CreateUserDir(userProfile.Email);
-
-                            SendThreadedEmail(userProfile, Correo.GetSubject(Correo.MailType.REGISTER),
-                    Correo.GetBody(Correo.MailType.REGISTER));
-
-                            Response.Redirect("~/Pages/Login.aspx", true);
+                            throw new Exception(string.Format("No se pudo crear el usuario. Error: {0}",
+                                excep.Message.Replace("'", string.Empty)));
                         }
 
-                        catch (Exception ex)
-                        {
-                            ScriptManager.RegisterClientScriptBlock(this, GetType(), "registerError",
-                                    string.Format("alert('{0}');", ex.Message.Replace("\r\n", " ")), true);
-                        }
+                        CreateUserDir(userProfile.Email);
+
+                        SendThreadedEmail(userProfile, Correo.GetSubject(Correo.MailType.REGISTER),
+                Correo.GetBody(Correo.MailType.REGISTER));
+
+                        Response.Redirect("~/Pages/Login.aspx", true);
                     }
 
-                    else
+                    catch (Exception ex)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "emailAleardyExistAlert",
-                                    "alert('Ya existe un usuario con ese Correo.');", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "registerError",
+                                string.Format("alert('{0}');", ex.Message.Replace("\r\n", " ")), true);
                     }
-
-                    #endregion
                 }
 
                 else
                 {
-                    #region Edit
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "emailAleardyExistAlert",
+                                "alert('Ya existe un usuario con ese Correo.');", true);
+                }
 
+                #endregion
+            }
+
+            else
+            {
+                #region Edit
+
+                Usuario existingUser = UserRepo.GetUserByEmail((string)ViewState["Email"]);
+
+                bool canAddUserToInternal = true;
+
+                if (existingUser.Role.RoleType == Rol.TiposRole.EXTERNO && tipoUsuarioDDL.SelectedIndex != ((int)Rol.TiposRole.EXTERNO))
+                {
+                    int internalUserCount = UserRepo.GetInternalUserCount();
+
+                    canAddUserToInternal = Usuario.GetUserMaxAmount() > internalUserCount;
+                }
+
+                if (canAddUserToInternal)
+                {
                     //Means that user didn't change password
                     if (string.IsNullOrEmpty(passwordTxtBx.Text))
                         userProfile.Password = (string)ViewState["Password"];
@@ -289,9 +301,6 @@ namespace PSO.Pages
 
                         if (excep != null)
                         {
-                            //ClientScript.RegisterStartupScript(this.GetType(), "registerEditAlert",
-                            //string.Format("alert('No se pudo actualizar el perfil. Error: {0}');", excep.Message), true);
-
                             throw new Exception(string.Format("No se pudo actualizar el perfil. Error: {0}"
                                 , excep.Message));
                         }
@@ -321,11 +330,18 @@ namespace PSO.Pages
                     {
                         Session["registerError"] = ex.Message;
                     }
-
-                    #endregion
                 }
+
+                else
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "exceedsLicenseAlert",
+                        "alert('No se puede añadir usuario, ya que excedió el límite establecido para su licencia.');", true);
+                }
+
+
                 #endregion
             }
+            #endregion
         }
 
         private void CreateUserDir(string email)

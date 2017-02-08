@@ -9,6 +9,8 @@ namespace PSO.Entities
     [Serializable]
     public class Usuario
     {
+        private const int USER_MAX_AMOUNT = 15;
+
         public enum TiposUsuarios
         {
             EXTERNO = 0,
@@ -257,5 +259,10 @@ namespace PSO.Entities
 
             return wordInBytes;
         }
-    }    
+
+        public static int GetUserMaxAmount()
+        {
+            return USER_MAX_AMOUNT;
+        }
+    }
 }

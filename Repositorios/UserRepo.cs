@@ -235,6 +235,31 @@ namespace PSO.Repositorios
             return user;
         }
 
+        public static int GetInternalUserCount()
+        {
+            int count = 0;
+
+            using (SqlConnection conn = DB.GetLocalConnection())
+            {
+                SqlCommand cmd = new SqlCommand(@"SELECT COUNT(*) FROM Usuarios WHERE RoleID != 0", conn);
+
+                conn.Open();
+
+                cmd.ExecuteNonQuery();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int col = 0;
+
+                    count = reader.GetInt32(col);
+                }
+            }
+
+            return count;
+        }
+
         public static Usuario GetUserByID(int id)
         {
             Usuario user = new Usuario();
