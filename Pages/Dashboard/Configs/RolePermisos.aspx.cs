@@ -40,6 +40,10 @@ namespace PSO.Pages.Dashboard.Configs
 
             saveBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
+            indicadoresLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            indicadoresLbl.Text = cosmetic.IndicadoresProductividadTitle;
+
             configRoleLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
             configUserLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
@@ -180,13 +184,9 @@ namespace PSO.Pages.Dashboard.Configs
 
                     viewReportReciVsProcChkBx.Checked = role.ViewRepRecVsPen;
 
+                    viewReportIndicadoresChkBx.Checked = role.ViewReportIndicadores;
+
                     viewSolicitudChkBx.Checked = role.ViewSolicitud;
-
-                    //editDocReqChkBx.Checked = role.EditDocReq;
-
-                    //editRoleChkBx.Checked = role.EditRoles;
-
-                    //editUsersChkBx.Checked = role.EditUsers;
 
                     viewReportProdu.Checked = role.ViewRepProduc;
 
@@ -210,11 +210,7 @@ namespace PSO.Pages.Dashboard.Configs
             {
                 RoleType = Rol.GetRoleType(Convert.ToInt32(Request.QueryString["RoleID"])),
 
-                //EditDocReq = editDocReqChkBx.Checked,
-
-                //EditRoles = editRoleChkBx.Checked,
-
-                //EditUsers = editUsersChkBx.Checked,
+                ViewReportIndicadores = viewReportIndicadoresChkBx.Checked,
 
                 ViewConfigDocReq = viewConfigDocReqChkBx.Checked,
 

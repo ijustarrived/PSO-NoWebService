@@ -192,6 +192,7 @@
     <Content Include="Pages\Dashboard\Reports\ProductionReport.aspx" />
     <Content Include="Pages\Dashboard\Reports\RecibidosVsProcReport.aspx" />
     <Content Include="Pages\Dashboard\Reports\ReportsMain.aspx" />
+    <Content Include="Pages\Dashboard\Reports\TrabajoReport.aspx" />
     <Content Include="Pages\Dashboard\Solicitud.aspx" />
     <Content Include="Pages\Main.Master" />
     <Content Include="PageImages\PSO_horizontal.png" />
@@ -411,6 +412,13 @@
     </Compile>
     <Compile Include="Pages\Dashboard\Reports\ReportsMain.aspx.designer.cs">
       <DependentUpon>ReportsMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Dashboard\Reports\TrabajoReport.aspx.cs">
+      <DependentUpon>TrabajoReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Dashboard\Reports\TrabajoReport.aspx.designer.cs">
+      <DependentUpon>TrabajoReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Dashboard\Solicitud.aspx.cs">
       <DependentUpon>Solicitud.aspx</DependentUpon>

@@ -206,7 +206,7 @@ namespace PSO.Pages.Dashboard.Configs
                     //red
                     case 1:
 
-                        cosmetic.LabelForeColor = "#C44708";
+                        cosmetic.LabelForeColor = "#BA0000";
 
                         cosmetic.LinkForeColor = cosmetic.LabelForeColor;
 

@@ -157,6 +157,24 @@ namespace PSO.Pages.Dashboard.Configs {
         protected global::System.Web.UI.WebControls.CheckBox viewConfigDocReqChkBx;
         
         /// <summary>
+        /// indicadoresLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label indicadoresLbl;
+        
+        /// <summary>
+        /// viewReportIndicadoresChkBx control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox viewReportIndicadoresChkBx;
+        
+        /// <summary>
         /// reportComparacionLbl control.
         /// </summary>
         /// <remarks>

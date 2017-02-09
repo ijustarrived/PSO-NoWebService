@@ -187,7 +187,113 @@ namespace PSO.Pages.Dashboard.Reports
 
         private void SetChartPoints(Dictionary<string, int> EmployeeNResults)
         {
-            Array colors = Enum.GetValues(typeof(KnownColor));
+            #region Define colors for graph bar
+
+            LinkedList<Color> colors = new LinkedList<Color>();
+
+            colors.AddLast(Color.Aqua);
+
+            colors.AddLast(Color.Blue);
+
+            colors.AddLast(Color.BlueViolet);
+
+            colors.AddLast(Color.Brown);
+
+            colors.AddLast(Color.BurlyWood);
+
+            colors.AddLast(Color.Chartreuse);
+
+            colors.AddLast(Color.Coral);
+
+            colors.AddLast(Color.CornflowerBlue);
+
+            colors.AddLast(Color.Crimson);
+
+            colors.AddLast(Color.DarkBlue);
+
+            colors.AddLast(Color.DarkCyan);
+
+            colors.AddLast(Color.DarkGreen);
+
+            colors.AddLast(Color.DarkKhaki);
+
+            colors.AddLast(Color.DarkOrange);
+
+            colors.AddLast(Color.DarkSalmon);
+
+            colors.AddLast(Color.DarkSlateBlue);
+
+            colors.AddLast(Color.DodgerBlue);
+
+            colors.AddLast(Color.Firebrick);
+
+            colors.AddLast(Color.Fuchsia);
+
+            colors.AddLast(Color.Gold);
+
+            colors.AddLast(Color.Goldenrod);
+
+            colors.AddLast(Color.Gray);
+
+            colors.AddLast(Color.GreenYellow);
+
+            colors.AddLast(Color.Indigo);
+
+            colors.AddLast(Color.LightCoral);
+
+            colors.AddLast(Color.LightSalmon);
+
+            colors.AddLast(Color.LightSeaGreen);
+
+            colors.AddLast(Color.Lime);
+
+            colors.AddLast(Color.MediumAquamarine);
+
+            colors.AddLast(Color.MediumOrchid);
+
+            colors.AddLast(Color.MediumSeaGreen);
+
+            colors.AddLast(Color.MediumSlateBlue);
+
+            colors.AddLast(Color.MediumVioletRed);
+
+            colors.AddLast(Color.MidnightBlue);
+
+            colors.AddLast(Color.Olive);
+
+            colors.AddLast(Color.OliveDrab);
+
+            colors.AddLast(Color.Orange);
+
+            colors.AddLast(Color.OrangeRed);
+
+            colors.AddLast(Color.Plum);
+
+            colors.AddLast(Color.Red);
+
+            colors.AddLast(Color.RosyBrown);
+
+            colors.AddLast(Color.RoyalBlue);
+
+            colors.AddLast(Color.Salmon);
+
+            colors.AddLast(Color.SandyBrown);
+
+            colors.AddLast(Color.SeaGreen);
+
+            colors.AddLast(Color.SlateBlue);
+
+            colors.AddLast(Color.SpringGreen);
+
+            colors.AddLast(Color.Teal);
+
+            colors.AddLast(Color.Tomato);
+
+            colors.AddLast(Color.Yellow);
+
+            #endregion
+
+            //Array colors = Enum.GetValues(typeof(KnownColor));
 
             Random colorIndex = new Random();
 
@@ -201,7 +307,9 @@ namespace PSO.Pages.Dashboard.Reports
 
                 point.Label = EmployeeNResults.Values.ElementAt(i).ToString();
 
-                point.Color = Color.FromKnownColor((KnownColor)colors.GetValue(colorIndex.Next(0, colors.Length - 1)));
+                point.Color = colors.ElementAt(colorIndex.Next(0, colors.Count - 1));
+
+                //point.Color = Color.FromKnownColor((KnownColor)colors.GetValue(colorIndex.Next(0, colors.Length - 1)));
 
                 productionChrt.Series[0].Points.Add(point);
             }

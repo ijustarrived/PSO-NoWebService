@@ -221,6 +221,13 @@
 
                     <div style="margin-top: 20px;">
 
+                        <asp:TextBox ID ="indicadoresProductividadTitleTxtBx" runat="server"
+                             Text="Indicadores de Productividad en Proceso de Manejo de Solicitudes"></asp:TextBox>
+
+                    </div>
+
+                    <div style="margin-top: 20px;">
+
                         <asp:TextBox ID ="reportProduccionTitleTxtBx" runat="server"
                              Text="Resultados de Producción por Rol"></asp:TextBox>
 
@@ -267,12 +274,12 @@
 
                     </div>
 
-                    <div style="margin-top: 20px;">
+                    <%--<div style="margin-top: 20px;">
 
                         <asp:TextBox ID ="indicadoresProductividadTitleTxtBx" runat="server"
                              Text="Indicadores de Productividad en Proceso de Manejo de Solicitudes"></asp:TextBox>
 
-                    </div>
+                    </div>--%>
 
                     <div style="margin-top: 20px;">
 

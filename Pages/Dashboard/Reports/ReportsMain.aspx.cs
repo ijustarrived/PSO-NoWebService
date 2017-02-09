@@ -20,7 +20,7 @@ namespace PSO.Pages.Dashboard.Reports
 
                 #region Verify role access
 
-                if (!user.Role.ViewRepRecVsPen && !user.Role.ViewRepProduc)
+                if (!user.Role.ViewRepRecVsPen && !user.Role.ViewRepProduc && !user.Role.ViewReportIndicadores)
                 {
                     Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
                 }
@@ -28,6 +28,8 @@ namespace PSO.Pages.Dashboard.Reports
                 RecibidosVsProcessBtn.Visible = user.Role.ViewRepRecVsPen;
 
                 productionBtn.Visible = user.Role.ViewRepProduc;
+
+                indicadorBtn.Visible = user.Role.ViewReportIndicadores;
 
                 #endregion
 
@@ -42,6 +44,12 @@ namespace PSO.Pages.Dashboard.Reports
                 RecibidosVsProcessBtn.Text = cosmetic.ReportComparacionTitle;
 
                 RecibidosVsProcessBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+                indicadorBtn.Text = cosmetic.IndicadoresProductividadTitle;
+
+                indicadorBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+                productionBtn.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
                 #endregion
 
@@ -76,6 +84,11 @@ namespace PSO.Pages.Dashboard.Reports
         protected void productionBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Pages/Dashboard/Reports/ProductionReport.aspx", true);
+        }
+
+        protected void indicadorBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Pages/Dashboard/Reports/TrabajoReport.aspx", true);
         }
     }
 }

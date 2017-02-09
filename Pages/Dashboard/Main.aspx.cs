@@ -52,15 +52,10 @@ namespace PSO.Pages.Dashboard
                     configImgBtn.Visible = false;
                 }
 
-                if (!user.Role.ViewRepProduc && !user.Role.ViewRepRecVsPen)
+                if (!user.Role.ViewRepProduc && !user.Role.ViewRepRecVsPen && !user.Role.ViewReportIndicadores)
                 {
                     reportImgBtn.Visible = false;
                 }
-
-                //if (!user.Role.ViewRepAvisosStatus && !user.Role.ViewRepRecVsPen)
-                //{
-                //    reportImgBtn.Visible = false;
-                //} 
 
                 #endregion
             }

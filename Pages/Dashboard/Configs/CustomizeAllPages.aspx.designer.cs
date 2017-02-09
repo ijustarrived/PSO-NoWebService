@@ -220,6 +220,15 @@ namespace PSO.Pages.Dashboard.Configs {
         protected global::System.Web.UI.WebControls.TextBox reportComparacionTitleTxtBx;
         
         /// <summary>
+        /// indicadoresProductividadTitleTxtBx control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox indicadoresProductividadTitleTxtBx;
+        
+        /// <summary>
         /// reportProduccionTitleTxtBx control.
         /// </summary>
         /// <remarks>
@@ -263,15 +272,6 @@ namespace PSO.Pages.Dashboard.Configs {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox solicitudesStatusTitleTxtBx;
-        
-        /// <summary>
-        /// indicadoresProductividadTitleTxtBx control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox indicadoresProductividadTitleTxtBx;
         
         /// <summary>
         /// completadasMesDiasTitleTxtBx control.

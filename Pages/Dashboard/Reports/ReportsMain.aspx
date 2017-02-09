@@ -14,6 +14,13 @@
 
         <div style ="display:inline-block">
 
+            <asp:Button runat="server" CssClass ="dashBtns" ID="indicadorBtn" OnClick ="indicadorBtn_Click"
+                Text="Resultados de Producción por Rol" />
+
+        </div> 
+
+        <div style ="display:inline-block">
+
             <asp:Button runat="server" CssClass ="dashBtns" ID="productionBtn" OnClick ="productionBtn_Click"
                 Text="Resultados de Producción por Rol" />
 

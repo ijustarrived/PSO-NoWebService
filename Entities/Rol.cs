@@ -16,6 +16,8 @@ namespace PSO.Entities
 
             ID = 0;
 
+            ViewReportIndicadores = false;
+
             ViewSolicitud = false;
 
             ViewConfigDocReq = false;
@@ -127,6 +129,13 @@ namespace PSO.Entities
             }
 
             return role;
+        }
+
+        public bool ViewReportIndicadores
+        {
+            get;
+
+            set;
         }
 
         public bool ViewSolicitud
