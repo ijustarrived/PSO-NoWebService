@@ -73,7 +73,18 @@ namespace PSO
         {
             Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
 
-            Cosmetic cosmetic = Session["Cosmetic"] == null ? CosmeticsRepo.GetPageCosmetics()
+            Cosmetic cosmetic = new Cosmetic();
+
+            /*
+             * Since the value on the session doesn't change unless custom page is saved,
+             *  this way it shows the cosmetic changes without having to save and without having to change the original session
+             */
+            if (Page.AppRelativeVirtualPath.Contains("CustomizeAllPages"))
+                cosmetic = Session["DemoCosmetic"] == null ? CosmeticsRepo.GetPageCosmetics()
+                : (Cosmetic)Session["DemoCosmetic"];
+
+            else
+                cosmetic = Session["Cosmetic"] == null ? CosmeticsRepo.GetPageCosmetics()
                 : (Cosmetic)Session["Cosmetic"];
 
             logoutBtn.ForeColor = System.Drawing.ColorTranslator.FromHtml(cosmetic.LabelForeColor);

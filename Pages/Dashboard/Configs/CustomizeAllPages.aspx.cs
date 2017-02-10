@@ -15,7 +15,7 @@ namespace PSO.Pages.Dashboard.Configs
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Cosmetic cosmetic = (Cosmetic)Session["Cosmetic"];
+            Cosmetic cosmetic = new Cosmetic((Cosmetic)Session["Cosmetic"]);
 
             #region Breadcrumb config
 
@@ -71,7 +71,10 @@ namespace PSO.Pages.Dashboard.Configs
 
             if (!IsPostBack)
             {
-                cosmetic = (Cosmetic)Session["Cosmetic"];
+                //Remove previous session just in case has old values
+                Session.Remove("DemoCosmetic");
+
+                //cosmetic = (Cosmetic)Session["Cosmetic"];
 
                 colorVersionsDDL.SelectedIndex = (int)cosmetic.ColorVersion;
 
@@ -240,6 +243,9 @@ namespace PSO.Pages.Dashboard.Configs
                 SetPageColors(cosmetic);
 
                 ViewState["DemoCosmetic"] = cosmetic;
+
+                //Only used on this page's master
+                Session["DemoCosmetic"] = cosmetic;
 
                 #endregion
             }

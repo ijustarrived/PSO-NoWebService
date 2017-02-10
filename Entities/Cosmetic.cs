@@ -57,6 +57,45 @@ namespace PSO.Entities
             SolicitudesStatusTitle = "Solicitudes Recibidas por Status";
         }
 
+        public Cosmetic(Cosmetic cos)
+        {
+            ID = cos.ID;
+
+            LogoPath = cos.LogoPath;
+
+            TitleBackColor = cos.TitleBackColor;
+
+            LabelForeColor = cos.LabelForeColor;
+
+            LinkForeColor = cos.LinkForeColor;
+
+            ColorVersion = cos.ColorVersion;
+
+            ConsultaCoorTitle = cos.ConsultaCoorTitle;
+
+            ConsultaProcTitle = cos.ConsultaProcTitle;
+
+            ConsultaSolicitudTitle = cos.ConsultaSolicitudTitle;
+
+            ConsultaSuperTitle = cos.ConsultaSuperTitle;
+
+            ReportComparacionTitle = cos.ReportComparacionTitle;
+
+            ReportProduccionTitle = cos.ReportProduccionTitle;
+
+            SolicitudTitle = cos.SolicitudTitle;
+
+            CompletadasMesDiasTitle = cos.CompletadasMesDiasTitle;
+
+            HistoryCompletadasTitle = cos.HistoryCompletadasTitle;
+
+            HistoryRecibidasTitle = cos.HistoryRecibidasTitle;
+
+            IndicadoresProductividadTitle = cos.IndicadoresProductividadTitle;
+
+            SolicitudesStatusTitle = cos.SolicitudesStatusTitle;
+        }
+
         public static string GetLogoDir()
         {
             return LOGO_DIR;
