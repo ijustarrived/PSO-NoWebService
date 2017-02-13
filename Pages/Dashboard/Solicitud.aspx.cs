@@ -1074,6 +1074,8 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
                 solicitud.Status = solicitudExistente.Status;
 
+                solicitud.FechaTramitada = solicitudExistente.FechaTramitada;
+
                 solicitud.CoordinadorID = solicitudExistente.CoordinadorID;
 
                 solicitud.FechaRevision = solicitudExistente.FechaRevision;

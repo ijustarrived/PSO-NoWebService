@@ -102,23 +102,11 @@ cada etapa del proceso. Para cualquier duda o pregunta se puede comunicar al @PH
 <p><u>Nota: Este es un correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p>",
 
            APROVADA_USER_BODY = @"<p>Estimado cliente:</p>
-<p>Nos place informarle que su solicitud número @NUMSOLICITUD fue aprobada. Los detalles de aprobación se muestran a continuación:</p>
- 
-<ul style='list-style-type:square'>
-
-        <li>Cantidad Aprobada: @CANTIDADAPROVADA</li>
-          <li>Término del Préstamo: @TERMINO</li>
-           <li>Pago Mensual: @MENSUAL</li>
-           <li>Fecha del Primer Pago: @FECHAPRIMER </li>
-           <li>Fecha del Ultimo Pago: @FECHAULTIMO</li>
-
-</ul>
+<p>Nos place informarle que su solicitud número @NUMSOLICITUD fue aprobada. 
 
 <p>Puede pasar por nuestras oficinas para recoger su cheque a partir de mañana a las 8:00 a.m.</p>
 
-<p>Agradecemos su interés en nuestros servicios y le mantendremos informado del progreso de su solicitud en 
-cada etapa del proceso. Para cualquier duda o pregunta se puede comunicar al @PHONE de lunes a viernes,
-8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a <a>@CLIENTEMAIL</a> y con mucho gusto le ayudaremos.</p>
+<p>Nos place haber podido servirle y nos encontramos a su disposición de usted requerir algún servicio adicional.</p>
 
 <p>Atentamente,</p>
 

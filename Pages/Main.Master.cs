@@ -100,7 +100,7 @@ namespace PSO.Pages
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "emailAlert",
                             string.Format("alert('Hubo problemas enviado el correo. Error: {0}');",
-                            ((string)Session["emailError"]).Replace("'", string.Empty)), true);
+                            ((string)Session["emailError"]).Replace("'", string.Empty).Replace("\r\n", " ")), true);
 
                 Session.Remove("emailError");
             }
@@ -109,7 +109,7 @@ namespace PSO.Pages
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "emailThreadAlert",
                             string.Format("alert('Hubo problemas con el thread que envia correos Error: {0}');",
-                            ((string)Session["emailThreadError"]).Replace("'", string.Empty)), true);
+                            ((string)Session["emailThreadError"]).Replace("'", string.Empty).Replace("\r\n", " ")), true);
 
                 Session.Remove("emailThreadError");
             }
