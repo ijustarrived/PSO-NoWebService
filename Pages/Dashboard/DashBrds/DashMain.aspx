@@ -221,7 +221,7 @@
 
             </div>
 
-            <hr style="width: 30%; margin-bottom: 20px; border-color: #616161" />
+            <%--<hr style="width: 30%; margin-bottom: 20px; border-color: #616161" />--%>
 
             <div style="text-align: center; overflow: auto">
 
@@ -241,7 +241,7 @@
 
                             <Points>
 
-                                <asp:DataPoint Color="#888800" Font="Microsoft Sans Serif, 10pt" LabelForeColor="#888800"
+                                <asp:DataPoint Color="Aqua" Font="Microsoft Sans Serif, 10pt" LabelForeColor ="Aqua"
                                     LegendText="Pendientes de Revisarse por un Coordinador" />
 
                                 <asp:DataPoint Color="#0000a6" Font="Microsoft Sans Serif, 10pt" LabelForeColor="#0000a6"
@@ -250,7 +250,7 @@
                                 <asp:DataPoint Color="#d5d500" Font="Microsoft Sans Serif, 10pt" LabelForeColor="#d5d500"
                                     LegendText="Pendientes de Asignarse a un Procesador" />
 
-                                <asp:DataPoint Color="#13dafd" Font="Microsoft Sans Serif, 10pt" LabelForeColor="#13dafd"
+                                <asp:DataPoint Color="Teal" Font="Microsoft Sans Serif, 10pt" LabelForeColor ="Teal"
                                     LegendText="Pendientes de Trabajarse por un Procesador" />
 
                                 <asp:DataPoint Color="0, 192, 0" Font="Microsoft Sans Serif, 10pt" LabelForeColor="0, 192, 0"

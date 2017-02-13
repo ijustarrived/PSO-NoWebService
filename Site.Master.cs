@@ -89,6 +89,8 @@ namespace PSO
 
             logoutBtn.ForeColor = System.Drawing.ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
+            footerLblDiv.Style.Add("color", cosmetic.LabelForeColor);
+
             userLink.ForeColor = System.Drawing.ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
             pageTitleDiv.Style.Add("background-color", cosmetic.TitleBackColor);

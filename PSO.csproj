@@ -166,6 +166,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
+    <Content Include="PageImages\MM TRANSPARENTE.png" />
     <Content Include="PageImages\pdf-icon.png" />
     <Content Include="PageImages\PSO.ico" />
     <Content Include="PageImages\WithText\configuracion_wtext.png" />

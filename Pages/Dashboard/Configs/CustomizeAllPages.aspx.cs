@@ -172,33 +172,38 @@ namespace PSO.Pages.Dashboard.Configs
 
                         cosmetic.TitleBackColor = "#616161";
 
-                        #region Set title to default values
+                        //Resets titles to default only of postback was caused by DDL
 
-                        completadasMesDiasTitleTxtBx.Text = defaultCosmetic.CompletadasMesDiasTitle;
+                        if (!(GetPostBackControl(Page) is Button))
+                        {
+                            #region Set title to default values
 
-                        consultaCoorTitleTxtBx.Text = defaultCosmetic.ConsultaCoorTitle;
+                            completadasMesDiasTitleTxtBx.Text = defaultCosmetic.CompletadasMesDiasTitle;
 
-                        consultaProcTitleTxtBx.Text = defaultCosmetic.ConsultaProcTitle;
+                            consultaCoorTitleTxtBx.Text = defaultCosmetic.ConsultaCoorTitle;
 
-                        consultaSolicitudTitleTxtBx.Text = defaultCosmetic.ConsultaSolicitudTitle;
+                            consultaProcTitleTxtBx.Text = defaultCosmetic.ConsultaProcTitle;
 
-                        consultaSuperTitleTxtBx.Text = defaultCosmetic.ConsultaSuperTitle;
+                            consultaSolicitudTitleTxtBx.Text = defaultCosmetic.ConsultaSolicitudTitle;
 
-                        historyCompletadasTitleTxtBx.Text = defaultCosmetic.HistoryCompletadasTitle;
+                            consultaSuperTitleTxtBx.Text = defaultCosmetic.ConsultaSuperTitle;
 
-                        historyRecibidasTitleTxtBx.Text = defaultCosmetic.HistoryRecibidasTitle;
+                            historyCompletadasTitleTxtBx.Text = defaultCosmetic.HistoryCompletadasTitle;
 
-                        indicadoresProductividadTitleTxtBx.Text = defaultCosmetic.IndicadoresProductividadTitle;
+                            historyRecibidasTitleTxtBx.Text = defaultCosmetic.HistoryRecibidasTitle;
 
-                        reportComparacionTitleTxtBx.Text = defaultCosmetic.ReportComparacionTitle;
+                            indicadoresProductividadTitleTxtBx.Text = defaultCosmetic.IndicadoresProductividadTitle;
 
-                        reportProduccionTitleTxtBx.Text = defaultCosmetic.ReportProduccionTitle;
+                            reportComparacionTitleTxtBx.Text = defaultCosmetic.ReportComparacionTitle;
 
-                        solicitudesStatusTitleTxtBx.Text = defaultCosmetic.SolicitudesStatusTitle;
+                            reportProduccionTitleTxtBx.Text = defaultCosmetic.ReportProduccionTitle;
 
-                        solicitudTitleTxtBx.Text = defaultCosmetic.SolicitudTitle;
+                            solicitudesStatusTitleTxtBx.Text = defaultCosmetic.SolicitudesStatusTitle;
 
-                        #endregion
+                            solicitudTitleTxtBx.Text = defaultCosmetic.SolicitudTitle;
+
+                            #endregion
+                        }
 
                         logoImg.ImageUrl = defaultCosmetic.LogoPath;
 
@@ -379,6 +384,34 @@ namespace PSO.Pages.Dashboard.Configs
             titleBackColorBtn.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);
 
             #endregion
+        }
+
+        public static Control GetPostBackControl(Page page)
+        {
+            Control control = null;
+
+            string ctrlname = page.Request.Params.Get("__EVENTTARGET");
+
+            if (ctrlname != null && ctrlname != string.Empty)
+            {
+                control = page.FindControl(ctrlname);
+            }
+
+            else
+            {
+                foreach (string ctl in page.Request.Form)
+                {
+                    Control c = page.FindControl(ctl);
+
+                    if (c is Button)
+                    {
+                        control = c;
+
+                        break;
+                    }
+                }
+            }
+            return control;
         }
     }
 }

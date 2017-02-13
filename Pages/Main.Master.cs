@@ -77,6 +77,8 @@ namespace PSO.Pages
 
             sistemLogoImg.ImageUrl = cosmetic.LogoPath;
 
+            footerLblDiv.Style.Add("color", cosmetic.LabelForeColor);
+
             pageTitleLbl.ForeColor = System.Drawing.ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
             if (Session["Cosmetic"] == null)
@@ -94,7 +96,7 @@ namespace PSO.Pages
 
             #region Email Thread Excpetion alert
 
-            if (Session["emailError"] != null && string.IsNullOrEmpty((string)Session["emailError"]))
+            if (Session["emailError"] != null && !string.IsNullOrEmpty((string)Session["emailError"]))
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "emailAlert",
                             string.Format("alert('Hubo problemas enviado el correo. Error: {0}');",
@@ -103,7 +105,7 @@ namespace PSO.Pages
                 Session.Remove("emailError");
             }
 
-            else if (Session["emailThreadError"] != null && string.IsNullOrEmpty((string)Session["emailThreadError"]))
+            else if (Session["emailThreadError"] != null && !string.IsNullOrEmpty((string)Session["emailThreadError"]))
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "emailThreadAlert",
                             string.Format("alert('Hubo problemas con el thread que envia correos Error: {0}');",

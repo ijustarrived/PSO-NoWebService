@@ -1214,7 +1214,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
                                 solicitud.Status = _Solicitud.Statuses.APROBADA;
 
-                                mailType = Correo.MailType.APROBADA;
+                                mailType = Correo.MailType.APROVADA;
 
                                 break;
                         }

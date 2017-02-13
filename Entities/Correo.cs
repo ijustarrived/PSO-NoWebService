@@ -15,7 +15,7 @@ namespace PSO.Entities
             PEND_ASIG_USER,
             PEND_TRABAJAR,
             PEND_TRABAJAR_USER,
-            APROBADA,
+            APROVADA,
             DENEGADA,
             REGISTER,
             PASS_RECOVER,
@@ -26,8 +26,7 @@ namespace PSO.Entities
 
         #region Subj and body definitions
 
-        private const string DOCS_INCOMPLETOS_USER_BODY = @"<p>Estimado cliente:</p>
- 
+        private const string DOCS_INCOMPLETOS_USER_BODY = @"<p>Estimado cliente:</p> 
 <p>Su solicitud número @NUMSOLICITUD le ha sido devuelta por tener documentos incompletos. 
 Específicamente: @COMMENTS.</p>
  
@@ -43,8 +42,7 @@ cada etapa del proceso. Para cualquier duda o pregunta se puede comunicar al @PH
 
 <p><u>Nota: Este es un correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u><p>",
 
-           DOC_INCOMPLETOS_RESENT_BODY = @"<p>Estimado cliente:</p> 
- 
+           DOC_INCOMPLETOS_RESENT_BODY = @"<p>Estimado cliente:</p>  
 <p>Recibimos su solicitud número @NUMSOLICITUD servicio corregida. La misma estará siendo revisada
 nuevamente por uno de nuestros coordinadores de servicio, quien se asegurará de que tenga todos
 los documentos requeridos completos.  Una vez completada esta revisión, su solicitud se estará
@@ -69,8 +67,8 @@ un Procesador para que la trabaje.",
 
             DOCS_INCOMPLETOS_BODY = @"Recibimos la solicitud de servicio número @NUMSOLICITUD corregida para ser 
 revisada nuevamente.",
-           PEND_ASIG_USER_BODY = @"<p>Estimado cliente:</p>
 
+           PEND_ASIG_USER_BODY = @"<p>Estimado cliente:</p>
 <p>Su solicitud número @NUMSOLICITUD ya fue revisada como completa por uno de nuestros 
 coordinadores de servicio. La misma se pasó a la revisión del Supervisor del Area de 
 Servicio para que la revise y le asigne un Procesador para que la trabaje.</p>
@@ -88,8 +86,7 @@ cada etapa del proceso. Para cualquier duda o pregunta se puede comunicar al @PH
            PEND_TRABAJAR_BODY = @"La solicitud número @NUMSOLICITUD ya fue revisada por el Supervisor de 
 Procesadores. Se le acaba de asignar usted para que la trabaje.",
 
-           PEND_TRABAJAR_USER_BODY = @"<p>Estimado cliente:</p> 
- 
+           PEND_TRABAJAR_USER_BODY = @"<p>Estimado cliente:</p>  
 <p>Su solicitud número @NUMSOLICITUD ya fue revisada por el Supervisor de Procesadores y asignó 
 la misma a un Procesador para que la trabaje. Una vez el Procesador la trabaje le estaremos 
 dejando saber si su solicitud fue Aprobada o Denegada.</p>
@@ -105,7 +102,6 @@ cada etapa del proceso. Para cualquier duda o pregunta se puede comunicar al @PH
 <p><u>Nota: Este es un correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p>",
 
            APROVADA_USER_BODY = @"<p>Estimado cliente:</p>
-
 <p>Nos place informarle que su solicitud número @NUMSOLICITUD fue aprobada. Los detalles de aprobación se muestran a continuación:</p>
  
 <ul style='list-style-type:square'>
@@ -130,8 +126,7 @@ cada etapa del proceso. Para cualquier duda o pregunta se puede comunicar al @PH
 
 <p><u>Nota: Este es un correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p>",
 
-           DENEGADA_USER_BODY = @"<p>Estimado cliente:</p> 
- 
+           DENEGADA_USER_BODY = @"<p>Estimado cliente:</p>  
 <p>Lamentamos informarle que su solicitud número @NUMSOLICITUD fue denegada. 
 Estará recibiendo por correo una carta con el detalle de las razones específicas de la denegación.</p> 
 
@@ -145,7 +140,6 @@ Estará recibiendo por correo una carta con el detalle de las razones específic
 <p><u>Nota: Este es un correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p>",
 
            REGISTER_BODY = @"<p>Estimado cliente:</p>
-
 <p>Bienvenido al Portal de Servicios de Cliente @CLIENT.</p>
 
 <p>Su usuario ha sido creado exitosamente. Desde este momento, usted podrá acceder al 
@@ -161,7 +155,6 @@ viernes, 8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a <a>@CLIENTEMA
 <p><u>Nota: Este es un correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p> ",
 
            PASS_RECOVER_BODY = @"<p>Estimado cliente:</p>
-
 <p>Recibimos su solicitud de cambio de contraseña. A continuación su contraseña.</p> 
 
 <p>Su contraseña es: @PASS.</p>
@@ -177,8 +170,6 @@ al @PHONE de lunes a viernes, 8:00 a.m. a 5:00 p.m. o enviando un correo electr�
 <p>Este es un correo electrónico enviado automáticamente. Favor no responder al mensaje.</p>",
 
            PEND_REVISAR_USER_BODY = @"<p>Estimado cliente:</p>
-
-
 <p>Recibimos su solicitud de @TYPE servicio. Se le asignó el número @NUMSOLICITUD a dicha solicitud.
 La misma estará siendo revisada por uno de nuestros coordinadores de servicio, quien se asegurará 
 de que tenga todos los documentos requeridos completos. Una vez completada esta revisión, su solicitud 
@@ -214,9 +205,9 @@ cada etapa del proceso. Para cualquier duda o pregunta se puede comunicar al @PH
         {
             string subj = string.Empty;
 
-            switch(mailType)
+            switch (mailType)
             {
-                case MailType.APROBADA:
+                case MailType.APROVADA:
 
                     subj = APROVADA_USER_SUBJECT;
 
@@ -304,7 +295,7 @@ cada etapa del proceso. Para cualquier duda o pregunta se puede comunicar al @PH
 
             switch (mailType)
             {
-                case MailType.APROBADA:
+                case MailType.APROVADA:
 
                     body = APROVADA_USER_BODY;
 

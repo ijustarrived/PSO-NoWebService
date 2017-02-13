@@ -86,7 +86,7 @@
     </asp:GridView>
 
     <asp:SqlDataSource runat ="server" ID ="solicitudesSQLDS" SelectCommand ="SELECT ProcesadorID, NumeroSolicitud, Pueblo,
-         (Nombre + ' '+ ApellidoMaterno + ' ' + ApellidoPaterno) AS Nombre, Celular, FechaAsigProcesador
+         (Nombre + ' '+ ApellidoPaterno + ' ' + ApellidoMaterno) AS Nombre, Celular, FechaAsigProcesador
         FROM Solicitudes WHERE Status = 3 @AND" 
         ConnectionString ="<%$ ConnectionStrings:local %>" OnSelecting ="solicitudesSQLDS_Selecting"></asp:SqlDataSource>
 
