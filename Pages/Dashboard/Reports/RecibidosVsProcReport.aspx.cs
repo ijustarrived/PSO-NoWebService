@@ -259,15 +259,19 @@ namespace PSO.Pages.Dashboard.Reports
 
             #endregion
 
+            int completadasCount = 0;
+
+            for (int i = 0; i < solicitudes.Count; i++)
+            {
+                if (solicitudes.ElementAt(i).FechaTrabajado.Year != 9999)
+                    completadasCount++;
+            }
+
             ViewState["SolicitudCount"] = solicitudes.Count;
 
-            #region Change this to a real getter
+            ViewState["completadasCount"] = completadasCount;
 
-            SetChartData(solicitudes.Count, 10);
-
-            //SetChartData(solicitudes.Count, fakeProcesadasSolicitudes.Count); 
-
-            #endregion
+            SetChartData(solicitudes.Count, completadasCount);
 
             e.Command.CommandText = e.Command.CommandText.Replace("@WHERE", where);
         }
@@ -277,6 +281,8 @@ namespace PSO.Pages.Dashboard.Reports
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 _Solicitud solicitud = SolicitudRepo.GetSolicitudByNumSolicitud(e.Row.Cells[0].Text);
+
+                e.Row.Cells[1].Text = e.Row.Cells[1].Text.Split(' ')[0];
 
                 if (solicitud.FechaRevision.Date.Year == 9999)
                     e.Row.Cells[4].Text = string.Empty;
@@ -299,33 +305,23 @@ namespace PSO.Pages.Dashboard.Reports
                     TimeSpan span = DateTime.Now.Subtract(fechaTramite);
 
                     e.Row.Cells[3].Text = ((int)span.TotalDays).ToString();
+                }
 
-                    //Esta va pero para el demo no
-                    e.Row.Cells[5].Text = string.Empty;
+                else
+                    e.Row.Cells[2].Text = e.Row.Cells[2].Text.Split(' ')[0];
+
+                //Means has no proc assigned
+                if (!e.Row.Cells[5].Text.Equals("0"))
+                {
+                    LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
+
+                    e.Row.Cells[5].Text = procesadores.ElementAt(Convert.ToInt32(e.Row.Cells[5].Text) - 1).GetNombreCompleto();
                 }
 
                 else
                 {
-                    LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
-
-                    //e.Row.Cells[5].Text = procesadores.ElementAt(Convert.ToInt32(e.Row.Cells[5].Text)).GetNombreCompleto();
-
-                    // -1 cause procesador ddl, in solicitud, starts in 0 and db starts in 1
-                    e.Row.Cells[5].Text = procesadores.ElementAt(Convert.ToInt32(e.Row.Cells[5].Text) - 1).GetNombreCompleto();
+                    e.Row.Cells[5].Text = string.Empty;
                 }
-
-                #region Esto es solo para el demo
-
-                //if (solicitud.FechaAsigProcesador.Date.Year != 9999)
-                //{
-                //    LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
-
-                //    e.Row.Cells[5].Text = procesadores.ElementAt(Convert.ToInt32(e.Row.Cells[5].Text)).GetNombreCompleto();
-
-                //    e.Row.Cells[2].Text = "19/12/2016";
-                //} 
-
-                #endregion
             }
 
             else if (e.Row.RowType == DataControlRowType.EmptyDataRow)
@@ -407,9 +403,7 @@ namespace PSO.Pages.Dashboard.Reports
                     break;
             }
 
-            //searchDDL.SelectedIndex = 0;
-
-            SetChartData((int)ViewState["SolicitudCount"], 10);
+            SetChartData((int)ViewState["SolicitudCount"], (int)ViewState["completadasCount"]);
         }
     }
 }

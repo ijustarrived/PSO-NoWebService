@@ -112,7 +112,7 @@ namespace PSO.Pages.Dashboard.DashBrds
                         docIncompleteCount = SolicitudRepo.GetSolicitudesByStatus((int)_Solicitud.Statuses.PEND_DOCS).Count,
                         inactivasCount = SolicitudRepo.GetSolicitudesByStatus((int)_Solicitud.Statuses.INACTIVO).Count,
                         totalSolicitudes = aprovadosCount + denegadasCount + docIncompleteCount + pendAsigCount +
-                        pendCoorCount + pendTrabajarCount;
+                        pendCoorCount + pendTrabajarCount + inactivasCount;
 
             #endregion
 

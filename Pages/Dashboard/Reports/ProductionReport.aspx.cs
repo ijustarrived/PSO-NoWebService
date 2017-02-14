@@ -422,6 +422,12 @@ namespace PSO.Pages.Dashboard.Reports
                 LinkedList<Usuario> users = (LinkedList<Usuario>)ViewState["users"];
 
                 e.Row.Cells[0].Text = users.ElementAt(Convert.ToInt32(e.Row.Cells[0].Text)).GetNombreCompleto();
+
+                if (!string.IsNullOrEmpty(e.Row.Cells[2].Text))
+                    e.Row.Cells[2].Text = e.Row.Cells[2].Text.Split(' ')[0];
+
+                if (!string.IsNullOrEmpty(e.Row.Cells[3].Text))
+                    e.Row.Cells[3].Text = e.Row.Cells[3].Text.Split(' ')[0];
             }
 
             else if (e.Row.RowType == DataControlRowType.EmptyDataRow)
@@ -441,6 +447,11 @@ namespace PSO.Pages.Dashboard.Reports
 
                 e.Row.Cells[0].Text = users.ElementAt(Convert.ToInt32(e.Row.Cells[0].Text) - 1).GetNombreCompleto();
 
+                if (!string.IsNullOrEmpty(e.Row.Cells[2].Text))
+                    e.Row.Cells[2].Text = e.Row.Cells[2].Text.Split(' ')[0];
+
+                if (!string.IsNullOrEmpty(e.Row.Cells[3].Text))
+                    e.Row.Cells[3].Text = e.Row.Cells[3].Text.Split(' ')[0];
 
                 DateTime fechaTrabajo = Convert.ToDateTime(e.Row.Cells[3].Text),
                 fechaTramite = Convert.ToDateTime(e.Row.Cells[2].Text);
