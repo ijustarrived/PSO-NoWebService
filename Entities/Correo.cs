@@ -26,37 +26,26 @@ namespace PSO.Entities
 
         #region Subj and body definitions
 
-        private const string DOCS_INCOMPLETOS_USER_BODY = @"<p>Estimado cliente:</p> 
-<p>Su solicitud número @NUMSOLICITUD le ha sido devuelta por tener documentos incompletos. 
-Específicamente: @COMMENTS.</p>
- 
-<p>Le solicitamos revise su solicitud y vuelva a enviárnosla a la brevedad posible para que la misma pueda ser procesada.</p>
-
-<p>Agradecemos su interés en nuestros servicios y le mantendremos informado del progreso de su solicitud en 
+        private const string DOCS_INCOMPLETOS_USER_BODY = @"<p>Estimado cliente:</p><p>Su solicitud número @NUMSOLICITUD le 
+ha sido devuelta por tener documentos incompletos. 
+Específicamente: @COMMENTS.</p><p>Le solicitamos revise su solicitud y vuelva a enviárnosla 
+a la brevedad posible para que la misma pueda ser procesada.</p><p>Agradecemos su interés en nuestros servicios 
+y le mantendremos informado del progreso de su solicitud en 
 cada etapa del proceso. Para cualquier duda o pregunta se puede comunicar al @PHONE de lunes a viernes,
-8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a <a>@CLIENTEMAIL</a> y con mucho gusto le ayudaremos.</p>
+8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a <a>@CLIENTEMAIL</a> y con mucho 
+gusto le ayudaremos.</p><p>Atentamente,</p><p>Servicio al Cliente @CLIENTE</p><p><u>Nota: Este es un 
+correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u><p>",
 
-<p>Atentamente,</p>
-
-<p>Servicio al Cliente @CLIENTE</p>
-
-<p><u>Nota: Este es un correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u><p>",
-
-           DOC_INCOMPLETOS_RESENT_BODY = @"<p>Estimado cliente:</p>  
-<p>Recibimos su solicitud número @NUMSOLICITUD servicio corregida. La misma estará siendo revisada
+           DOC_INCOMPLETOS_RESENT_BODY = @"<p>Estimado cliente:</p><p>Recibimos su solicitud número @NUMSOLICITUD 
+servicio corregida. La misma estará siendo revisada
 nuevamente por uno de nuestros coordinadores de servicio, quien se asegurará de que tenga todos
 los documentos requeridos completos.  Una vez completada esta revisión, su solicitud se estará
-pasando al Supervisor del Area de Servicio.</p>
-
-<p>Agradecemos su interés en nuestros servicios y le mantendremos informado del progreso de su solicitud en 
+pasando al Supervisor del Area de Servicio.</p><p>Agradecemos su interés en nuestros servicios y 
+le mantendremos informado del progreso de su solicitud en 
 cada etapa del proceso. Para cualquier duda o pregunta se puede comunicar al @PHONE de lunes a viernes,
-8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a <a>@CLIENTEMAIL</a> y con mucho gusto le ayudaremos.</p>
-
-<p>Atentamente,</p>
-
-<p>Servicio al Cliente @CLIENTE</p>
-
-<p><u>Nota: Este es un correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p>",
+8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a <a>@CLIENTEMAIL</a> y con mucho gusto 
+le ayudaremos.</p><p>Atentamente,</p><p>Servicio al Cliente @CLIENTE</p><p><u>Nota: Este es un correo electrónico 
+enviado automáticamente. Favor no responder a este mensaje.</u></p>",
 
            PEND_REVISAR_BODY = @"Recibimos una nueva solicitud de @TYPE servicio. Se le asignó 
 el número @NUMSOLICITUD a dicha solicitud. ",
@@ -68,110 +57,83 @@ un Procesador para que la trabaje.",
             DOCS_INCOMPLETOS_BODY = @"Recibimos la solicitud de servicio número @NUMSOLICITUD corregida para ser 
 revisada nuevamente.",
 
-           PEND_ASIG_USER_BODY = @"<p>Estimado cliente:</p>
-<p>Su solicitud número @NUMSOLICITUD ya fue revisada como completa por uno de nuestros 
+           PEND_ASIG_USER_BODY = @"<p>Estimado cliente:</p><p>Su solicitud número @NUMSOLICITUD 
+ya fue revisada como completa por uno de nuestros 
 coordinadores de servicio. La misma se pasó a la revisión del Supervisor del Area de 
-Servicio para que la revise y le asigne un Procesador para que la trabaje.</p>
-
-<p>Agradecemos su interés en nuestros servicios y le mantendremos informado del progreso de su solicitud en 
+Servicio para que la revise y le asigne un Procesador para que la trabaje.</p><p>Agradecemos 
+su interés en nuestros servicios y le mantendremos informado del progreso de su solicitud en 
 cada etapa del proceso. Para cualquier duda o pregunta se puede comunicar al @PHONE de lunes a viernes,
-8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a <a>@CLIENTEMAIL</a> y con mucho gusto le ayudaremos.</p>
-
-<p>Atentamente,</p>
-
-<p>Servicio al Cliente @CLIENTE</p>
-
-<p><u>Nota: Este es un correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p>",
+8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a <a>@CLIENTEMAIL</a> y con mucho gusto 
+le ayudaremos.</p><p>Atentamente,</p><p>Servicio al Cliente @CLIENTE</p><p><u>Nota: Este es un 
+correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p>",
 
            PEND_TRABAJAR_BODY = @"La solicitud número @NUMSOLICITUD ya fue revisada por el Supervisor de 
 Procesadores. Se le acaba de asignar usted para que la trabaje.",
 
-           PEND_TRABAJAR_USER_BODY = @"<p>Estimado cliente:</p>  
-<p>Su solicitud número @NUMSOLICITUD ya fue revisada por el Supervisor de Procesadores y asignó 
+           PEND_TRABAJAR_USER_BODY = @"<p>Estimado cliente:</p><p>Su solicitud número @NUMSOLICITUD ya fue 
+revisada por el Supervisor de Procesadores y asignó 
 la misma a un Procesador para que la trabaje. Una vez el Procesador la trabaje le estaremos 
-dejando saber si su solicitud fue Aprobada o Denegada.</p>
-
-<p>Agradecemos su interés en nuestros servicios y le mantendremos informado del progreso de su solicitud en 
+dejando saber si su solicitud fue Aprobada o Denegada.</p><p>Agradecemos su interés en nuestros servicios
+y le mantendremos informado del progreso de su solicitud en 
 cada etapa del proceso. Para cualquier duda o pregunta se puede comunicar al @PHONE de lunes a viernes,
-8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a <a>@CLIENTEMAIL</a> y con mucho gusto le ayudaremos.</p>
-
-<p>Atentamente,</p>
-
-<p>Servicio al Cliente @CLIENTE</p>
-
-<p><u>Nota: Este es un correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p>",
+8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a <a>@CLIENTEMAIL</a> y con mucho gusto 
+le ayudaremos.</p><p>Atentamente,</p><p>Servicio al Cliente @CLIENTE</p><p><u>Nota: Este es un 
+correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p>",
 
            APROVADA_USER_BODY = @"<p>Estimado cliente:</p>
 <p>Nos place informarle que su solicitud número @NUMSOLICITUD fue aprobada. 
+Los detalles de aprobación se muestran a continuación:</p>
+ 
+<ul style='list-style-type:square'>
 
-<p>Puede pasar por nuestras oficinas para recoger su cheque a partir de mañana a las 8:00 a.m.</p>
+        <li>Cantidad Aprobada: @CANTIDADAPROVADA</li>
+          <li>Término del Préstamo: @TERMINO</li>
+           <li>Pago Mensual: @MENSUAL</li>
+           <li>Fecha del Primer Pago: @FECHAPRIMER </li>
+           <li>Fecha del Ultimo Pago: @FECHAULTIMO</li>
 
-<p>Nos place haber podido servirle y nos encontramos a su disposición de usted requerir algún servicio adicional.</p>
+</ul>
 
-<p>Atentamente,</p>
+<p>Puede pasar por nuestras oficinas para recoger su cheque a partir de mañana a las 8:00 a.m.</p><p>Nos 
+place haber podido servirle y nos encontramos a su disposición de usted requerir algún servicio 
+adicional.</p><p>Atentamente,</p><p>Servicio al Cliente @CLIENTE</p><p><u>Nota: Este es un correo 
+electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p>",
 
-<p>Servicio al Cliente @CLIENTE</p>
-
-<p><u>Nota: Este es un correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p>",
-
-           DENEGADA_USER_BODY = @"<p>Estimado cliente:</p>  
-<p>Lamentamos informarle que su solicitud número @NUMSOLICITUD fue denegada. 
-Estará recibiendo por correo una carta con el detalle de las razones específicas de la denegación.</p> 
-
-<p>Para cualquier duda o pregunta se puede comunicar al @PHONE de lunes a viernes,
-8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a <a>@CLIENTEMAIL</a> y con mucho gusto le ayudaremos.</p>
-
-<p>Atentamente,</p>
-
-<p>Servicio al Cliente @CLIENTE</p>
-
-<p><u>Nota: Este es un correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p>",
+           DENEGADA_USER_BODY = @"<p>Estimado cliente:</p><p>Lamentamos informarle que su solicitud 
+número @NUMSOLICITUD fue denegada. 
+Estará recibiendo por correo una carta con el detalle de las razones específicas de la 
+denegación.</p><p>Para cualquier duda o pregunta se puede comunicar al @PHONE de lunes a viernes,
+8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a <a>@CLIENTEMAIL</a> y con mucho gusto 
+le ayudaremos.</p><p>Atentamente,</p><p>Servicio al Cliente @CLIENTE</p><p><u>Nota: Este es un 
+correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p>",
 
            REGISTER_BODY = @"<p>Estimado cliente:</p>
-<p>Bienvenido al Portal de Servicios de Cliente @CLIENT.</p>
-
-<p>Su usuario ha sido creado exitosamente. Desde este momento, usted podrá acceder al 
+<p>Bienvenido al Portal de Servicios de Cliente @CLIENT.</p><p>Su usuario ha sido creado 
+exitosamente. Desde este momento, usted podrá acceder al 
 sistema para solicitar los servicios que requiera de manera simple, fácil y segura.
 Recuerde que siempre nos encontramos a su disposición para cualquier servicio que pueda 
 necesitar. Para cualquier duda o pregunta se puede comunicar al @PHONE de lunes a 
-viernes, 8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a <a>@CLIENTEMAIL</a> y con mucho gusto le ayudaremos.</p>
+viernes, 8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a <a>@CLIENTEMAIL</a> y 
+con mucho gusto le ayudaremos.</p><p>Atentamente,</p><p>Servicio al Cliente @CLIENTE</p><p><u>Nota: 
+Este es un correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p> ",
 
-<p>Atentamente,</p>
-
-<p>Servicio al Cliente @CLIENTE</p>
-
-<p><u>Nota: Este es un correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p> ",
-
-           PASS_RECOVER_BODY = @"<p>Estimado cliente:</p>
-<p>Recibimos su solicitud de cambio de contraseña. A continuación su contraseña.</p> 
-
-<p>Su contraseña es: @PASS.</p>
-
-<p>Gracias por ser un cliente de @CLIENT. Para cualquier duda o pregunta se puede comunicar 
+           PASS_RECOVER_BODY = @"<p>Estimado cliente:</p><p>Recibimos su solicitud de cambio 
+de contraseña. A continuación su contraseña.</p><p>Su contraseña es: @PASS.</p><p>Gracias por 
+ser un cliente de @CLIENT. Para cualquier duda o pregunta se puede comunicar 
 al @PHONE de lunes a viernes, 8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a 
-<a>@CLIENTEMAIL</a> y con mucho gusto le ayudaremos.</p>
- 
-<p>Atentamente,</p> 
+<a>@CLIENTEMAIL</a> y con mucho gusto le ayudaremos.</p><p>Atentamente,</p><p>Servicio al 
+Cliente @CLIENT</p><p>Este es un correo electrónico enviado automáticamente. Favor no responder al mensaje.</p>",
 
-<p>Servicio al Cliente @CLIENT</p>
- 
-<p>Este es un correo electrónico enviado automáticamente. Favor no responder al mensaje.</p>",
-
-           PEND_REVISAR_USER_BODY = @"<p>Estimado cliente:</p>
-<p>Recibimos su solicitud de @TYPE servicio. Se le asignó el número @NUMSOLICITUD a dicha solicitud.
+           PEND_REVISAR_USER_BODY = @"<p>Estimado cliente:</p><p>Recibimos su solicitud 
+de @TYPE servicio. Se le asignó el número @NUMSOLICITUD a dicha solicitud.
 La misma estará siendo revisada por uno de nuestros coordinadores de servicio, quien se asegurará 
 de que tenga todos los documentos requeridos completos. Una vez completada esta revisión, su solicitud 
-se estará pasando al Supervisor del Área de Servicio.</p>
-
-<p>Agradecemos su interés en nuestros servicios y le mantendremos informado del progreso de su solicitud en 
+se estará pasando al Supervisor del Área de Servicio.</p><p>Agradecemos su interés en 
+nuestros servicios y le mantendremos informado del progreso de su solicitud en 
 cada etapa del proceso. Para cualquier duda o pregunta se puede comunicar al @PHONE de lunes a viernes,
-8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a <a>@CLIENTEMAIL</a> y con mucho gusto le ayudaremos.</p>
-
-<p>Atentamente,<p>
-
-<p>Servicio al Cliente @CLIENTE</p>
-
-<p><u>Nota: Este es un correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u><p>",
+8:00 a.m. a 5:00 p.m. o enviando un correo electrónico a <a>@CLIENTEMAIL</a> y con mucho gusto 
+le ayudaremos.</p><p>Atentamente,<p><p>Servicio al Cliente @CLIENTE</p><p><u>Nota: Este es 
+un correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u><p>",
 
            DOCS_INCOMPLETOS_USER_SUBJECT = "Solicitud de Nuevo Servicio Devuelta",
             DOCS_INCOMPLETOS_SUBJ = "Solicitud de Nuevo Servicio Corregida fue Recibida",

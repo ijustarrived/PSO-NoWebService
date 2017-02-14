@@ -49,6 +49,8 @@ namespace PSO.Pages.Dashboard.DashBrds
 
             #region Set text
 
+            rangoDiasTitleLbl.Text = cosmetic.CompletadasMesDiasTitle;
+
             historialCompletadasTitleLbl.Text = cosmetic.HistoryCompletadasTitle;
 
             historialRecibidasTitleLbl.Text = cosmetic.HistoryRecibidasTitle;
