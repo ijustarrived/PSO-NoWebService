@@ -19,7 +19,7 @@
 
         </div> 
 
-        <div style ="display:inline-block">
+        <div style ="display:inline-block; margin-bottom: 40px;">
 
             <asp:Button runat="server" CssClass ="dashBtns" ID="productionBtn" OnClick ="productionBtn_Click"
                 Text="Resultados de Producción por Rol" />

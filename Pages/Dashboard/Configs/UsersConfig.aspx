@@ -26,6 +26,8 @@
 
     </div>
 
+    <div style="overflow: auto">
+
     <asp:GridView runat ="server" ID ="userGV" AllowPaging="True" ForeColor="#79256E" BackColor="#F3F0F7"
          CellPadding="2" GridLines="None" CssClass="table" ShowHeaderWhenEmpty="true" AutoGenerateColumns="false"
          style ="margin-top:40px; width:95%; margin-left:auto; margin-right:auto" 
@@ -80,6 +82,8 @@
         <PagerStyle BackColor="#616161" Font-Size="Large" ForeColor="#E5E5E5" Font-Bold="true" />
 
         <SelectedRowStyle BackColor="#79256E" ForeColor="#F3F0F7" /></asp:GridView>
+
+        </div>
 
     <div style="text-align: center; margin-bottom: 40px; margin-top:70px; padding-bottom: 100px">
 

@@ -278,6 +278,10 @@ namespace PSO.Pages.Dashboard.Reports
 
                         int dateDif = (solicitudes.ElementAt(i).FechaRevision - solicitudes.ElementAt(i).FechaTramitada).Days;
 
+                        //Even though it oly took hours, in days it's 1
+                        if (dateDif == 0)
+                            dateDif = 1;
+
                         #region Intantiating counters
 
                         switch (solicitudes.ElementAt(i).FechaRevision.Month)
@@ -387,6 +391,9 @@ namespace PSO.Pages.Dashboard.Reports
 
                         dateDif = (solicitudes.ElementAt(i).FechaTrabajado - solicitudes.ElementAt(i).FechaAsigProcesador).Days;
 
+                        if (dateDif == 0)
+                            dateDif = 1;
+
                         #region Intantiating counters
 
                         switch (solicitudes.ElementAt(i).FechaTrabajado.Month)
@@ -495,6 +502,9 @@ namespace PSO.Pages.Dashboard.Reports
                     default:
 
                         dateDif = (solicitudes.ElementAt(i).FechaAsigProcesador - solicitudes.ElementAt(i).FechaRevision).Days;
+
+                        if (dateDif == 0)
+                            dateDif = 1;
 
                         #region Intantiating counters
 

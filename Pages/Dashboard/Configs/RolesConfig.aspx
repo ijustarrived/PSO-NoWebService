@@ -21,6 +21,8 @@
 
     </script>
 
+    <div style="overflow: auto">
+
     <asp:GridView runat ="server" ID ="roleGV" AllowPaging="True" ForeColor="#79256E" BackColor="#F3F0F7"
          CellPadding="2" GridLines="None" CssClass="table" ShowHeaderWhenEmpty="true" AutoGenerateColumns="false"
          style ="margin-top:40px; width:35%; margin-left:auto; margin-right:auto" 
@@ -63,6 +65,8 @@
         <RowStyle HorizontalAlign ="Center" />
 
     </asp:GridView>
+
+        </div>
 
     <div style="text-align: center; margin-bottom: 40px; margin-top:70px; padding-bottom: 100px">
 

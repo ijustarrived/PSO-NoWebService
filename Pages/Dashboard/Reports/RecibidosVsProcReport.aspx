@@ -252,66 +252,70 @@
 
     </div>
 
-    <asp:GridView runat="server" AutoGenerateColumns="false" AllowPaging="True" ForeColor="#79256E" BackColor="#F3F0F7"
-        CellPadding="2" GridLines="None" CssClass="table" ShowHeaderWhenEmpty="true" ID="recievedGV"
-        Style="margin-top: 40px; width: 95%; margin-left: auto; margin-right: auto"
-        DataSourceID="solicitudesSQLDS" OnRowDataBound="recievedGV_RowDataBound">
+    <div style="overflow: auto">
 
-        <AlternatingRowStyle BackColor="#E5E5E5" />
+        <asp:GridView runat="server" AutoGenerateColumns="false" AllowPaging="True" ForeColor="#79256E" BackColor="#F3F0F7"
+            CellPadding="2" GridLines="None" CssClass="table" ShowHeaderWhenEmpty="true" ID="recievedGV"
+            Style="margin-top: 40px; width: 95%; margin-left: auto; margin-right: auto"
+            DataSourceID="solicitudesSQLDS" OnRowDataBound="recievedGV_RowDataBound">
 
-        <EmptyDataTemplate>
+            <AlternatingRowStyle BackColor="#E5E5E5" />
 
-            <div style="text-align: center">
+            <EmptyDataTemplate>
 
-                <asp:Label ForeColor="#79256E" ID ="emptyLbl" runat="server">No hay data disponible</asp:Label>
+                <div style="text-align: center">
 
-            </div>
+                    <asp:Label ForeColor="#79256E" ID="emptyLbl" runat="server">No hay data disponible</asp:Label>
 
-        </EmptyDataTemplate>
+                </div>
 
-        <Columns>
+            </EmptyDataTemplate>
 
-            <asp:BoundField DataField="NumeroSolicitud" HeaderText="N&uacute;mero de Solicitud">
-                <HeaderStyle Font-Size="13pt" />
-                <ItemStyle Font-Size="12pt" />
-            </asp:BoundField>
+            <Columns>
 
-            <asp:BoundField DataField="FechaTramitada" HeaderText="Fecha Recibida">
-                <HeaderStyle Font-Size="13pt" />
-                <ItemStyle Font-Size="12pt" />
-            </asp:BoundField>
+                <asp:BoundField DataField="NumeroSolicitud" HeaderText="N&uacute;mero de Solicitud">
+                    <HeaderStyle Font-Size="13pt" />
+                    <ItemStyle Font-Size="12pt" />
+                </asp:BoundField>
 
-            <asp:BoundField DataField="FechaTrabajado" HeaderText="Fecha Completada">
-                <HeaderStyle Font-Size="13pt" />
-                <ItemStyle Font-Size="12pt" />
-            </asp:BoundField>
+                <asp:BoundField DataField="FechaTramitada" HeaderText="Fecha Recibida">
+                    <HeaderStyle Font-Size="13pt" />
+                    <ItemStyle Font-Size="12pt" />
+                </asp:BoundField>
 
-            <asp:BoundField DataField="Duration" HeaderText="D&iacute;as Transcuridos">
-                <HeaderStyle Font-Size="13pt" />
-                <ItemStyle Font-Size="12pt" />
-            </asp:BoundField>
+                <asp:BoundField DataField="FechaTrabajado" HeaderText="Fecha Completada">
+                    <HeaderStyle Font-Size="13pt" />
+                    <ItemStyle Font-Size="12pt" />
+                </asp:BoundField>
 
-            <asp:BoundField DataField="CoordinadorID" HeaderText="Coordinador">
-                <HeaderStyle Font-Size="13pt" />
-                <ItemStyle Font-Size="12pt" />
-            </asp:BoundField>
+                <asp:BoundField DataField="Duration" HeaderText="D&iacute;as Transcuridos">
+                    <HeaderStyle Font-Size="13pt" />
+                    <ItemStyle Font-Size="12pt" />
+                </asp:BoundField>
 
-            <asp:BoundField DataField="ProcesadorID" HeaderText="Procesador">
-                <HeaderStyle Font-Size="13pt" />
-                <ItemStyle Font-Size="12pt" />
-            </asp:BoundField>
+                <asp:BoundField DataField="CoordinadorID" HeaderText="Coordinador">
+                    <HeaderStyle Font-Size="13pt" />
+                    <ItemStyle Font-Size="12pt" />
+                </asp:BoundField>
 
-        </Columns>
+                <asp:BoundField DataField="ProcesadorID" HeaderText="Procesador">
+                    <HeaderStyle Font-Size="13pt" />
+                    <ItemStyle Font-Size="12pt" />
+                </asp:BoundField>
 
-        <FooterStyle BackColor="#616161" />
+            </Columns>
 
-        <HeaderStyle BackColor="#616161" ForeColor="#E5E5E5" Font-Bold="True" />
+            <FooterStyle BackColor="#616161" />
 
-        <PagerStyle BackColor="#616161" Font-Size="Large" ForeColor="#E5E5E5" Font-Bold="true" />
+            <HeaderStyle BackColor="#616161" ForeColor="#E5E5E5" Font-Bold="True" />
 
-        <SelectedRowStyle BackColor="#79256E" ForeColor="#F3F0F7" />
+            <PagerStyle BackColor="#616161" Font-Size="Large" ForeColor="#E5E5E5" Font-Bold="true" />
 
-    </asp:GridView>
+            <SelectedRowStyle BackColor="#79256E" ForeColor="#F3F0F7" />
+
+        </asp:GridView>
+
+    </div>
 
     <asp:SqlDataSource runat="server" ID="solicitudesSQLDS" SelectCommand="SELECT CoordinadorID, ProcesadorID, NumeroSolicitud, FechaTramitada,
          FechaTrabajado, DATEDIFF(day, FechaTramitada, FechaTrabajado) AS Duration FROM Solicitudes @WHERE"

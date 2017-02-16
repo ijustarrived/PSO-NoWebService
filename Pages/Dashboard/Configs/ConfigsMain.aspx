@@ -24,7 +24,7 @@
 
         </div> 
 
-        <div style ="display:inline-block">
+        <div style ="display:inline-block; margin-bottom: 40px;">
 
             <asp:Button runat="server" CssClass ="dashBtns" ID="customizePagesBtn" OnClick ="customizePagesBtn_Click"
                 Text="Personalizar Sistema" />

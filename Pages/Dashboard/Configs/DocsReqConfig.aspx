@@ -60,6 +60,7 @@
 
         </div>
 
+    <div style="overflow: auto">
 
     <asp:GridView runat ="server" ID ="docsGV" DataSourceID ="docsSQLDS" 
         style ="margin-top:40px; width:95%; margin-left:auto; margin-right:auto" 
@@ -108,6 +109,8 @@
         <SelectedRowStyle BackColor="#79256E" ForeColor="#F3F0F7" />
 
     </asp:GridView>
+
+        </div>
 
     <asp:SqlDataSource runat ="server" ID ="docsSQLDS" ConnectionString="<%$ ConnectionStrings:local %>"
                 SelectCommand="SELECT ID, Nombre FROM TitulosDocumentos ORDER BY Nombre ASC"

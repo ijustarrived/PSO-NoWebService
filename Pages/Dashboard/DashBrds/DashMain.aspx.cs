@@ -460,7 +460,8 @@ namespace PSO.Pages.Dashboard.DashBrds
 
         private void SetDayChartData(LinkedList<_Solicitud> solicitudes)
         {
-            int zeroToTwoCount = 0,
+            //-1 cause I can't tell between 0 as in the difference is 0 and the initial defined value
+            int zeroToTwoCount = -1,
                 threeToFiveCount = 0,
                 sixToEightCount = 0,
                 nineAndAboveCount = 0;
@@ -469,20 +470,42 @@ namespace PSO.Pages.Dashboard.DashBrds
             {
                 int dateDiff = (solicitudes.ElementAt(i).FechaTrabajado - solicitudes.ElementAt(i).FechaTramitada).Days;
 
-                if (dateDiff < 3)
-                    zeroToTwoCount++;
+                if (dateDiff > 8)
+                    nineAndAboveCount++;
 
-                else if (dateDiff < 6)
-                    threeToFiveCount++;
-
-                else if (dateDiff < 9)
+                else if (dateDiff > 5)
                     sixToEightCount++;
 
-                else if (dateDiff >= 9)
-                    nineAndAboveCount++;
+                else if (dateDiff > 2)
+                    threeToFiveCount++;
+
+                else
+                    zeroToTwoCount++;
+
+                //if (dateDiff < 3)
+                //    zeroToTwoCount++;
+
+                //else if (dateDiff < 6)
+                //    threeToFiveCount++;
+
+                //else if (dateDiff < 9)
+                //    sixToEightCount++;
+
+                //else if (dateDiff >= 9)
+                //    nineAndAboveCount++;
             }
 
             #region 0-2
+
+            if (zeroToTwoCount < 0)
+                zeroToTwoCount = 0;
+
+            /*
+             * Si se le sumo una vez, va a terminar en 0 por que empieza desde -1.
+             * +1 para que caiga en el numero que es
+             */
+            else
+                zeroToTwoCount++;
 
             dateRangeChrt.Series[0].Points[3].SetValueY(zeroToTwoCount);
 

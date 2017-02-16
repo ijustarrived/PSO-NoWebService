@@ -81,20 +81,9 @@ le ayudaremos.</p><p>Atentamente,</p><p>Servicio al Cliente @CLIENTE</p><p><u>No
 correo electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p>",
 
            APROVADA_USER_BODY = @"<p>Estimado cliente:</p>
-<p>Nos place informarle que su solicitud número @NUMSOLICITUD fue aprobada. 
-Los detalles de aprobación se muestran a continuación:</p>
- 
-<ul style='list-style-type:square'>
-
-        <li>Cantidad Aprobada: @CANTIDADAPROVADA</li>
-          <li>Término del Préstamo: @TERMINO</li>
-           <li>Pago Mensual: @MENSUAL</li>
-           <li>Fecha del Primer Pago: @FECHAPRIMER </li>
-           <li>Fecha del Ultimo Pago: @FECHAULTIMO</li>
-
-</ul>
-
-<p>Puede pasar por nuestras oficinas para recoger su cheque a partir de mañana a las 8:00 a.m.</p><p>Nos 
+<p>Nos place informarle que su solicitud número @NUMSOLICITUD fue aprobada.</p><p>Puede pasar
+por nuestras oficinas para para finalizar el proceso recoger su cheque 
+a partir de mañana a las 8:00 a.m.</p><p>Nos 
 place haber podido servirle y nos encontramos a su disposición de usted requerir algún servicio 
 adicional.</p><p>Atentamente,</p><p>Servicio al Cliente @CLIENTE</p><p><u>Nota: Este es un correo 
 electrónico enviado automáticamente. Favor no responder a este mensaje.</u></p>",

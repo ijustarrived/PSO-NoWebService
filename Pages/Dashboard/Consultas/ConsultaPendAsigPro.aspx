@@ -12,6 +12,8 @@
 
     </script>
 
+    <div style="overflow: auto">
+
     <asp:GridView runat="server" AutoGenerateColumns="false" AllowPaging="True" ForeColor="#79256E" BackColor="#F3F0F7"
         CellPadding="2" GridLines="None" CssClass="table" ShowHeaderWhenEmpty="true" ID="solicitudesGV" 
          DataSourceID ="solicitudesSQLDS" style ="margin-top:40px;  width:95%; margin-left:auto; margin-right:auto" 
@@ -67,6 +69,8 @@
         <SelectedRowStyle BackColor="#79256E" ForeColor="#F3F0F7" />
 
     </asp:GridView>
+
+        </div>
 
     <asp:SqlDataSource runat ="server" ID ="solicitudesSQLDS" SelectCommand ="SELECT NumeroSolicitud, Pueblo,
          (Nombre + ' '+ ApellidoPaterno + ' ' + ApellidoMaterno) AS Nombre, Celular, FechaRevision
