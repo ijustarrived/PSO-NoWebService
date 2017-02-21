@@ -429,13 +429,14 @@ namespace PSO.Repositorios
 
             using (SqlConnection conn = DB.GetLocalConnection())
             {
-                using (SqlCommand cmd = new SqlCommand(@"SELECT *, DATEDIFF(day, FechaTramitada, @FECHA) AS Duration 
+                using (SqlCommand cmd = new SqlCommand(@"SELECT *, DATEDIFF(day, @FECHAASIG, @FECHA) AS Duration 
                                                             FROM Solicitudes @WHERE ORDER BY @ROLE NumeroSolicitud",
                                                             conn))
                 {
                     string where = string.Empty,
                         rol = string.Empty,
-                        fecha = string.Empty;
+                        fechaAsig = string.Empty,
+                        fechaCompletada = string.Empty;
 
                     switch (role)
                     {
@@ -445,7 +446,9 @@ namespace PSO.Repositorios
 
                             rol = "CoordinadorID,";
 
-                            fecha = "FechaRevision";
+                            fechaCompletada = "FechaRevision";
+
+                            fechaAsig = "FechaTramitada";
 
                             break;
 
@@ -456,7 +459,9 @@ namespace PSO.Repositorios
 
                             rol = "ProcesadorID,";
 
-                            fecha = "FechaTrabajado";
+                            fechaCompletada = "FechaTrabajado";
+
+                            fechaAsig = "FechaAsigProcesador";
 
                             //Esto es solo para el demo
                             //where = "WHERE Status = 4 OR Status = 5";
@@ -467,7 +472,9 @@ namespace PSO.Repositorios
 
                             where = "WHERE FechaAsigProcesador != Convert(datetime, '12/31/9999 23:59:59.997')";
 
-                            fecha = "FechaAsigProcesador";
+                            fechaCompletada = "FechaAsigProcesador";
+
+                            fechaAsig = "FechaRevision";
 
                             break;
 
@@ -475,12 +482,13 @@ namespace PSO.Repositorios
 
                             where = "WHERE FechaTramitada != Convert(datetime, '12/31/9999 23:59:59.997')";
 
-                            fecha = "GETDATE()";
+                            fechaCompletada = "GETDATE()";
 
                             break;
                     }
 
-                    cmd.CommandText = cmd.CommandText.Replace("@WHERE", where).Replace("@FECHA", fecha).Replace("@ROLE", rol);
+                    cmd.CommandText = cmd.CommandText.Replace("@WHERE", where).Replace("@FECHAASIG", fechaAsig).Replace(
+                        "@FECHA", fechaCompletada).Replace("@ROLE", rol);
 
                     //cmd.CommandText = cmd.CommandText.Replace("@FECHA", fecha);
 

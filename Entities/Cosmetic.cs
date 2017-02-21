@@ -46,7 +46,7 @@ namespace PSO.Entities
 
             SolicitudTitle = "Solicitud de Servicio";
 
-            CompletadasMesDiasTitle = "Rango de Días de Solicitudes Completadas por Mes";
+            CompletadasMesDiasTitle = "Tiempo Transcurrido en Completar Solicitudes";
 
             HistoryCompletadasTitle = "Historial de Solicitudes Completadas";
 

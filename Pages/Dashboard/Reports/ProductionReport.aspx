@@ -245,7 +245,7 @@
                     <ItemStyle Font-Size="12pt" />
                 </asp:BoundField>
 
-                <asp:BoundField DataField="FechaTramitada" HeaderText="Fecha Recibida">
+                <asp:BoundField DataField="FechaAsigProcesador" HeaderText="Fecha Asignada">
                     <HeaderStyle Font-Size="13pt" />
                     <ItemStyle Font-Size="12pt" />
                 </asp:BoundField>

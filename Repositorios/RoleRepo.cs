@@ -151,7 +151,9 @@ namespace PSO.Repositorios
 
                         ViewRepProduc = reader.GetBoolean(col++),
 
-                        EditCustomizationPage = reader.GetBoolean(col++)
+                        EditCustomizationPage = reader.GetBoolean(col++),
+
+                        ViewReportIndicadores = reader.GetBoolean(col++)
                     };
 
                     role.Nombre = role.RoleType.ToString();

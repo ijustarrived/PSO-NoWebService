@@ -34,6 +34,8 @@
         function ChangeClinetSideColors(lblColor, titleColor)
         {
             $('#printBtn').css({ 'color': lblColor });
+
+            $('#printBtn2').css({ 'color': lblColor });
         }
 
     </script>
@@ -757,6 +759,11 @@
 
         <asp:Button ID="saveBtn" BorderColor="#616161" BorderWidth="3" Text="Guardar"
             Style="margin-right: 20px; padding: 10px 15px;" runat="server" OnClick="saveBtn_Click" ForeColor="#79256E" />
+
+        <input type="button" onclick="javascript: window.print();"
+            style="border-style: solid; vertical-align: middle; border-color: #616161; 
+                   border-width: 3px; padding: 10px 15px;"
+            value="Imprimir" id ="printBtn2" />
 
     </div>
 

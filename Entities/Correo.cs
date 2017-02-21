@@ -82,7 +82,7 @@ correo electrónico enviado automáticamente. Favor no responder a este mensaje.
 
            APROVADA_USER_BODY = @"<p>Estimado cliente:</p>
 <p>Nos place informarle que su solicitud número @NUMSOLICITUD fue aprobada.</p><p>Puede pasar
-por nuestras oficinas para para finalizar el proceso recoger su cheque 
+por nuestras oficinas para finalizar el proceso y recoger su cheque 
 a partir de mañana a las 8:00 a.m.</p><p>Nos 
 place haber podido servirle y nos encontramos a su disposición de usted requerir algún servicio 
 adicional.</p><p>Atentamente,</p><p>Servicio al Cliente @CLIENTE</p><p><u>Nota: Este es un correo 

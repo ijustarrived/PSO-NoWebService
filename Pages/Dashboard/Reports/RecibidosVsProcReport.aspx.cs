@@ -115,6 +115,13 @@ namespace PSO.Pages.Dashboard.Reports
             #endregion
 
             #endregion
+
+            if (!IsPostBack)
+            {
+                ViewState["Coords"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR);
+
+                ViewState["Procs"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
+            }
         }
 
         protected void searchBtn_Click(object sender, EventArgs e)
@@ -289,7 +296,7 @@ namespace PSO.Pages.Dashboard.Reports
 
                 else
                 {
-                    LinkedList<Usuario> coordinadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR);
+                    LinkedList<Usuario> coordinadores = (LinkedList<Usuario>)ViewState["Coords"];
 
                     e.Row.Cells[4].Text = coordinadores.ElementAt(Convert.ToInt32(e.Row.Cells[4].Text)).GetNombreCompleto();
                 }
@@ -313,7 +320,7 @@ namespace PSO.Pages.Dashboard.Reports
                 //Means has no proc assigned
                 if (!e.Row.Cells[5].Text.Equals("0"))
                 {
-                    LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
+                    LinkedList<Usuario> procesadores = (LinkedList<Usuario>)ViewState["Procs"];
 
                     e.Row.Cells[5].Text = procesadores.ElementAt(Convert.ToInt32(e.Row.Cells[5].Text) - 1).GetNombreCompleto();
                 }

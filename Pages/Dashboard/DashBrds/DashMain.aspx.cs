@@ -98,9 +98,9 @@ namespace PSO.Pages.Dashboard.DashBrds
                 solicitudesByYearMonthNRol = SolicitudRepo.GetSolicitudesCompletadasByMonthYearNRol(DateTime.Now.Year,
                 monthDDL.SelectedIndex + 1, Rol.TiposRole.PROCESADOR);
 
-            SetByYearChartData(solicitudesByYear, historialRecibidasChrt);
+            SetByYearChartData(solicitudesByYear, historialRecibidasChrt, true);
 
-            SetByYearChartData(solicitudesByYearNRol, historialCompletadasChrt);
+            SetByYearChartData(solicitudesByYearNRol, historialCompletadasChrt, false);
 
             SetDayChartData(solicitudesByYearMonthNRol);
 
@@ -228,7 +228,7 @@ namespace PSO.Pages.Dashboard.DashBrds
             #endregion
         }
 
-        private void SetByYearChartData(LinkedList<_Solicitud> solicitudesByYear, Chart chart)
+        private void SetByYearChartData(LinkedList<_Solicitud> solicitudesByYear, Chart chart, bool fechaTramitada)
         {
             #region Define counters
 
@@ -247,82 +247,174 @@ namespace PSO.Pages.Dashboard.DashBrds
 
             #endregion
 
-            for (int i = 0; i < solicitudesByYear.Count; i++)
+            if (fechaTramitada)
             {
-                switch (solicitudesByYear.ElementAt(i).FechaTramitada.Month)
+                #region Count solicitudes tramitadas
+
+                for (int i = 0; i < solicitudesByYear.Count; i++)
                 {
-                    case 1:
+                    switch (solicitudesByYear.ElementAt(i).FechaTramitada.Month)
+                    {
+                        case 1:
 
-                        eneCount++;
+                            eneCount++;
 
-                        break;
+                            break;
 
-                    case 2:
+                        case 2:
 
-                        febCount++;
+                            febCount++;
 
-                        break;
+                            break;
 
-                    case 3:
+                        case 3:
 
-                        marCount++;
+                            marCount++;
 
-                        break;
+                            break;
 
-                    case 4:
+                        case 4:
 
-                        abrCount++;
+                            abrCount++;
 
-                        break;
+                            break;
 
-                    case 5:
+                        case 5:
 
-                        mayCount++;
+                            mayCount++;
 
-                        break;
+                            break;
 
-                    case 6:
+                        case 6:
 
-                        junCount++;
+                            junCount++;
 
-                        break;
+                            break;
 
-                    case 7:
+                        case 7:
 
-                        julCount++;
+                            julCount++;
 
-                        break;
+                            break;
 
-                    case 8:
+                        case 8:
 
-                        agoCount++;
+                            agoCount++;
 
-                        break;
+                            break;
 
-                    case 9:
+                        case 9:
 
-                        sepCount++;
+                            sepCount++;
 
-                        break;
+                            break;
 
-                    case 10:
+                        case 10:
 
-                        octCount++;
+                            octCount++;
 
-                        break;
+                            break;
 
-                    case 11:
+                        case 11:
 
-                        novCount++;
+                            novCount++;
 
-                        break;
+                            break;
 
-                    case 12:
+                        case 12:
 
-                        dicCount++;
+                            dicCount++;
 
-                        break;
+                            break;
+                    }
                 }
+
+                #endregion
+            }
+
+            else
+            {
+                #region Count solicitudes completadas
+
+                for (int i = 0; i < solicitudesByYear.Count; i++)
+                {
+                    switch (solicitudesByYear.ElementAt(i).FechaTrabajado.Month)
+                    {
+                        case 1:
+
+                            eneCount++;
+
+                            break;
+
+                        case 2:
+
+                            febCount++;
+
+                            break;
+
+                        case 3:
+
+                            marCount++;
+
+                            break;
+
+                        case 4:
+
+                            abrCount++;
+
+                            break;
+
+                        case 5:
+
+                            mayCount++;
+
+                            break;
+
+                        case 6:
+
+                            junCount++;
+
+                            break;
+
+                        case 7:
+
+                            julCount++;
+
+                            break;
+
+                        case 8:
+
+                            agoCount++;
+
+                            break;
+
+                        case 9:
+
+                            sepCount++;
+
+                            break;
+
+                        case 10:
+
+                            octCount++;
+
+                            break;
+
+                        case 11:
+
+                            novCount++;
+
+                            break;
+
+                        case 12:
+
+                            dicCount++;
+
+                            break;
+                    }
+                }
+
+                #endregion
             }
 
             #region Ene

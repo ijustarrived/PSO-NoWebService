@@ -623,40 +623,90 @@ namespace PSO.Pages.Dashboard.Reports
 
                     #region Setting coor lbls
 
-                    abrCoorLbl.Text = totalTrabajoAbrCount != 0 ? ((int)(totalTrabajoAbrCount / solicitudesAbrCount)).ToString()
+                    //abrCoorLbl.Text = totalTrabajoAbrCount != 0 ? ((int)(totalTrabajoAbrCount / solicitudesAbrCount)).ToString()
+                    //    : "0";
+
+                    abrCoorLbl.Text = totalTrabajoAbrCount != 0
+                        ? ((totalTrabajoAbrCount + solicitudesAbrCount - 1) / solicitudesAbrCount).ToString()
                         : "0";
 
-                    agoCoorLbl.Text = totalTrabajoAgoCount != 0 ? ((int)(totalTrabajoAgoCount / solicitudesAgoCount)).ToString()
+                    //agoCoorLbl.Text = totalTrabajoAgoCount != 0 ? ((int)(totalTrabajoAgoCount / solicitudesAgoCount)).ToString()
+                    //    : "0";
+
+                    agoCoorLbl.Text = totalTrabajoAgoCount != 0
+                        ? ((totalTrabajoAgoCount + solicitudesAgoCount - 1) / solicitudesAgoCount).ToString()
                         : "0";
 
-                    dicCoorLbl.Text = totalTrabajoDicCount != 0 ? ((int)(totalTrabajoDicCount / solicitudesDicCount)).ToString()
+                    //dicCoorLbl.Text = totalTrabajoDicCount != 0 ? ((int)(totalTrabajoDicCount / solicitudesDicCount)).ToString()
+                    //    : "0";
+
+                    dicCoorLbl.Text = totalTrabajoDicCount != 0
+                        ? ((totalTrabajoDicCount + solicitudesDicCount - 1) / solicitudesDicCount).ToString()
                         : "0";
 
-                    eneCoorLbl.Text = totalTrabajoEneCount != 0 ? ((int)(totalTrabajoEneCount / solicitudesEneCount)).ToString()
+                    //eneCoorLbl.Text = totalTrabajoEneCount != 0 ? ((int)(totalTrabajoEneCount / solicitudesEneCount)).ToString()
+                    //    : "0";
+
+                    //eneCoorLbl.Text = totalTrabajoAbrCount != 0 ? ((int)Math.Round(
+                    //    (double)(totalTrabajoEneCount / solicitudesEneCount))).ToString() : "0";
+
+                    eneCoorLbl.Text = totalTrabajoEneCount != 0
+                        ? ((totalTrabajoEneCount + solicitudesEneCount - 1) / solicitudesEneCount).ToString() : "0";
+
+                    //---febCoorLbl.Text = totalTrabajoFebCount != 0 ? ((int)(totalTrabajoFebCount / solicitudesFebCount)).ToString()
+                    //    : "0";
+
+                    febCoorLbl.Text = totalTrabajoFebCount != 0
+                        ? ((totalTrabajoFebCount + solicitudesFebCount - 1) / solicitudesFebCount).ToString()
                         : "0";
 
-                    febCoorLbl.Text = totalTrabajoFebCount != 0 ? ((int)(totalTrabajoFebCount / solicitudesFebCount)).ToString()
+                    //julCoorLbl.Text = totalTrabajoJulCount != 0 ? ((int)(totalTrabajoJulCount / solicitudesJulCount)).ToString()
+                    //    : "0";
+
+                    julCoorLbl.Text = totalTrabajoJulCount != 0
+                        ? ((totalTrabajoJulCount + solicitudesJulCount - 1) / solicitudesJulCount).ToString()
                         : "0";
 
-                    julCoorLbl.Text = totalTrabajoJulCount != 0 ? ((int)(totalTrabajoJulCount / solicitudesJulCount)).ToString()
+                    //junCoorLbl.Text = totalTrabajoJunCount != 0 ? ((int)(totalTrabajoJunCount / solicitudesJunCount)).ToString()
+                    //    : "0";
+
+                    junCoorLbl.Text = totalTrabajoJunCount != 0
+                        ? ((totalTrabajoJunCount + solicitudesJunCount - 1) / solicitudesJunCount).ToString()
                         : "0";
 
-                    junCoorLbl.Text = totalTrabajoJunCount != 0 ? ((int)(totalTrabajoJunCount / solicitudesJunCount)).ToString()
+                    //marCoorLbl.Text = totalTrabajoMarCount != 0 ? ((int)(totalTrabajoMarCount / solicitudesMarCount)).ToString()
+                    //    : "0";
+
+                    marCoorLbl.Text = totalTrabajoMarCount != 0
+                        ? ((totalTrabajoMarCount + solicitudesMarCount - 1) / solicitudesMarCount).ToString()
                         : "0";
 
-                    marCoorLbl.Text = totalTrabajoMarCount != 0 ? ((int)(totalTrabajoMarCount / solicitudesMarCount)).ToString()
+                    //mayCoorLbl.Text = totalTrabajoMayCount != 0 ? ((int)(totalTrabajoMayCount / solicitudesMayCount)).ToString()
+                    //    : "0";
+
+                    mayCoorLbl.Text = totalTrabajoMayCount != 0
+                        ? ((totalTrabajoMayCount + solicitudesMayCount - 1) / solicitudesMayCount).ToString()
                         : "0";
 
-                    mayCoorLbl.Text = totalTrabajoMayCount != 0 ? ((int)(totalTrabajoMayCount / solicitudesMayCount)).ToString()
+                    //novCoorLbl.Text = totalTrabajoNovCount != 0 ? ((int)(totalTrabajoNovCount / solicitudesNovCount)).ToString()
+                    //    : "0";
+
+                    novCoorLbl.Text = totalTrabajoNovCount != 0
+                        ? ((totalTrabajoNovCount + solicitudesNovCount - 1) / solicitudesNovCount).ToString()
                         : "0";
 
-                    novCoorLbl.Text = totalTrabajoNovCount != 0 ? ((int)(totalTrabajoNovCount / solicitudesNovCount)).ToString()
+                    //octCoorLbl.Text = totalTrabajoOctCount != 0 ? ((int)(totalTrabajoOctCount / solicitudesOctCount)).ToString()
+                    //    : "0";
+
+                    octCoorLbl.Text = totalTrabajoOctCount != 0
+                        ? ((totalTrabajoOctCount + solicitudesOctCount - 1) / solicitudesOctCount).ToString()
                         : "0";
 
-                    octCoorLbl.Text = totalTrabajoOctCount != 0 ? ((int)(totalTrabajoOctCount / solicitudesOctCount)).ToString()
-                        : "0";
+                    //sepCoorLbl.Text = totalTrabajoSepCount != 0 ? ((int)(totalTrabajoSepCount / solicitudesSepCount)).ToString()
+                    //    : "0";
 
-                    sepCoorLbl.Text = totalTrabajoSepCount != 0 ? ((int)(totalTrabajoSepCount / solicitudesSepCount)).ToString()
+                    sepCoorLbl.Text = totalTrabajoSepCount != 0
+                        ? ((totalTrabajoSepCount + solicitudesSepCount - 1) / solicitudesSepCount).ToString()
                         : "0";
 
                     #endregion
@@ -667,40 +717,93 @@ namespace PSO.Pages.Dashboard.Reports
 
                     #region Setting proc lbls
 
-                    abrProcLbl.Text = totalTrabajoAbrCount != 0 ? ((int)(totalTrabajoAbrCount / solicitudesAbrCount)).ToString()
+                    //abrProcLbl.Text = totalTrabajoAbrCount != 0 ? ((int)(totalTrabajoAbrCount / solicitudesAbrCount)).ToString()
+                    //    : "0";
+
+                    //agoProcLbl.Text = totalTrabajoAgoCount != 0 ? ((int)(totalTrabajoAgoCount / solicitudesAgoCount)).ToString()
+                    //    : "0";
+
+                    //dicProcLbl.Text = totalTrabajoDicCount != 0 ? ((int)(totalTrabajoDicCount / solicitudesDicCount)).ToString()
+                    //    : "0";
+
+                    //eneProcLbl.Text = totalTrabajoEneCount != 0 ? ((int)(totalTrabajoEneCount / solicitudesEneCount)).ToString()
+                    //    : "0";
+
+                    //febProcLbl.Text = totalTrabajoFebCount != 0 ? ((int)(totalTrabajoFebCount / solicitudesFebCount)).ToString()
+                    //    : "0";
+
+                    //febProcLbl.Text = totalTrabajoFebCount != 0 
+                    //    ? ((totalTrabajoFebCount + solicitudesFebCount - 1) / solicitudesFebCount).ToString()
+                    //    : "0";
+
+
+
+                    //julProcLbl.Text = totalTrabajoJulCount != 0 ? ((int)(totalTrabajoJulCount / solicitudesJulCount)).ToString()
+                    //    : "0";
+
+                    //junProcLbl.Text = totalTrabajoJunCount != 0 ? ((int)(totalTrabajoJunCount / solicitudesJunCount)).ToString()
+                    //    : "0";
+
+                    //marProcLbl.Text = totalTrabajoMarCount != 0 ? ((int)(totalTrabajoMarCount / solicitudesMarCount)).ToString()
+                    //    : "0";
+
+                    //mayProcLbl.Text = totalTrabajoMayCount != 0 ? ((int)(totalTrabajoMayCount / solicitudesMayCount)).ToString()
+                    //    : "0";
+
+                    //novProcLbl.Text = totalTrabajoNovCount != 0 ? ((int)(totalTrabajoNovCount / solicitudesNovCount)).ToString()
+                    //    : "0";
+
+                    //octProcLbl.Text = totalTrabajoOctCount != 0 ? ((int)(totalTrabajoOctCount / solicitudesOctCount)).ToString()
+                    //    : "0";
+
+                    //sepProcLbl.Text = totalTrabajoSepCount != 0 ? ((int)(totalTrabajoSepCount / solicitudesSepCount)).ToString()
+                    //    : "0";
+
+                    abrProcLbl.Text = totalTrabajoAbrCount != 0
+                        ? ((totalTrabajoAbrCount + solicitudesAbrCount - 1) / solicitudesAbrCount).ToString()
                         : "0";
 
-                    agoProcLbl.Text = totalTrabajoAgoCount != 0 ? ((int)(totalTrabajoAgoCount / solicitudesAgoCount)).ToString()
+                    agoProcLbl.Text = totalTrabajoAgoCount != 0
+                        ? ((totalTrabajoAgoCount + solicitudesAgoCount - 1) / solicitudesAgoCount).ToString()
                         : "0";
 
-                    dicProcLbl.Text = totalTrabajoDicCount != 0 ? ((int)(totalTrabajoDicCount / solicitudesDicCount)).ToString()
+                    dicProcLbl.Text = totalTrabajoDicCount != 0
+                        ? ((totalTrabajoDicCount + solicitudesDicCount - 1) / solicitudesDicCount).ToString()
                         : "0";
 
-                    eneProcLbl.Text = totalTrabajoEneCount != 0 ? ((int)(totalTrabajoEneCount / solicitudesEneCount)).ToString()
+                    eneProcLbl.Text = totalTrabajoEneCount != 0
+                        ? ((totalTrabajoEneCount + solicitudesEneCount - 1) / solicitudesEneCount).ToString() : "0";
+
+                    febProcLbl.Text = totalTrabajoFebCount != 0
+                        ? ((totalTrabajoFebCount + solicitudesFebCount - 1) / solicitudesFebCount).ToString()
                         : "0";
 
-                    febProcLbl.Text = totalTrabajoFebCount != 0 ? ((int)(totalTrabajoFebCount / solicitudesFebCount)).ToString()
+                    julProcLbl.Text = totalTrabajoJulCount != 0
+                        ? ((totalTrabajoJulCount + solicitudesJulCount - 1) / solicitudesJulCount).ToString()
                         : "0";
 
-                    julProcLbl.Text = totalTrabajoJulCount != 0 ? ((int)(totalTrabajoJulCount / solicitudesJulCount)).ToString()
+                    junProcLbl.Text = totalTrabajoJunCount != 0
+                        ? ((totalTrabajoJunCount + solicitudesJunCount - 1) / solicitudesJunCount).ToString()
                         : "0";
 
-                    junProcLbl.Text = totalTrabajoJunCount != 0 ? ((int)(totalTrabajoJunCount / solicitudesJunCount)).ToString()
+                    marProcLbl.Text = totalTrabajoMarCount != 0
+                        ? ((totalTrabajoMarCount + solicitudesMarCount - 1) / solicitudesMarCount).ToString()
                         : "0";
 
-                    marProcLbl.Text = totalTrabajoMarCount != 0 ? ((int)(totalTrabajoMarCount / solicitudesMarCount)).ToString()
+                    mayProcLbl.Text = totalTrabajoMayCount != 0
+                        ? ((totalTrabajoMayCount + solicitudesMayCount - 1) / solicitudesMayCount).ToString()
                         : "0";
 
-                    mayProcLbl.Text = totalTrabajoMayCount != 0 ? ((int)(totalTrabajoMayCount / solicitudesMayCount)).ToString()
+                    novProcLbl.Text = totalTrabajoNovCount != 0
+                        ? ((totalTrabajoNovCount + solicitudesNovCount - 1) / solicitudesNovCount).ToString()
                         : "0";
 
-                    novProcLbl.Text = totalTrabajoNovCount != 0 ? ((int)(totalTrabajoNovCount / solicitudesNovCount)).ToString()
+                    octProcLbl.Text = totalTrabajoOctCount != 0
+                        ? ((totalTrabajoOctCount + solicitudesOctCount - 1) / solicitudesOctCount).ToString()
                         : "0";
 
-                    octProcLbl.Text = totalTrabajoOctCount != 0 ? ((int)(totalTrabajoOctCount / solicitudesOctCount)).ToString()
-                        : "0";
-
-                    sepProcLbl.Text = totalTrabajoSepCount != 0 ? ((int)(totalTrabajoSepCount / solicitudesSepCount)).ToString()
+                    sepProcLbl.Text = totalTrabajoSepCount != 0
+                        ? ((totalTrabajoSepCount + solicitudesSepCount - 1) / solicitudesSepCount).ToString()
                         : "0";
 
                     #endregion
@@ -711,40 +814,87 @@ namespace PSO.Pages.Dashboard.Reports
 
                     #region Setting sup lbls
 
-                    abrSupLbl.Text = totalTrabajoAbrCount != 0 ? ((int)(totalTrabajoAbrCount / solicitudesAbrCount)).ToString()
+                    //abrSupLbl.Text = totalTrabajoAbrCount != 0 ? ((int)(totalTrabajoAbrCount / solicitudesAbrCount)).ToString()
+                    //    : "0";
+
+                    //agoSupLbl.Text = totalTrabajoAgoCount != 0 ? ((int)(totalTrabajoAgoCount / solicitudesAgoCount)).ToString()
+                    //    : "0";
+
+                    //dicSupLbl.Text = totalTrabajoDicCount != 0 ? ((int)(totalTrabajoDicCount / solicitudesDicCount)).ToString()
+                    //    : "0";
+
+                    //eneSupLbl.Text = totalTrabajoEneCount != 0 ? ((int)(totalTrabajoEneCount / solicitudesEneCount)).ToString()
+                    //    : "0";
+
+                    //febSupLbl.Text = totalTrabajoFebCount != 0 ? ((int)(totalTrabajoFebCount / solicitudesFebCount)).ToString()
+                    //    : "0";
+
+                    //julSupLbl.Text = totalTrabajoJulCount != 0 ? ((int)(totalTrabajoJulCount / solicitudesJulCount)).ToString()
+                    //    : "0";
+
+                    //junSupLbl.Text = totalTrabajoJunCount != 0 ? ((int)(totalTrabajoJunCount / solicitudesJunCount)).ToString()
+                    //    : "0";
+
+                    //marSupLbl.Text = totalTrabajoMarCount != 0 ? ((int)(totalTrabajoMarCount / solicitudesMarCount)).ToString()
+                    //    : "0";
+
+                    //maySupLbl.Text = totalTrabajoMayCount != 0 ? ((int)(totalTrabajoMayCount / solicitudesMayCount)).ToString()
+                    //    : "0";
+
+                    //novSupLbl.Text = totalTrabajoNovCount != 0 ? ((int)(totalTrabajoNovCount / solicitudesNovCount)).ToString()
+                    //    : "0";
+
+                    //octSupLbl.Text = totalTrabajoOctCount != 0 ? ((int)(totalTrabajoOctCount / solicitudesOctCount)).ToString()
+                    //    : "0";
+
+                    //sepSupLbl.Text = totalTrabajoSepCount != 0 ? ((int)(totalTrabajoSepCount / solicitudesSepCount)).ToString()
+                    //    : "0";
+
+                    abrSupLbl.Text = totalTrabajoAbrCount != 0
+                        ? ((totalTrabajoAbrCount + solicitudesAbrCount - 1) / solicitudesAbrCount).ToString()
                         : "0";
 
-                    agoSupLbl.Text = totalTrabajoAgoCount != 0 ? ((int)(totalTrabajoAgoCount / solicitudesAgoCount)).ToString()
+                    agoSupLbl.Text = totalTrabajoAgoCount != 0
+                        ? ((totalTrabajoAgoCount + solicitudesAgoCount - 1) / solicitudesAgoCount).ToString()
                         : "0";
 
-                    dicSupLbl.Text = totalTrabajoDicCount != 0 ? ((int)(totalTrabajoDicCount / solicitudesDicCount)).ToString()
+                    dicSupLbl.Text = totalTrabajoDicCount != 0
+                        ? ((totalTrabajoDicCount + solicitudesDicCount - 1) / solicitudesDicCount).ToString()
                         : "0";
 
-                    eneSupLbl.Text = totalTrabajoEneCount != 0 ? ((int)(totalTrabajoEneCount / solicitudesEneCount)).ToString()
+                    eneSupLbl.Text = totalTrabajoEneCount != 0
+                        ? ((totalTrabajoEneCount + solicitudesEneCount - 1) / solicitudesEneCount).ToString() : "0";
+
+                    febSupLbl.Text = totalTrabajoFebCount != 0
+                        ? ((totalTrabajoFebCount + solicitudesFebCount - 1) / solicitudesFebCount).ToString()
                         : "0";
 
-                    febSupLbl.Text = totalTrabajoFebCount != 0 ? ((int)(totalTrabajoFebCount / solicitudesFebCount)).ToString()
+                    julSupLbl.Text = totalTrabajoJulCount != 0
+                        ? ((totalTrabajoJulCount + solicitudesJulCount - 1) / solicitudesJulCount).ToString()
                         : "0";
 
-                    julSupLbl.Text = totalTrabajoJulCount != 0 ? ((int)(totalTrabajoJulCount / solicitudesJulCount)).ToString()
+                    junSupLbl.Text = totalTrabajoJunCount != 0
+                        ? ((totalTrabajoJunCount + solicitudesJunCount - 1) / solicitudesJunCount).ToString()
                         : "0";
 
-                    junSupLbl.Text = totalTrabajoJunCount != 0 ? ((int)(totalTrabajoJunCount / solicitudesJunCount)).ToString()
+                    marSupLbl.Text = totalTrabajoMarCount != 0
+                        ? ((totalTrabajoMarCount + solicitudesMarCount - 1) / solicitudesMarCount).ToString()
                         : "0";
 
-                    marSupLbl.Text = totalTrabajoMarCount != 0 ? ((int)(totalTrabajoMarCount / solicitudesMarCount)).ToString()
+                    maySupLbl.Text = totalTrabajoMayCount != 0
+                        ? ((totalTrabajoMayCount + solicitudesMayCount - 1) / solicitudesMayCount).ToString()
                         : "0";
 
-                    maySupLbl.Text = totalTrabajoMayCount != 0 ? ((int)(totalTrabajoMayCount / solicitudesMayCount)).ToString()
+                    novSupLbl.Text = totalTrabajoNovCount != 0
+                        ? ((totalTrabajoNovCount + solicitudesNovCount - 1) / solicitudesNovCount).ToString()
                         : "0";
 
-                    novSupLbl.Text = totalTrabajoNovCount != 0 ? ((int)(totalTrabajoNovCount / solicitudesNovCount)).ToString()
+                    octSupLbl.Text = totalTrabajoOctCount != 0
+                        ? ((totalTrabajoOctCount + solicitudesOctCount - 1) / solicitudesOctCount).ToString()
                         : "0";
 
-                    octSupLbl.Text = totalTrabajoOctCount != 0 ? ((int)(totalTrabajoOctCount / solicitudesOctCount)).ToString()
-                        : "0";
-
-                    sepSupLbl.Text = totalTrabajoSepCount != 0 ? ((int)(totalTrabajoSepCount / solicitudesSepCount)).ToString()
+                    sepSupLbl.Text = totalTrabajoSepCount != 0
+                        ? ((totalTrabajoSepCount + solicitudesSepCount - 1) / solicitudesSepCount).ToString()
                         : "0";
 
                     #endregion

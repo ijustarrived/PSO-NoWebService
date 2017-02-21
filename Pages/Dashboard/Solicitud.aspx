@@ -2566,11 +2566,11 @@
 
         <div style ="margin-bottom:20px">
 
-            <asp:Label runat="server" style ="padding:10px" BorderStyle ="Dashed"
-                 BorderWidth ="3px" Font-Bold ="true" ID ="asegurarseLbl" 
-                ForeColor="#79256E">Favor asegurarse su solicitud est&aacute; completa y correcta,
-                             antes de guardarla.<br />       Una vez la guarde, todo cambio ser&aacute;
-                 a trav&eacute;s del coordinador que se asigne a trabajar la misma.    </asp:Label>
+            <asp:Label runat="server" ID ="asegurarseLbl" style ="padding:10px" BorderStyle ="Dashed"
+                 BorderWidth ="3px" Font-Bold ="true" 
+                ForeColor="#79256E">Favor asegurarse de que su solicitud est&aacute; completa y correcta
+                              y de imprimirla si desea, antes de guardarla.<br />       Una vez la guarde, todo cambio ser&aacute;
+                 a trav&eacute;s del coordinador que se asigne a trabajar la misma.     </asp:Label>
 
         </div>
 

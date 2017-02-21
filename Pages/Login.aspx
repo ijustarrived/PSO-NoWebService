@@ -7,13 +7,20 @@
 
         <div style="float: left;">
 
-            <asp:Label runat="server" ID ="emailLbl" Text="Correo Electr&oacute;nico" ForeColor="#79256E"></asp:Label>
+            <asp:Label runat="server" ID="emailLbl" Text="Correo Electr&oacute;nico" ForeColor="#79256E"></asp:Label>
 
         </div>
 
         <div>
 
-            <asp:TextBox runat="server" TabIndex ="1" ID="emailTxtBx"></asp:TextBox>
+            <asp:TextBox runat="server" TabIndex="1" ID="emailTxtBx"></asp:TextBox>
+
+        </div>
+
+        <div>
+
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="emailTxtBx" Display="Dynamic"
+                ErrorMessage="Requerido" ForeColor="#CC0000" SetFocusOnError="true"></asp:RequiredFieldValidator>
 
         </div>
 
@@ -23,13 +30,20 @@
 
         <div style="float: left;">
 
-            <asp:Label runat="server" ID ="passLbl" Text="Contraseña" ForeColor="#79256E"></asp:Label>
+            <asp:Label runat="server" ID="passLbl" Text="Contraseña" ForeColor="#79256E"></asp:Label>
 
         </div>
 
         <div>
 
-            <asp:TextBox runat="server" TabIndex ="2" TextMode="Password" ID="passwordTxtBx"></asp:TextBox>
+            <asp:TextBox runat="server" TabIndex="2" TextMode="Password" ID="passwordTxtBx"></asp:TextBox>
+
+        </div>
+
+        <div>
+
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="passwordTxtBx" Display="Dynamic"
+                ErrorMessage="Requerido" ForeColor="#CC0000" SetFocusOnError="true"></asp:RequiredFieldValidator>
 
         </div>
 
@@ -37,7 +51,7 @@
 
     <div class="container" style="text-align: center; margin-bottom: 70px">
 
-        <asp:HyperLink runat="server" ID ="recoverPassLink" Text="Recuperar Contraseña" NavigateUrl ="~/Pages/RecoverPass.aspx" 
+        <asp:HyperLink runat="server" ID="recoverPassLink" Text="Recuperar Contraseña" NavigateUrl="~/Pages/RecoverPass.aspx"
             ForeColor="#79256E"></asp:HyperLink>
 
     </div>

@@ -28,7 +28,7 @@
 
     <div style="overflow: auto">
 
-    <asp:GridView runat ="server" ID ="userGV" AllowPaging="True" ForeColor="#79256E" BackColor="#F3F0F7"
+    <asp:GridView runat ="server" ID ="userGV" EnableViewState ="true" AllowPaging="True" ForeColor="#79256E" BackColor="#F3F0F7"
          CellPadding="2" GridLines="None" CssClass="table" ShowHeaderWhenEmpty="true" AutoGenerateColumns="false"
          style ="margin-top:40px; width:95%; margin-left:auto; margin-right:auto" 
         OnRowDataBound ="userGV_RowDataBound" OnPageIndexChanging ="userGV_PageIndexChanging" 
