@@ -120,7 +120,7 @@ namespace PSO.Pages.Dashboard.Reports
 
             if (!IsPostBack)
             {
-                ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR);
+                ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR, false);
             }
 
             rolDDL_SelectedIndexChanged(sender, EventArgs.Empty);
@@ -344,7 +344,7 @@ namespace PSO.Pages.Dashboard.Reports
             {
                 case 1:
 
-                    empleados = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
+                    empleados = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR, false);
 
                     solicitudes = GetSolicitudesByStatusNDateRange(Rol.TiposRole.PROCESADOR);
 
@@ -352,7 +352,7 @@ namespace PSO.Pages.Dashboard.Reports
 
                 default:
 
-                    empleados = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR);
+                    empleados = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR, false);
 
                     solicitudes = GetSolicitudesByStatusNDateRange(Rol.TiposRole.COORDINADOR);
 
@@ -372,7 +372,7 @@ namespace PSO.Pages.Dashboard.Reports
 
                 procGV.Visible = !coorGV.Visible;
 
-                ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR);
+                ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR, false);
 
                 if (string.IsNullOrEmpty(desdeTxtBx.Text))
                     coorGV.DataSource = SolicitudRepo.GetSolicitudesCompletadasByRole(Rol.TiposRole.COORDINADOR);
@@ -396,7 +396,7 @@ namespace PSO.Pages.Dashboard.Reports
 
                 procGV.Visible = !coorGV.Visible;
 
-                ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
+                ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR, false);
 
                 if (string.IsNullOrEmpty(desdeTxtBx.Text))
                     procGV.DataSource = SolicitudRepo.GetSolicitudesCompletadasByRole(Rol.TiposRole.PROCESADOR);

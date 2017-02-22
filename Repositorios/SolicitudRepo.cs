@@ -616,10 +616,9 @@ namespace PSO.Repositorios
 
             LinkedList<_Solicitud> solicitudes = new LinkedList<_Solicitud>();
 
-            //using (SqlConnection conn = sql.GetConnection())
             using (SqlConnection conn = DB.GetLocalConnection())
             {
-                using (SqlCommand cmd = new SqlCommand(@"SELECT *, DATEDIFF(day, FechaTramitada, @date) AS Duration 
+                using (SqlCommand cmd = new SqlCommand(@"SELECT *, DATEDIFF(day, @FECHAINICIAL, @date) AS Duration 
                                             FROM Solicitudes WHERE @FECHA >= @DESDE AND @FECHA < @HASTA @AND
                                             ORDER BY @ROLE NumeroSolicitud", conn))
                 {
@@ -628,63 +627,60 @@ namespace PSO.Repositorios
                     cmd.Parameters.AddWithValue("HASTA", hasta);
 
                     string and = string.Empty,
-                        fecha = string.Empty,
+                        fechaInicial = string.Empty,
+                        fechaCompletada = string.Empty,
                          rol = string.Empty,
-                        fecha2 = string.Empty;
+                        fechaCompletada2 = string.Empty;
 
                     switch (role)
                     {
                         case Rol.TiposRole.COORDINADOR:
 
-                            //and = "AND FechaRevision != Convert(datetime, '12/31/9999 23:59:59.997')";
+                            fechaInicial = "FechaTramitada";
 
-                            fecha = "FechaRevision";
+                            fechaCompletada = "FechaRevision";
 
                             rol = "CoordinadorID,";
 
-                            fecha2 = fecha;
+                            fechaCompletada2 = fechaCompletada;
 
                             break;
 
                         case Rol.TiposRole.PROCESADOR:
 
-                            //and = "AND FechaTrabajado != Convert(datetime, '12/31/9999 23:59:59.997')";
+                            fechaInicial = "FechaAsigProcesador";
 
-                            fecha = "FechaTrabajado";
+                            fechaCompletada = "FechaTrabajado";
 
                             rol = "ProcesadorID,";
 
-                            fecha2 = fecha;
+                            fechaCompletada2 = fechaCompletada;
 
                             break;
 
                         case Rol.TiposRole.SUPERVISOR:
 
-                            //and = "AND FechaAsigProcesador != Convert(datetime, '12/31/9999 23:59:59.997')";
+                            fechaInicial = "FechaRevision";
 
-                            fecha = "FechaAsigProcesador";
+                            fechaCompletada = "FechaAsigProcesador";
 
-                            fecha2 = fecha;
+                            fechaCompletada2 = fechaCompletada;
 
                             break;
 
                         case Rol.TiposRole.EXTERNO:
 
-                            //and = "AND FechaTramitada != Convert(datetime, '12/31/9999 23:59:59.997')";
+                            fechaInicial = "FechaTramitada";
 
-                            fecha = "FechaTramitada";
+                            fechaCompletada = "FechaTramitada";
 
-                            fecha2 = "GETDATE()";
+                            fechaCompletada2 = "GETDATE()";
 
                             break;
                     }
 
-                    cmd.CommandText = cmd.CommandText.Replace("@AND", and).Replace("@FECHA", fecha).Replace(
-                                                      "@ROLE", rol).Replace("@date", fecha2);
-
-                    //cmd.CommandText = cmd.CommandText.Replace("@AND", and);
-
-                    //cmd.CommandText = cmd.CommandText.Replace("@FECHA", fecha).Replace("@date", fecha2);
+                    cmd.CommandText = cmd.CommandText.Replace("@AND", and).Replace("@FECHAINICIAL", fechaInicial).Replace(
+                        "@FECHA", fechaCompletada).Replace("@ROLE", rol).Replace("@date", fechaCompletada2);
 
                     conn.Open();
 
@@ -790,8 +786,6 @@ namespace PSO.Repositorios
                         });
                     }
                     #endregion
-
-                    //solicitudes = BuildSolicitudes(cmd);
                 }
             }
 

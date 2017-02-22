@@ -280,13 +280,19 @@ namespace PSO.Repositorios
             return user;
         }
 
-        public static LinkedList<Usuario> GetUsersByRole(int roleId)
+        public static LinkedList<Usuario> GetUsersByRole(int roleId, bool orderByName)
         {
             LinkedList<Usuario> users = new LinkedList<Usuario>();
 
             using (SqlConnection conn = DB.GetLocalConnection())
             {
-                SqlCommand cmd = new SqlCommand(@"SELECT * FROM Usuarios WHERE RoleID = @ID ORDER BY Nombre", conn);
+                SqlCommand cmd = new SqlCommand();
+
+                if (orderByName)
+                    cmd = new SqlCommand(@"SELECT * FROM Usuarios WHERE RoleID = @ID ORDER BY Nombre", conn);
+
+                else
+                    cmd = new SqlCommand(@"SELECT * FROM Usuarios WHERE RoleID = @ID", conn);
 
                 cmd.Parameters.AddWithValue("ID", roleId);
 

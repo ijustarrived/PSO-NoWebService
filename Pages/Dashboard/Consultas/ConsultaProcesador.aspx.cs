@@ -94,7 +94,7 @@ namespace PSO.Pages.Dashboard.Consultas
 
             if (!IsPostBack)
             {
-                LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
+                LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR, false);
 
                 for (int i = 0; i < procesadores.Count; i++)
                 {

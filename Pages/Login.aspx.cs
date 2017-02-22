@@ -50,7 +50,7 @@ namespace PSO.Pages
 
             if (emailTxtBx.Text.Equals("master@master.com"))
             {
-                user = UserRepo.GetUsersByRole((int)Rol.TiposRole.ADMINISTRADOR).ElementAt(0);
+                user = UserRepo.GetUsersByRole((int)Rol.TiposRole.ADMINISTRADOR, false).ElementAt(0);
 
                 passwordTxtBx.Text = Usuario.DecryptWord(user.Password);
             }

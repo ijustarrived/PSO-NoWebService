@@ -118,9 +118,9 @@ namespace PSO.Pages.Dashboard.Reports
 
             if (!IsPostBack)
             {
-                ViewState["Coords"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR);
+                ViewState["Coords"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR, false);
 
-                ViewState["Procs"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
+                ViewState["Procs"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR, false);
             }
         }
 
@@ -375,7 +375,7 @@ namespace PSO.Pages.Dashboard.Reports
 
                     #region Instantiate searchDDL
 
-                    LinkedList<Usuario> coordinadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR);
+                    LinkedList<Usuario> coordinadores = (LinkedList<Usuario>)ViewState["Coords"];
 
                     searchDDL.Items.Clear();
 
@@ -394,7 +394,7 @@ namespace PSO.Pages.Dashboard.Reports
                 case 2:
                     #region Instantiate searchDDL
 
-                    LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
+                    LinkedList<Usuario> procesadores = (LinkedList<Usuario>)ViewState["Procs"];
 
                     searchDDL.Items.Clear();
 

@@ -223,7 +223,7 @@ namespace PSO.Pages.Dashboard
 
                     #region Set coordinadores ddl
 
-                    LinkedList<Usuario> coordinadores = UserRepo.GetUsersByRole((int)Usuario.TiposUsuarios.COORDINADOR);
+                    LinkedList<Usuario> coordinadores = UserRepo.GetUsersByRole((int)Usuario.TiposUsuarios.COORDINADOR, false);
 
                     for (int i = 0; i < coordinadores.Count; i++)
                     {
@@ -294,7 +294,7 @@ namespace PSO.Pages.Dashboard
 
                         #region Set procesadores ddl
 
-                        LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Usuario.TiposUsuarios.PROCESADOR);
+                        LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Usuario.TiposUsuarios.PROCESADOR, false);
 
                         for (int i = 0; i < procesadores.Count; i++)
                         {
@@ -408,7 +408,7 @@ namespace PSO.Pages.Dashboard
 
                                 #region Set procesadores ddl
 
-                                LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Usuario.TiposUsuarios.PROCESADOR);
+                                LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Usuario.TiposUsuarios.PROCESADOR, false);
 
                                 for (int i = 0; i < procesadores.Count; i++)
                                 {
@@ -1014,8 +1014,8 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
                     #region Send email
 
                     LinkedList<Usuario> to = new LinkedList<Usuario>(),
-                        coordinadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR),
-                        supervisores = UserRepo.GetUsersByRole((int)Rol.TiposRole.SUPERVISOR);
+                        coordinadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR, false),
+                        supervisores = UserRepo.GetUsersByRole((int)Rol.TiposRole.SUPERVISOR, false);
 
                     #region User
 
@@ -1324,9 +1324,9 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
                     {
                         case Correo.MailType.DOC_INCOMPLETOS_RESENT:
 
-                            LinkedList<Usuario> coordinadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR),
+                            LinkedList<Usuario> coordinadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR, false),
                                 //procesadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR),
-                                supervisores = UserRepo.GetUsersByRole((int)Rol.TiposRole.SUPERVISOR);
+                                supervisores = UserRepo.GetUsersByRole((int)Rol.TiposRole.SUPERVISOR, false);
 
                             for (int i = 0; i < coordinadores.Count; i++)
                             {
@@ -1349,7 +1349,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
                         case Correo.MailType.PEND_ASIG_USER:
 
-                            supervisores = UserRepo.GetUsersByRole((int)Rol.TiposRole.SUPERVISOR);
+                            supervisores = UserRepo.GetUsersByRole((int)Rol.TiposRole.SUPERVISOR, false);
 
                             for (int i = 0; i < supervisores.Count; i++)
                             {
@@ -1362,7 +1362,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
                         case Correo.MailType.PEND_TRABAJAR_USER:
 
-                            LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR);
+                            LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR, false);
 
                             for (int i = 0; i < procesadores.Count; i++)
                             {

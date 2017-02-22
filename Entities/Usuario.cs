@@ -9,7 +9,7 @@ namespace PSO.Entities
     [Serializable]
     public class Usuario
     {
-        private const int USER_MAX_AMOUNT = 15;
+        private const int USER_MAX_AMOUNT = 99;
 
         public enum TiposUsuarios
         {

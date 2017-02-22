@@ -101,7 +101,7 @@ namespace PSO.Pages.Dashboard.Configs
             {
                 case 0:
 
-                    userGV.DataSource = UserRepo.GetUsersByRole((int)Usuario.TiposUsuarios.EXTERNO);
+                    userGV.DataSource = UserRepo.GetUsersByRole((int)Usuario.TiposUsuarios.EXTERNO, true);
 
                     break;
 
