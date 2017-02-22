@@ -237,7 +237,8 @@
 
                     <Series>
 
-                        <asp:Series ChartType="Pie" Name="testSeries" CustomProperties="PieLabelStyle=Outside">
+                        <asp:Series ChartType="Pie" Name="testSeries"
+                             CustomProperties="PieLineColor=Black, PieLabelStyle=Outside">
 
                             <Points>
 
