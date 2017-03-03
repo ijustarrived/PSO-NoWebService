@@ -118,6 +118,8 @@ namespace PSO.Pages
 
                     Page.Title = "Perfil";
 
+                    emailTxtBx.Enabled = false;
+
                     //To avoid validation when editting
                     passwordREV.Enabled = false;
 
@@ -277,6 +279,7 @@ namespace PSO.Pages
             {
                 #region Edit
 
+                #region Verify if adding this user doesn't break license restriction
                 Usuario existingUser = UserRepo.GetUserByEmail((string)ViewState["Email"]);
 
                 bool canAddUserToInternal = true;
@@ -287,6 +290,7 @@ namespace PSO.Pages
 
                     canAddUserToInternal = Usuario.GetUserMaxAmount() > internalUserCount;
                 }
+                #endregion
 
                 if (canAddUserToInternal)
                 {

@@ -1,4 +1,5 @@
 ﻿using PSO.Entities;
+using PSO.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -74,6 +75,18 @@ namespace PSO.Pages.Dashboard.Reports
 
                 #endregion
             }
+        }
+
+        [System.Web.Services.WebMethod]
+        public static string KeepAlive()
+        {
+            return DateTime.Now.ToShortDateString();
+        }
+
+        [System.Web.Services.WebMethod]
+        public static void ReleaseAllLkdSolicitudes(int lockedId)
+        {
+            SolicitudRepo.ReleaseAllLockedSolicitudes(lockedId);
         }
 
         protected void RecibidosVsProcessBtn_Click(object sender, EventArgs e)

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing;
+using PSO.Repositorios;
 
 namespace PSO.Pages.Dashboard.Configs
 {
@@ -108,6 +109,26 @@ namespace PSO.Pages.Dashboard.Configs
             roleGV.DataSource = roles;
 
             roleGV.DataBind();
+        }
+
+        /// <summary>
+        /// Runs only on the fake timeout interval
+        /// </summary>
+        /// <param name="lockedId"></param>
+        [System.Web.Services.WebMethod]
+        public static void ReleaseAllLkdSolicitudes(int lockedId)
+        {
+            SolicitudRepo.ReleaseAllLockedSolicitudes(lockedId);
+        }
+
+        /// <summary>
+        /// Runs only on the fake timeout interval
+        /// </summary>
+        /// <returns></returns>
+        [System.Web.Services.WebMethod]
+        public static string KeepAlive()
+        {
+            return DateTime.Now.ToShortDateString();
         }
 
         protected void roleGV_SelectedIndexChanged(object sender, EventArgs e)

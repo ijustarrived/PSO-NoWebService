@@ -1,4 +1,5 @@
 ﻿using PSO.Entities;
+using PSO.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -92,11 +93,32 @@ namespace PSO.Pages.Dashboard.Consultas
             #endregion
         }
 
+        /// <summary>
+        /// Runs only on the fake timeout interval
+        /// </summary>
+        /// <param name="lockedId"></param>
+        [System.Web.Services.WebMethod]
+        public static void ReleaseAllLkdSolicitudes(int lockedId)
+        {
+            SolicitudRepo.ReleaseAllLockedSolicitudes(lockedId);
+        }
+
+        /// <summary>
+        /// Runs only on the fake timeout interval
+        /// </summary>
+        /// <returns></returns>
+        [System.Web.Services.WebMethod]
+        public static string KeepAlive()
+        {
+            return DateTime.Now.ToShortDateString();
+        }
+
         protected void solicitudesGV_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(solicitudesGV, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(solicitudesGV,
+                    "Select$" + e.Row.RowIndex);
 
                 e.Row.ToolTip = "Seleccionar para revisar";
 
@@ -104,6 +126,8 @@ namespace PSO.Pages.Dashboard.Consultas
                 e.Row.Cells[3].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[3].Text) - 1);
 
                 e.Row.Cells[4].Text = e.Row.Cells[4].Text.Split(' ')[0];
+
+                e.Row.Cells[5].Text = UserRepo.GetUserByID(Convert.ToInt32(e.Row.Cells[5].Text)).GetNombreCompleto();
             }
 
             else if (e.Row.RowType == DataControlRowType.EmptyDataRow)

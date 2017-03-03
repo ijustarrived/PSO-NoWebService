@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using System.Web.Services;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -211,6 +212,8 @@ namespace PSO.Pages.Dashboard
             string numSolicitud = Request.QueryString["numSolicitud"] == null ? string.Empty
                     : (string)Request.QueryString["numSolicitud"];
 
+            emailTxtBx.Enabled = false;
+
             CreateDocReqCtrls(numSolicitud);
 
             if (!IsPostBack)
@@ -372,13 +375,57 @@ namespace PSO.Pages.Dashboard
 
                             string[] _split = { };
 
-                            if (user.Role.RoleType != Rol.TiposRole.COORDINADOR)
+                            if (user.Role.RoleType != Rol.TiposRole.COORDINADOR && user.Role.RoleType != Rol.TiposRole.SUPERVISOR)
                                 ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
                                     string.Format("WaitingAnswerAlert('{0}');",
                                     "Debe esperar por la revisión de un coordinador."), true);
 
                             else
                             {
+                                #region Check lockedId
+
+                                if (solicitud.LockedById == 0)
+                                {
+                                    solicitud.LockedById = user.ID;
+
+                                    try
+                                    {
+                                        Exception excep = SolicitudRepo.UpdateLockedId(solicitud);
+
+                                        if (excep != null)
+                                        {
+                                            throw new Exception(string.Format(
+                                                "No se pudo actualizar la solicitud. Error Actualizar Cierre Solicitud: {0}",
+                                                    excep.Message.Replace("'", string.Empty)));
+                                        }
+
+                                        else
+                                            //it's used on fake timeout
+                                            Session["lockedId"] = user.ID;
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "lockedIdUpdateAlert"
+                                            , string.Format("alert('{0}');", ex.Message.Replace("\r\n", " ")), true);
+                                    }
+                                }
+
+                                else
+                                {
+                                    if (solicitud.LockedById != user.ID)
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
+                                   string.Format("WaitingAnswerAlert('{0}');",
+                                   string.Format("Solicitud esta en uso por {0}.",
+                                   UserRepo.GetUserByID(solicitud.LockedById).GetNombreCompleto())), true);
+                                }
+
+                                #endregion
+
+                                mainDashLink.NavigateUrl = string.Format("{0}?ReleaseSolicitud={1}", mainDashLink.NavigateUrl,
+                                    solicitud.NumeroSolicitud);
+
+                                saveBtn.Enabled = !(user.Role.RoleType == Rol.TiposRole.SUPERVISOR);
+
                                 coorRow.Visible = true;
 
                                 coorDDL.SelectedValue = user.GetNombreCompleto();
@@ -428,12 +475,14 @@ namespace PSO.Pages.Dashboard
 
                         case _Solicitud.Statuses.PEND_TRABAJAR:
 
-                            if (user.Role.RoleType != Rol.TiposRole.PROCESADOR)
+                            if (user.Role.RoleType != Rol.TiposRole.PROCESADOR && user.Role.RoleType != Rol.TiposRole.SUPERVISOR)
                                 ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
                                     string.Format("WaitingAnswerAlert('{0}');", "Debe esperar por la revisión de un procesador."), true);
 
                             else
                             {
+                                saveBtn.Enabled = !(user.Role.RoleType == Rol.TiposRole.SUPERVISOR);
+
                                 trabajadoRow.Visible = true;
 
                                 trabajoCommentDiv.Visible = trabajadoRow.Visible;
@@ -1066,7 +1115,20 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
             else
             {
-                #region Edit                
+                #region Edit      
+
+                #region Check lockedId just in case 2 users grabbed at the same time, locked msg didn't show but on safe it will
+
+                if (solicitud.LockedById != 0)
+                {
+                    if (solicitud.LockedById != user.ID)
+                        ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
+                   string.Format("WaitingAnswerAlert('{0}');",
+                   string.Format("Solicitud esta en uso por {0}.",
+                   UserRepo.GetUserByID(solicitud.LockedById).GetNombreCompleto())), true);
+                }
+
+                #endregion          
 
                 #region Set header info on solicitud obj from previous solicitud obj
 
@@ -1103,6 +1165,8 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
                         #region PEND_REVISAR
 
                         solicitud.CoordinadorID = coorDDL.SelectedIndex;
+
+                        solicitud.LockedById = 0;
 
                         solicitud.FechaRevision = Convert.ToDateTime(fechaRevisadoLbl.Text.Split(':')[1]);
 
@@ -1416,7 +1480,38 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
                         string.Format("alert('{0}');", ex.Message.Replace("\r\n", " ")), true);
                 }
 
-                Response.Redirect("Main.aspx", true);
+                //Response.Redirect("Main.aspx", true);
+
+                #region Redirect according to role
+
+                switch (user.Role.RoleType)
+                {
+                    case Rol.TiposRole.COORDINADOR:
+
+                        Response.Redirect("~/Pages/Dashboard/Consultas/ConsultaCoordinador.aspx", true);
+
+                        break;
+
+                    case Rol.TiposRole.PROCESADOR:
+
+                        Response.Redirect("~/Pages/Dashboard/Consultas/ConsultaProcesador.aspx", true);
+
+                        break;
+
+                    case Rol.TiposRole.SUPERVISOR:
+
+                        Response.Redirect("~/Pages/Dashboard/Consultas/ConsultaPendAsigPro.aspx", true);
+
+                        break;
+
+                    default:
+
+                        Response.Redirect("Main.aspx", true);
+
+                        break;
+                }
+
+                #endregion
 
                 #endregion
             }
@@ -1759,8 +1854,6 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
                 to.AddLast(_to.ElementAt(i).Email);
             }
 
-            //to.AddLast(user.Email);
-
             Mailing mail = new Mailing(25, Mailing.GetPSOSMTPServer());
 
             //Send email in a new thread
@@ -1785,7 +1878,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
                     catch (Exception ex)
                     {
-                        Session["emailError"] = ex.Message;
+                        Session["emailError"] = ex.Message + string.Format(" Email: {0}", solicitud.Email);
                     }
                 });
             }
@@ -2049,6 +2142,18 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
             #endregion
 
+        }
+
+        [WebMethod]
+        public static string KeepAlive()
+        {
+            return DateTime.Now.ToShortDateString();
+        }
+
+        [WebMethod]
+        public static void ReleaseAllLkdSolicitudes(int lockedId)
+        {
+            SolicitudRepo.ReleaseAllLockedSolicitudes(lockedId);
         }
     }
 }

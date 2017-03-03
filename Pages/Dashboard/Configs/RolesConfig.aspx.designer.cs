@@ -13,6 +13,15 @@ namespace PSO.Pages.Dashboard.Configs {
     public partial class RolesConfig {
         
         /// <summary>
+        /// aliveHF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField aliveHF;
+        
+        /// <summary>
         /// roleGV control.
         /// </summary>
         /// <remarks>

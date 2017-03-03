@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using PSO.Entities;
 using PSO.Repositorios;
+using System.Threading.Tasks;
 
 namespace PSO
 {
@@ -136,6 +137,43 @@ namespace PSO
 
         protected void logoutBtn_Click(object sender, EventArgs e)
         {
+            Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
+
+            #region Release all locked solicitudes in a new thread
+
+            if (user.Role.RoleType == Rol.TiposRole.COORDINADOR)
+            {
+                try
+                {
+                    Task.Factory.StartNew(() =>
+                    {
+                        try
+                        {
+                            Exception excep = SolicitudRepo.ReleaseAllLockedSolicitudes(user.ID);
+
+                            if (excep != null)
+                            {
+                                throw new Exception(string.Format(
+                                "No se pudo actualizar la solicitudes. Error Liberar Solicitudes: {0}",
+                                    excep.Message.Replace("'", string.Empty)));
+                            }
+                        }
+
+                        catch (Exception ex)
+                        {
+                            Session["emailError"] = ex.Message;
+                        }
+                    });
+                }
+
+                catch (Exception ex)
+                {
+                    Session["emailThreadError"] = ex.Message;
+                }
+            }
+
+            #endregion
+
             Session.Remove("UserObj");
 
             Response.Redirect("~/Pages/Login.aspx", true);

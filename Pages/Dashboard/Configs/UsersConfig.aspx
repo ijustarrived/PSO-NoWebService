@@ -5,6 +5,42 @@
 
     <script>
 
+        var countDown = 1020; /*equals 17 minutes in seconds not exact 15 cause it might die before if it was exact due to threa priorities.
+        It's converted to seconds cause the interval loop every second not every millisecond*/
+
+        var timer = setInterval("KeepAlive()", 1000);
+
+        function KeepAlive()
+        {
+            var aliveHF = document.getElementById("<%= aliveHF.ClientID%>");
+
+            //The purpose of KeepAlive is to run a single line of programmming on the server 
+            //just so it can keep the session alive.
+                aliveHF.value = PageMethods.KeepAlive();
+
+            //When the countdown hits 0 it'll do a fake timeout
+                if (countDown === 0)
+                {
+                    clearInterval(timer);
+
+                    var lockedId = <%= Session["lockedId"] %>;
+
+                    if(lockedId != 0)
+                        PageMethods.ReleaseAllLkdSolicitudes(lockedId);
+
+                    window.location.href = '../../Login.aspx';
+                }
+
+                else
+                    countDown = countDown - 1;
+            }
+
+    </script>
+
+    <asp:HiddenField ID ="aliveHF" runat ="server" />
+
+    <script>
+
         function ChangeClinetSideColors(lblColor, titleColor)
         {           
             $('#printBtn').css({ 'color': lblColor });
@@ -28,8 +64,8 @@
 
     <div style="overflow: auto">
 
-    <asp:GridView runat ="server" ID ="userGV" EnableViewState ="true" AllowPaging="True" ForeColor="#79256E" BackColor="#F3F0F7"
-         CellPadding="2" GridLines="None" CssClass="table" ShowHeaderWhenEmpty="true" AutoGenerateColumns="false"
+    <asp:GridView runat ="server" ID ="userGV" AllowPaging="True" ForeColor="#79256E" BackColor="#F3F0F7"
+         CellPadding="2" GridLines="None" CssClass="table" ShowHeaderWhenEmpty="True" AutoGenerateColumns="False"
          style ="margin-top:40px; width:95%; margin-left:auto; margin-right:auto" 
         OnRowDataBound ="userGV_RowDataBound" OnPageIndexChanging ="userGV_PageIndexChanging" 
         OnSelectedIndexChanged ="userGV_SelectedIndexChanged" >
@@ -72,6 +108,23 @@
                 <HeaderStyle Font-Size="13pt" />
                 <ItemStyle Font-Size="12pt" />
             </asp:BoundField>
+
+            <%--<asp:ButtonField CommandName ="activate" ButtonType ="Button" Text ="Desactivar" />--%>
+
+            <asp:TemplateField>
+
+                <ItemTemplate>
+
+                    <asp:Button CausesValidation ="false" Text ="Desactivar" 
+                        ID ="activateBtn" runat ="server" OnClick ="Unnamed_Click"   />
+
+                    <%--<asp:Button CommandName ="activate" CausesValidation ="false" Text ="Desactivar" 
+                        ID ="activateBtn" runat ="server"  
+                        OnCommand ="activateBtn_Command" CommandArgument ="<%# ((GridViewRow) Container).RowIndex %>" />--%>
+
+                </ItemTemplate>
+
+            </asp:TemplateField>
 
         </Columns>
 

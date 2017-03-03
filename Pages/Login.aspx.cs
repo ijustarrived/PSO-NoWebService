@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -39,6 +40,9 @@ namespace PSO.Pages
                 var dashboardPnl = (Panel)Master.FindControl("dashboardLinkPnl");
 
                 dashboardPnl.Controls.Clear();
+
+                if (Session["UserObj"] != null)
+                    Session.Remove("UserObj");
             }
         }
 
@@ -69,9 +73,55 @@ namespace PSO.Pages
 
                 else
                 {
-                    Session["UserObj"] = user;
+                    if (user.Activo)
+                    {
+                        Session["UserObj"] = user;
 
-                    Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
+                        //It's defined with a 0 cause if I don't put a value the index won't exist
+                        //in the session and in js, when I call it, won't return anything. Not even an empty string nor null
+                        Session["lockedId"] = 0;
+
+                        #region Release all locked solicitudes in a new thread
+
+                        if (user.Role.RoleType == Rol.TiposRole.COORDINADOR)
+                        {
+                            try
+                            {
+                                Task.Factory.StartNew(() =>
+                                {
+                                    try
+                                    {
+                                        Exception excep = SolicitudRepo.ReleaseAllLockedSolicitudes(user.ID);
+
+                                        if (excep != null)
+                                        {
+                                            throw new Exception(string.Format(
+                                            "No se pudo actualizar la solicitudes. Error Liberar Solicitudes: {0}",
+                                                excep.Message.Replace("'", string.Empty)));
+                                        }
+                                    }
+
+                                    catch (Exception ex)
+                                    {
+                                        Session["emailError"] = ex.Message;
+                                    }
+                                });
+                            }
+
+                            catch (Exception ex)
+                            {
+                                Session["emailThreadError"] = ex.Message;
+                            }
+                        }
+
+                        #endregion
+
+                        Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
+                    }
+
+                    else
+                        ClientScript.RegisterStartupScript(this.GetType(), "userDeactivatedAlert",
+                    "alert('Este perfil esta desactivado');", true);
                 }
             }
 

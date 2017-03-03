@@ -95,6 +95,26 @@ namespace PSO.Pages.Dashboard.Configs
             tipoUserDDL_SelectedIndexChanged(tipoUserDDL, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Runs only on the fake timeout interval
+        /// </summary>
+        /// <param name="lockedId"></param>
+        [System.Web.Services.WebMethod]
+        public static void ReleaseAllLkdSolicitudes(int lockedId)
+        {
+            SolicitudRepo.ReleaseAllLockedSolicitudes(lockedId);
+        }
+
+        /// <summary>
+        /// Runs only on the fake timeout interval
+        /// </summary>
+        /// <returns></returns>
+        [System.Web.Services.WebMethod]
+        public static string KeepAlive()
+        {
+            return DateTime.Now.ToShortDateString();
+        }
+
         protected void tipoUserDDL_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (((DropDownList)sender).SelectedIndex)
@@ -119,9 +139,13 @@ namespace PSO.Pages.Dashboard.Configs
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                #region Set row select
+
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(userGV, "Select$" + e.Row.RowIndex);
 
                 e.Row.ToolTip = "Seleccionar para revisar";
+
+                #endregion
 
                 LinkedList<Usuario> users = (LinkedList<Usuario>)userGV.DataSource;
 
@@ -133,15 +157,59 @@ namespace PSO.Pages.Dashboard.Configs
 
                 e.Row.Cells[0].Text = users.ElementAt(index).GetNombreCompleto();
 
-                //e.Row.Cells[2].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[2].Text));
-
                 // -1 cause pueblo ddl, in solicitud, starts in 0 and db starts in 1
                 e.Row.Cells[2].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[2].Text) - 1);
 
                 e.Row.Cells[4].Text = users.ElementAt(index).Role.RoleType.ToString();
 
-                //e.Row.Cells[4].Text = users.ElementAt(e.Row.RowIndex).Role.RoleType.ToString();
+                if (userGV.Rows.Count > 0)
+                {
+                    int activeCell = 5;
+
+                    Button activeBtn = (Button)userGV.Rows[e.Row.RowIndex - 1].Cells[activeCell].FindControl("activateBtn");
+
+                    if (users.ElementAt(index - 1).Activo)
+                        activeBtn.Text = "Desactivar";
+
+                    else
+                        activeBtn.Text = "Activar";
+                }
+
+                //int activeCell = 5;
+
+                //Button activeBtn = (Button)userGV.Rows[e.Row.RowIndex].Cells[activeCell].FindControl("activateBtn");
+
+                //if (users.ElementAt(index).Activo)
+                //    activeBtn.Text = "Desactivar";
+
+                //else
+                //    activeBtn.Text = "Activar";
+
+                //if (Request.Browser.Browser.Equals("Chrome") || Request.Browser.Browser.Equals("InternetExplorer"))
+                //{
+                //    activeBtn.ButtonType = ButtonType.Link;
+                //}
             }
+
+
+            if (e.Row.RowType == DataControlRowType.Pager)
+            {
+                LinkedList<Usuario> users = (LinkedList<Usuario>)userGV.DataSource;
+
+                int index = userGV.PageIndex * 10 + (userGV.Rows.Count - 1);
+
+                int activeCell = 5;
+
+                Button activeBtn = (Button)userGV.Rows[userGV.Rows.Count - 1].Cells[activeCell].FindControl("activateBtn");
+
+                if (users.ElementAt(index).Activo)
+                    activeBtn.Text = "Desactivar";
+
+                else
+                    activeBtn.Text = "Activar";
+            }
+
+
         }
 
         protected void userGV_SelectedIndexChanged(object sender, EventArgs e)
@@ -155,6 +223,37 @@ namespace PSO.Pages.Dashboard.Configs
             userGV.PageIndex = e.NewPageIndex;
 
             userGV.DataBind();
+        }
+
+        protected void Unnamed_Click(object sender, EventArgs e)
+        {
+            GridViewRow selectedRow = (GridViewRow)((Button)sender).NamingContainer;
+
+            int listIndex = userGV.PageIndex * 10 + selectedRow.RowIndex;
+
+            LinkedList<Usuario> users = (LinkedList<Usuario>)userGV.DataSource;
+
+            users.ElementAt(listIndex).Activo = !users.ElementAt(listIndex).Activo;
+
+            //if (users.ElementAt(listIndex).Activo)
+
+
+            //else
+            //    users.ElementAt(listIndex).Activo = users.ElementAt(listIndex).Activo;
+
+            UserRepo.Update(users.ElementAt(listIndex), users.ElementAt(listIndex).Email);
+
+            userGV.DataBind();
+        }
+
+        protected void activateLink_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void activateBtn_Command(object sender, CommandEventArgs e)
+        {
+            Unnamed_Click(sender, EventArgs.Empty);
         }
     }
 }

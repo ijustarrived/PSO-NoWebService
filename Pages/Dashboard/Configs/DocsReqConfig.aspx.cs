@@ -1,4 +1,5 @@
 ﻿using PSO.Entities;
+using PSO.Repositorios;
 using PSO.Utilities;
 using System;
 using System.Collections.Generic;
@@ -121,6 +122,26 @@ namespace PSO.Pages.Dashboard.Configs
                     ViewState["deleteCell"] = 5;
                 }
             }
+        }
+
+        /// <summary>
+        /// Runs only on the fake timeout interval
+        /// </summary>
+        /// <param name="lockedId"></param>
+        [System.Web.Services.WebMethod]
+        public static void ReleaseAllLkdSolicitudes(int lockedId)
+        {
+            SolicitudRepo.ReleaseAllLockedSolicitudes(lockedId);
+        }
+
+        /// <summary>
+        /// Runs only on the fake timeout interval
+        /// </summary>
+        /// <returns></returns>
+        [System.Web.Services.WebMethod]
+        public static string KeepAlive()
+        {
+            return DateTime.Now.ToShortDateString();
         }
 
         protected void createDocReqBtn_Click(object sender, EventArgs e)

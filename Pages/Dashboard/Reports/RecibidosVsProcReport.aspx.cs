@@ -124,6 +124,18 @@ namespace PSO.Pages.Dashboard.Reports
             }
         }
 
+        [System.Web.Services.WebMethod]
+        public static string KeepAlive()
+        {
+            return DateTime.Now.ToShortDateString();
+        }
+
+        [System.Web.Services.WebMethod]
+        public static void ReleaseAllLkdSolicitudes(int lockedId)
+        {
+            SolicitudRepo.ReleaseAllLockedSolicitudes(lockedId);
+        }
+
         protected void searchBtn_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(desdeTxtBx.Text) && !string.IsNullOrEmpty(hastaTxtBx.Text))
@@ -315,7 +327,11 @@ namespace PSO.Pages.Dashboard.Reports
                 }
 
                 else
+                {
                     e.Row.Cells[2].Text = e.Row.Cells[2].Text.Split(' ')[0];
+
+                    e.Row.Cells[3].Text = CalcDateDiff(fechaTramite.Date, fechaTrabajo.Date, true).ToString();
+                }
 
                 //Means has no proc assigned
                 if (!e.Row.Cells[5].Text.Equals("0"))
@@ -411,6 +427,56 @@ namespace PSO.Pages.Dashboard.Reports
             }
 
             SetChartData((int)ViewState["SolicitudCount"], (int)ViewState["completadasCount"]);
+        }
+
+        /// <summary>
+        /// Calculates difference between two dates excluding weekends
+        /// </summary>
+        /// <param name="fechaInicial"></param>
+        /// <param name="fechaFinal"></param>
+        /// <param name="addOneToInitial">If the verification for weekends should start the next day</param>
+        /// <returns>Calculated difference excluding weekends</returns>
+        private int CalcDateDiff(DateTime fechaInicial, DateTime fechaFinal, bool addOneToInitial)
+        {
+            int noLaborablesCount = 0;
+
+            DateTime fechaInicialOriginal = fechaInicial;
+
+            if (fechaFinal != fechaInicialOriginal)
+            {
+                if (addOneToInitial)
+                    fechaInicial = fechaInicial.AddDays(1);
+
+                //Va sumandole a fecha tramitada hasta que llega a la de trabajo
+                while (fechaFinal != fechaInicial)
+                {
+                    if (fechaInicial.DayOfWeek == DayOfWeek.Saturday || fechaInicial.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        noLaborablesCount++;
+                    }
+
+                    fechaInicial = fechaInicial.AddDays(1);
+
+                    //Check last day before breaking out of loop.
+                    if (fechaFinal == fechaInicial)
+                    {
+                        if (fechaInicial.DayOfWeek == DayOfWeek.Saturday || fechaInicial.DayOfWeek == DayOfWeek.Sunday)
+                        {
+                            noLaborablesCount++;
+                        }
+                    }
+                }
+            }
+
+            int dateDiff = (fechaFinal - fechaInicialOriginal).Days;
+
+            dateDiff = dateDiff - noLaborablesCount;
+
+            //La diferencia por lo menos debe de ser uno por que se tarda un dia minimo, en procesar
+            if (dateDiff < 1)
+                dateDiff = 1;
+
+            return dateDiff;
         }
     }
 }

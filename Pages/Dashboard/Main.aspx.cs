@@ -1,10 +1,12 @@
 ﻿using PSO.Entities;
+using PSO.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
+using System.Web.Services;
 using System.Web.UI.WebControls;
 
 namespace PSO.Pages.Dashboard
@@ -25,6 +27,37 @@ namespace PSO.Pages.Dashboard
 
                 if (string.IsNullOrEmpty(user.Email))
                     Response.Redirect("~/Pages/Login.aspx", true);
+
+                #endregion
+
+                #region Release most recent locked solicitud
+
+                if (user.Role.RoleType == Rol.TiposRole.COORDINADOR)
+                {
+                    string numSolicitud = Request.QueryString["ReleaseSolicitud"] == null
+                        ? string.Empty : Request.QueryString["ReleaseSolicitud"];
+
+                    if (!string.IsNullOrEmpty(numSolicitud))
+                    {
+                        try
+                        {
+                            Exception excep = SolicitudRepo.ReleaseALockedSolicitud(numSolicitud);
+
+                            if (excep != null)
+                            {
+                                throw new Exception(string.Format(
+                                    "No se pudo actualizar la solicitudes. Error Liberar Solicitud: {0}",
+                                        excep.Message.Replace("'", string.Empty)));
+                            }
+                        }
+
+                        catch (Exception ex)
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "releaseSolicitudeAlert"
+                                , string.Format("alert('{0}');", ex.Message.Replace("\r\n", " ")), true);
+                        }
+                    }
+                }
 
                 #endregion
 
@@ -104,6 +137,18 @@ namespace PSO.Pages.Dashboard
         protected void dashBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Pages/Dashboard/DashBrds/DashMain.aspx", true);
+        }
+
+        [WebMethod]
+        public static string KeepAlive()
+        {
+            return DateTime.Now.ToShortDateString();
+        }
+
+        [WebMethod]
+        public static void ReleaseAllLkdSolicitudes(int lockedId)
+        {
+            SolicitudRepo.ReleaseAllLockedSolicitudes(lockedId);
         }
     }
 }

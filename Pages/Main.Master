@@ -70,7 +70,7 @@
 <body style="background-color: #E5E5E5">
     <form id="form1" runat="server">
 
-        <asp:ScriptManager runat="server">
+        <asp:ScriptManager runat="server" EnablePageMethods ="true">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>

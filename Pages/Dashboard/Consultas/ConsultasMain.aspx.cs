@@ -1,4 +1,5 @@
 ﻿using PSO.Entities;
+using PSO.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -71,6 +72,26 @@ namespace PSO.Pages.Dashboard.Consultas
             dashboardPnl.Controls.Add(mainDashLink);
 
             #endregion            
+        }
+
+        /// <summary>
+        /// Runs only on the fake timeout interval
+        /// </summary>
+        /// <param name="lockedId"></param>
+        [System.Web.Services.WebMethod]
+        public static void ReleaseAllLkdSolicitudes(int lockedId)
+        {
+            SolicitudRepo.ReleaseAllLockedSolicitudes(lockedId);
+        }
+
+        /// <summary>
+        /// Runs only on the fake timeout interval
+        /// </summary>
+        /// <returns></returns>
+        [System.Web.Services.WebMethod]
+        public static string KeepAlive()
+        {
+            return DateTime.Now.ToShortDateString();
         }
 
         protected void CoordinadorBtn_Click(object sender, EventArgs e)

@@ -276,11 +276,14 @@ namespace PSO.Pages.Dashboard.Reports
                 {
                     case Rol.TiposRole.COORDINADOR:
 
-                        int dateDif = (solicitudes.ElementAt(i).FechaRevision - solicitudes.ElementAt(i).FechaTramitada).Days;
+                        //int dateDif = (solicitudes.ElementAt(i).FechaRevision - solicitudes.ElementAt(i).FechaTramitada).Days;
+
+                        int dateDif = CalcDateDiff(solicitudes.ElementAt(i).FechaTramitada.Date,
+                            solicitudes.ElementAt(i).FechaRevision.Date, true);
 
                         //Even though it oly took hours, in days it's 1
-                        if (dateDif == 0)
-                            dateDif = 1;
+                        //if (dateDif == 0)
+                        //    dateDif = 1;
 
                         #region Intantiating counters
 
@@ -389,10 +392,13 @@ namespace PSO.Pages.Dashboard.Reports
 
                     case Rol.TiposRole.PROCESADOR:
 
-                        dateDif = (solicitudes.ElementAt(i).FechaTrabajado - solicitudes.ElementAt(i).FechaAsigProcesador).Days;
+                        //dateDif = (solicitudes.ElementAt(i).FechaTrabajado - solicitudes.ElementAt(i).FechaAsigProcesador).Days;
 
-                        if (dateDif == 0)
-                            dateDif = 1;
+                        //if (dateDif == 0)
+                        //    dateDif = 1;
+
+                        dateDif = CalcDateDiff(solicitudes.ElementAt(i).FechaAsigProcesador.Date,
+                            solicitudes.ElementAt(i).FechaTrabajado.Date, true);
 
                         #region Intantiating counters
 
@@ -501,10 +507,13 @@ namespace PSO.Pages.Dashboard.Reports
 
                     default:
 
-                        dateDif = (solicitudes.ElementAt(i).FechaAsigProcesador - solicitudes.ElementAt(i).FechaRevision).Days;
+                        //dateDif = (solicitudes.ElementAt(i).FechaAsigProcesador - solicitudes.ElementAt(i).FechaRevision).Days;
 
-                        if (dateDif == 0)
-                            dateDif = 1;
+                        //if (dateDif == 0)
+                        //    dateDif = 1;
+
+                        dateDif = CalcDateDiff(solicitudes.ElementAt(i).FechaRevision.Date,
+                            solicitudes.ElementAt(i).FechaAsigProcesador.Date, true);
 
                         #region Intantiating counters
 
@@ -786,6 +795,68 @@ namespace PSO.Pages.Dashboard.Reports
             }
 
             #endregion
+        }
+
+        /// <summary>
+        /// Calculates difference between two dates excluding weekends
+        /// </summary>
+        /// <param name="fechaInicial"></param>
+        /// <param name="fechaFinal"></param>
+        /// <param name="addOneToInitial">If the verification for weekends should start the next day</param>
+        /// <returns>Calculated difference excluding weekends</returns>
+        private int CalcDateDiff(DateTime fechaInicial, DateTime fechaFinal, bool addOneToInitial)
+        {
+            int noLaborablesCount = 0;
+
+            DateTime fechaInicialOriginal = fechaInicial;
+
+            if (fechaFinal != fechaInicialOriginal)
+            {
+                if (addOneToInitial)
+                    fechaInicial = fechaInicial.AddDays(1);
+
+                //Va sumandole a fecha tramitada hasta que llega a la de trabajo
+                while (fechaFinal != fechaInicial)
+                {
+                    if (fechaInicial.DayOfWeek == DayOfWeek.Saturday || fechaInicial.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        noLaborablesCount++;
+                    }
+
+                    fechaInicial = fechaInicial.AddDays(1);
+
+                    //Check last day before breaking out of loop.
+                    if (fechaFinal == fechaInicial)
+                    {
+                        if (fechaInicial.DayOfWeek == DayOfWeek.Saturday || fechaInicial.DayOfWeek == DayOfWeek.Sunday)
+                        {
+                            noLaborablesCount++;
+                        }
+                    }
+                }
+            }
+
+            int dateDiff = (fechaFinal - fechaInicialOriginal).Days;
+
+            dateDiff = dateDiff - noLaborablesCount;
+
+            //La diferencia por lo menos debe de ser uno por que se tarda un dia minimo, en procesar
+            if (dateDiff < 1)
+                dateDiff = 1;
+
+            return dateDiff;
+        }
+
+        [System.Web.Services.WebMethod]
+        public static string KeepAlive()
+        {
+            return DateTime.Now.ToShortDateString();
+        }
+
+        [System.Web.Services.WebMethod]
+        public static void ReleaseAllLkdSolicitudes(int lockedId)
+        {
+            SolicitudRepo.ReleaseAllLockedSolicitudes(lockedId);
         }
     }
 }

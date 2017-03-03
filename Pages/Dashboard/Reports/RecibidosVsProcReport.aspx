@@ -15,6 +15,42 @@
 
     </script>
 
+    <script>
+
+        var countDown = 1020; /*equals 17 minutes in seconds not exact 15 cause it might die before if it was exact due to threa priorities.
+        It's converted to seconds cause the interval loop every second not every millisecond*/
+
+        var timer = setInterval("KeepAlive()", 1000);
+
+        function KeepAlive()
+        {
+            var aliveHF = document.getElementById("<%= aliveHF.ClientID%>");
+
+            //The purpose of KeepAlive is to run a single line of programmming on the server 
+            //just so it can keep the session alive.
+                aliveHF.value = PageMethods.KeepAlive();
+
+            //When the countdown hits 0 it'll do a fake timeout
+                if (countDown === 0)
+                {
+                    clearInterval(timer);
+
+                    var lockedId = <%= Session["lockedId"] %>;
+
+                    if(lockedId != 0)
+                        PageMethods.ReleaseAllLkdSolicitudes(lockedId);
+
+                    window.location.href = '../../Login.aspx';
+                }
+
+                else
+                    countDown = countDown - 1;
+            }
+
+    </script>
+
+    <asp:HiddenField ID ="aliveHF" runat ="server" />
+
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.js"></script>
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
@@ -94,9 +130,9 @@
 
                     <Points>
 
-                        <asp:DataPoint Color="0, 192, 0" Font="Microsoft Sans Serif, 15pt" LabelForeColor="MediumOrchid" AxisLabel="Recibidas" />
+                        <asp:DataPoint Color="0, 192, 0" Font="Microsoft Sans Serif, 15pt" LabelForeColor="Black" AxisLabel="Recibidas" />
 
-                        <asp:DataPoint Color="#888800" Font="Microsoft Sans Serif, 15pt" LabelForeColor="MediumOrchid"
+                        <asp:DataPoint Color="#888800" Font="Microsoft Sans Serif, 15pt" LabelForeColor="Black"
                             AxisLabel="Procesadas" />
 
                     </Points>
@@ -317,8 +353,20 @@
 
     </div>
 
-    <asp:SqlDataSource runat="server" ID="solicitudesSQLDS" SelectCommand="SELECT CoordinadorID, ProcesadorID, NumeroSolicitud, FechaTramitada,
+    <%--<asp:SqlDataSource runat="server" ID="solicitudesSQLDS" SelectCommand="SELECT CoordinadorID, ProcesadorID, NumeroSolicitud, FechaTramitada,
          FechaTrabajado, DATEDIFF(day, FechaTramitada, FechaTrabajado) AS Duration FROM Solicitudes @WHERE"
+        ConnectionString="<%$ ConnectionStrings:local %>" OnSelecting="solicitudesSQLDS_Selecting"></asp:SqlDataSource>--%>
+
+    <%--<asp:SqlDataSource runat="server" ID="solicitudesSQLDS" SelectCommand="SELECT CoordinadorID, ProcesadorID, NumeroSolicitud, FechaTramitada,
+         FechaTrabajado, (select DATEDIFF(dd, FechaTramitada, FechaTrabajado) + 
+case when DATEPART(dw, FechaTramitada) = 7 then 1 else 0 end -
+(DATEDIFF(wk, FechaTramitada, FechaTrabajado) * 2) -
+case when DATEPART(dw, FechaTramitada) = 1 then 1 else 0 end +
+case when DATEPART(dw, FechaTrabajado) = 1 then 1 else 0 end) AS Duration FROM Solicitudes @WHERE"
+        ConnectionString="<%$ ConnectionStrings:local %>" OnSelecting="solicitudesSQLDS_Selecting"></asp:SqlDataSource>--%>
+
+    <asp:SqlDataSource runat="server" ID="solicitudesSQLDS" SelectCommand="SELECT CoordinadorID, ProcesadorID, NumeroSolicitud, FechaTramitada,
+         FechaTrabajado, (ProcesadorID) AS Duration FROM Solicitudes @WHERE"
         ConnectionString="<%$ ConnectionStrings:local %>" OnSelecting="solicitudesSQLDS_Selecting"></asp:SqlDataSource>
 
     <div style="text-align: center; margin-bottom: 40px; margin-top: 70px; padding-bottom: 100px">

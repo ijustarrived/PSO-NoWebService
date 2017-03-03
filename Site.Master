@@ -67,7 +67,7 @@
 </head>
 <body style="background-color:#E5E5E5">
     <form runat="server">
-        <asp:ScriptManager runat="server">
+        <asp:ScriptManager runat="server" EnablePageMethods ="true">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
@@ -87,6 +87,32 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
+
+        <%--<script>
+            var countDown = 900000;
+
+            var timer = setInterval("KeepAlive()", 1000);
+
+            function KeepAlive(time) {
+                var aliveHF = document.getElementById("<%= aliveHF.ClientID%>");
+
+                debugger;
+
+            aliveHF.value = PageMethods.KeepAlive();
+
+            if (countDown === 0) {
+                clearInterval(timer);
+            }
+
+            else
+                countDown = countDown - 1;
+
+            console.log("countdown: " + countDown);
+        }
+
+        </script>--%>
+
+        <asp:HiddenField ID ="aliveHF" runat ="server" />
 
         <table class ="table">
 

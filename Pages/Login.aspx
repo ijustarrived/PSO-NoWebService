@@ -62,7 +62,7 @@
             Style="margin-right: 20px; padding: 10px 15px;" runat="server" OnClick="loginBtn_Click" ForeColor="#79256E" />
 
         <asp:Button ID="registerBtn" BorderColor="#616161" CssClass="btn" BorderWidth="3" Text="Registrar"
-            runat="server" OnClick="registerBtn_Click" ForeColor="#79256E" Style="padding: 10px 15px;" />
+            runat="server" OnClick="registerBtn_Click" CausesValidation ="false" ForeColor="#79256E" Style="padding: 10px 15px;" />
 
     </div>
 

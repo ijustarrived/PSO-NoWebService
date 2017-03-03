@@ -11,6 +11,36 @@
 
     <script>
 
+        var countDown = 1020; /*equals 17 minutes in seconds not exact 15 cause it might die before if it was exact due to threa priorities.
+        //It's converted to seconds cause the interval loop every second not every millisecond*/
+
+        var timer = setInterval("KeepAlive()", 1000);
+
+        function KeepAlive()
+        {
+            var aliveHF = document.getElementById("<%= aliveHF.ClientID%>");
+
+            //The purpose of KeepAlive is to run a single line of programmming on the server 
+            //just so it can keep the session alive.
+                aliveHF.value = PageMethods.KeepAlive();
+
+            //When the countdown hits 0 it'll do a fake timeout
+                if (countDown === 0)
+                {
+                    clearInterval(timer);
+
+                    var lockedId = <%= Session["lockedId"] %>;
+
+                    if(lockedId != 0)
+                        PageMethods.ReleaseAllLkdSolicitudes(lockedId);
+
+                    window.location.href = '../Login.aspx';
+                }
+
+                else
+                    countDown = countDown - 1;
+            }
+
         function ChangeClinetSideColors(lblColor, titleColor) {
             $('#printBtn').css({ 'color': lblColor });
         }
@@ -276,6 +306,8 @@
         }
 
     </script>
+
+    <asp:HiddenField ID ="aliveHF" runat ="server" />
 
     <%-- Header --%>
 

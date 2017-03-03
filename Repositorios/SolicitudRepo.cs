@@ -57,7 +57,8 @@ namespace PSO.Repositorios
                                                                             DireccionPostalCo,
                                                                             PuebloPostalCo,
                                                                             CodigoPostalPostalCo,
-                                                                            FechaDocIncompleto)
+                                                                            FechaDocIncompleto,
+                                                                            LockedById)
                                                                             VALUES(@Status, @NumeroSolicitud, @FechaTramitada, @CoordinadorID, @FechaRevision
                                                                             , @ProcesadorID, @FechaAsigProcesador, @ComentarioProcesador,
                                                                             @TrabajadorID, @FechaTrabajado, @ComentarioTrabajador,
@@ -70,11 +71,14 @@ namespace PSO.Repositorios
                                                                             @ApellidoPaternoCo, @ApellidoMaternoCo, @FechaNacimientoCo,
                                                                             @TelefonoCo, @LicenciaConducirCo, @CelularCo, @DireccionCo,
                                                                             @PuebloCo, @CodigoPostalCo, @DireccionPostalCo,
-                                                                            @PuebloPostalCo, @CodigoPostalPostalCo, @FechaDocIncompleto);", conn);
+                                                                            @PuebloPostalCo, @CodigoPostalPostalCo, @FechaDocIncompleto,
+                                                                            @LockedById);", conn);
 
                 #endregion
 
                 #region Command Parameteres
+
+                cmd.Parameters.AddWithValue("@LockedById", solicitud.LockedById);
 
                 cmd.Parameters.AddWithValue("@Status", (int)solicitud.Status);
 
@@ -234,12 +238,15 @@ namespace PSO.Repositorios
                                                                             DireccionPostalCo = @DireccionPostalCo,
                                                                             PuebloPostalCo = @PuebloPostalCo,
                                                                             CodigoPostalPostalCo = @CodigoPostalPostalCo,
-                                                                            FechaDocIncompleto = @FechaDocIncompleto
+                                                                            FechaDocIncompleto = @FechaDocIncompleto,
+                                                                            LockedById = @LockedById
                                                                             WHERE ID = @ID;", conn);
 
                 #endregion
 
                 #region Command Parameteres
+
+                cmd.Parameters.AddWithValue("@LockedById", solicitud.LockedById);
 
                 cmd.Parameters.AddWithValue("@ID", solicitud.ID);
 
@@ -326,6 +333,139 @@ namespace PSO.Repositorios
                 cmd.Parameters.AddWithValue("@PuebloPostalCo", solicitud.PuebloPostalCo);
 
                 cmd.Parameters.AddWithValue("@CodigoPostalPostalCo", solicitud.CodigoPostalPostalCo);
+
+                conn.Open();
+
+                #endregion
+
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    cmd.Transaction = transaction;
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+
+                        transaction.Commit();
+
+                        return null;
+                    }
+
+                    catch (SqlException ex)
+                    {
+                        transaction.Rollback();
+
+                        return ex;
+                    }
+                }
+            }
+        }
+
+        public static Exception UpdateLockedId(_Solicitud solicitud)
+        {
+            using (SqlConnection conn = DB.GetLocalConnection())
+            {
+                #region Sql command
+
+                SqlCommand cmd = new SqlCommand(@"UPDATE Solicitudes SET LockedById = @LockedById
+                                                                            WHERE ID = @ID;", conn);
+
+                #endregion
+
+                #region Command Parameteres
+
+                cmd.Parameters.AddWithValue("@LockedById", solicitud.LockedById);
+
+                cmd.Parameters.AddWithValue("@ID", solicitud.ID);
+
+                conn.Open();
+
+                #endregion
+
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    cmd.Transaction = transaction;
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+
+                        transaction.Commit();
+
+                        return null;
+                    }
+
+                    catch (SqlException ex)
+                    {
+                        transaction.Rollback();
+
+                        return ex;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Release all locked solicitudes that belong to a specific user
+        /// </summary>
+        /// <param name="lockedID">User ID</param>
+        /// <returns></returns>
+        public static Exception ReleaseAllLockedSolicitudes(int lockedID)
+        {
+            using (SqlConnection conn = DB.GetLocalConnection())
+            {
+                #region Sql command
+
+                SqlCommand cmd = new SqlCommand(@"UPDATE Solicitudes SET LockedById = 0
+                                                  WHERE LockedById = @LockedById;", conn);
+
+                #endregion
+
+                #region Command Parameteres
+
+                cmd.Parameters.AddWithValue("@LockedById", lockedID);
+
+                conn.Open();
+
+                #endregion
+
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    cmd.Transaction = transaction;
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+
+                        transaction.Commit();
+
+                        return null;
+                    }
+
+                    catch (SqlException ex)
+                    {
+                        transaction.Rollback();
+
+                        return ex;
+                    }
+                }
+            }
+        }
+
+        public static Exception ReleaseALockedSolicitud(string numSolicitud)
+        {
+            using (SqlConnection conn = DB.GetLocalConnection())
+            {
+                #region Sql command
+
+                SqlCommand cmd = new SqlCommand(@"UPDATE Solicitudes SET LockedById = 0
+                                                  WHERE NumeroSolicitud = @NumeroSolicitud;", conn);
+
+                #endregion
+
+                #region Command Parameteres
+
+                cmd.Parameters.AddWithValue("@NumeroSolicitud", numSolicitud);
 
                 conn.Open();
 
@@ -592,12 +732,12 @@ namespace PSO.Repositorios
 
                             FechaDocIncompleto = reader.GetDateTime(col++),
 
+                            LockedById = reader.GetInt32(col++),
+
                             Duration = reader.GetInt32(col++).ToString()
                         });
                     }
                     #endregion
-
-                    //solicitudes = BuildSolicitudes(cmd);
                 }
             }
 
@@ -781,6 +921,8 @@ namespace PSO.Repositorios
                             CodigoPostalPostalCo = reader.GetString(col++),
 
                             FechaDocIncompleto = reader.GetDateTime(col++),
+
+                            LockedById = reader.GetInt32(col++),
 
                             Duration = reader.GetInt32(col++).ToString()
                         });
@@ -1095,7 +1237,9 @@ namespace PSO.Repositorios
 
                     CodigoPostalPostalCo = reader.GetString(col++),
 
-                    FechaDocIncompleto = reader.GetDateTime(col++)
+                    FechaDocIncompleto = reader.GetDateTime(col++),
+
+                    LockedById = reader.GetInt32(col++)
                 };
             }
             #endregion
@@ -1201,7 +1345,9 @@ namespace PSO.Repositorios
 
                     CodigoPostalPostalCo = reader.GetString(col++),
 
-                    FechaDocIncompleto = reader.GetDateTime(col++)
+                    FechaDocIncompleto = reader.GetDateTime(col++),
+
+                    LockedById = reader.GetInt32(col++)
                 });
             }
             #endregion

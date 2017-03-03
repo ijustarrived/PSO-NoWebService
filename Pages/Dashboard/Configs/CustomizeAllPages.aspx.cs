@@ -15,6 +15,20 @@ namespace PSO.Pages.Dashboard.Configs
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            #region Verify role permission
+
+            Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
+
+            if (!user.Role.EditCustomizationPage)
+            {
+                if (string.IsNullOrEmpty(user.Email))
+                    Response.Redirect("~/Pages/Login.aspx", true);
+
+                Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
+            }
+
+            #endregion
+
             Cosmetic cosmetic = new Cosmetic((Cosmetic)Session["Cosmetic"]);
 
             #region Breadcrumb config
@@ -52,20 +66,6 @@ namespace PSO.Pages.Dashboard.Configs
             dashboardPnl.Controls.Add(secondDashLink);
 
             #endregion
-
-            #endregion
-
-            #region Verify role permission
-
-            Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
-
-            if (!user.Role.EditCustomizationPage)
-            {
-                if (string.IsNullOrEmpty(user.Email))
-                    Response.Redirect("~/Pages/Login.aspx", true);
-
-                Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
-            }
 
             #endregion
 
@@ -264,6 +264,26 @@ namespace PSO.Pages.Dashboard.Configs
             mainDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
             #endregion
+        }
+
+        /// <summary>
+        /// Runs only on the fake timeout interval
+        /// </summary>
+        /// <param name="lockedId"></param>
+        [System.Web.Services.WebMethod]
+        public static void ReleaseAllLkdSolicitudes(int lockedId)
+        {
+            SolicitudRepo.ReleaseAllLockedSolicitudes(lockedId);
+        }
+
+        /// <summary>
+        /// Runs only on the fake timeout interval
+        /// </summary>
+        /// <returns></returns>
+        [System.Web.Services.WebMethod]
+        public static string KeepAlive()
+        {
+            return DateTime.Now.ToShortDateString();
         }
 
         protected void saveBtn_Click(object sender, EventArgs e)

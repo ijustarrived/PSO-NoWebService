@@ -17,5 +17,10 @@ namespace PSO
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Session_End(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Pages/Login.aspx", true);
+        }
     }
 }

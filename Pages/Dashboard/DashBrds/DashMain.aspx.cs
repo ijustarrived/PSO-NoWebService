@@ -124,6 +124,18 @@ namespace PSO.Pages.Dashboard.DashBrds
                 , docIncompleteCount, denegadasCount, inactivasCount);
         }
 
+        [System.Web.Services.WebMethod]
+        public static void ReleaseAllLkdSolicitudes(int lockedId)
+        {
+            SolicitudRepo.ReleaseAllLockedSolicitudes(lockedId);
+        }
+
+        [System.Web.Services.WebMethod]
+        public static string KeepAlive()
+        {
+            return DateTime.Now.ToShortDateString();
+        }
+
         private void SetPieChartData(int aprobadasCount, int pendientesCount, int asigInspectorCount,
             int procesosInpeccionCount, int docsIncompletosCount, int denegadasCount, int inactivasCount)
         {
@@ -560,7 +572,42 @@ namespace PSO.Pages.Dashboard.DashBrds
 
             for (int i = 0; i < solicitudes.Count; i++)
             {
+                #region Calc date difference excluding nonworking days
+
+                DateTime fechaTrab = solicitudes.ElementAt(i).FechaTrabajado.Date,
+                            fechaTram = solicitudes.ElementAt(i).FechaTramitada.Date.AddDays(1);
+                // Suma uno por que quiero empezar verificando el proximo dia
+
+                int noLaborablesCount = 0;
+
+                //Va sumandole a fecha tramitada hasta que llega a la de trabajo
+                while (fechaTrab != fechaTram)
+                {
+                    if (fechaTram.DayOfWeek == DayOfWeek.Saturday || fechaTram.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        noLaborablesCount++;
+                    }
+
+                    fechaTram = fechaTram.AddDays(1);
+
+                    if (fechaTrab == fechaTram)
+                    {
+                        if (fechaTram.DayOfWeek == DayOfWeek.Saturday || fechaTram.DayOfWeek == DayOfWeek.Sunday)
+                        {
+                            noLaborablesCount++;
+                        }
+                    }
+                }
+
                 int dateDiff = (solicitudes.ElementAt(i).FechaTrabajado - solicitudes.ElementAt(i).FechaTramitada).Days;
+
+                dateDiff = dateDiff - noLaborablesCount;
+
+                //La diferencia por lo menos debe de ser uno por que se tarda un dia minimo, en procesar
+                if (dateDiff < 1)
+                    dateDiff = 1;
+
+                #endregion
 
                 if (dateDiff > 8)
                     nineAndAboveCount++;

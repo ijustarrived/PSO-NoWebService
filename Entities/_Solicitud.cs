@@ -24,6 +24,8 @@ namespace PSO.Entities
         {
             ID = 0;
 
+            LockedById = 0;
+
             Status = Statuses.NO_TRAMITADO;
 
             NumeroSolicitud = string.Empty;
@@ -109,6 +111,13 @@ namespace PSO.Entities
             FechaNacimientoCo = DateTime.MaxValue;
 
             Duration = string.Empty;
+        }
+
+        public int LockedById
+        {
+            get;
+
+            set;
         }
 
         //Only used in production report cause I was lazy

@@ -13,6 +13,15 @@ namespace PSO.Pages.Dashboard.Reports {
     public partial class ReportsMain {
         
         /// <summary>
+        /// aliveHF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField aliveHF;
+        
+        /// <summary>
         /// RecibidosVsProcessBtn control.
         /// </summary>
         /// <remarks>

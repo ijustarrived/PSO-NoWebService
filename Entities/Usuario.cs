@@ -56,7 +56,7 @@ namespace PSO.Entities
 
             Email = string.Empty;
 
-            Activo = false;
+            Activo = true;
 
             Role = new Rol();
         }
@@ -260,6 +260,10 @@ namespace PSO.Entities
             return wordInBytes;
         }
 
+        /// <summary>
+        /// //Get user restriction count
+        /// </summary>
+        /// <returns></returns>
         public static int GetUserMaxAmount()
         {
             return USER_MAX_AMOUNT;
