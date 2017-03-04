@@ -11,7 +11,7 @@
         function ChangeClinetSideColors(lblColor, titleColor)
         {           
             $('#printBtn').css({ 'color': lblColor });
-        }
+       } 
 
     </script>
 
@@ -73,7 +73,7 @@
 
         </script>
 
-        <asp:TextBox runat="server" Style="width: initial; margin-right: 20px;" ID="desdeTxtBx" placeholder="Desde"></asp:TextBox>
+        <asp:TextBox MaxLength ="10" runat="server" Style="width: initial; margin-right: 20px;" ID="desdeTxtBx" placeholder="Desde"></asp:TextBox>
 
         
 
@@ -87,7 +87,7 @@
 
         </script>
 
-          <asp:TextBox runat="server" Style="width: initial" ID="hastaTxtBx" placeholder="Hasta"></asp:TextBox>
+          <asp:TextBox MaxLength ="10" runat="server" Style="width: initial" ID="hastaTxtBx" placeholder="Hasta"></asp:TextBox>
 
         
 

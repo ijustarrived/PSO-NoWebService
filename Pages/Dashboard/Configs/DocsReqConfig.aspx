@@ -68,7 +68,7 @@
 
         <div>
 
-            <asp:TextBox runat="server" ID="docNameTxtBx"></asp:TextBox>
+            <asp:TextBox MaxLength ="100" runat="server" ID="docNameTxtBx"></asp:TextBox>
 
             <div>
 
@@ -102,7 +102,7 @@
         style ="margin-top:40px; width:95%; margin-left:auto; margin-right:auto" 
         AllowPaging="True" ForeColor="#79256E" BackColor="#F3F0F7" CellPadding="2" GridLines="None" CssClass="table" 
         ShowHeaderWhenEmpty="true" AutoGenerateColumns="false" OnRowDataBound ="docsGV_RowDataBound"
-          DataKeyNames="ID" >
+          DataKeyNames="ID">
 
         <AlternatingRowStyle BackColor ="#E5E5E5" />
 

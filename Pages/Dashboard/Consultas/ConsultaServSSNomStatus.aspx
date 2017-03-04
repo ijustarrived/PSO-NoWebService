@@ -82,7 +82,7 @@
 
     <div class="container" style="text-align:center; margin-left: auto; margin-right: auto; margin-bottom: 20px; margin-top: 20px">
 
-        <asp:TextBox ID ="searchTxtBx" Width="20%" style ="display:none" runat ="server"></asp:TextBox>
+        <asp:TextBox MaxLength ="100" ID ="searchTxtBx" Width="20%" style ="display:none" runat ="server"></asp:TextBox>
 
         <asp:DropDownList ID ="statusDDL" runat ="server" style ="display:none">
 

@@ -485,7 +485,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="nameTxtBx"></asp:TextBox>
+                        <asp:TextBox MaxLength ="100" runat="server" ID="nameTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -512,7 +512,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="paternoTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="100" ID="paternoTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -539,7 +539,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="maternoTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="100" ID="maternoTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -600,7 +600,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="emailTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="100" ID="emailTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -644,7 +644,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="bdayTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="10" ID="bdayTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -727,7 +727,7 @@
 
                         </script>
 
-                        <asp:TextBox runat="server"   ID="celTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="50"  ID="celTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -763,7 +763,7 @@
 
                         </script>
 
-                        <asp:TextBox runat="server"   ID="telResiTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="50"  ID="telResiTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -932,7 +932,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="codigoTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="40" ID="codigoTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -1101,7 +1101,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="codigoPostalPosTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="40" ID="codigoPostalPosTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -1152,7 +1152,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="cercanoTxt"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="100" ID="cercanoTxt"></asp:TextBox>
 
                     </div>
 
@@ -1236,7 +1236,7 @@
 
                         </script>
 
-                        <asp:TextBox runat="server"   ID="telFamTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="20"  ID="telFamTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -1405,7 +1405,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server"   ID="codigoRefTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="40"  ID="codigoRefTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -1444,7 +1444,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="cercano2TxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="100" ID="cercano2TxtBx"></asp:TextBox>
 
                     </div>
 
@@ -1528,7 +1528,7 @@
 
                         </script>
 
-                        <asp:TextBox runat="server"   ID="telFam2TxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="20"  ID="telFam2TxtBx"></asp:TextBox>
 
                     </div>
 
@@ -1697,7 +1697,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="codigoRef2TxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="100" ID="codigoRef2TxtBx"></asp:TextBox>
 
                     </div>
 
@@ -1736,7 +1736,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="cercanoRef3TxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="100" ID="cercanoRef3TxtBx"></asp:TextBox>
 
                     </div>
 
@@ -1820,7 +1820,7 @@
 
                         </script>
 
-                        <asp:TextBox runat="server"   ID="telFamRef3TxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="20"  ID="telFamRef3TxtBx"></asp:TextBox>
 
                     </div>
 
@@ -1989,7 +1989,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="codigoRef3TxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="40" ID="codigoRef3TxtBx"></asp:TextBox>
 
                     </div>
 
@@ -2032,7 +2032,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server"   ID="nombreCoTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="100"  ID="nombreCoTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -2052,7 +2052,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server"   ID="paternoCoTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="100"  ID="paternoCoTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -2072,7 +2072,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="maternoCoTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="100" ID="maternoCoTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -2119,7 +2119,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="emailCoTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="100" ID="emailCoTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -2159,7 +2159,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="bdayCoTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="10" ID="bdayCoTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -2225,7 +2225,7 @@
 
                         </script>
 
-                        <asp:TextBox runat="server" ID="celCoTextBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="50" ID="celCoTextBx"></asp:TextBox>
 
                     </div>
 
@@ -2254,7 +2254,7 @@
 
                         </script>
 
-                        <asp:TextBox runat="server" ID="telCoTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="50" ID="telCoTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -2401,7 +2401,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server"   ID="codigoCoTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="40"  ID="codigoCoTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -2548,7 +2548,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="codigoCoPostalTxtBx"></asp:TextBox>
+                        <asp:TextBox runat="server" MaxLength ="40" ID="codigoCoPostalTxtBx"></asp:TextBox>
 
                     </div>
 

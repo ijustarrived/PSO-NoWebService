@@ -214,6 +214,28 @@ namespace PSO.Pages.Dashboard
 
             emailTxtBx.Enabled = false;
 
+            #region Set multiline txt length
+
+            asigComment.Attributes["maxlength"] = Convert.ToString(400);
+
+            trabajoComment.Attributes["maxlength"] = Convert.ToString(400);
+
+            dirTxtBx.Attributes["maxlength"] = Convert.ToString(400);
+
+            dirPostalTxtBx.Attributes["maxlength"] = Convert.ToString(400);
+
+            dirRef2TxtBx.Attributes["maxlength"] = Convert.ToString(400);
+
+            dirRef3TxtBx.Attributes["maxlength"] = Convert.ToString(400);
+
+            dirRefTxtBx.Attributes["maxlength"] = Convert.ToString(400);
+
+            dirCoTxtBx.Attributes["maxlength"] = Convert.ToString(400);
+
+            dirCoPostalTxtbx.Attributes["maxlength"] = Convert.ToString(400);
+
+            #endregion
+
             CreateDocReqCtrls(numSolicitud);
 
             if (!IsPostBack)

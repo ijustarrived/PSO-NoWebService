@@ -58,7 +58,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="nameTxtBx"></asp:TextBox>
+                        <asp:TextBox MaxLength ="100" runat="server" ID="nameTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -86,7 +86,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="emailTxtBx"></asp:TextBox>
+                        <asp:TextBox MaxLength ="100" runat="server" ID="emailTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -124,7 +124,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" AutoCompleteType ="Disabled" ID="apellidoPatTxtBx"></asp:TextBox>
+                        <asp:TextBox MaxLength ="100" runat="server" AutoCompleteType ="Disabled" ID="apellidoPatTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -153,7 +153,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" TextMode="Password" AutoCompleteType ="Disabled" 
+                        <asp:TextBox MaxLength ="200" runat="server" TextMode="Password" AutoCompleteType ="Disabled" 
                             ID="passwordTxtBx"></asp:TextBox>
 
                         <div>
@@ -188,7 +188,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="apellidoMatTxtBx"></asp:TextBox>
+                        <asp:TextBox MaxLength ="100" runat="server" ID="apellidoMatTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -224,7 +224,7 @@
 
                         </script>
 
-                        <asp:TextBox runat="server" ID="celTxtBx"></asp:TextBox>
+                        <asp:TextBox MaxLength ="50" runat="server" ID="celTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -266,7 +266,7 @@
 
                         </script>
 
-                        <asp:TextBox runat="server" placeholder ="MM/DD/YYYY" ID="bdayTxtBx"></asp:TextBox>
+                        <asp:TextBox MaxLength ="10" runat="server" placeholder ="MM/DD/YYYY" ID="bdayTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -460,7 +460,7 @@
 
                         </script>
 
-                        <asp:TextBox runat="server" ID="telResTxtBx"></asp:TextBox>
+                        <asp:TextBox MaxLength ="50" runat="server" ID="telResTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -713,7 +713,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="codigoPostalTxtBx"></asp:TextBox>
+                        <asp:TextBox MaxLength ="40" runat="server" ID="codigoPostalTxtBx"></asp:TextBox>
 
                     </div>
 
@@ -744,7 +744,7 @@
 
                     <div>
 
-                        <asp:TextBox runat="server" ID="codigoResiTxtBx"></asp:TextBox>
+                        <asp:TextBox MaxLength ="40" runat="server" ID="codigoResiTxtBx"></asp:TextBox>
 
                     </div>
 

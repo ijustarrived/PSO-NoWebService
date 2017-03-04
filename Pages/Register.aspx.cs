@@ -65,6 +65,11 @@ namespace PSO.Pages
 
             #endregion
 
+            //Multiline txt length
+            dirResTxtBx.Attributes["maxlength"] = Convert.ToString(400);
+
+            dirPostalTxtBx.Attributes["maxlength"] = Convert.ToString(400);
+
             if (!IsPostBack)
             {
                 Usuario userProfile = new Usuario(), // Selected profile

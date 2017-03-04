@@ -13,7 +13,7 @@
 
         <div>
 
-            <asp:TextBox runat="server" TabIndex="1" ID="emailTxtBx"></asp:TextBox>
+            <asp:TextBox MaxLength ="100" runat="server" TabIndex="1" ID="emailTxtBx"></asp:TextBox>
 
         </div>
 
@@ -36,7 +36,7 @@
 
         <div>
 
-            <asp:TextBox runat="server" TabIndex="2" TextMode="Password" ID="passwordTxtBx"></asp:TextBox>
+            <asp:TextBox MaxLength ="200" runat="server" TabIndex="2" TextMode="Password" ID="passwordTxtBx"></asp:TextBox>
 
         </div>
 

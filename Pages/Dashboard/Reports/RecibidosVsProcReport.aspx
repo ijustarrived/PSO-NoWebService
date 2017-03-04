@@ -73,7 +73,7 @@
 
         </script>
 
-        <asp:TextBox runat="server" Style="width: initial; margin-right: 20px;" ID="desdeTxtBx"
+        <asp:TextBox MaxLength ="10" runat="server" Style="width: initial; margin-right: 20px;" ID="desdeTxtBx"
              placeholder="Desde"></asp:TextBox>
 
         
@@ -88,7 +88,7 @@
 
         </script>
 
-        <asp:TextBox runat="server" Style="width: initial" ID="hastaTxtBx" placeholder="Hasta"></asp:TextBox>
+        <asp:TextBox MaxLength ="10" runat="server" Style="width: initial" ID="hastaTxtBx" placeholder="Hasta"></asp:TextBox>
 
         <div style="margin-bottom: 10px;">
 
@@ -192,7 +192,7 @@
 
             </script>
 
-            <asp:TextBox runat="server" Style="width: initial; margin-right: 20px;" ID="desdeDetailTxtBx"
+            <asp:TextBox MaxLength ="10" runat="server" Style="width: initial; margin-right: 20px;" ID="desdeDetailTxtBx"
                  placeholder="Desde"></asp:TextBox>
 
             
@@ -207,7 +207,7 @@
 
             </script>
 
-            <asp:TextBox runat="server" Style="width: initial" ID="hastaDetailTxtBx" placeholder="Hasta"></asp:TextBox>
+            <asp:TextBox MaxLength ="10" runat="server" Style="width: initial" ID="hastaDetailTxtBx" placeholder="Hasta"></asp:TextBox>
 
             <div style="margin-bottom: 10px;">
 

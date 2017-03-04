@@ -19,7 +19,7 @@
 
         <div>
 
-            <asp:TextBox runat="server" ID="emailTxtBx"></asp:TextBox>
+            <asp:TextBox runat="server" MaxLength ="100" ID="emailTxtBx"></asp:TextBox>
 
         </div>
 
