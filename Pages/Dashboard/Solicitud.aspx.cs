@@ -410,25 +410,30 @@ namespace PSO.Pages.Dashboard
                                 {
                                     solicitud.LockedById = user.ID;
 
-                                    try
+                                    //Don't save if not coordinador. Could be super viewing
+                                    if (user.Role.RoleType == Rol.TiposRole.COORDINADOR)
                                     {
-                                        Exception excep = SolicitudRepo.UpdateLockedId(solicitud);
-
-                                        if (excep != null)
+                                        try
                                         {
-                                            throw new Exception(string.Format(
-                                                "No se pudo actualizar la solicitud. Error Actualizar Cierre Solicitud: {0}",
-                                                    excep.Message.Replace("'", string.Empty)));
+                                            Exception excep = SolicitudRepo.UpdateLockedId(solicitud);
+
+                                            if (excep != null)
+                                            {
+                                                throw new Exception(string.Format(
+                                                    "No se pudo actualizar la solicitud. Error Actualizar Cierre Solicitud: {0}",
+                                                        excep.Message.Replace("'", string.Empty)));
+                                            }
+
+                                            else
+                                                //it's used on fake timeout
+                                                Session["lockedId"] = user.ID;
                                         }
 
-                                        else
-                                            //it's used on fake timeout
-                                            Session["lockedId"] = user.ID;
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        ScriptManager.RegisterStartupScript(this, GetType(), "lockedIdUpdateAlert"
-                                            , string.Format("alert('{0}');", ex.Message.Replace("\r\n", " ")), true);
+                                        catch (Exception ex)
+                                        {
+                                            ScriptManager.RegisterStartupScript(this, GetType(), "lockedIdUpdateAlert"
+                                                , string.Format("alert('{0}');", ex.Message.Replace("\r\n", " ")), true);
+                                        }
                                     }
                                 }
 
@@ -447,6 +452,8 @@ namespace PSO.Pages.Dashboard
                                     solicitud.NumeroSolicitud);
 
                                 saveBtn.Enabled = !(user.Role.RoleType == Rol.TiposRole.SUPERVISOR);
+
+                                tempSaveBtn.Enabled = saveBtn.Enabled;
 
                                 coorRow.Visible = true;
 

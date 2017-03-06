@@ -365,6 +365,20 @@ case when DATEPART(dw, FechaTramitada) = 1 then 1 else 0 end +
 case when DATEPART(dw, FechaTrabajado) = 1 then 1 else 0 end) AS Duration FROM Solicitudes @WHERE"
         ConnectionString="<%$ ConnectionStrings:local %>" OnSelecting="solicitudesSQLDS_Selecting"></asp:SqlDataSource>--%>
 
+    <hr style=" width:30%; margin-bottom: 20px; border-color:#616161" />
+
+    <div style="text-align: center; margin-bottom: 20px; margin-top:20px">
+
+        <asp:Label ForeColor="#79256E" runat="server" ID="totalAvisosLbl"></asp:Label>
+
+    </div>
+
+    <div style="text-align: center; margin-top:20px">
+
+        <asp:Label ForeColor="#79256E" runat="server" ID="totalPagesLbl"></asp:Label>
+
+    </div>
+
     <asp:SqlDataSource runat="server" ID="solicitudesSQLDS" SelectCommand="SELECT CoordinadorID, ProcesadorID, NumeroSolicitud, FechaTramitada,
          FechaTrabajado, (ProcesadorID) AS Duration FROM Solicitudes @WHERE"
         ConnectionString="<%$ ConnectionStrings:local %>" OnSelecting="solicitudesSQLDS_Selecting"></asp:SqlDataSource>

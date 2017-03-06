@@ -575,8 +575,11 @@ namespace PSO.Pages.Dashboard.DashBrds
                 #region Calc date difference excluding nonworking days
 
                 DateTime fechaTrab = solicitudes.ElementAt(i).FechaTrabajado.Date,
-                            fechaTram = solicitudes.ElementAt(i).FechaTramitada.Date.AddDays(1);
+                            fechaTram = solicitudes.ElementAt(i).FechaTramitada.Date;
                 // Suma uno por que quiero empezar verificando el proximo dia
+
+                if (fechaTrab != fechaTram)
+                    fechaTram = fechaTram.AddDays(1);
 
                 int noLaborablesCount = 0;
 

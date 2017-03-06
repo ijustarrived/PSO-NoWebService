@@ -115,6 +115,20 @@
 
         </div>
 
+     <hr style=" width:30%; margin-bottom: 20px; border-color:#616161" />
+
+    <div style="text-align: center; margin-bottom: 20px; margin-top:20px">
+
+        <asp:Label ForeColor="#79256E" runat="server" ID="totalAvisosLbl"></asp:Label>
+
+    </div>
+
+    <div style="text-align: center; margin-top:20px">
+
+        <asp:Label ForeColor="#79256E" runat="server" ID="totalPagesLbl"></asp:Label>
+
+    </div>
+
     <asp:SqlDataSource runat ="server" ID ="solicitudesSQLDS" SelectCommand ="SELECT NumeroSolicitud, Pueblo,
          (Nombre + ' '+ ApellidoPaterno + ' ' + ApellidoMaterno) AS Nombre, Celular, FechaTramitada, LockedById 
         FROM Solicitudes WHERE Status = 1" 

@@ -40,6 +40,24 @@ namespace PSO.Pages.Dashboard.Consultas {
         protected global::System.Web.UI.WebControls.GridView solicitudesGV;
         
         /// <summary>
+        /// totalAvisosLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label totalAvisosLbl;
+        
+        /// <summary>
+        /// totalPagesLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label totalPagesLbl;
+        
+        /// <summary>
         /// solicitudesSQLDS control.
         /// </summary>
         /// <remarks>

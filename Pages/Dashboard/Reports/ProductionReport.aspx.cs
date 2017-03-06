@@ -124,6 +124,16 @@ namespace PSO.Pages.Dashboard.Reports
             }
 
             rolDDL_SelectedIndexChanged(sender, EventArgs.Empty);
+
+            #region Set total pages 
+
+            GridView visibleGv = coorGV.Visible ? coorGV : procGV;
+
+            if (visibleGv.Rows.Count != 0)
+                totalPagesLbl.Text = string.Format("Total de Paginas: {0}",
+                visibleGv.PageCount);
+
+            #endregion
         }
 
         [System.Web.Services.WebMethod]

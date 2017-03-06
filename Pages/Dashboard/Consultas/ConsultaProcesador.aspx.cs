@@ -108,6 +108,31 @@ namespace PSO.Pages.Dashboard.Consultas
                     }
                 }
             }
+
+            #region Set total solicitudes and pages
+
+            if (solicitudesGV.Rows.Count != 0 && string.IsNullOrEmpty(totalAvisosLbl.Text))
+            {
+                totalPagesLbl.Text = string.Format("Total de Paginas: {0}",
+                    solicitudesGV.PageCount);
+
+                solicitudesGV.AllowPaging = false;
+
+                solicitudesGV.AllowSorting = false;
+
+                solicitudesGV.DataBind();
+
+                totalAvisosLbl.Text = string.Format("Total de Solicitudes: {0}",
+                    solicitudesGV.Rows.Count);
+
+                solicitudesGV.AllowPaging = true;
+
+                solicitudesGV.AllowSorting = true;
+
+                solicitudesGV.DataBind();
+            }
+
+            #endregion
         }
 
         /// <summary>

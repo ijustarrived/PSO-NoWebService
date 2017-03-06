@@ -122,6 +122,27 @@ namespace PSO.Pages.Dashboard.Reports
 
                 ViewState["Procs"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR, false);
             }
+
+            if (recievedGV.Rows.Count != 0 && string.IsNullOrEmpty(totalAvisosLbl.Text))
+            {
+                totalPagesLbl.Text = string.Format("Total de Paginas: {0}",
+                    recievedGV.PageCount);
+
+                recievedGV.AllowPaging = false;
+
+                recievedGV.AllowSorting = false;
+
+                recievedGV.DataBind();
+
+                totalAvisosLbl.Text = string.Format("Total de Solicitudes: {0}",
+                    recievedGV.Rows.Count);
+
+                recievedGV.AllowPaging = true;
+
+                recievedGV.AllowSorting = true;
+
+                recievedGV.DataBind();
+            }
         }
 
         [System.Web.Services.WebMethod]
@@ -321,9 +342,11 @@ namespace PSO.Pages.Dashboard.Reports
                 {
                     e.Row.Cells[2].Text = string.Empty;
 
-                    TimeSpan span = DateTime.Now.Subtract(fechaTramite);
+                    e.Row.Cells[3].Text = CalcDateDiff(fechaTramite.Date, DateTime.Now.Date, true).ToString();
 
-                    e.Row.Cells[3].Text = ((int)span.TotalDays).ToString();
+                    //TimeSpan span = DateTime.Now.Subtract(fechaTramite);
+
+                    //e.Row.Cells[3].Text = ((int)span.TotalDays).ToString();
                 }
 
                 else
