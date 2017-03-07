@@ -123,11 +123,8 @@ namespace PSO.Pages.Dashboard.Reports
                 ViewState["Procs"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR, false);
             }
 
-            if (recievedGV.Rows.Count != 0 && string.IsNullOrEmpty(totalAvisosLbl.Text))
+            if (recievedGV.Rows.Count != 0)
             {
-                totalPagesLbl.Text = string.Format("Total de Paginas: {0}",
-                    recievedGV.PageCount);
-
                 recievedGV.AllowPaging = false;
 
                 recievedGV.AllowSorting = false;
@@ -142,6 +139,9 @@ namespace PSO.Pages.Dashboard.Reports
                 recievedGV.AllowSorting = true;
 
                 recievedGV.DataBind();
+
+                totalPagesLbl.Text = string.Format("Total de Paginas: {0}",
+                    recievedGV.PageCount);
             }
         }
 
@@ -496,10 +496,17 @@ namespace PSO.Pages.Dashboard.Reports
             dateDiff = dateDiff - noLaborablesCount;
 
             //La diferencia por lo menos debe de ser uno por que se tarda un dia minimo, en procesar
-            if (dateDiff < 1)
-                dateDiff = 1;
+            //if (dateDiff < 1)
+            //    dateDiff = 1;
 
             return dateDiff;
+        }
+
+        protected void recievedGV_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            recievedGV.PageIndex = e.NewPageIndex;
+
+            recievedGV.DataBind();
         }
     }
 }

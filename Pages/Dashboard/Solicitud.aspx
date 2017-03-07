@@ -3,26 +3,24 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.js"></script>
-
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-
-    <script src="../../Scripts/jquery.mask.js" type="text/javascript"></script> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
 
     <script>
 
         var countDown = 1020; /*equals 17 minutes in seconds not exact 15 cause it might die before if it was exact due to threa priorities.
         //It's converted to seconds cause the interval loop every second not every millisecond*/
 
-        var timer = setInterval("KeepAlive()", 1000);
+        var timer = setInterval("Alive()", 1000);
 
-        function KeepAlive()
+        function Alive()
         {
             var aliveHF = document.getElementById("<%= aliveHF.ClientID%>");
 
             //The purpose of KeepAlive is to run a single line of programmming on the server 
             //just so it can keep the session alive.
-                aliveHF.value = PageMethods.KeepAlive();
+            aliveHF.value = PageMethods.KeepAlive();
+
+            //KeepAlive();
 
             //When the countdown hits 0 it'll do a fake timeout
                 if (countDown === 0)
@@ -31,15 +29,67 @@
 
                     var lockedId = <%= Session["lockedId"] %>;
 
+                    //if(lockedId != 0)
+                    //    PageMethods.ReleaseAllLkdSolicitudes(lockedId);
+
                     if(lockedId != 0)
-                        PageMethods.ReleaseAllLkdSolicitudes(lockedId);
+                        ReleaseAllLkdSolicitudes(lockedId);
 
                     window.location.href = '../Login.aspx';
                 }
 
                 else
                     countDown = countDown - 1;
-            }
+        }
+
+        function ReleaseAllLkdSolicitudes(lockedId) 
+        {     
+            $.ajax
+                ({
+                    type: "POST",
+
+                    url: 'Solicitud.aspx/ReleaseAllLkdSolicitudes',
+
+                    data: "{'lockedId':'" + lockedId +"'}",
+
+                    contentType: "application/json; charset=utf-8",
+
+                    dataType: "json",
+
+                success: function (msg) 
+                {
+                },
+
+                error: function (e) 
+                {
+                    alert("error:" + e);
+                }
+            });
+        }
+
+        function KeepAlive()
+        {
+            $.ajax
+               ({
+                   type: "POST",
+
+                   url: 'Solicitud.aspx/KeepAlive',
+
+                   data: "{}",
+
+                   contentType: "application/json; charset=utf-8",
+
+                   dataType: "json",
+
+                   success: function (msg) 
+                   {
+                   },
+
+                   error: function (e) 
+                   {
+                   }
+               });
+        }
 
         function ChangeClinetSideColors(lblColor, titleColor) {
             $('#printBtn').css({ 'color': lblColor });
@@ -54,7 +104,12 @@
         {
             alert(alertMsg);
 
-            window.location = "Main.aspx";
+            //Redirect to previous page if history has something
+            if (history.length != 0)
+                history.go(-1);
+
+            else
+                window.location = "Consultas/ConsultasMain.aspx";
         }
 
         function EncryptDrivers(word, event)
@@ -204,6 +259,8 @@
                     }
                 }
 
+                
+
                 word.value = ""
 
                 //Rebuild SSN using all new sets
@@ -219,7 +276,7 @@
 
                         else if ((i === 5))
                             wordSplit[i] = wordSplit[i] + "-";
-                    }
+                    }                   
 
                     //Double check if 1st and 2nd sets are numeric cause doesn't check when working on the last set
                     if (!isNaN(result) || wordSplit[i] === '-' || wordSplit[i] === '*'
@@ -306,6 +363,12 @@
         }
 
     </script>
+
+     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+
+    <script src="../../Scripts/jquery.mask.js" type="text/javascript"></script>
 
     <asp:HiddenField ID ="aliveHF" runat ="server" />
 

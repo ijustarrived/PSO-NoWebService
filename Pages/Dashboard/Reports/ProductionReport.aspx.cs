@@ -553,8 +553,8 @@ namespace PSO.Pages.Dashboard.Reports
             dateDiff = dateDiff - noLaborablesCount;
 
             //La diferencia por lo menos debe de ser uno por que se tarda un dia minimo, en procesar
-            if (dateDiff < 1)
-                dateDiff = 1;
+            //if (dateDiff < 1)
+            //    dateDiff = 1;
 
             return dateDiff;
         }

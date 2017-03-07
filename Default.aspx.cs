@@ -11,7 +11,7 @@ namespace PSO
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/Pages/Login.aspx", true);
         }
     }
 }

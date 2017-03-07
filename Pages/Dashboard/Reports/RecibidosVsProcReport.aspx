@@ -293,7 +293,7 @@
         <asp:GridView runat="server" AutoGenerateColumns="false" AllowPaging="True" ForeColor="#79256E" BackColor="#F3F0F7"
             CellPadding="2" GridLines="None" CssClass="table" ShowHeaderWhenEmpty="true" ID="recievedGV"
             Style="margin-top: 40px; width: 95%; margin-left: auto; margin-right: auto"
-            DataSourceID="solicitudesSQLDS" OnRowDataBound="recievedGV_RowDataBound">
+            DataSourceID="solicitudesSQLDS" OnRowDataBound="recievedGV_RowDataBound" OnPageIndexChanging ="recievedGV_PageIndexChanging">
 
             <AlternatingRowStyle BackColor="#E5E5E5" />
 
