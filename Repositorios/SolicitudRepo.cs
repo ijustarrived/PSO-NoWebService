@@ -654,11 +654,11 @@ namespace PSO.Repositorios
 
                             FechaTramitada = reader.GetDateTime(col++),
 
-                            CoordinadorID = reader.GetInt32(col++),
+                            CoordinadorID = reader.GetString(col++),
 
                             FechaRevision = reader.GetDateTime(col++),
 
-                            ProcesadorId = reader.GetInt32(col++),
+                            ProcesadorId = reader.GetString(col++),
 
                             FechaAsigProcesador = reader.GetDateTime(col++),
 
@@ -844,11 +844,11 @@ namespace PSO.Repositorios
 
                             FechaTramitada = reader.GetDateTime(col++),
 
-                            CoordinadorID = reader.GetInt32(col++),
+                            CoordinadorID = reader.GetString(col++),
 
                             FechaRevision = reader.GetDateTime(col++),
 
-                            ProcesadorId = reader.GetInt32(col++),
+                            ProcesadorId = reader.GetString(col++),
 
                             FechaAsigProcesador = reader.GetDateTime(col++),
 
@@ -1161,11 +1161,11 @@ namespace PSO.Repositorios
 
                     FechaTramitada = reader.GetDateTime(col++),
 
-                    CoordinadorID = reader.GetInt32(col++),
+                    CoordinadorID = reader.GetString(col++),
 
                     FechaRevision = reader.GetDateTime(col++),
 
-                    ProcesadorId = reader.GetInt32(col++),
+                    ProcesadorId = reader.GetString(col++),
 
                     FechaAsigProcesador = reader.GetDateTime(col++),
 
@@ -1269,11 +1269,11 @@ namespace PSO.Repositorios
 
                     FechaTramitada = reader.GetDateTime(col++),
 
-                    CoordinadorID = reader.GetInt32(col++),
+                    CoordinadorID = reader.GetString(col++),
 
                     FechaRevision = reader.GetDateTime(col++),
 
-                    ProcesadorId = reader.GetInt32(col++),
+                    ProcesadorId = reader.GetString(col++),
 
                     FechaAsigProcesador = reader.GetDateTime(col++),
 

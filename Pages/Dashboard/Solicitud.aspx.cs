@@ -293,7 +293,10 @@ namespace PSO.Pages.Dashboard
                     {
                         coorRow.Visible = true;
 
-                        coorDDL.SelectedIndex = solicitud.CoordinadorID;
+                        if (coorDDL.Items.FindByText(solicitud.CoordinadorID) == null)
+                            coorDDL.Items.Add(solicitud.CoordinadorID);
+
+                        coorDDL.SelectedValue = solicitud.CoordinadorID;
 
                         coorDDL.Enabled = false;
 
@@ -319,7 +322,7 @@ namespace PSO.Pages.Dashboard
 
                         #region Set procesadores ddl
 
-                        LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Usuario.TiposUsuarios.PROCESADOR, false);
+                        LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Usuario.TiposUsuarios.PROCESADOR, true);
 
                         for (int i = 0; i < procesadores.Count; i++)
                         {
@@ -328,7 +331,10 @@ namespace PSO.Pages.Dashboard
 
                         #endregion
 
-                        procesadoresDDL.SelectedIndex = solicitud.ProcesadorId;
+                        if (procesadoresDDL.Items.FindByText(solicitud.ProcesadorId) == null)
+                            procesadoresDDL.Items.Add(solicitud.ProcesadorId);
+
+                        procesadoresDDL.SelectedValue = solicitud.ProcesadorId;
 
                         procesadoresDDL.Enabled = false;
 
@@ -484,11 +490,12 @@ namespace PSO.Pages.Dashboard
 
                                 #region Set procesadores ddl
 
-                                LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Usuario.TiposUsuarios.PROCESADOR, false);
+                                LinkedList<Usuario> procesadores = UserRepo.GetUsersByRole((int)Usuario.TiposUsuarios.PROCESADOR, true);
 
                                 for (int i = 0; i < procesadores.Count; i++)
                                 {
-                                    procesadoresDDL.Items.Add(procesadores.ElementAt(i).GetNombreCompleto());
+                                    if(procesadores.ElementAt(i).Activo)
+                                        procesadoresDDL.Items.Add(procesadores.ElementAt(i).GetNombreCompleto());
                                 }
 
                                 procesadoresDDL.SelectedIndex = 0;
@@ -1193,7 +1200,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
                         #region PEND_REVISAR
 
-                        solicitud.CoordinadorID = coorDDL.SelectedIndex;
+                        solicitud.CoordinadorID = coorDDL.SelectedValue;
 
                         solicitud.LockedById = 0;
 
@@ -1275,7 +1282,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
                         #region PEND_ASIGNAR
 
-                        solicitud.ProcesadorId = procesadoresDDL.SelectedIndex;
+                        solicitud.ProcesadorId = procesadoresDDL.SelectedValue;
 
                         solicitud.FechaAsigProcesador = Convert.ToDateTime(fechaAsignadoLbl.Text.Split(':')[1]);
 

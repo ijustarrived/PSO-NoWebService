@@ -202,6 +202,7 @@
     <Content Include="Pages\Register.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="WebServices\LockingService.asmx" />
     <None Include="Properties\PublishProfiles\pso-pr.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\PSOGoDaddy.pubxml" />
     <None Include="Properties\PublishProfiles\PSOGoDaddyTetsing.pubxml" />
@@ -488,10 +489,13 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="WebServices\LockingService.asmx.cs">
+      <DependentUpon>LockingService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Web Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -64,6 +64,8 @@
         }
     </style>
 
+     
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -87,9 +89,32 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
+                <asp:ScriptReference Path ="~/WebServices/LockingService.asmx" />
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
+
+        <%--<script>
+
+         $.ajax({
+             type: "POST",
+             url: "/WebServices/LockingService.asmx/HelloWorld",
+             data: "{}",
+             contentType: "application/json; charset=utf-8",
+             dataType: "json",
+             success: 
+                 function sucess(ok)
+                 {
+                     alert("no progrem: " + ok.d);
+                 },
+             error: 
+                 function error(e)
+                 {
+                     alert("error: " + e.d);
+                 }
+         });
+
+     </script>--%>
 
         <asp:Panel Style="margin-left: 10%; margin-top: 20px; font-size: large; color: #79256E;" ID="dashboardLinkPnl" runat="server">
         </asp:Panel>

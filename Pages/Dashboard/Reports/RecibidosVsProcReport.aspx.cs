@@ -123,26 +123,28 @@ namespace PSO.Pages.Dashboard.Reports
                 ViewState["Procs"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR, false);
             }
 
-            if (recievedGV.Rows.Count != 0)
-            {
-                recievedGV.AllowPaging = false;
+            CountRowsNPages();
 
-                recievedGV.AllowSorting = false;
+            //if (recievedGV.Rows.Count != 0)
+            //{                
+            //    recievedGV.AllowPaging = false;
 
-                recievedGV.DataBind();
+            //    recievedGV.AllowSorting = false;
 
-                totalAvisosLbl.Text = string.Format("Total de Solicitudes: {0}",
-                    recievedGV.Rows.Count);
+            //    recievedGV.DataBind();
 
-                recievedGV.AllowPaging = true;
+            //    totalAvisosLbl.Text = string.Format("Total de Solicitudes: {0}",
+            //        recievedGV.Rows.Count);
 
-                recievedGV.AllowSorting = true;
+            //    recievedGV.AllowPaging = true;
 
-                recievedGV.DataBind();
+            //    recievedGV.AllowSorting = true;
 
-                totalPagesLbl.Text = string.Format("Total de Paginas: {0}",
-                    recievedGV.PageCount);
-            }
+            //    recievedGV.DataBind();
+
+            //    totalPagesLbl.Text = string.Format("Total de Paginas: {0}",
+            //        recievedGV.PageCount);
+            //}
         }
 
         [System.Web.Services.WebMethod]
@@ -240,17 +242,25 @@ namespace PSO.Pages.Dashboard.Reports
                 //Coor
                 case 1:
 
-                    where = string.Format("{0} @AND CoordinadorID = {1} AND FechaRevision <> CONVERT(datetime, '12/31/9999 23:59:59.997')",
-                        where, searchDDL.SelectedIndex - 1); // - 1 cause el ddl del coor empieza del 1 y el del db empieza en el 0
+                    //where = string.Format("{0} @AND CoordinadorID = {1} AND FechaRevision <> CONVERT(datetime, '12/31/9999 23:59:59.997')",
+                    //    where, searchDDL.SelectedIndex - 1); // - 1 cause el ddl del coor empieza del 1 y el del db empieza en el 0
+
+                    where = string.Format(@"{0} @AND REPLACE(CoordinadorID, ' ', '') = REPLACE('{1}', ' ', '') 
+                        AND FechaRevision <> CONVERT(datetime, '12/31/9999 23:59:59.997')",
+                       where, searchDDL.SelectedValue);
 
                     break;
 
                 //Proc
                 case 2:
 
-                    where = string.Format(@"{0} @AND (ProcesadorID = {1}) 
+                    where = string.Format(@"{0} @AND (REPLACE(ProcesadorID, ' ', '') = REPLACE('{1}', ' ', '')) 
                                                 AND (FechaAsigProcesador <> CONVERT(datetime, '12/31/9999 23:59:59.997'))",
-                                                where, searchDDL.SelectedIndex);
+                                                where, searchDDL.SelectedValue);
+
+                    //where = string.Format(@"{0} @AND (ProcesadorID = {1}) 
+                    //                            AND (FechaAsigProcesador <> CONVERT(datetime, '12/31/9999 23:59:59.997'))",
+                    //                            where, searchDDL.SelectedIndex);
 
                     //where = string.Format(@"{0} @AND (ProcesadorID = {1}) 
                     //                            AND (FechaAsigProcesador <> CONVERT(datetime, '12/31/9999 23:59:59.997'))",
@@ -331,7 +341,7 @@ namespace PSO.Pages.Dashboard.Reports
                 {
                     LinkedList<Usuario> coordinadores = (LinkedList<Usuario>)ViewState["Coords"];
 
-                    e.Row.Cells[4].Text = coordinadores.ElementAt(Convert.ToInt32(e.Row.Cells[4].Text)).GetNombreCompleto();
+                    //e.Row.Cells[4].Text = coordinadores.ElementAt(Convert.ToInt32(e.Row.Cells[4].Text)).GetNombreCompleto();
                 }
 
                 DateTime fechaTrabajo = Convert.ToDateTime(e.Row.Cells[2].Text),
@@ -361,7 +371,7 @@ namespace PSO.Pages.Dashboard.Reports
                 {
                     LinkedList<Usuario> procesadores = (LinkedList<Usuario>)ViewState["Procs"];
 
-                    e.Row.Cells[5].Text = procesadores.ElementAt(Convert.ToInt32(e.Row.Cells[5].Text) - 1).GetNombreCompleto();
+                    //e.Row.Cells[5].Text = procesadores.ElementAt(Convert.ToInt32(e.Row.Cells[5].Text) - 1).GetNombreCompleto();
                 }
 
                 else
@@ -397,6 +407,8 @@ namespace PSO.Pages.Dashboard.Reports
                 desdeDetailTxtBx.Text = string.Empty;
             }
             recievedGV.DataBind();
+
+            CountRowsNPages();
         }
 
         protected void filterDDL_SelectedIndexChanged(object sender, EventArgs e)
@@ -507,6 +519,30 @@ namespace PSO.Pages.Dashboard.Reports
             recievedGV.PageIndex = e.NewPageIndex;
 
             recievedGV.DataBind();
+        }
+
+        private void CountRowsNPages()
+        {
+            if (recievedGV.Rows.Count != 0)
+            {
+                recievedGV.AllowPaging = false;
+
+                recievedGV.AllowSorting = false;
+
+                recievedGV.DataBind();
+
+                totalAvisosLbl.Text = string.Format("Total de Solicitudes: {0}",
+                    recievedGV.Rows.Count);
+
+                recievedGV.AllowPaging = true;
+
+                recievedGV.AllowSorting = true;
+
+                recievedGV.DataBind();
+
+                totalPagesLbl.Text = string.Format("Total de Paginas: {0}",
+                    recievedGV.PageCount);
+            }
         }
     }
 }

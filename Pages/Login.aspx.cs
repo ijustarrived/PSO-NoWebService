@@ -73,55 +73,72 @@ namespace PSO.Pages
 
                 else
                 {
-                    if (user.Activo)
+                    #region Check logged lock and if active
+
+                    if (!user.IsLoggedIn)
                     {
-                        Session["UserObj"] = user;
-
-                        //It's defined with a 0 cause if I don't put a value the index won't exist
-                        //in the session and in js, when I call it, won't return anything. Not even an empty string nor null
-                        Session["lockedId"] = 0;
-
-                        #region Release all locked solicitudes in a new thread
-
-                        if (user.Role.RoleType == Rol.TiposRole.COORDINADOR)
+                        if (user.Activo)
                         {
-                            try
+                            UserRepo.UpdateUserLoggedLock(user.ID, true);
+
+                            Session["UserObj"] = user;
+
+                            //Only used on js timeout asp web service call
+                            Session["UserId"] = user.ID;
+
+                            //It's defined with a 0 cause if I don't put a value the index won't exist
+                            //in the session and in js, when I call it, won't return anything. Not even an empty string nor null
+                            Session["lockedId"] = 0;
+
+                            #region Release all locked solicitudes in a new thread
+
+                            if (user.Role.RoleType == Rol.TiposRole.COORDINADOR)
                             {
-                                Task.Factory.StartNew(() =>
+                                try
                                 {
-                                    try
+                                    Task.Factory.StartNew(() =>
                                     {
-                                        Exception excep = SolicitudRepo.ReleaseAllLockedSolicitudes(user.ID);
-
-                                        if (excep != null)
+                                        try
                                         {
-                                            throw new Exception(string.Format(
-                                            "No se pudo actualizar la solicitudes. Error Liberar Solicitudes: {0}",
-                                                excep.Message.Replace("'", string.Empty)));
+                                            Exception excep = SolicitudRepo.ReleaseAllLockedSolicitudes(user.ID);
+
+                                            if (excep != null)
+                                            {
+                                                throw new Exception(string.Format(
+                                                "No se pudo actualizar la solicitudes. Error Liberar Solicitudes: {0}",
+                                                    excep.Message.Replace("'", string.Empty)));
+                                            }
                                         }
-                                    }
 
-                                    catch (Exception ex)
-                                    {
-                                        Session["emailError"] = ex.Message;
-                                    }
-                                });
+                                        catch (Exception ex)
+                                        {
+                                            Session["emailError"] = ex.Message;
+                                        }
+                                    });
+                                }
+
+                                catch (Exception ex)
+                                {
+                                    Session["emailThreadError"] = ex.Message;
+                                }
                             }
 
-                            catch (Exception ex)
-                            {
-                                Session["emailThreadError"] = ex.Message;
-                            }
+                            #endregion
+
+                            Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
                         }
 
-                        #endregion
-
-                        Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
+                        else
+                            ClientScript.RegisterStartupScript(this.GetType(), "userDeactivatedAlert",
+                        "alert('Este perfil esta desactivado');", true);
                     }
 
                     else
-                        ClientScript.RegisterStartupScript(this.GetType(), "userDeactivatedAlert",
-                    "alert('Este perfil esta desactivado');", true);
+                        ClientScript.RegisterStartupScript(this.GetType(), "userAlreadyLoggedAlert",
+                        "alert('Este perfil esta en uso');", true);
+
+                    #endregion
+
                 }
             }
 

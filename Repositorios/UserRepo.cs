@@ -215,6 +215,50 @@ namespace PSO.Repositorios
             }
         }
 
+        public static Exception UpdateUserLoggedLock(int id, bool shouldBeLoggedLocked)
+        {
+            using (SqlConnection conn = DB.GetLocalConnection())
+            {
+                #region Sql command
+
+                SqlCommand cmd = new SqlCommand(@"UPDATE Usuarios SET IsLoggedIn = @IsLoggedIn
+                                                                            WHERE ID = @ID;", conn);
+
+                #endregion
+
+                #region Command Parameteres
+
+                cmd.Parameters.AddWithValue("@IsLoggedIn", shouldBeLoggedLocked);
+
+                cmd.Parameters.AddWithValue("@ID", id);
+
+                conn.Open();
+
+                #endregion
+
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    cmd.Transaction = transaction;
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+
+                        transaction.Commit();
+
+                        return null;
+                    }
+
+                    catch (SqlException ex)
+                    {
+                        transaction.Rollback();
+
+                        return ex;
+                    }
+                }
+            }
+        }
+
         public static Usuario GetUserByEmail(string email)
         {
             Usuario user = new Usuario();
@@ -378,6 +422,8 @@ namespace PSO.Repositorios
                 user.Email = reader.GetString(col++);
 
                 user.Activo = reader.GetBoolean(col++);
+
+                user.IsLoggedIn = reader.GetBoolean(col++);
             }
             #endregion
         }
@@ -438,6 +484,8 @@ namespace PSO.Repositorios
                 user.Email = reader.GetString(col++);
 
                 user.Activo = reader.GetBoolean(col++);
+
+                user.IsLoggedIn = reader.GetBoolean(col++);
 
                 users.AddLast(user);
             }

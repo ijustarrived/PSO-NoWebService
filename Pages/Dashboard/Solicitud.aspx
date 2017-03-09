@@ -7,30 +7,29 @@
 
     <script>
 
-        var countDown = 1020; /*equals 17 minutes in seconds not exact 15 cause it might die before if it was exact due to threa priorities.
+        var countDown = 1020;  /*equals 17 minutes in seconds not exact 15 cause it might die before if it was exact due to threa priorities.
         //It's converted to seconds cause the interval loop every second not every millisecond*/
 
-        var timer = setInterval("Alive()", 1000);
+        var timer = setInterval("KeepAlive()", 1000); //Set to run every 1 sec
 
-        function Alive()
+        function KeepAlive()
         {
             var aliveHF = document.getElementById("<%= aliveHF.ClientID%>");
 
             //The purpose of KeepAlive is to run a single line of programmming on the server 
             //just so it can keep the session alive.
-            aliveHF.value = PageMethods.KeepAlive();
-
-            //KeepAlive();
+                aliveHF.value = PageMethods.KeepAlive();
 
             //When the countdown hits 0 it'll do a fake timeout
                 if (countDown === 0)
                 {
                     clearInterval(timer);
 
-                    var lockedId = <%= Session["lockedId"] %>;
+                    var userId = <%= Session["UserId"] %>;
 
-                    //if(lockedId != 0)
-                    //    PageMethods.ReleaseAllLkdSolicitudes(lockedId);
+                    UpdateUserLoggedLock(userId, false);
+
+                    var lockedId = <%= Session["lockedId"]%>;
 
                     if(lockedId != 0)
                         ReleaseAllLkdSolicitudes(lockedId);
@@ -56,39 +55,34 @@
 
                     dataType: "json",
 
-                success: function (msg) 
-                {
-                },
+                    success: function (msg) 
+                    {
+                    },
 
-                error: function (e) 
-                {
-                    alert("error:" + e);
-                }
-            });
+                    error: function (e) 
+                    {
+                       
+                    }
+                });
         }
 
-        function KeepAlive()
+        function UpdateUserLoggedLock(userId, shouldBeLoggedLock)
         {
-            $.ajax
-               ({
-                   type: "POST",
-
-                   url: 'Solicitud.aspx/KeepAlive',
-
-                   data: "{}",
-
-                   contentType: "application/json; charset=utf-8",
-
-                   dataType: "json",
-
-                   success: function (msg) 
-                   {
-                   },
-
-                   error: function (e) 
-                   {
-                   }
-               });
+            $.ajax({
+                type: "POST",
+                url: "/WebServices/LockingService.asmx/UpdateUserLoginLock",
+                data: "{'id':'"+ userId +"', 'shouldBeLoggedLocked': '"+ shouldBeLoggedLock +"'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success:
+                    function sucess(ok) {
+                        
+                    },
+                error:
+                    function error(e) {
+                        
+                    }
+            });
         }
 
         function ChangeClinetSideColors(lblColor, titleColor) {

@@ -13,11 +13,11 @@
     </style>
 
     <script>
+        
+        var countDown = 1020;  /*equals 17 minutes in seconds not exact 15 cause it might die before if it was exact due to threa priorities.
+        //It's converted to seconds cause the interval loop every second not every millisecond*/
 
-        var countDown = 1020; /*equals 17 minutes in seconds not exact 15 cause it might die before if it was exact due to threa priorities.
-        It's converted to seconds cause the interval loop every second not every millisecond*/
-
-        var timer = setInterval("KeepAlive()", 1000);
+        var timer = setInterval("KeepAlive()", 1000); //Set to run every 1 sec
 
         function KeepAlive()
         {
@@ -32,17 +32,67 @@
                 {
                     clearInterval(timer);
 
-                    var lockedId = <%= Session["lockedId"] %>;
+                    var userId = <%= Session["UserId"] %>;
+
+                    UpdateUserLoggedLock(userId, false);
+
+                    var lockedId = <%= Session["lockedId"]%>;
 
                     if(lockedId != 0)
-                        PageMethods.ReleaseAllLkdSolicitudes(lockedId);
+                        ReleaseAllLkdSolicitudes(lockedId);
 
                     window.location.href = '../../Login.aspx';
                 }
 
                 else
                     countDown = countDown - 1;
-            }
+        }
+
+        //Releases all solicitudes under that user
+        function ReleaseAllLkdSolicitudes(lockedId) 
+        {     
+            $.ajax
+                ({
+                    type: "POST",
+
+                    url: 'Solicitud.aspx/ReleaseAllLkdSolicitudes',
+
+                    data: "{'lockedId':'" + lockedId +"'}",
+
+                    contentType: "application/json; charset=utf-8",
+
+                    dataType: "json",
+
+                    success: function (msg) 
+                    {
+                    },
+
+                    error: function (e) 
+                    {
+                       
+                    }
+                });
+        }
+
+        //Updates current user logged lock
+        function UpdateUserLoggedLock(userId, shouldBeLoggedLock)
+        {
+            $.ajax({
+                type: "POST",
+                url: "/WebServices/LockingService.asmx/UpdateUserLoginLock",
+                data: "{'id':'"+ userId +"', 'shouldBeLoggedLocked': '"+ shouldBeLoggedLock +"'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success:
+                    function sucess(ok) {
+                        
+                    },
+                error:
+                    function error(e) {
+                        
+                    }
+            });
+        }
 
     </script>
 

@@ -120,7 +120,7 @@ namespace PSO.Pages.Dashboard.Reports
 
             if (!IsPostBack)
             {
-                ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR, false);
+                //ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR, false);                
             }
 
             rolDDL_SelectedIndexChanged(sender, EventArgs.Empty);
@@ -185,8 +185,8 @@ namespace PSO.Pages.Dashboard.Reports
                 {
                     if (rolIndex == 1)
                     {
-                        // -1 cause procesador ddl, in solicitud, starts at 0 and in db starts in 1
-                        if ((solicitudes.ElementAt(i2).ProcesadorId - 1) == i)
+                        if ((solicitudes.ElementAt(i2).ProcesadorId.Replace(" ", string.Empty)).Equals(
+                            empleados.ElementAt(i).GetNombreCompleto().Replace(" ", string.Empty)))
                         {
                             employeeSolicitudesCount++;
                         }
@@ -194,7 +194,11 @@ namespace PSO.Pages.Dashboard.Reports
 
                     else
                     {
-                        if (solicitudes.ElementAt(i2).CoordinadorID == i)
+                        string nom = empleados.ElementAt(i).GetNombreCompleto().Trim(),
+                            nom2 = solicitudes.ElementAt(i2).CoordinadorID.Trim();
+
+                        if (solicitudes.ElementAt(i2).CoordinadorID.Replace(" ", string.Empty).Equals(
+                            empleados.ElementAt(i).GetNombreCompleto().Replace(" ", string.Empty)))
                         {
                             employeeSolicitudesCount++;
                         }
@@ -366,7 +370,7 @@ namespace PSO.Pages.Dashboard.Reports
             {
                 case 1:
 
-                    empleados = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR, false);
+                    empleados = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR, true);
 
                     solicitudes = GetSolicitudesByStatusNDateRange(Rol.TiposRole.PROCESADOR);
 
@@ -374,7 +378,7 @@ namespace PSO.Pages.Dashboard.Reports
 
                 default:
 
-                    empleados = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR, false);
+                    empleados = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR, true);
 
                     solicitudes = GetSolicitudesByStatusNDateRange(Rol.TiposRole.COORDINADOR);
 
@@ -394,7 +398,7 @@ namespace PSO.Pages.Dashboard.Reports
 
                 procGV.Visible = !coorGV.Visible;
 
-                ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR, false);
+                //ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.COORDINADOR, false);
 
                 if (string.IsNullOrEmpty(desdeTxtBx.Text))
                     coorGV.DataSource = SolicitudRepo.GetSolicitudesCompletadasByRole(Rol.TiposRole.COORDINADOR);
@@ -418,7 +422,7 @@ namespace PSO.Pages.Dashboard.Reports
 
                 procGV.Visible = !coorGV.Visible;
 
-                ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR, false);
+                //ViewState["users"] = UserRepo.GetUsersByRole((int)Rol.TiposRole.PROCESADOR, false);
 
                 if (string.IsNullOrEmpty(desdeTxtBx.Text))
                     procGV.DataSource = SolicitudRepo.GetSolicitudesCompletadasByRole(Rol.TiposRole.PROCESADOR);
@@ -441,9 +445,9 @@ namespace PSO.Pages.Dashboard.Reports
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                LinkedList<Usuario> users = (LinkedList<Usuario>)ViewState["users"];
+                //LinkedList<Usuario> users = (LinkedList<Usuario>)ViewState["users"];
 
-                e.Row.Cells[0].Text = users.ElementAt(Convert.ToInt32(e.Row.Cells[0].Text)).GetNombreCompleto();
+                //e.Row.Cells[0].Text = users.ElementAt(Convert.ToInt32(e.Row.Cells[0].Text)).GetNombreCompleto();
 
                 if (!string.IsNullOrEmpty(e.Row.Cells[2].Text))
                     e.Row.Cells[2].Text = e.Row.Cells[2].Text.Split(' ')[0];
@@ -470,9 +474,9 @@ namespace PSO.Pages.Dashboard.Reports
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                LinkedList<Usuario> users = (LinkedList<Usuario>)ViewState["users"];
+                //LinkedList<Usuario> users = (LinkedList<Usuario>)ViewState["users"];
 
-                e.Row.Cells[0].Text = users.ElementAt(Convert.ToInt32(e.Row.Cells[0].Text) - 1).GetNombreCompleto();
+                //e.Row.Cells[0].Text = users.ElementAt(Convert.ToInt32(e.Row.Cells[0].Text) - 1).GetNombreCompleto();
 
                 if (!string.IsNullOrEmpty(e.Row.Cells[2].Text))
                     e.Row.Cells[2].Text = e.Row.Cells[2].Text.Split(' ')[0];

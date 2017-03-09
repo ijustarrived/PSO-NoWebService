@@ -128,6 +128,10 @@ namespace PSO.Pages.Dashboard
 
         protected void logoutBtn_Click(object sender, EventArgs e)
         {
+            int userId = (int)Session["UserId"];
+
+            UserRepo.UpdateUserLoggedLock(userId, false);
+
             if (Session["UserObj"] != null)
                 Session.Remove("UserObj");
 

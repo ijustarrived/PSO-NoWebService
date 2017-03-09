@@ -166,7 +166,7 @@ namespace PSO.Pages.Dashboard.Consultas
                 // -1 cause pueblo ddl, in solicitud, starts in 0 and db starts in 1
                 e.Row.Cells[3].Text = Pueblo.GetPueblo(Convert.ToInt32(e.Row.Cells[3].Text) - 1);
 
-                e.Row.Cells[4].Text = filterDDL.Items[Convert.ToInt32(e.Row.Cells[4].Text)].Text;
+                //e.Row.Cells[4].Text = filterDDL.Items[Convert.ToInt32(e.Row.Cells[4].Text)].Text;
 
                 e.Row.Cells[5].Text = e.Row.Cells[5].Text.Split(' ')[0];
             }
@@ -197,7 +197,8 @@ namespace PSO.Pages.Dashboard.Consultas
 
             if (filterDDL.SelectedIndex != 0)  // -1 cause 0 here is default but 0 on solicitud is a procesador
                 //and = string.Format("AND ProcesadorID = {0}", (filterDDL.SelectedIndex - 1));
-                and = string.Format("AND ProcesadorID = {0}", filterDDL.SelectedIndex);
+                //and = string.Format("AND ProcesadorID = {0}", filterDDL.SelectedIndex);
+                and = string.Format("AND ProcesadorID = '{0}'", filterDDL.SelectedValue);
 
             e.Command.CommandText = e.Command.CommandText.Replace("@AND", and);
 

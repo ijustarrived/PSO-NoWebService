@@ -174,6 +174,8 @@ namespace PSO
 
             #endregion
 
+            UserRepo.UpdateUserLoggedLock(user.ID, false);
+
             Session.Remove("UserObj");
 
             Response.Redirect("~/Pages/Login.aspx", true);

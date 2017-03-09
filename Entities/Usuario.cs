@@ -9,7 +9,7 @@ namespace PSO.Entities
     [Serializable]
     public class Usuario
     {
-        private const int USER_MAX_AMOUNT = 99;
+        private const int USER_MAX_AMOUNT = 15;
 
         public enum TiposUsuarios
         {
@@ -59,6 +59,14 @@ namespace PSO.Entities
             Activo = true;
 
             Role = new Rol();
+
+            IsLoggedIn = false;
+        }
+
+        public bool IsLoggedIn
+        {
+            get;
+            set;
         }
 
         public int ID

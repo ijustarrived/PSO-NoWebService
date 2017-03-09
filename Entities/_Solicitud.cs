@@ -34,11 +34,11 @@ namespace PSO.Entities
 
             FechaTramitada = DateTime.MaxValue;
 
-            CoordinadorID = 0;
+            CoordinadorID = string.Empty;
 
             FechaRevision = DateTime.MaxValue;
 
-            ProcesadorId = 0;
+            ProcesadorId = string.Empty;
 
             FechaAsigProcesador = DateTime.MaxValue;
 
@@ -175,7 +175,7 @@ namespace PSO.Entities
             set;
         }
 
-        public int CoordinadorID
+        public string CoordinadorID
         {
             get;
 
@@ -189,7 +189,7 @@ namespace PSO.Entities
             set;
         }
 
-        public int ProcesadorId
+        public string ProcesadorId
         {
             get;
 
