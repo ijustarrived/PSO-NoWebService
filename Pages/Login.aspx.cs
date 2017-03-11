@@ -80,10 +80,15 @@ namespace PSO.Pages
                     //Compare last time it was active and current time. If current is greater means user is logged off 
                     if (user.IsLoggedIn)
                     {
-                        TimeSpan activeTime = new TimeSpan(user.LastTimeActive.Hour, user.LastTimeActive.Minute, 0),
-                            currentTime = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, 0);
+                        //- 12 to convert hour from 24 to 12
+                        //TimeSpan activeTime = new TimeSpan(Math.Abs(user.LastTimeActive.Hour - 12), user.LastTimeActive.Minute, 0),
+                        //    currentTime = new TimeSpan(Math.Abs(DateTime.Now.Hour - 12), DateTime.Now.Minute, 0);
 
-                        if (activeTime > currentTime)
+                        //if (activeTime > currentTime)
+                        DateTime now = DateTime.Now,
+                            lastTimeActive = user.LastTimeActive.AddMinutes(3); //3 min cooldown of inactivity before releasing
+
+                        if (lastTimeActive.TimeOfDay > now.TimeOfDay)
                             locked = true;
                     }
 

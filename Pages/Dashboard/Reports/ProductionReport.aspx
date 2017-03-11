@@ -28,14 +28,14 @@
 
             //The purpose of KeepAlive is to run a single line of programmming on the server 
             //just so it can keep the session alive.
-                aliveHF.value = PageMethods.KeepAlive();
+            aliveHF.value = PageMethods.KeepAlive();
+
+             var userId = <%= Session["UserId"] %>;
 
             //When the countdown hits 0 it'll do a fake timeout
                 if (countDown === 0)
                 {
                     clearInterval(timer);
-
-                    var userId = <%= Session["UserId"] %>;
 
                     UpdateUserLoggedLock(userId, false);
 
@@ -48,7 +48,11 @@
                 }
 
                 else
+                {
                     countDown = countDown - 1;
+
+                    UpdateUserLoggedLock(userId, true);
+                }
         }
 
         //Releases all solicitudes under that user

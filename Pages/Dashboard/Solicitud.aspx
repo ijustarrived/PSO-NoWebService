@@ -7,7 +7,7 @@
 
     <script>
 
-        var countDown = 1020;  /*equals 17 minutes in seconds not exact 15 cause it might die before if it was exact due to threa priorities.
+         var countDown = 1020;  /*equals 17 minutes in seconds not exact 15 cause it might die before if it was exact due to threa priorities.
         //It's converted to seconds cause the interval loop every second not every millisecond*/
 
         var timer = setInterval("KeepAlive()", 1000); //Set to run every 1 sec
@@ -18,14 +18,14 @@
 
             //The purpose of KeepAlive is to run a single line of programmming on the server 
             //just so it can keep the session alive.
-                aliveHF.value = PageMethods.KeepAlive();
+            aliveHF.value = PageMethods.KeepAlive();
+
+             var userId = <%= Session["UserId"] %>;
 
             //When the countdown hits 0 it'll do a fake timeout
                 if (countDown === 0)
                 {
                     clearInterval(timer);
-
-                    var userId = <%= Session["UserId"] %>;
 
                     UpdateUserLoggedLock(userId, false);
 
@@ -38,7 +38,11 @@
                 }
 
                 else
+                {
                     countDown = countDown - 1;
+
+                    UpdateUserLoggedLock(userId, true);
+                }
         }
 
         function ReleaseAllLkdSolicitudes(lockedId) 
