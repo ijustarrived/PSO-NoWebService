@@ -153,6 +153,17 @@ namespace PSO.Pages.Dashboard.Consultas
                 e.Row.Cells[4].Text = e.Row.Cells[4].Text.Split(' ')[0];
 
                 e.Row.Cells[5].Text = UserRepo.GetUserByID(Convert.ToInt32(e.Row.Cells[5].Text)).GetNombreCompleto();
+
+                if (!string.IsNullOrEmpty(e.Row.Cells[5].Text))
+                {
+                    _Solicitud solicitud = SolicitudRepo.GetSolicitudByNumSolicitud(e.Row.Cells[0].Text);
+
+                    Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
+
+                    if (_Solicitud.ShouldSolicitudBeReleased(solicitud, user))
+                        e.Row.Cells[5].Text = string.Empty;
+
+                }
             }
 
             else if (e.Row.RowType == DataControlRowType.EmptyDataRow)

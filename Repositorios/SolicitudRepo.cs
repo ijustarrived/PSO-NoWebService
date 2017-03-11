@@ -58,7 +58,8 @@ namespace PSO.Repositorios
                                                                             PuebloPostalCo,
                                                                             CodigoPostalPostalCo,
                                                                             FechaDocIncompleto,
-                                                                            LockedById)
+                                                                            LockedById,
+                                                                            LockedAt)
                                                                             VALUES(@Status, @NumeroSolicitud, @FechaTramitada, @CoordinadorID, @FechaRevision
                                                                             , @ProcesadorID, @FechaAsigProcesador, @ComentarioProcesador,
                                                                             @TrabajadorID, @FechaTrabajado, @ComentarioTrabajador,
@@ -72,11 +73,13 @@ namespace PSO.Repositorios
                                                                             @TelefonoCo, @LicenciaConducirCo, @CelularCo, @DireccionCo,
                                                                             @PuebloCo, @CodigoPostalCo, @DireccionPostalCo,
                                                                             @PuebloPostalCo, @CodigoPostalPostalCo, @FechaDocIncompleto,
-                                                                            @LockedById);", conn);
+                                                                            @LockedById, @LockedAt);", conn);
 
                 #endregion
 
                 #region Command Parameteres
+
+                cmd.Parameters.AddWithValue("@LockedAt", solicitud.LockedAt);
 
                 cmd.Parameters.AddWithValue("@LockedById", solicitud.LockedById);
 
@@ -367,7 +370,8 @@ namespace PSO.Repositorios
             {
                 #region Sql command
 
-                SqlCommand cmd = new SqlCommand(@"UPDATE Solicitudes SET LockedById = @LockedById
+                SqlCommand cmd = new SqlCommand(@"UPDATE Solicitudes SET LockedById = @LockedById,
+                                                                         LockedAt = @LockedAt
                                                                             WHERE ID = @ID;", conn);
 
                 #endregion
@@ -375,6 +379,8 @@ namespace PSO.Repositorios
                 #region Command Parameteres
 
                 cmd.Parameters.AddWithValue("@LockedById", solicitud.LockedById);
+
+                cmd.Parameters.AddWithValue("@LockedAt", DateTime.Now);
 
                 cmd.Parameters.AddWithValue("@ID", solicitud.ID);
 
@@ -734,6 +740,8 @@ namespace PSO.Repositorios
 
                             LockedById = reader.GetInt32(col++),
 
+                            LockedAt = reader.GetDateTime(col++),
+
                             Duration = reader.GetInt32(col++).ToString()
                         });
                     }
@@ -923,6 +931,8 @@ namespace PSO.Repositorios
                             FechaDocIncompleto = reader.GetDateTime(col++),
 
                             LockedById = reader.GetInt32(col++),
+
+                            LockedAt = reader.GetDateTime(col++),
 
                             Duration = reader.GetInt32(col++).ToString()
                         });
@@ -1239,7 +1249,9 @@ namespace PSO.Repositorios
 
                     FechaDocIncompleto = reader.GetDateTime(col++),
 
-                    LockedById = reader.GetInt32(col++)
+                    LockedById = reader.GetInt32(col++),
+
+                    LockedAt = reader.GetDateTime(col++)
                 };
             }
             #endregion
@@ -1347,7 +1359,9 @@ namespace PSO.Repositorios
 
                     FechaDocIncompleto = reader.GetDateTime(col++),
 
-                    LockedById = reader.GetInt32(col++)
+                    LockedById = reader.GetInt32(col++),
+
+                    LockedAt = reader.GetDateTime(col++)
                 });
             }
             #endregion

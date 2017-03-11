@@ -30,6 +30,8 @@ namespace PSO.Entities
 
             NumeroSolicitud = string.Empty;
 
+            LockedAt = DateTime.MaxValue;
+
             FechaDocIncompleto = DateTime.MaxValue;
 
             FechaTramitada = DateTime.MaxValue;
@@ -111,6 +113,12 @@ namespace PSO.Entities
             FechaNacimientoCo = DateTime.MaxValue;
 
             Duration = string.Empty;
+        }
+
+        public DateTime LockedAt
+        {
+            get;
+            set;
         }
 
         public int LockedById
@@ -536,6 +544,23 @@ namespace PSO.Entities
             }
 
             return status;
+        }
+
+        public static bool ShouldSolicitudBeReleased(_Solicitud solicitud, Usuario user)
+        {
+            if (solicitud.LockedById != 0 && solicitud.LockedById != user.ID)
+            {
+                DateTime currentDate = DateTime.Now;
+
+                int timeComparison = TimeSpan.Compare(solicitud.LockedAt.AddMinutes(15).TimeOfDay, currentDate.TimeOfDay);
+
+                if (timeComparison < 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

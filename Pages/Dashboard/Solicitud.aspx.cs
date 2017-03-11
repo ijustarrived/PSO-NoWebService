@@ -412,6 +412,9 @@ namespace PSO.Pages.Dashboard
                             {
                                 #region Check lockedId
 
+                                if (_Solicitud.ShouldSolicitudBeReleased(solicitud, user))
+                                    solicitud.LockedById = 0;
+
                                 if (solicitud.LockedById == 0)
                                 {
                                     solicitud.LockedById = user.ID;
