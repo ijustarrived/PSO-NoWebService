@@ -62,6 +62,11 @@
         .calendars {
             width: auto;
         }
+
+        .gvPager span {
+    text-decoration:underline !important;
+}
+
     </style>
 
 </head>
@@ -84,7 +89,7 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
-                <asp:ScriptReference Path ="~/WebServices/LockingService.asmx" />                
+                <asp:ScriptReference Path ="~/WebServices/LockingService.asmx" />
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>

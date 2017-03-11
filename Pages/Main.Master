@@ -62,6 +62,10 @@
             margin-bottom: 40px;
             margin-left: 20px;
         }
+
+        .gvPager span {
+    text-decoration:underline !important;
+}
     </style>
 
      

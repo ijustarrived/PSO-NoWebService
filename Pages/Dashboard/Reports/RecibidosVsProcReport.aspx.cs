@@ -419,6 +419,9 @@ namespace PSO.Pages.Dashboard.Reports
 
             statusDiv.Visible = filterDDL.SelectedIndex == 2;
 
+            if (!searchDDL.Visible)
+                statusSearchDDL.SelectedIndex = 0;
+
             switch (filterDDL.SelectedIndex)
             {
                 //Coor

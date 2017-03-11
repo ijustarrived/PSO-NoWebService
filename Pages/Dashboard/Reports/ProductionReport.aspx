@@ -295,7 +295,7 @@
 
             <HeaderStyle BackColor="#616161" ForeColor="#E5E5E5" Font-Bold="True" />
 
-            <PagerStyle BackColor="#616161" Font-Size="Large" ForeColor="#E5E5E5" Font-Bold="true" />
+            <PagerStyle BackColor="#616161" Font-Size="Large" CssClass ="gvPager" ForeColor="#E5E5E5" Font-Bold="true" />
 
             <SelectedRowStyle BackColor="#79256E" ForeColor="#F3F0F7" />
 

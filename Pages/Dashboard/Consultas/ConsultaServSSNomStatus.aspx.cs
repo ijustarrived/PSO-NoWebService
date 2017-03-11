@@ -139,11 +139,8 @@ namespace PSO.Pages.Dashboard.Consultas
 
             #region Set total solicitudes and pages
 
-            if (solicitudesGV.Rows.Count != 0 && string.IsNullOrEmpty(totalAvisosLbl.Text))
+            if (solicitudesGV.Rows.Count != 0)
             {
-                totalPagesLbl.Text = string.Format("Total de Paginas: {0}",
-                    solicitudesGV.PageCount);
-
                 solicitudesGV.AllowPaging = false;
 
                 solicitudesGV.AllowSorting = false;
@@ -158,6 +155,9 @@ namespace PSO.Pages.Dashboard.Consultas
                 solicitudesGV.AllowSorting = true;
 
                 solicitudesGV.DataBind();
+
+                totalPagesLbl.Text = string.Format("Total de Paginas: {0}",
+                    solicitudesGV.PageCount);
             }
 
             #endregion

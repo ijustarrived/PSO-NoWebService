@@ -109,30 +109,32 @@ namespace PSO.Pages.Dashboard.Consultas
                 }
             }
 
-            #region Set total solicitudes and pages
+            SetTotalPagesNSolicitudes();
 
-            if (solicitudesGV.Rows.Count != 0)
-            {
-                solicitudesGV.AllowPaging = false;
+            //#region Set total solicitudes and pages
 
-                solicitudesGV.AllowSorting = false;
+            //if (solicitudesGV.Rows.Count != 0)
+            //{          
+            //    solicitudesGV.AllowPaging = false;
 
-                solicitudesGV.DataBind();
+            //    solicitudesGV.AllowSorting = false;
 
-                totalAvisosLbl.Text = string.Format("Total de Solicitudes: {0}",
-                    solicitudesGV.Rows.Count);
+            //    solicitudesGV.DataBind();
 
-                solicitudesGV.AllowPaging = true;
+            //    totalAvisosLbl.Text = string.Format("Total de Solicitudes: {0}",
+            //        solicitudesGV.Rows.Count);
 
-                solicitudesGV.AllowSorting = true;
+            //    solicitudesGV.AllowPaging = true;
 
-                solicitudesGV.DataBind();
+            //    solicitudesGV.AllowSorting = true;
 
-                totalPagesLbl.Text = string.Format("Total de Paginas: {0}",
-                    solicitudesGV.PageCount);
-            }
+            //    solicitudesGV.DataBind();
 
-            #endregion
+            //    totalPagesLbl.Text = string.Format("Total de Paginas: {0}",
+            //        solicitudesGV.PageCount);
+            //} 
+
+            //#endregion
         }
 
         /// <summary>
@@ -189,6 +191,8 @@ namespace PSO.Pages.Dashboard.Consultas
         protected void filterDDL_SelectedIndexChanged(object sender, EventArgs e)
         {
             solicitudesGV.DataBind();
+
+            SetTotalPagesNSolicitudes();
         }
 
         protected void solicitudesSQLDS_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
@@ -209,6 +213,30 @@ namespace PSO.Pages.Dashboard.Consultas
             solicitudesGV.PageIndex = e.NewPageIndex;
 
             solicitudesGV.DataBind();
+        }
+
+        private void SetTotalPagesNSolicitudes()
+        {
+            if (solicitudesGV.Rows.Count != 0)
+            {
+                solicitudesGV.AllowPaging = false;
+
+                solicitudesGV.AllowSorting = false;
+
+                solicitudesGV.DataBind();
+
+                totalAvisosLbl.Text = string.Format("Total de Solicitudes: {0}",
+                    solicitudesGV.Rows.Count);
+
+                solicitudesGV.AllowPaging = true;
+
+                solicitudesGV.AllowSorting = true;
+
+                solicitudesGV.DataBind();
+
+                totalPagesLbl.Text = string.Format("Total de Paginas: {0}",
+                    solicitudesGV.PageCount);
+            }
         }
     }
 }

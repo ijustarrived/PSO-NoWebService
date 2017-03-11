@@ -75,7 +75,19 @@ namespace PSO.Pages
                 {
                     #region Check logged lock and if active
 
-                    if (!user.IsLoggedIn)
+                    bool locked = false;
+
+                    //Compare last time it was active and current time. If current is greater means user is logged off 
+                    if (user.IsLoggedIn)
+                    {
+                        TimeSpan activeTime = new TimeSpan(user.LastTimeActive.Hour, user.LastTimeActive.Minute, 0),
+                            currentTime = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, 0);
+
+                        if (activeTime > currentTime)
+                            locked = true;
+                    }
+
+                    if (!locked)
                     {
                         if (user.Activo)
                         {
@@ -131,6 +143,7 @@ namespace PSO.Pages
                         else
                             ClientScript.RegisterStartupScript(this.GetType(), "userDeactivatedAlert",
                         "alert('Este perfil esta desactivado');", true);
+
                     }
 
                     else
@@ -152,6 +165,11 @@ namespace PSO.Pages
         protected void registerBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("Register.aspx", true);
+        }
+
+        private void LogUser()
+        {
+
         }
     }
 }

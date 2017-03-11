@@ -182,7 +182,7 @@
 
                         <asp:DataPoint Color="0, 192, 0" Font="Microsoft Sans Serif, 15pt" LabelForeColor="Black" AxisLabel="Recibidas" />
 
-                        <asp:DataPoint Color="#888800" Font="Microsoft Sans Serif, 15pt" LabelForeColor="Black"
+                        <asp:DataPoint Color="MediumSeaGreen" Font="Microsoft Sans Serif, 15pt" LabelForeColor="Black"
                             AxisLabel="Procesadas" />
 
                     </Points>
@@ -395,7 +395,7 @@
 
             <HeaderStyle BackColor="#616161" ForeColor="#E5E5E5" Font-Bold="True" />
 
-            <PagerStyle BackColor="#616161" Font-Size="Large" ForeColor="#E5E5E5" Font-Bold="true" />
+            <PagerStyle BackColor="#616161" Font-Size="Large" CssClass ="gvPager" ForeColor="#E5E5E5" Font-Bold="true" />
 
             <SelectedRowStyle BackColor="#79256E" ForeColor="#F3F0F7" />
 

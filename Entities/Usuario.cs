@@ -61,6 +61,14 @@ namespace PSO.Entities
             Role = new Rol();
 
             IsLoggedIn = false;
+
+            LastTimeActive = DateTime.MaxValue;
+        }
+
+        public DateTime LastTimeActive
+        {
+            get;
+            set;
         }
 
         public bool IsLoggedIn

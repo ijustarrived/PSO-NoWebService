@@ -33,7 +33,9 @@ namespace PSO.Repositorios
                                                                             LicenciaConducir,
                                                                             Celular,
                                                                             RoleID,
-                                                                            Activo)
+                                                                            Activo,
+                                                                            IsLoggedIn,
+                                                                            LastTimeActive)
                                                                             VALUES(@Nombre,
                                                                              @SeguroSocial,
                                                                              @ApellidoPaterno,
@@ -51,13 +53,19 @@ namespace PSO.Repositorios
                                                                             @LicenciaConducir,
                                                                             @Celular,
                                                                             @RoleID,
-                                                                            @Activo);", conn);
+                                                                            @Activo,
+                                                                            @IsLoggedIn,
+                                                                            @LastTimeActive);", conn);
 
                 #endregion
 
                 #region Command Parameteres
 
                 cmd.Parameters.AddWithValue("@RoleID", (int)user.Role.RoleType);
+
+                cmd.Parameters.AddWithValue("@LastTimeActive", user.LastTimeActive);
+
+                cmd.Parameters.AddWithValue("@IsLoggedIn", user.IsLoggedIn);
 
                 cmd.Parameters.AddWithValue("@Activo", user.Activo);
 
@@ -221,7 +229,9 @@ namespace PSO.Repositorios
             {
                 #region Sql command
 
-                SqlCommand cmd = new SqlCommand(@"UPDATE Usuarios SET IsLoggedIn = @IsLoggedIn
+                SqlCommand cmd = new SqlCommand(@"UPDATE Usuarios SET 
+                                                                    IsLoggedIn = @IsLoggedIn,
+                                                                    LastTimeActive = @LastTimeActive
                                                                             WHERE ID = @ID;", conn);
 
                 #endregion
@@ -229,6 +239,8 @@ namespace PSO.Repositorios
                 #region Command Parameteres
 
                 cmd.Parameters.AddWithValue("@IsLoggedIn", shouldBeLoggedLocked);
+
+                cmd.Parameters.AddWithValue("@LastTimeActive", DateTime.Now);
 
                 cmd.Parameters.AddWithValue("@ID", id);
 
@@ -424,6 +436,8 @@ namespace PSO.Repositorios
                 user.Activo = reader.GetBoolean(col++);
 
                 user.IsLoggedIn = reader.GetBoolean(col++);
+
+                user.LastTimeActive = reader.GetDateTime(col++);
             }
             #endregion
         }
@@ -486,6 +500,8 @@ namespace PSO.Repositorios
                 user.Activo = reader.GetBoolean(col++);
 
                 user.IsLoggedIn = reader.GetBoolean(col++);
+
+                user.LastTimeActive = reader.GetDateTime(col++);
 
                 users.AddLast(user);
             }
