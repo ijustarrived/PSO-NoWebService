@@ -546,21 +546,42 @@ namespace PSO.Entities
             return status;
         }
 
+        /// <summary>
+        /// Compares locked date for solicitud and current date
+        /// </summary>
+        /// <param name="solicitud"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public static bool ShouldSolicitudBeReleased(_Solicitud solicitud, Usuario user)
         {
-            if (solicitud.LockedById != 0 && solicitud.LockedById != user.ID)
+            if (solicitud.LockedById != 0)
             {
-                DateTime currentDate = DateTime.Now;
+                DateTime currentServerDate = DateTime.Now;
 
-                int timeComparison = TimeSpan.Compare(solicitud.LockedAt.AddMinutes(15).TimeOfDay, currentDate.TimeOfDay);
+                //DateTime currentServerDate = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(now, "US Mountain Standard Time");
 
-                if (timeComparison < 0)
+                double daysDif = Math.Round(Math.Abs((solicitud.LockedAt.AddMinutes(15) - currentServerDate).TotalDays));
+
+                //if it's been more than a day, release lock
+                if (daysDif < 1)
                 {
-                    return true;
+                    int timeComparison = TimeSpan.Compare(solicitud.LockedAt.AddMinutes(15).TimeOfDay, currentServerDate.TimeOfDay);
+
+                    if (timeComparison < 0)
+                    {
+                        return true;
+                    }
+
+                    else
+                        return false;
                 }
+
+                else
+                    return true;
             }
 
-            return false;
+            else
+                return false;
         }
     }
 }

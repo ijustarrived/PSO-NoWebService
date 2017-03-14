@@ -15,6 +15,20 @@
 
     <link href ="../PageImages/PSO.ico" rel="shortcut icon" type="image/x-icon" />
 
+    <noscript>
+
+         <div style ="text-align:center;">
+
+             <span style ="border-width: 3px;border-style:dashed; padding:3px; font-size:large">
+
+                 Para poder acceder a todas nuestras funciones, necesita un navegador que soporte JavaScript y debe estar habilitado.
+
+             </span>
+
+        </div>
+
+     </noscript>
+
     <webopt:BundleReference runat="server" Path="~/Content/css" />
 
     <style>

@@ -45,6 +45,27 @@
                 }
         }
 
+        //Double check solicitud lock just in case it's accessed multiples times at the same time
+        setTimeout("CheckLock()", 3000)
+
+        function CheckLock()
+        {
+            var numsolicitud = "<%= Session["numSolicitud"]%>";
+
+            var userId = <%= Session["UserId"] %>;
+            
+            PageMethods.CheckLock(numsolicitud, userId, function(response) {
+
+                if(response.length > 0)
+                {
+                    alert("Solicitud esta en uso por " + response);
+
+                    history.go(-1);
+                }
+            });
+
+        }
+
         function ReleaseAllLkdSolicitudes(lockedId) 
         {     
             $.ajax

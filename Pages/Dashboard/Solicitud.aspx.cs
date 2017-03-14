@@ -212,6 +212,8 @@ namespace PSO.Pages.Dashboard
             string numSolicitud = Request.QueryString["numSolicitud"] == null ? string.Empty
                     : (string)Request.QueryString["numSolicitud"];
 
+            Session["numSolicitud"] = numSolicitud;
+
             emailTxtBx.Enabled = false;
 
             #region Set multiline txt length
@@ -415,45 +417,47 @@ namespace PSO.Pages.Dashboard
                                 if (_Solicitud.ShouldSolicitudBeReleased(solicitud, user))
                                     solicitud.LockedById = 0;
 
-                                if (solicitud.LockedById == 0)
-                                {
-                                    solicitud.LockedById = user.ID;
+                                TryToApplyLock(solicitud, user);
 
-                                    //Don't save if not coordinador. Could be super viewing
-                                    if (user.Role.RoleType == Rol.TiposRole.COORDINADOR)
-                                    {
-                                        try
-                                        {
-                                            Exception excep = SolicitudRepo.UpdateLockedId(solicitud);
+                                //if (solicitud.LockedById == 0)
+                                //{
+                                //    solicitud.LockedById = user.ID;
 
-                                            if (excep != null)
-                                            {
-                                                throw new Exception(string.Format(
-                                                    "No se pudo actualizar la solicitud. Error Actualizar Cierre Solicitud: {0}",
-                                                        excep.Message.Replace("'", string.Empty)));
-                                            }
+                                //    //Don't save if not coordinador. Could be super viewing
+                                //    if (user.Role.RoleType == Rol.TiposRole.COORDINADOR)
+                                //    {
+                                //        try
+                                //        {
+                                //            Exception excep = SolicitudRepo.UpdateLockedId(solicitud);
 
-                                            else
-                                                //it's used on fake timeout
-                                                Session["lockedId"] = user.ID;
-                                        }
+                                //            if (excep != null)
+                                //            {
+                                //                throw new Exception(string.Format(
+                                //                    "No se pudo actualizar la solicitud. Error Actualizar Cierre Solicitud: {0}",
+                                //                        excep.Message.Replace("'", string.Empty)));
+                                //            }
 
-                                        catch (Exception ex)
-                                        {
-                                            ScriptManager.RegisterStartupScript(this, GetType(), "lockedIdUpdateAlert"
-                                                , string.Format("alert('{0}');", ex.Message.Replace("\r\n", " ")), true);
-                                        }
-                                    }
-                                }
+                                //            else
+                                //                //it's used on fake timeout
+                                //                Session["lockedId"] = user.ID;
+                                //        }
 
-                                else
-                                {
-                                    if (solicitud.LockedById != user.ID)
-                                        ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
-                                   string.Format("WaitingAnswerAlert('{0}');",
-                                   string.Format("Solicitud esta en uso por {0}.",
-                                   UserRepo.GetUserByID(solicitud.LockedById).GetNombreCompleto())), true);
-                                }
+                                //        catch (Exception ex)
+                                //        {
+                                //            ScriptManager.RegisterStartupScript(this, GetType(), "lockedIdUpdateAlert"
+                                //                , string.Format("alert('{0}');", ex.Message.Replace("\r\n", " ")), true);
+                                //        }
+                                //    }
+                                //}
+
+                                //else
+                                //{
+                                //    if (solicitud.LockedById != user.ID)
+                                //        ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
+                                //   string.Format("WaitingAnswerAlert('{0}');",
+                                //   string.Format("Solicitud esta en uso por {0}.",
+                                //   UserRepo.GetUserByID(solicitud.LockedById).GetNombreCompleto())), true);
+                                //}
 
                                 #endregion
 
@@ -2183,6 +2187,50 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
         }
 
+        private void TryToApplyLock(_Solicitud solicitud, Usuario user)
+        {
+            if (solicitud.LockedById == 0)
+            {
+                solicitud.LockedById = user.ID;
+
+                //Don't save if not coordinador. Could be super viewing
+                if (user.Role.RoleType == Rol.TiposRole.COORDINADOR)
+                {
+                    try
+                    {
+                        Exception excep = SolicitudRepo.UpdateLockedId(solicitud);
+
+                        if (excep != null)
+                        {
+                            throw new Exception(string.Format(
+                                "No se pudo actualizar la solicitud. Error Actualizar Cierre Solicitud: {0}",
+                                    excep.Message.Replace("'", string.Empty)));
+                        }
+
+                        else
+                            //it's used on fake timeout
+                            Session["lockedId"] = user.ID;
+                    }
+                    catch (Exception ex)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "lockedIdUpdateAlert"
+                            , string.Format("alert('{0}');", ex.Message.Replace("\r\n", " ")), true);
+                    }
+                }
+            }
+
+            else
+            {
+                if (solicitud.LockedById != user.ID)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
+               string.Format("WaitingAnswerAlert('{0}');",
+               string.Format("Solicitud esta en uso por {0}.",
+               UserRepo.GetUserByID(solicitud.LockedById).GetNombreCompleto())), true);
+                }
+            }
+        }
+
         [WebMethod]
         public static string KeepAlive()
         {
@@ -2193,6 +2241,28 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
         public static void ReleaseAllLkdSolicitudes(int lockedId)
         {
             SolicitudRepo.ReleaseAllLockedSolicitudes(lockedId);
+        }
+
+        /// <summary>
+        /// Check who has locked solicitud
+        /// </summary>
+        /// <param name="numSolicitud"></param>
+        /// <param name="userId"></param>
+        /// <returns>Returns the name of the user who locked it</returns>
+        [WebMethod]
+        public static string CheckLock(string numSolicitud, int userId)
+        {
+            _Solicitud solicitud = SolicitudRepo.GetSolicitudByNumSolicitud(numSolicitud);
+
+            if (userId != solicitud.LockedById)
+            {
+                Usuario user = UserRepo.GetUserByID(solicitud.LockedById);
+
+                return user.GetNombreCompleto();
+            }
+
+            else
+                return string.Empty;
         }
     }
 }

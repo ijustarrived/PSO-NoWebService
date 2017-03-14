@@ -215,7 +215,7 @@
 
                         <MajorGrid Enabled="false" />
 
-                        <LabelStyle Font="Microsoft Sans Serif, 30pt" />
+                        <LabelStyle Font="Microsoft Sans Serif, 30pt" Interval ="1" />
 
                     </AxisX>
 

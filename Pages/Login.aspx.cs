@@ -37,6 +37,10 @@ namespace PSO.Pages
 
             if (!IsPostBack)
             {
+                if (!Request.Browser.Browser.Equals("Firefox") && !Request.Browser.Browser.Equals("Chrome"))
+                    ClientScript.RegisterStartupScript(this.GetType(), "incompatibleBrowserAlert",
+                    "alert(' Para poder acceder a todas nuestras funciones, es recomendable que el navegador de preferencia sea Mozilla Firefox o Google Chrome.');", true);
+
                 var dashboardPnl = (Panel)Master.FindControl("dashboardLinkPnl");
 
                 dashboardPnl.Controls.Clear();
@@ -81,14 +85,25 @@ namespace PSO.Pages
                         DateTime now = DateTime.Now,
                             lastTimeActive = user.LastTimeActive.AddMinutes(3); //3 min cooldown of inactivity before releasing
 
-                        int timeComparison = TimeSpan.Compare(lastTimeActive.TimeOfDay, now.TimeOfDay);
+                        double daysDif = Math.Round(Math.Abs((lastTimeActive - now).TotalDays));
 
-                        //if (lastTimeActive.TimeOfDay >= now.TimeOfDay)
-                        if (timeComparison < 0)
+                        //if it's been more than a day, release lock
+                        if (daysDif < 1)
+                        {
+                            //lastTimeActive = lastTimeActive.AddDays(daysDif);
+
+                            int timeComparison = TimeSpan.Compare(lastTimeActive.TimeOfDay, now.TimeOfDay);
+
+                            //if (lastTimeActive.TimeOfDay >= now.TimeOfDay)
+                            if (timeComparison < 0)
+                                user.IsLoggedIn = false;
+
+                            else if (timeComparison >= 0)
+                                user.IsLoggedIn = true;
+                        }
+
+                        else
                             user.IsLoggedIn = false;
-
-                        else if (timeComparison >= 0)
-                            user.IsLoggedIn = true;
                     }
 
                     if (!user.IsLoggedIn)
