@@ -25,6 +25,7 @@ namespace PSO.Repositorios
                                                                     ViewConsuPendAsig = @ViewConsuPendAsig,
                                                                     ViewRepAvisosStatus = @ViewRepAvisosStatus,
                                                                     ViewRepRecVsPen = @ViewRepRecVsPen,
+                                                                    ViewReportIndicadores = @ViewReportIndicadores,
                                                                     ViewConsuSolicitud = @ViewConsuSolicitud,
                                                                     EditDocReq = @EditDocReq,
                                                                     EditRoles = @EditRoles,
@@ -39,6 +40,8 @@ namespace PSO.Repositorios
                 #region Command Parameteres
 
                 cmd.Parameters.AddWithValue("@RoleType", (int)role.RoleType);
+
+                cmd.Parameters.AddWithValue("@ViewReportIndicadores", role.ViewReportIndicadores);
 
                 cmd.Parameters.AddWithValue("@ViewRepProduction", role.ViewRepProduc);
 

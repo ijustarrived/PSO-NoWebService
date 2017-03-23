@@ -104,7 +104,7 @@
 
     <div style="margin-top: 20px; overflow: auto">
 
-        <table class="table" style="margin-left: auto; margin-right: auto; width: 95%">
+        <table class="table" style="margin-left: auto; margin-right: auto; width: 95%; text-align:center">
 
             <%-- Header --%>
             <tr>

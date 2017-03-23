@@ -851,6 +851,17 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
                     CreateDocRecievedCtrl(docsRequeridos);
                 }
                 #endregion
+
+                #region Concat inicio link again cause it's lost on postback
+
+                _Solicitud solicitud = SolicitudRepo.GetSolicitudByNumSolicitud(numSolicitud);
+
+
+                if (solicitud.Status == _Solicitud.Statuses.PEND_REVISAR)
+                    mainDashLink.NavigateUrl = string.Format("{0}?ReleaseSolicitud={1}", mainDashLink.NavigateUrl,
+                                    solicitud.NumeroSolicitud); 
+
+                #endregion
             }
         }
 
@@ -1144,7 +1155,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
                     //Show num solicitud and redirect to main dashboard
                     ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
-                                           string.Format("WaitingAnswerAlert('Número Solicitud: {0}');", solicitud.NumeroSolicitud), true);
+                                           string.Format("WaitingExternalAnswerAlert('Número Solicitud: {0}');", solicitud.NumeroSolicitud), true);
                 }
 
                 catch (Exception ex)
@@ -2244,7 +2255,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
         }
 
         /// <summary>
-        /// Check who has locked solicitud
+        /// Check who has locked solicitud only if pending revision
         /// </summary>
         /// <param name="numSolicitud"></param>
         /// <param name="userId"></param>
@@ -2254,7 +2265,7 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
         {
             _Solicitud solicitud = SolicitudRepo.GetSolicitudByNumSolicitud(numSolicitud);
 
-            if (userId != solicitud.LockedById)
+            if (userId != solicitud.LockedById && (solicitud.Status == _Solicitud.Statuses.PEND_REVISAR))
             {
                 Usuario user = UserRepo.GetUserByID(solicitud.LockedById);
 

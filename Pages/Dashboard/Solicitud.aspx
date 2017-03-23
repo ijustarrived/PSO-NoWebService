@@ -131,6 +131,13 @@
                 window.location = "Consultas/ConsultasMain.aspx";
         }
 
+        function WaitingExternalAnswerAlert(alertMsg)
+        {
+            alert(alertMsg);
+            
+            window.location = "Main.aspx";
+        }
+
         function EncryptDrivers(word, event)
         {
             var wordSplit = word.value.split('');

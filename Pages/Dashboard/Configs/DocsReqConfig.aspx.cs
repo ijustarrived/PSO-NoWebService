@@ -91,7 +91,7 @@ namespace PSO.Pages.Dashboard.Configs
 
             secondDashLink.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
-            secondDashLink.Text = "Configuraci&oacute;n";
+            secondDashLink.Text = "Configuraciones";
 
             dashboardPnl.Controls.Add(secondDashLink);
 

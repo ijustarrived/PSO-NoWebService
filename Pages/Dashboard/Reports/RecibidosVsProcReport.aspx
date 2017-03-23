@@ -397,7 +397,9 @@
 
             <FooterStyle BackColor="#616161" />
 
-            <HeaderStyle BackColor="#616161" ForeColor="#E5E5E5" Font-Bold="True" />
+            <RowStyle HorizontalAlign ="Center" />
+
+            <HeaderStyle BackColor="#616161" ForeColor="#E5E5E5" Font-Bold="True" HorizontalAlign ="Center" />
 
             <PagerStyle BackColor="#616161" Font-Size="Large" CssClass ="gvPager" ForeColor="#E5E5E5" Font-Bold="true" />
 

@@ -82,7 +82,7 @@ namespace PSO.Pages.Dashboard.Configs
 
             secondDashLink.NavigateUrl = "~/Pages/Dashboard/Configs/ConfigsMain.aspx";
 
-            secondDashLink.Text = "Configuraci&oacute;n";
+            secondDashLink.Text = "Configuraciones";
 
             dashboardPnl.Controls.Add(secondDashLink);
 
