@@ -34,6 +34,10 @@ namespace PSO.Pages.Dashboard.Consultas
 
             Page.Title = cosmetic.ConsultaProcTitle;
 
+            totalAvisosLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            totalPagesLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
             solicitudesGV.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
             solicitudesGV.FooterStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);

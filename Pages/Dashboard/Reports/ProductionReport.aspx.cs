@@ -42,6 +42,8 @@ namespace PSO.Pages.Dashboard.Reports
 
             totalAvisosLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
+            totalPagesLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
             #region Set coor gv colors
 
             coorGV.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);

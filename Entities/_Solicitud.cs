@@ -558,22 +558,12 @@ namespace PSO.Entities
             {
                 DateTime currentServerDate = DateTime.Now;
 
-                //DateTime currentServerDate = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(now, "US Mountain Standard Time");
-
-                double daysDif = Math.Round(Math.Abs((solicitud.LockedAt.AddMinutes(15) - currentServerDate).TotalDays));
+                double daysDif = (solicitud.LockedAt.AddMinutes(15) - currentServerDate).TotalDays;
 
                 //if it's been more than a day, release lock
-                if (daysDif < 1)
+                if (daysDif > 0)
                 {
-                    int timeComparison = TimeSpan.Compare(solicitud.LockedAt.AddMinutes(15).TimeOfDay, currentServerDate.TimeOfDay);
-
-                    if (timeComparison < 0)
-                    {
-                        return true;
-                    }
-
-                    else
-                        return false;
+                    return false;
                 }
 
                 else

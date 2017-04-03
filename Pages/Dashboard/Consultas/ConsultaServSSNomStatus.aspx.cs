@@ -40,6 +40,10 @@ namespace PSO.Pages.Dashboard.Consultas
 
             //lbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
+            totalAvisosLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            totalPagesLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
             solicitudesGV.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
             solicitudesGV.FooterStyle.BackColor = ColorTranslator.FromHtml(cosmetic.TitleBackColor);

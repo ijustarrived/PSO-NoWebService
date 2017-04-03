@@ -85,21 +85,12 @@ namespace PSO.Pages
                         DateTime now = DateTime.Now,
                             lastTimeActive = user.LastTimeActive.AddMinutes(3); //3 min cooldown of inactivity before releasing
 
-                        double daysDif = Math.Round(Math.Abs((lastTimeActive - now).TotalDays));
+                        double daysDif = (lastTimeActive - now).TotalDays;
 
-                        //if it's been more than a day, release lock
-                        if (daysDif < 1)
+                        // > 0 por que si now es menor va a salir un valor positivo
+                        if (daysDif > 0)
                         {
-                            //lastTimeActive = lastTimeActive.AddDays(daysDif);
-
-                            int timeComparison = TimeSpan.Compare(lastTimeActive.TimeOfDay, now.TimeOfDay);
-
-                            //if (lastTimeActive.TimeOfDay >= now.TimeOfDay)
-                            if (timeComparison < 0)
-                                user.IsLoggedIn = false;
-
-                            else if (timeComparison >= 0)
-                                user.IsLoggedIn = true;
+                            user.IsLoggedIn = true;
                         }
 
                         else

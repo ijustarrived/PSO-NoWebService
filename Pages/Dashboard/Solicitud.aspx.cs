@@ -27,10 +27,14 @@ namespace PSO.Pages.Dashboard
 
             if (!user.Role.ViewSolicitud)
             {
-                if (string.IsNullOrEmpty(user.Email))
-                    Response.Redirect("~/Pages/Login.aspx", true);
+                //La unica vez que va a redirect es cuando un externo esta creando 
+                if (Request.QueryString["numSolicitud"] == null)
+                {
+                    if (string.IsNullOrEmpty(user.Email))
+                        Response.Redirect("~/Pages/Login.aspx", true);
 
-                Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
+                    Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
+                }
             }
 
             #endregion
@@ -524,6 +528,12 @@ namespace PSO.Pages.Dashboard
 
                             else
                             {
+                                if (!solicitud.ProcesadorId.Equals(user.GetNombreCompleto())
+                                    && user.Role.RoleType != Rol.TiposRole.SUPERVISOR)
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
+                                    string.Format("WaitingAnswerAlert('{0}');",
+                                    string.Format("Esta solicitud le pertenece a {0}.", solicitud.ProcesadorId)), true);
+
                                 saveBtn.Enabled = !(user.Role.RoleType == Rol.TiposRole.SUPERVISOR);
 
                                 trabajadoRow.Visible = true;
@@ -531,6 +541,8 @@ namespace PSO.Pages.Dashboard
                                 trabajoCommentDiv.Visible = trabajadoRow.Visible;
 
                                 tempSaveBtn.Visible = true;
+
+                                tempSaveBtn.Enabled = !(user.Role.RoleType == Rol.TiposRole.SUPERVISOR);
 
                                 _split = fechaTrabajoLbl.Text.Split(':');
 
@@ -2265,7 +2277,8 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
         {
             _Solicitud solicitud = SolicitudRepo.GetSolicitudByNumSolicitud(numSolicitud);
 
-            if (userId != solicitud.LockedById && (solicitud.Status == _Solicitud.Statuses.PEND_REVISAR))
+            if (solicitud.LockedById != 0 && userId != solicitud.LockedById
+                && (solicitud.Status == _Solicitud.Statuses.PEND_REVISAR))
             {
                 Usuario user = UserRepo.GetUserByID(solicitud.LockedById);
 

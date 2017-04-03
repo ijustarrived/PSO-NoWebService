@@ -52,6 +52,10 @@ namespace PSO.Pages.Dashboard.Reports
 
             recievedGV.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
 
+            totalAvisosLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
+            totalPagesLbl.ForeColor = ColorTranslator.FromHtml(cosmetic.LabelForeColor);
+
             #endregion
 
             #region Set gv colors
@@ -124,27 +128,6 @@ namespace PSO.Pages.Dashboard.Reports
             }
 
             CountRowsNPages();
-
-            //if (recievedGV.Rows.Count != 0)
-            //{                
-            //    recievedGV.AllowPaging = false;
-
-            //    recievedGV.AllowSorting = false;
-
-            //    recievedGV.DataBind();
-
-            //    totalAvisosLbl.Text = string.Format("Total de Solicitudes: {0}",
-            //        recievedGV.Rows.Count);
-
-            //    recievedGV.AllowPaging = true;
-
-            //    recievedGV.AllowSorting = true;
-
-            //    recievedGV.DataBind();
-
-            //    totalPagesLbl.Text = string.Format("Total de Paginas: {0}",
-            //        recievedGV.PageCount);
-            //}
         }
 
         [System.Web.Services.WebMethod]
@@ -242,9 +225,6 @@ namespace PSO.Pages.Dashboard.Reports
                 //Coor
                 case 1:
 
-                    //where = string.Format("{0} @AND CoordinadorID = {1} AND FechaRevision <> CONVERT(datetime, '12/31/9999 23:59:59.997')",
-                    //    where, searchDDL.SelectedIndex - 1); // - 1 cause el ddl del coor empieza del 1 y el del db empieza en el 0
-
                     where = string.Format(@"{0} @AND REPLACE(CoordinadorID, ' ', '') = REPLACE('{1}', ' ', '') 
                         AND FechaRevision <> CONVERT(datetime, '12/31/9999 23:59:59.997')",
                        where, searchDDL.SelectedValue);
@@ -257,14 +237,6 @@ namespace PSO.Pages.Dashboard.Reports
                     where = string.Format(@"{0} @AND (REPLACE(ProcesadorID, ' ', '') = REPLACE('{1}', ' ', '')) 
                                                 AND (FechaAsigProcesador <> CONVERT(datetime, '12/31/9999 23:59:59.997'))",
                                                 where, searchDDL.SelectedValue);
-
-                    //where = string.Format(@"{0} @AND (ProcesadorID = {1}) 
-                    //                            AND (FechaAsigProcesador <> CONVERT(datetime, '12/31/9999 23:59:59.997'))",
-                    //                            where, searchDDL.SelectedIndex);
-
-                    //where = string.Format(@"{0} @AND (ProcesadorID = {1}) 
-                    //                            AND (FechaAsigProcesador <> CONVERT(datetime, '12/31/9999 23:59:59.997'))",
-                    //                           where, (searchDDL.SelectedIndex - 1));
 
 
                     break;
@@ -419,6 +391,7 @@ namespace PSO.Pages.Dashboard.Reports
 
             statusDiv.Visible = filterDDL.SelectedIndex == 2;
 
+            //0 Cause if selected then ddl changed, it's still selected and might affect query
             if (!searchDDL.Visible)
                 statusSearchDDL.SelectedIndex = 0;
 
