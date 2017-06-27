@@ -4,7 +4,7 @@
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
 
     <script>
-        
+
         var countDown = 1020;  /*equals 17 minutes in seconds not exact 15 cause it might die before if it was exact due to threa priorities.
         //It's converted to seconds cause the interval loop every second not every millisecond*/
 
@@ -32,7 +32,7 @@
                     if(lockedId != 0)
                         ReleaseAllLkdSolicitudes(lockedId);
 
-                    wwindow.location.href = '../../Login.aspx';
+                    window.location.href = '../../Login.aspx';
                 }
 
                 else
@@ -50,7 +50,7 @@
                 ({
                     type: "POST",
 
-                    url: 'Solicitud.aspx/ReleaseAllLkdSolicitudes',
+                    url: '../Solicitud.aspx/ReleaseAllLkdSolicitudes',
 
                     data: "{'lockedId':'" + lockedId +"'}",
 
@@ -74,7 +74,7 @@
         {
             $.ajax({
                 type: "POST",
-                url: "/WebServices/LockingService.asmx/UpdateUserLoginLock",
+                url: "../Main.aspx/UpdateUserLoginLock",
                 data: "{'id':'"+ userId +"', 'shouldBeLoggedLocked': '"+ shouldBeLoggedLock +"'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",

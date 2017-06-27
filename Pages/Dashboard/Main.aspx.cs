@@ -154,5 +154,11 @@ namespace PSO.Pages.Dashboard
         {
             SolicitudRepo.ReleaseAllLockedSolicitudes(lockedId);
         }
+
+        [WebMethod]
+        public static void UpdateUserLoginLock(int id, bool shouldBeLoggedLocked)
+        {
+            UserRepo.UpdateUserLoggedLock(id, shouldBeLoggedLocked);
+        }
     }
 }

@@ -112,7 +112,7 @@ namespace PSO
             if (Session["emailError"] != null && string.IsNullOrEmpty((string)Session["emailError"]))
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "emailAlert",
-                            string.Format("alert('Hubo problemas enviado el correo. Error: {0}');",
+                            string.Format("alert('Hubo problemas enviando el correo. Error: {0}');",
                             ((string)Session["emailError"]).Replace("'", string.Empty).Replace("\r\n", " ")), true);
 
                 Session.Remove("emailError");

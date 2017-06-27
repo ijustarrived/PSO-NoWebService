@@ -46,6 +46,8 @@ namespace PSO.Pages.Dashboard.Configs
                                    string.Format("ChangeClinetSideColors('{0}', '{1}');",
                                    cosmetic.LabelForeColor, cosmetic.TitleBackColor), true);
 
+            ViewState["_Cosmetic"] = cosmetic;
+
             #endregion
 
             #region Breadcrumb config
@@ -162,11 +164,15 @@ namespace PSO.Pages.Dashboard.Configs
 
                 e.Row.Cells[4].Text = users.ElementAt(index).Role.RoleType.ToString();
 
+                #region Set activeBtn properties
+
                 if (userGV.Rows.Count > 0)
                 {
                     int activeCell = 5;
 
                     Button activeBtn = (Button)userGV.Rows[e.Row.RowIndex - 1].Cells[activeCell].FindControl("activateBtn");
+
+                    activeBtn.ForeColor = ColorTranslator.FromHtml(((Cosmetic)ViewState["_Cosmetic"]).LabelForeColor);
 
                     if (users.ElementAt(index - 1).Activo)
                         activeBtn.Text = "Desactivar";
@@ -175,20 +181,7 @@ namespace PSO.Pages.Dashboard.Configs
                         activeBtn.Text = "Activar";
                 }
 
-                //int activeCell = 5;
-
-                //Button activeBtn = (Button)userGV.Rows[e.Row.RowIndex].Cells[activeCell].FindControl("activateBtn");
-
-                //if (users.ElementAt(index).Activo)
-                //    activeBtn.Text = "Desactivar";
-
-                //else
-                //    activeBtn.Text = "Activar";
-
-                //if (Request.Browser.Browser.Equals("Chrome") || Request.Browser.Browser.Equals("InternetExplorer"))
-                //{
-                //    activeBtn.ButtonType = ButtonType.Link;
-                //}
+                #endregion
             }
 
 
@@ -231,15 +224,10 @@ namespace PSO.Pages.Dashboard.Configs
 
             int listIndex = userGV.PageIndex * 10 + selectedRow.RowIndex;
 
+            //Usando el ds del gv para llenar la lista
             LinkedList<Usuario> users = (LinkedList<Usuario>)userGV.DataSource;
 
             users.ElementAt(listIndex).Activo = !users.ElementAt(listIndex).Activo;
-
-            //if (users.ElementAt(listIndex).Activo)
-
-
-            //else
-            //    users.ElementAt(listIndex).Activo = users.ElementAt(listIndex).Activo;
 
             UserRepo.Update(users.ElementAt(listIndex), users.ElementAt(listIndex).Email);
 

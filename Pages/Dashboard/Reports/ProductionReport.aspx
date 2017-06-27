@@ -62,7 +62,7 @@
                 ({
                     type: "POST",
 
-                    url: 'Solicitud.aspx/ReleaseAllLkdSolicitudes',
+                    url: '../Solicitud.aspx/ReleaseAllLkdSolicitudes',
 
                     data: "{'lockedId':'" + lockedId +"'}",
 
@@ -86,7 +86,7 @@
         {
             $.ajax({
                 type: "POST",
-                url: "/WebServices/LockingService.asmx/UpdateUserLoginLock",
+                url: "../Main.aspx/UpdateUserLoginLock",
                 data: "{'id':'"+ userId +"', 'shouldBeLoggedLocked': '"+ shouldBeLoggedLock +"'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",

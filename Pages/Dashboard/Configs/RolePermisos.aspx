@@ -50,7 +50,7 @@
                 ({
                     type: "POST",
 
-                    url: 'Solicitud.aspx/ReleaseAllLkdSolicitudes',
+                    url: '../Solicitud.aspx/ReleaseAllLkdSolicitudes',
 
                     data: "{'lockedId':'" + lockedId +"'}",
 
@@ -74,7 +74,7 @@
         {
             $.ajax({
                 type: "POST",
-                url: "/WebServices/LockingService.asmx/UpdateUserLoginLock",
+                url: "../Main.aspx/UpdateUserLoginLock",
                 data: "{'id':'"+ userId +"', 'shouldBeLoggedLocked': '"+ shouldBeLoggedLock +"'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -223,13 +223,13 @@
 
                     </div>
 
-                    <div style="margin-top: 20px;">
+                    <%--<div style="margin-top: 20px;">
 
                         <asp:Label ID ="solicitudLbl" runat="server" Text="Solicitud Servicios" ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="viewSolicitudChkBx" />
 
-                    </div>  
+                    </div>--%>  
                     
                     <div style="margin-top: 20px;">
 
@@ -285,6 +285,14 @@
                         <asp:Label runat="server" ID ="CustomizeLbl" Text="Personalizar Sistema" ForeColor="#79256E"></asp:Label>
 
                         <asp:CheckBox runat="server" ID="customizePagesChkBx" />
+
+                    </div>
+
+                    <div style="margin-top: 20px;">
+
+                        <asp:Label ID ="solicitudLbl" runat="server" Text="Solicitud Servicios" ForeColor="#79256E"></asp:Label>
+
+                        <asp:CheckBox runat="server" ID="viewSolicitudChkBx" />
 
                     </div>
 

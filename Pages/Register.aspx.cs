@@ -83,11 +83,14 @@ namespace PSO.Pages
                     //Redirect if he isn't admin and if this profile isn't his
                     if (!loggedUser.Email.Equals(userProfile.Email) && loggedUser.Role.RoleType != Rol.TiposRole.ADMINISTRADOR)
                     {
+                        //if(string.IsNullOrEmpty(loggedUser.Email))
+                        //    Response.Redirect("Register.aspx", true);
+
                         if (string.IsNullOrEmpty(loggedUser.Email))
-                            Response.Redirect("Register.aspx", true);
+                            Response.Redirect("Login.aspx", true);
 
                         else
-                            Response.Redirect("Main.aspx", true);
+                            Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
                     }
                 }
 

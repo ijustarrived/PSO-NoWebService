@@ -1778,18 +1778,16 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
                 imgBtn.AlternateText = "Presionar esta area para revisar documento";
 
-                imgBtn.OnClientClick = docs.ElementAt(i).Nombre.Replace("(", string.Empty).Replace(")", string.Empty).Replace(" ",
-                    string.Empty) + "ImgClick();";
-
-
+                imgBtn.OnClientClick = docs.ElementAt(i).Nombre.Replace("#", string.Empty).Replace("(", string.Empty).Replace(")",
+                    string.Empty).Replace(" ", string.Empty) + "ImgClick();";
 
                 imgBtn.CausesValidation = false;
 
                 #region function used when imgbtn is clicked
 
                 string script = @"<script>
-                                          function " + docs.ElementAt(i).Nombre.Replace("(", string.Empty).Replace(")", string.Empty).Replace(" ",
-                            string.Empty) + @"ImgClick() 
+                                          function " + docs.ElementAt(i).Nombre.Replace("#", string.Empty).Replace("(",
+                                         string.Empty).Replace(")", string.Empty).Replace(" ", string.Empty) + @"ImgClick() 
                                           {
                                             var img = document.getElementById('MainContent_" + imgBtn.ClientID + @"');
 

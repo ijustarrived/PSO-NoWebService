@@ -220,24 +220,6 @@ namespace PSO.Pages.Dashboard.Configs {
         protected global::System.Web.UI.WebControls.CheckBox viewReportProdu;
         
         /// <summary>
-        /// solicitudLbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label solicitudLbl;
-        
-        /// <summary>
-        /// viewSolicitudChkBx control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox viewSolicitudChkBx;
-        
-        /// <summary>
         /// dashBrLbl control.
         /// </summary>
         /// <remarks>
@@ -281,6 +263,24 @@ namespace PSO.Pages.Dashboard.Configs {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox customizePagesChkBx;
+        
+        /// <summary>
+        /// solicitudLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label solicitudLbl;
+        
+        /// <summary>
+        /// viewSolicitudChkBx control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox viewSolicitudChkBx;
         
         /// <summary>
         /// saveBtn control.

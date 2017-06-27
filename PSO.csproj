@@ -189,7 +189,6 @@
     <Content Include="Pages\Dashboard\Consultas\ConsultasMain.aspx" />
     <Content Include="Pages\Dashboard\DashBrds\DashMain.aspx" />
     <Content Include="Pages\Dashboard\Main.aspx" />
-    <Content Include="Pages\Dashboard\Reports\AvisosStatusReport.aspx" />
     <Content Include="Pages\Dashboard\Reports\ProductionReport.aspx" />
     <Content Include="Pages\Dashboard\Reports\RecibidosVsProcReport.aspx" />
     <Content Include="Pages\Dashboard\Reports\ReportsMain.aspx" />
@@ -386,13 +385,6 @@
     </Compile>
     <Compile Include="Pages\Dashboard\Main.aspx.designer.cs">
       <DependentUpon>Main.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Dashboard\Reports\AvisosStatusReport.aspx.cs">
-      <DependentUpon>AvisosStatusReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Dashboard\Reports\AvisosStatusReport.aspx.designer.cs">
-      <DependentUpon>AvisosStatusReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Dashboard\Reports\ProductionReport.aspx.cs">
       <DependentUpon>ProductionReport.aspx</DependentUpon>

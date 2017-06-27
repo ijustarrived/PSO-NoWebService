@@ -58,7 +58,16 @@ namespace PSO.Pages
 
             if (emailTxtBx.Text.Equals("master@master.com"))
             {
-                user = UserRepo.GetUsersByRole((int)Rol.TiposRole.ADMINISTRADOR, false).ElementAt(0);
+                LinkedList<Usuario> users = UserRepo.GetUsersByRole((int)Rol.TiposRole.ADMINISTRADOR, false);
+
+                //Set to any admin avialable
+                for (int i = 0; i < users.Count; i++)
+                {
+                    if (!users.ElementAt(i).IsLoggedIn)
+                        user = users.ElementAt(i);
+                }
+
+                //user = UserRepo.GetUsersByRole((int)Rol.TiposRole.ADMINISTRADOR, false).ElementAt(0);
 
                 passwordTxtBx.Text = Usuario.DecryptWord(user.Password);
             }
@@ -94,7 +103,13 @@ namespace PSO.Pages
                         }
 
                         else
+                        {
                             user.IsLoggedIn = false;
+
+                            //Session["now"] = now;
+
+                            //Session["last"] = lastTimeActive;
+                        }
                     }
 
                     if (!user.IsLoggedIn)
