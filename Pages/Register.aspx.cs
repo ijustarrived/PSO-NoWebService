@@ -129,7 +129,10 @@ namespace PSO.Pages
                     emailTxtBx.Enabled = false;
 
                     //To avoid validation when editting
-                    passwordREV.Enabled = false;
+                    passRFV.Enabled = false;
+
+                    passLbl.Text = passLbl.Text.Replace("*", string.Empty);
+                    //passwordREV.Enabled = false;
 
                     #region Set txtBxs & DDLs
 

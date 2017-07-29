@@ -154,9 +154,14 @@
                     <div>
 
                         <asp:TextBox MaxLength ="200" runat="server" TextMode="Password" AutoCompleteType ="Disabled" 
-                            ID="passwordTxtBx"></asp:TextBox>
+                            ID="passwordTxtBx" ToolTip ="Minimo de tres caracteres"></asp:TextBox>
 
                         <div>
+
+                            <asp:RequiredFieldValidator runat ="server" ControlToValidate ="passwordTxtBx" Display ="Dynamic" 
+                            ErrorMessage ="Requerido" ForeColor ="#CC0000" SetFocusOnError ="true" ID ="passRFV">
+
+                            </asp:RequiredFieldValidator>
 
                             <asp:RegularExpressionValidator runat="server" ID="passwordREV" 
                                 SetFocusOnError="true" ForeColor="#CC0000"
@@ -232,6 +237,10 @@
 
                         <asp:RequiredFieldValidator runat ="server" ControlToValidate ="celTxtBx" Display ="Dynamic" 
                             ErrorMessage ="Requerido" ForeColor ="#CC0000" SetFocusOnError ="true"></asp:RequiredFieldValidator>
+
+                        <asp:RegularExpressionValidator runat ="server" ControlToValidate ="celTxtBx" Display ="Dynamic" 
+                            ErrorMessage ="Formato valido es xxx-xxx-xxxx" ForeColor ="#CC0000" SetFocusOnError ="true" 
+                            ValidationExpression = "^\d{3}-\d{3}-\d{4}$"></asp:RegularExpressionValidator>
 
                     </div>
 
@@ -468,6 +477,10 @@
 
                         <asp:RequiredFieldValidator runat ="server" ControlToValidate ="telResTxtBx" Display ="Dynamic" 
                             ErrorMessage ="Requerido" ForeColor ="#CC0000" SetFocusOnError ="true"></asp:RequiredFieldValidator>
+
+                         <asp:RegularExpressionValidator runat ="server" ControlToValidate ="telResTxtBx" Display ="Dynamic" 
+                            ErrorMessage ="Formato valido es xxx-xxx-xxxx" ForeColor ="#CC0000" SetFocusOnError ="true" 
+                            ValidationExpression = "^\d{3}-\d{3}-\d{4}$"></asp:RegularExpressionValidator>
 
                     </div>
 

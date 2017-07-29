@@ -825,6 +825,10 @@
                         <asp:RequiredFieldValidator runat ="server" ControlToValidate ="celTxtBx" Display ="Dynamic" 
                             ErrorMessage ="Requerido" ForeColor ="#CC0000" SetFocusOnError ="true"></asp:RequiredFieldValidator>
 
+                        <asp:RegularExpressionValidator runat ="server" ControlToValidate ="celTxtBx" Display ="Dynamic" 
+                            ErrorMessage ="Formato valido es xxx-xxx-xxxx" ForeColor ="#CC0000" SetFocusOnError ="true" 
+                            ValidationExpression = "^\d{3}-\d{3}-\d{4}$"></asp:RegularExpressionValidator>
+
                     </div>
 
                 </div>
@@ -860,6 +864,10 @@
 
                         <asp:RequiredFieldValidator runat ="server" ControlToValidate ="telResiTxtBx" Display ="Dynamic" 
                             ErrorMessage ="Requerido" ForeColor ="#CC0000" SetFocusOnError ="true"></asp:RequiredFieldValidator>
+
+                        <asp:RegularExpressionValidator runat ="server" ControlToValidate ="telResiTxtBx" Display ="Dynamic" 
+                            ErrorMessage ="Formato valido es xxx-xxx-xxxx" ForeColor ="#CC0000" SetFocusOnError ="true" 
+                            ValidationExpression = "^\d{3}-\d{3}-\d{4}$"></asp:RegularExpressionValidator>
 
                     </div>
 
@@ -1334,6 +1342,10 @@
                         <asp:RequiredFieldValidator runat ="server" ControlToValidate ="telFamTxtBx" Display ="Dynamic" 
                             ErrorMessage ="Requerido" ForeColor ="#CC0000" SetFocusOnError ="true"></asp:RequiredFieldValidator>
 
+                        <asp:RegularExpressionValidator runat ="server" ControlToValidate ="telFamTxtBx" Display ="Dynamic" 
+                            ErrorMessage ="Formato valido es xxx-xxx-xxxx" ForeColor ="#CC0000" SetFocusOnError ="true" 
+                            ValidationExpression = "^\d{3}-\d{3}-\d{4}$"></asp:RegularExpressionValidator>
+
                     </div>
 
                 </div>
@@ -1626,6 +1638,10 @@
                         <asp:RequiredFieldValidator runat ="server" ControlToValidate ="telFam2TxtBx" Display ="Dynamic" 
                             ErrorMessage ="Requerido" ForeColor ="#CC0000" SetFocusOnError ="true"></asp:RequiredFieldValidator>
 
+                        <asp:RegularExpressionValidator runat ="server" ControlToValidate ="telFam2TxtBx" Display ="Dynamic" 
+                            ErrorMessage ="Formato valido es xxx-xxx-xxxx" ForeColor ="#CC0000" SetFocusOnError ="true" 
+                            ValidationExpression = "^\d{3}-\d{3}-\d{4}$"></asp:RegularExpressionValidator>
+
                     </div>
 
                 </div>
@@ -1917,6 +1933,10 @@
 
                         <asp:RequiredFieldValidator runat ="server" ControlToValidate ="telFamRef3TxtBx" Display ="Dynamic" 
                             ErrorMessage ="Requerido" ForeColor ="#CC0000" SetFocusOnError ="true"></asp:RequiredFieldValidator>
+
+                        <asp:RegularExpressionValidator runat ="server" ControlToValidate ="telFamRef3TxtBx" Display ="Dynamic" 
+                            ErrorMessage ="Formato valido es xxx-xxx-xxxx" ForeColor ="#CC0000" SetFocusOnError ="true" 
+                            ValidationExpression = "^\d{3}-\d{3}-\d{4}$"></asp:RegularExpressionValidator>
 
                     </div>
 

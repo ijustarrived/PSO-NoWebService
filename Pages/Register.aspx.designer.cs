@@ -85,6 +85,15 @@ namespace PSO.Pages {
         protected global::System.Web.UI.WebControls.TextBox passwordTxtBx;
         
         /// <summary>
+        /// passRFV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator passRFV;
+        
+        /// <summary>
         /// passwordREV control.
         /// </summary>
         /// <remarks>
