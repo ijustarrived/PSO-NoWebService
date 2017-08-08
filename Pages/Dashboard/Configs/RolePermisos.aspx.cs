@@ -273,9 +273,58 @@ namespace PSO.Pages.Dashboard.Configs
                     throw new Exception(string.Format("No se pudo actualizar el rol. Error Rol: {0}", excep.Message));
                 }
 
-                #region Update current user
-
                 Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
+
+                #region Save log
+
+                RoleLogRepo.Create(new RolLog
+                {
+                    EditCustomizationPage = role.EditCustomizationPage,
+
+                    ViewConfigDocReq = role.ViewConfigDocReq,
+
+                    ViewConfigRole = role.ViewConfigRole,
+
+                    ViewConfigUser = role.ViewConfigUser,
+
+                    ViewConsuCoor = role.ViewConsuCoor,
+
+                    ViewConsuPendAsig = role.ViewConsuPendAsig,
+
+                    ViewConsuProc = role.ViewConsuProc,
+
+                    ViewConsuSolicitud = role.ViewConsuSolicitud,
+
+                    EditDocReq = role.EditDocReq,
+
+                    EditRoles = role.EditRoles,
+
+                    EditUsers = role.EditUsers,
+
+                    ID = role.ID,
+
+                    Nombre = role.Nombre,
+
+                    RoleType = role.RoleType,
+
+                    UpdateDate = DateTime.Now,
+
+                    ViewRepAvisosStatus = role.ViewRepAvisosStatus,
+
+                    ViewReportIndicadores = role.ViewReportIndicadores,
+
+                    ViewRepProduc = role.ViewRepProduc,
+
+                    ViewRepRecVsPen = role.ViewRepRecVsPen,
+
+                    ViewSolicitud = role.ViewSolicitud,
+
+                    WhoUpdated = user.ID
+                });
+
+                #endregion
+
+                #region Update current user
 
                 if (role.RoleType == user.Role.RoleType)
                     user.Role = role;

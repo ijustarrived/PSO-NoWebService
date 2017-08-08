@@ -1165,6 +1165,109 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
 
                     #endregion
 
+                    #region Save Log
+
+                    SolicitudesLogRepo.Create(new SolicitudLog
+                    {
+                        Celular = solicitud.Celular,
+
+                        CelularCo = solicitud.CelularCo,
+
+                        CodigoPostal = solicitud.CodigoPostal,
+
+                        CodigoPostalCo = solicitud.CodigoPostalCo,
+
+                        CodigoPostalPostal = solicitud.CodigoPostalPostal,
+
+                        CodigoPostalPostalCo = solicitud.CodigoPostalPostalCo,
+
+                        ComentarioProcesador = solicitud.ComentarioProcesador,
+
+                        ComentarioTrabajo = solicitud.ComentarioTrabajo,
+
+                        CoordinadorID = solicitud.CoordinadorID,
+
+                        ApellidoMaternoCo = solicitud.ApellidoMaternoCo,
+
+                        ApellidoPaternoCo = solicitud.ApellidoPaternoCo,
+
+                        DirrecionCo = solicitud.DirrecionCo,
+
+                        DirrecionPostalCo = solicitud.DirrecionPostalCo,
+
+                        EmailCo = solicitud.EmailCo,
+
+                        FechaNacimientoCo = solicitud.FechaNacimientoCo,
+
+                        LicenciaConducir = solicitud.LicenciaConducir,
+
+                        LicenciaConducirCo = solicitud.LicenciaConducirCo,
+
+                        NombreCo = solicitud.NombreCo,
+
+                        PuebloCo = solicitud.PuebloCo,
+
+                        PuebloPostalCo = solicitud.PuebloPostalCo,
+
+                        SeguroSocialCo = solicitud.SeguroSocialCo,
+
+                        TelefonoCo = solicitud.TelefonoCo,
+
+                        ApellidoMaterno = solicitud.ApellidoMaterno,
+
+                        ApellidoPaterno = solicitud.ApellidoPaterno,
+
+                        Dirrecion = solicitud.Dirrecion,
+
+                        DirrecionPostal = solicitud.DirrecionPostal,
+
+                        Duration = solicitud.Duration,
+
+                        Email = solicitud.Email,
+
+                        FechaAsigProcesador = solicitud.FechaAsigProcesador,
+
+                        FechaDocIncompleto = solicitud.FechaDocIncompleto,
+
+                        FechaNacimiento = solicitud.FechaNacimiento,
+
+                        FechaRevision = solicitud.FechaRevision,
+
+                        FechaTrabajado = solicitud.FechaTrabajado,
+
+                        FechaTramitada = solicitud.FechaTramitada,
+
+                        ID = solicitud.ID,
+
+                        LockedAt = solicitud.LockedAt,
+
+                        LockedById = solicitud.LockedById,
+
+                        Nombre = solicitud.Nombre,
+
+                        NumeroSolicitud = solicitud.NumeroSolicitud,
+
+                        ProcesadorId = solicitud.ProcesadorId,
+
+                        Pueblo = solicitud.Pueblo,
+
+                        PuebloPostal = solicitud.PuebloPostal,
+
+                        SeguroSocial = solicitud.SeguroSocial,
+
+                        Status = solicitud.Status,
+
+                        Telefono = solicitud.Telefono,
+
+                        TrabajadorId = solicitud.TrabajadorId,
+
+                        UpdateDate = DateTime.Now,
+
+                        WhoUpdated = user.ID
+                    });
+
+                    #endregion
+
                     //Show num solicitud and redirect to main dashboard
                     ScriptManager.RegisterStartupScript(this, GetType(), "userMustWaitAlert",
                                            string.Format("WaitingExternalAnswerAlert('Número Solicitud: {0}');", solicitud.NumeroSolicitud), true);
@@ -1536,6 +1639,109 @@ asegurar que se encuentren actualizados.')".Replace("\r\n", " "), true);
                         throw new Exception(string.Format("No se pudo actualizar la solicitud. Error Actualizar Referencias: {0}",
                                 _error.Replace("'", string.Empty)));
                     }
+
+                    #endregion
+
+                    #region Save Log
+
+                    SolicitudesLogRepo.Create(new SolicitudLog
+                    {
+                        Celular = solicitud.Celular,
+
+                        CelularCo = solicitud.CelularCo,
+
+                        CodigoPostal = solicitud.CodigoPostal,
+
+                        CodigoPostalCo = solicitud.CodigoPostalCo,
+
+                        CodigoPostalPostal = solicitud.CodigoPostalPostal,
+
+                        CodigoPostalPostalCo = solicitud.CodigoPostalPostalCo,
+
+                        ComentarioProcesador = solicitud.ComentarioProcesador,
+
+                        ComentarioTrabajo = solicitud.ComentarioTrabajo,
+
+                        CoordinadorID = solicitud.CoordinadorID,
+
+                        ApellidoMaternoCo = solicitud.ApellidoMaternoCo,
+
+                        ApellidoPaternoCo = solicitud.ApellidoPaternoCo,
+
+                        DirrecionCo = solicitud.DirrecionCo,
+
+                        DirrecionPostalCo = solicitud.DirrecionPostalCo,
+
+                        EmailCo = solicitud.EmailCo,
+
+                        FechaNacimientoCo = solicitud.FechaNacimientoCo,
+
+                        LicenciaConducir = solicitud.LicenciaConducir,
+
+                        LicenciaConducirCo = solicitud.LicenciaConducirCo,
+
+                        NombreCo = solicitud.NombreCo,
+
+                        PuebloCo = solicitud.PuebloCo,
+
+                        PuebloPostalCo = solicitud.PuebloPostalCo,
+
+                        SeguroSocialCo = solicitud.SeguroSocialCo,
+
+                        TelefonoCo = solicitud.TelefonoCo,
+
+                        ApellidoMaterno = solicitud.ApellidoMaterno,
+
+                        ApellidoPaterno = solicitud.ApellidoPaterno,
+
+                        Dirrecion = solicitud.Dirrecion,
+
+                        DirrecionPostal = solicitud.DirrecionPostal,
+
+                        Duration = solicitud.Duration,
+
+                        Email = solicitud.Email,
+
+                        FechaAsigProcesador = solicitud.FechaAsigProcesador,
+
+                        FechaDocIncompleto = solicitud.FechaDocIncompleto,
+
+                        FechaNacimiento = solicitud.FechaNacimiento,
+
+                        FechaRevision = solicitud.FechaRevision,
+
+                        FechaTrabajado = solicitud.FechaTrabajado,
+
+                        FechaTramitada = solicitud.FechaTramitada,
+
+                        ID = solicitud.ID,
+
+                        LockedAt = solicitud.LockedAt,
+
+                        LockedById = solicitud.LockedById,
+
+                        Nombre = solicitud.Nombre,
+
+                        NumeroSolicitud = solicitud.NumeroSolicitud,
+
+                        ProcesadorId = solicitud.ProcesadorId,
+
+                        Pueblo = solicitud.Pueblo,
+
+                        PuebloPostal = solicitud.PuebloPostal,
+
+                        SeguroSocial = solicitud.SeguroSocial,
+
+                        Status = solicitud.Status,
+
+                        Telefono = solicitud.Telefono,
+
+                        TrabajadorId = solicitud.TrabajadorId,
+
+                        UpdateDate = DateTime.Now,
+
+                        WhoUpdated = user.ID
+                    });
 
                     #endregion
                 }

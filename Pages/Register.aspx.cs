@@ -239,6 +239,14 @@ namespace PSO.Pages
 
             Usuario loggedUser = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
 
+            #region Define and instanciate user log obj
+
+            UsuarioLog userLog = new UsuarioLog(userProfile);
+
+            userLog.WhoUpdated = loggedUser.ID;
+
+            #endregion
+
             #region Create/Edit
             if (string.IsNullOrEmpty(loggedUser.Email))
             {
@@ -261,6 +269,8 @@ namespace PSO.Pages
                             throw new Exception(string.Format("No se pudo crear el usuario. Error: {0}",
                                 excep.Message.Replace("'", string.Empty)));
                         }
+
+                        UserLogRepo.Create(userLog);
 
                         CreateUserDir(userProfile.Email);
 
@@ -319,6 +329,20 @@ namespace PSO.Pages
                             throw new Exception(string.Format("No se pudo actualizar el perfil. Error: {0}"
                                 , excep.Message));
                         }
+
+                        userProfile.ID = existingUser.ID;
+
+                        #region Save log
+
+                        //UsuarioLog userLog = new UsuarioLog(userProfile);
+
+                        //userLog.WhoUpdated = loggedUser.ID;
+
+                        userLog.ID = userProfile.ID;
+
+                        UserLogRepo.Create(userLog);
+
+                        #endregion
 
                         #region Update user dir
 

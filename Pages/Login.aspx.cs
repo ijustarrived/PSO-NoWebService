@@ -127,6 +127,16 @@ namespace PSO.Pages
                             //in the session and in js, when I call it, won't return anything. Not even an empty string nor null
                             Session["lockedId"] = 0;
 
+                            #region Save log
+
+                            UsuarioLog userLog = new UsuarioLog(user);
+
+                            userLog.LogInDate = DateTime.Now;
+
+                            UserLogRepo.Create(userLog);
+
+                            #endregion
+
                             #region Release all locked solicitudes in a new thread
 
                             if (user.Role.RoleType == Rol.TiposRole.COORDINADOR)
@@ -161,6 +171,8 @@ namespace PSO.Pages
                             }
 
                             #endregion
+
+                            Globals.SetSessionIsAlive(true);
 
                             Response.Redirect("~/Pages/Dashboard/Main.aspx", true);
                         }

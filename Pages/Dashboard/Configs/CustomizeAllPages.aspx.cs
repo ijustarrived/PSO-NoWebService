@@ -337,6 +337,55 @@ namespace PSO.Pages.Dashboard.Configs
                             excep.Message.Replace("'", string.Empty)));
                 }
 
+                Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
+
+                #region Save log
+
+                CosmeticsLogRepo.Create(new CosmeticLog
+                {
+                    ColorVersion = cosmetic.ColorVersion,
+
+                    CompletadasMesDiasTitle = cosmetic.CompletadasMesDiasTitle,
+
+                    ConsultaCoorTitle = cosmetic.ConsultaCoorTitle,
+
+                    ConsultaProcTitle = cosmetic.ConsultaProcTitle,
+
+                    ConsultaSolicitudTitle = cosmetic.ConsultaSolicitudTitle,
+
+                    ConsultaSuperTitle = cosmetic.ConsultaSuperTitle,
+
+                    HistoryCompletadasTitle = cosmetic.HistoryCompletadasTitle,
+
+                    LabelForeColor = cosmetic.LabelForeColor,
+
+                    LinkForeColor = cosmetic.LinkForeColor,
+
+                    ReportComparacionTitle = cosmetic.ReportComparacionTitle,
+
+                    TitleBackColor = cosmetic.TitleBackColor,
+
+                    HistoryRecibidasTitle = cosmetic.HistoryRecibidasTitle,
+
+                    ID = cosmetic.ID,
+
+                    IndicadoresProductividadTitle = cosmetic.IndicadoresProductividadTitle,
+
+                    LogoPath = cosmetic.LogoPath,
+
+                    ReportProduccionTitle = cosmetic.ReportProduccionTitle,
+
+                    SolicitudesStatusTitle = cosmetic.SolicitudesStatusTitle,
+
+                    SolicitudTitle = cosmetic.SolicitudTitle,
+
+                    UpdateDate = DateTime.Now,
+
+                    WhoUpdated = user.ID
+                });
+
+                #endregion
+
                 if (logoFileUp.HasFile)
                     logoFileUp.SaveAs(Server.MapPath(cosmetic.LogoPath));
 

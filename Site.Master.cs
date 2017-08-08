@@ -176,7 +176,26 @@ namespace PSO
 
             UserRepo.UpdateUserLoggedLock(user.ID, false);
 
-            Session.Remove("UserObj");
+            #region Save log
+
+            UsuarioLog userLog = new UsuarioLog(user);
+
+            userLog.LogOutDate = DateTime.Now;
+
+            UserLogRepo.Create(userLog);
+
+            #endregion
+
+            Globals.SetSessionIsAlive(false);
+
+            if (user != null)
+            {
+                Session.Remove("UserObj");
+
+                Session.Remove("UserId");
+            }
+
+            //Session.Remove("UserObj");
 
             Response.Redirect("~/Pages/Login.aspx", true);
         }

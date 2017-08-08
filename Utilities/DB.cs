@@ -14,5 +14,10 @@ namespace PSO.Utilities
         //{
         //    //return new SqlConnection(ConfigurationManager.ConnectionStrings["local"].ConnectionString);
         //}
+
+        public static SqlConnection GetLogConnection()
+        {
+            return new SqlConnection(ConfigurationManager.ConnectionStrings["logLocal"].ConnectionString);
+        }
     }
 }

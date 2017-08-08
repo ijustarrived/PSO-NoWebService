@@ -132,8 +132,29 @@ namespace PSO.Pages.Dashboard
 
             UserRepo.UpdateUserLoggedLock(userId, false);
 
+            #region Save log
+
+            //Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
+
+            Usuario user = Session["UserObj"] == null ? new Usuario() : (Usuario)Session["UserObj"];
+
             if (Session["UserObj"] != null)
+            {
                 Session.Remove("UserObj");
+
+                Session.Remove("UserId");
+            }
+
+            UsuarioLog userLog = new UsuarioLog(user);
+
+            userLog.LogOutDate = DateTime.Now;
+
+            UserLogRepo.Create(userLog);
+
+            #endregion
+
+            //if (Session["UserObj"] != null)
+            //    Session.Remove("UserObj");
 
             Response.Redirect("~/Pages/Login.aspx", true);
         }
@@ -158,7 +179,24 @@ namespace PSO.Pages.Dashboard
         [WebMethod]
         public static void UpdateUserLoginLock(int id, bool shouldBeLoggedLocked)
         {
-            UserRepo.UpdateUserLoggedLock(id, shouldBeLoggedLocked);
+            if (Globals.GetSessionIsAlive())
+            {
+                UserRepo.UpdateUserLoggedLock(id, shouldBeLoggedLocked);
+
+                #region Save log
+
+                Usuario loggedUser = UserRepo.GetUserByID(id);
+
+                UsuarioLog userLog = new UsuarioLog(loggedUser);
+
+                //means that logged out
+                if (!shouldBeLoggedLocked)
+                    userLog.LogOutDate = DateTime.Now;
+
+                UserLogRepo.Create(userLog);
+
+                #endregion
+            }
         }
     }
 }
